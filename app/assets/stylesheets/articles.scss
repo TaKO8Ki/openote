@@ -1,0 +1,511 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@charset "utf-8";
+
+/*記事知覧*/
+
+div#article_wrap{
+    width: 90%;
+    margin: 20px auto;
+    background-color: #fff
+}
+
+div#article_list{
+    width: 62.7%;
+    float: left;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+
+div#article_list div#article_list_bottom {
+    padding: 20px;
+
+    margin-bottom: 10px;
+    background-color: #fff;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                0 0 4px rgba(0, 0, 0, .8) inset,
+                2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#article_list div h2 {
+    font-size: 20px;
+    color: #161616;
+    text-decoration: none;
+}
+
+div#article_list div p.article_list_date{
+    font-size: 12px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_list div p.article_list_category {
+    font-size: 12px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_list div p.article_list_comment {
+    font-size: 15px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+/*記事詳細*/
+
+div#article_left{
+    width: 60%;
+    float: left;
+    background-color: #fff;
+    margin-left: 10%;
+    border-radius: 5px;
+}
+
+div#article_show{
+    width: 100%;
+    background-color: #fff;
+    padding: 1.5%;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#article_show div{
+    padding: 20px 0;
+    border-bottom: 1px solid #7d7d7d;
+}
+
+div#article_show  h2 {
+    font-size: 45px;
+    color: #161616;
+    text-decoration: none;
+}
+
+div#article_show  p.article_show_url{
+    font-size: 15px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_show  p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_show  p.article_show_category{
+    font-size: 13px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_show  p.article_show_date{
+    font-size: 13px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#article_show_comment{
+    width: 100%;
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 1.5%;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#article_show_comment_form{
+    width: 100%;
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 1.5%;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+ul {
+  list-style: none;
+}
+
+/*記事作成画面*/
+
+div#article_input {
+    width: 80%;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#article_input_bdy {
+    width: 80%;
+    margin: 30px auto;
+    background-color: #fff;
+
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+
+div#article_write_title {
+    text-align: center;
+}
+div#article_write_github {
+    text-align: center;
+}
+div#article_write_service {
+    text-align: center;
+}
+div#article_write_body {
+    text-align: center;
+}
+
+
+input.article_title {
+    width: 80%;
+    height: 20px;
+    font-size: 15px;
+    padding: 20px;
+    margin-top: 20px;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+input.article_github {
+    width: 80%;
+    height: 1px;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+input.article_service {
+    width:  80%;
+    height: 1px;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+textarea.article_body {
+    width:  80%;
+    height: 400px;
+    font-size: 20px;
+    padding: 20px;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+
+/*ログイン画面*/
+
+div#login {
+    width: 80%;
+    height: 500px;
+    background-color: #fff;
+    margin: 20px auto;
+
+    border: 1px solid #4c4e51;
+    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#login_left {
+    width: 49%;
+    margin: 20px auto;
+    float: left;
+}
+
+img.login_img {
+    margin-left: 10px;
+    width: 300px;
+    height: 300px;
+}
+
+div#login_left h1 {
+    margin: 10px;
+}
+
+div#login_left p {
+    margin-left: 30px;
+}
+
+div#login_form {
+    width: 49%;
+    height: 100%;
+    float: right;
+
+}
+
+div#login_form_email {
+    width: 80%;
+    text-align: center;
+}
+
+div#login_form_password {
+    width: 80%;
+    text-align: center;
+}
+
+div#login_form_rememberme {
+    width: 80%;
+}
+
+div#login_form_actions {
+    width: 80%;
+}
+
+div#login_form_links {
+    margin-bottom: 10px;
+}
+
+input.login_form_email {
+    width: 70%;
+    height: 35px;
+    margin-top: 20px;
+    font-size: 18px;
+    padding-left: 5px
+}
+
+input.login_form_password {
+    width: 70%;
+    height: 35px;
+    margin-top: 20px;
+    font-size: 18px;
+    padding-left: 5px
+}
+
+input.login_form_rememberme {
+    margin-top: 20px;
+    margin-left: 15%;
+}
+
+input.login_form_actions {
+    height: 100px;
+    width: 70%;
+    margin: 20px auto;
+    height: 35px;
+    font-size: 20px;
+    display:block;
+    color: #FFF;
+    text-decoration: none;
+    background-color: #f39800; /*ボタン色*/
+    border-radius: 5px; /*角丸*/
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+input.login_form_actions:hover {
+    background-color: #f9c500;
+}
+
+@media screen and (max-width: 800px) {
+    div#login {
+        width: 90%;
+        height: 600px;
+        background-color: #fff;
+        margin: 20px auto;
+
+        border: 1px solid #4c4e51;
+        box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+                        0 0 4px rgba(0, 0, 0, .8) inset,
+                        2px 2px 2px rgba(0, 0, 0, .4);
+    }
+
+    div#login_left {
+        width: 100%;
+        text-align: center;
+    }
+
+    img.login_img {
+        margin-left: 10px;
+        width: 100px;
+        height: 100px;
+    }
+
+    div#login_left h1 {
+        margin: 10px;
+    }
+
+    div#login_left p {
+        margin-left: 30px;
+    }
+
+    div#login_form {
+        width: 100%;
+
+    }
+
+    div#login_form_email {
+        width: 100%;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    div#login_form_password {
+        width: 100%;
+        text-align: center;
+    }
+
+    div#login_form_rememberme {
+        width: 100%;
+    }
+
+    div#login_form_actions {
+        width: 100%;
+    }
+
+    div#login_form_links {
+        width: 100%;
+        text-align: center;
+    }
+
+    input.login_form_email {
+        width: 70%;
+        height: 35px;
+        margin: 10px auto;
+        font-size: 18px;
+        padding-left: 5px
+    }
+
+    input.login_form_password {
+        width: 70%;
+        height: 35px;
+        margin-top: 20px;
+        font-size: 18px;
+        padding-left: 5px
+    }
+
+    input.login_form_rememberme {
+        margin-top: 20px;
+        margin-left: 15%;
+    }
+
+    input.login_form_actions {
+        height: 100px;
+        width: 70%;
+        margin: 20px auto;
+        height: 35px;
+        font-size: 20px;
+        display:block;
+        color: #FFF;
+        text-decoration: none;
+        background-color: #f39800; /*ボタン色*/
+        border-radius: 5px; /*角丸*/
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+    input.login_form_actions:hover {
+        background-color: #f9c500;
+    }
+}
+
+/*サイドバー*/
+
+div#sidebar{
+    width: 26.3%;
+    float: right;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+p.sidebar_article_likes_order {
+    font-size: 15px;
+}
+
+div#sidebar h2{
+    margin: 20px auto;
+}
+
+div#sidebar ul li{
+    list-style-type: none;
+}
+
+div#sidebar ul li a{
+    color: #00a9a2;
+}
+
+div#sidebar ul li a span{
+    color: #161616;
+}
+
+div#article_top_category {
+    width: 100% -15px;
+    height: auto;
+    background-color: #fff;
+    // margin-left: 10%;
+    margin-bottom: 20px;
+
+    border-top: 3px solid #4c4e51;
+    border-bottom: 3px solid #4c4e51;
+    border-left: 15px solid #4c4e51;
+    border-right: 3px solid #4c4e51;
+    box-shadow: 5px 1px 0 rgba(255, 255, 255, .4) inset,
+                    0 0 4px rgba(0, 0, 0, .8) inset,
+                    2px 2px 2px rgba(0, 0, 0, .4);
+}
+
+div#article_top_category_name {
+    font-size: 50px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/*記事カテゴリーボタン*/
+
+
+
+.square_btn {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #000;
+    background: #ECECEC;
+    border-radius: 0 7px 7px 0;
+    transition: .4s;
+  }
+
+  .square_btn:hover {
+    background: #636363;
+}

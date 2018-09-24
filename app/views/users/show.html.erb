@@ -1,0 +1,63 @@
+<div id="user_article_wrap">
+
+    <div id="user_sidebar">
+        <ul><strong><%= @user.username %></strong></ul>
+        <% if @user == current_user %>
+        <ul>
+            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+        </ul>
+        <% end %>
+        <ul>
+            <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
+        </ul>
+        <ul>
+            <div id="stats">
+                <%= render 'shared/stats' %>
+            </div>
+        </ul>
+        <ul>
+            <%= render 'follow_form' if user_signed_in? %>
+        </ul>
+    </div>
+
+    <div id="user_article_list">
+        <% @articles.each do |article| %>
+        <div id='user_article_list_bottom'>
+         <h2>
+                 <%= link_to article.title, article_path(article)%>
+         <h2>
+        <p class='user_article_list_date'>
+            <%= article.updated_at.strftime("%Y-%m-%d") %>
+        </p>
+        <p class='user_article_list_category'>
+            <% article.article_categories.each do |f| %>
+            <%= link_to f.category.name, user_path(category: f.category.name),  { :class => "square_btn" } %>
+            <% end %>
+        </p>
+
+        <p class='user_article_list_comment'>
+            コメント<%= article.article_comments.count %></br>
+        </p>
+        <p class='user_article_edit_delete'>
+        <% if @user == current_user %>
+            <%= link_to '編集', edit_article_path(article), class: 'command' %>
+            <%= link_to '削除',
+                article_path(article),
+                method: :delete,
+                class: 'command',
+                data: { confirm: 'Sure?' }%>
+        <% end %>
+        </p>
+        </div>
+        <% end %>
+
+    </div>
+
+    <div id="user_sidebar_right">
+        アイウエオ
+    </div>
+
+    <div class="clear">
+    </div>
+
+</div>

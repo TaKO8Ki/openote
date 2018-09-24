@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenoteApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, minimum-scale=0.2, maximum-scale=2, user-scalable=yes">
+
+  </head>
+
+  <header>
+      <div id='header_menu'>
+          <%= link_to 'トップ', articles_path %>
+          <% if user_signed_in? %>
+          <strong><%= link_to current_user.username, user_path(current_user) %></strong>
+          <%= link_to '新規投稿', new_article_path %>
+          <%= link_to '新規投稿カテゴリー', new_category_path %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <% else %>
+          <%= link_to 'サインアップ', new_user_registration_path %>
+          <%= link_to 'ログイン', new_user_session_path %>
+          <% end %>
+    </div>
+  </header>
+
+  <body id='all_contents'>
+      <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+
+    <%= yield %>
+  </body>
+</html>

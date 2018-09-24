@@ -1,0 +1,23 @@
+<h3>Comments</h3>
+<% if  @article.article_comments.any? %>
+<ul>
+<% @article.article_comments.each do |comment| %>
+<li>
+    <%= comment.body %>
+    <%= link_to '[x]',
+        article_article_comment_path(@article, comment),
+        method: :delete,
+        class: 'command',
+        data: { confirm: 'Sure?' }%>
+</li>
+<% end %>
+</ul>
+<% end %>
+<%= form_for([@article, @article.article_comments.build]) do |f| %>
+<p>
+   <%= f.text_field :body %>
+</p>
+<p>
+   <%= f.submit %>
+</p>
+<% end %>

@@ -1,0 +1,37 @@
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<div id='login'>
+    <div id='login_left'>
+        <%= image_tag('logo_transparent.png', :class => "login_img") %>
+        <p>
+            <strong>エンジニアのオープンソース共有サービス</strong>
+        </p>
+    </div>
+    <div id='login_form'>
+      <div id="login_form_email">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス", class: "login_form_email" %>
+      </div>
+
+      <div id="login_form_password">
+        <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード", class: "login_form_password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+      <div id="login_form_rememberme">
+          <%= f.check_box :remember_me, class: "login_form_rememberme" %>
+          <%= f.label :remember_me %>
+      </div>
+      <% end -%>
+
+      <div id="login_form_actions">
+        <%= f.submit "Log in", class: "login_form_actions" %>
+      </div>
+      <% end %>
+
+      <div id='login_form_links'>
+          <%= render "devise/shared/links" %>
+      </div>
+    </div>
+</div>

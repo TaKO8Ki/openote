@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+<p class='picture_follower_index'>
+    <%= image_tag user.picture.url if user.picture.present? %>
+</p>
+<%= link_to user.email, user_path(user) %>
+<% end %>

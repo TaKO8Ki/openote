@@ -1,0 +1,40 @@
+<%= form_for @article do |article| %>
+<div id='article_write_title'>
+    <%= article.text_field :title, :placeholder => "タイトル", class: "article_title" %>
+</div>
+
+
+
+    <% if @article.errors.any? %>
+    <%= @article.errors.messages[:title][0] %>
+    <% end %>
+
+    <div id='article_write_github'>
+        <%= article.text_field :github_repository_url, :placeholder => "github_url", class: "article_github" %>
+    </div>
+
+    <div id='article_write_service'>
+        <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
+    </div>
+
+
+    <%= article.label :category %>
+    <div id='article_write_category'>
+        <%= collection_check_boxes(:article, :category_ids, Category.all, :id, :name) do |category| %>
+        <%= category.label { category.check_box + category.text } %>
+        <% end %>
+    </div>
+
+    <%= article.submit %>
+
+
+
+<div id='article_input_body'>
+<div id='article_write_body'>
+    <%= article.text_area :body, :placeholder => "body", class: "article_body" %>
+</div>
+<% end %>
+</div>
+<% if @article.errors.any? %>
+<%= @article.errors.messages[:body][0] %>
+<% end %>
