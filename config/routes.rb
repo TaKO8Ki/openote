@@ -5,8 +5,11 @@ Rails.application.routes.draw do
     get 'users/show'
     get 'likes/create'
     get 'likes/destroy'
-    devise_for :users
+    get 'article_comments/create'
+    get 'article_comments/destroy'
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     resources :users, :only => [:index, :show] do
+      resources :article_memos
         member do
             get :following, :followers
         end
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
     resources :articles do
         resources :article_comments, only: [:create, :destroy]
         resources :likes, only: [:create, :destroy]
+        resources :article_memos
     end
     resources :categories
     resources :article_categories

@@ -1,0 +1,4 @@
+opennote filter=lfs diff=lfs merge=lfs -text
+openote filter=lfs diff=lfs merge=lfs -text
+app filter=lfs diff=lfs merge=lfs -text
+development.log filter=lfs diff=lfs merge=lfs -text

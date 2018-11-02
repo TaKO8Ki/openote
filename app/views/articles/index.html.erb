@@ -1,10 +1,10 @@
-<div id="article_wrap">
-
+<div id='index_show_main'>
+  <div id="article_wrap">
     <% if params[:category] %>
-    <div id="article_top_category">
-        <div id='article_top_category_name'>
-            <strong><%= @category.name %></strong>
-        </div>
+    <div id="article_top">
+      <div id='article_top_category_name'>
+        <strong><%= @category %></strong>
+      </div>
     </div>
     <% end %>
 
@@ -12,38 +12,164 @@
     </div>
 
     <div id="article_list">
+      <%= render "article_period" %>
+
         <% @articles.each do |article| %>
         <div id='article_list_bottom'>
          <h2>
-                 <%= link_to article.title, article_path(article)%>
+                 <%= link_to article.title, article_path(article), { :class => "article_link" } %>
          <h2>
         <p class='article_list_date'>
             <%= article.updated_at.strftime("%Y-%m-%d") %>
         </p>
         <p class='article_list_category'>
-            <% article.article_categories.each do |f| %>
-            <%= link_to f.category.name, articles_path(category: f.category.name),  { :class => "square_btn" } %>
+            <% article.tag_list.each do |f| %>
+            <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
             <% end %>
         </p>
 
-        <p class='article_list_comment'>
-            コメント<%= article.article_comments.count %></br>
-        </p>
 
+
+        <div id="article_info">
+          <ul class="article_info_box">
+            <li class="article_info_box_item">
+              <p class='article_list_user'>
+                <%= image_tag article.user.picture.url %>
+              </p>
+            </li>
+            <li class="article_info_box_item">
+              <p class='article_list_comment'>
+                <%= image_tag "comment1.png" %>
+              </p>
+            </li>
+            <li class="article_info_box_item">
+              <p class='article_list_comment'>
+                <%= article.article_comments.count %>
+              </p>
+            </li>
+            <li class="article_info_box_item">
+              <p class='article_list_likes'>
+                <%= image_tag "icon_red_heart.png"%>
+              </p>
+            </li>
+            <li class="article_info_box_item">
+              <p class='article_list_likes'>
+                <%= article.likes.count %>
+              </p>
+            </li>
+          </ul>
         </div>
+
+
+        <!-- <div id="article_test_test">
+          <p class='article_list_user'>
+            <%= image_tag article.user.picture.url %>
+            <%= article.user.username %>
+          </p>
+        </div> -->
+
+
+      </div>
         <% end %>
     </div>
 
-
-
     <div id="sidebar">
-            <% @articles_likes_order.each do |article| %>
+      <% if user_signed_in? %>
+      <div id='sidebar_user_index'>
+        <ul class="user_box">
+          <li class="user_box_item"><p class='picture_current_user'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
+          <li class="user_box_item">
+            <p class='sidebar_user_name'>
+              <strong><%= link_to "@#{current_user.username}", user_path(current_user) %></strong>
+            </p>
+          </li>
+        </ul>
+      </div>
+      <% end %>
+      <% if @first_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@first_tag}" %></strong>
+          <% @articles_tagged_with_first_tag.each do |article| %>
         <p class='sidebar_article_likes_order'>
-            <%= link_to article.title, articles_path(article)  %>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
         </p>
-            <% end %>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @ssecond_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@second_tag}" %></strong>
+          <% @articles_tagged_with_second_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @third_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@third_tag}" %></strong>
+          <% @articles_tagged_with_third_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @forth_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@forth_tag}" %></strong>
+          <% @articles_tagged_with_forth_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @fifth_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@fifth_tag}" %></strong>
+          <% @articles_tagged_with_fifth_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @sixth_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@sixth_tag}" %></strong>
+          <% @articles_tagged_with_sixth_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <% if @seventh_tag.present? %>
+      <div id='sidebar_articles'>
+        <strong><%= "##{@seventh_tag}" %></strong>
+          <% @articles_tagged_with_seventh_tag.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+        </p>
+              <% end %>
+      </div>
+      <% end %>
+      <!-- <div id='sidebar_articles'>
+          <% @articles_likes_order.each do |article| %>
+        <p class='sidebar_article_likes_order'>
+          <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
+          <%= image_tag("icon_red_heart.png") %>
+          <font size="1"><%= article.likes_count %></font>
+        </p>
+              <% end %>
+      </div> -->
     </div>
 
     <div class="clear">
     </div>
+</div>
+
+
 </div>

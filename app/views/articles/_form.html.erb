@@ -1,40 +1,55 @@
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+
+<div id='article_form_wrap'>
 <%= form_for @article do |article| %>
-<div id='article_write_title'>
+<div id='article_form_title'>
     <%= article.text_field :title, :placeholder => "タイトル", class: "article_title" %>
 </div>
-
-
 
     <% if @article.errors.any? %>
     <%= @article.errors.messages[:title][0] %>
     <% end %>
 
-    <div id='article_write_github'>
+    <div id='article_form_github'>
         <%= article.text_field :github_repository_url, :placeholder => "github_url", class: "article_github" %>
     </div>
 
-    <div id='article_write_service'>
+    <div id='article_form_service'>
         <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
     </div>
 
+    <div id='article_form_category'>
+        <ul id='article_tags'>
+          <% @article.tag_list.each do |tag| %>
+          <li>
+            <%= tag %>
+          </li>
+          <% end %>
+        </ul>
+    </div>
 
-    <%= article.label :category %>
-    <div id='article_write_category'>
+    <!-- <%= article.label :category %>
+    <div id='article_form_category'>
         <%= collection_check_boxes(:article, :category_ids, Category.all, :id, :name) do |category| %>
         <%= category.label { category.check_box + category.text } %>
         <% end %>
-    </div>
-
-    <%= article.submit %>
+    </div> -->
 
 
 
-<div id='article_input_body'>
-<div id='article_write_body'>
-    <%= article.text_area :body, :placeholder => "body", class: "article_body" %>
-</div>
-<% end %>
-</div>
 <% if @article.errors.any? %>
 <%= @article.errors.messages[:body][0] %>
 <% end %>
+
+<div id="editor">
+  <%= article.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body" %>
+  <div v-html="input | marked", id="article_preview"></div>
+</div>
+
+
+<div class="submit_button">
+  <%= button_to 'submit', articles_path(@article), class: "submit_button"%>
+</div>
+<% end %>
+</div>

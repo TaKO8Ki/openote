@@ -1,0 +1,11 @@
+I"ê(function() {
+  $(document).on('turbolinks:load', function() {
+    return $('#article_tags').tagit({
+      fieldName: 'article[tag_list]',
+      singleField: true,
+      availableTags: gon.available_tags
+    });
+  });
+
+}).call(this);
+:ET

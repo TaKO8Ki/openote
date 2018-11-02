@@ -6,12 +6,16 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @category = Category.find_by_name(params[:name])
       @all_articles = Article.where(user_id: @user)
+      @user_repos = github_repository(@user)
 
       if params[:category]
-          @articles = Article.category_with(params[:category]).where(user_id: @user).order('created_at DESC')
+          @articles = Article.tagged_with(params[:category]).where(user_id: @user).order('created_at DESC')
       elsif params[:like]
           @likes = Like.where(user_id: @user)
           @articles = @likes.map{ |like| Article.find(like.article_id) }
+      elsif params[:memo]
+        @article_memos = ArticleMemo.where(user_id: @user)
+        @articles = @article_memos.map{ |memo| Article.find(memo.article_id) }
       else
           @articles = Article.where(user_id: @user).order('created_at DESC')
       end

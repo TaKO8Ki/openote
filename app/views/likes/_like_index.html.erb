@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+<% if article.like_user(current_user.id) %>
+<p class='article_list_likes'>
+  <%= image_tag("icon_red_heart.png") %>
+  <%= article.likes_count %>
+</p>
+<% else %>
+<p class='article_list_likes'>
+  <%= image_tag("icon_heart.png") %>
+  <%= article.likes_count %>
+</p>
+<% end %>
+<% end %>

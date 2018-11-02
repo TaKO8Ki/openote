@@ -1,7 +1,28 @@
-<div id="user_article_wrap">
+31<div id="user_article_wrap">
+
 
     <div id="user_sidebar">
-        <ul><strong><%= @user.username %></strong></ul>
+      <div id='sidebar_user_show'>
+        <ul class="user_box_show">
+          <li class="user_box_item">
+            <p class='picture_user_show'>
+              <%= image_tag @user.picture.url if @user.picture.present? %>
+            </p>
+          </li>
+          <li class="user_box_item">
+            <p class='sidebar_user_name'>
+              <strong><%= link_to "@#{@user.username}", user_path(@user) %></strong>
+            </p>
+          </li>
+        </ul>
+        <div id="sidebar_user_description">
+          <%= @user.description %>
+        </div>
+      </div>
+        <ul>
+            <%= render 'follow_form' if user_signed_in? %>
+        </ul>
+        </ul>
         <% if @user == current_user %>
         <ul>
             <%= link_to 'プロフィール変更', edit_user_registration_path %>
@@ -11,13 +32,17 @@
             <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
         </ul>
         <ul>
-            <div id="stats">
-                <%= render 'shared/stats' %>
-            </div>
+          <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
         </ul>
         <ul>
-            <%= render 'follow_form' if user_signed_in? %>
+          <%= link_to "github", user_github_omniauth_authorize_path %>
         </ul>
+
+        <% @user.article_memos.each do |memo| %>
+        <p class="user_article_memo">
+          <strong><%= link_to memo.title, article_article_memo_path(memo) %></strong>
+        </p>
+        <% end %>
     </div>
 
     <div id="user_article_list">
@@ -30,13 +55,19 @@
             <%= article.updated_at.strftime("%Y-%m-%d") %>
         </p>
         <p class='user_article_list_category'>
-            <% article.article_categories.each do |f| %>
-            <%= link_to f.category.name, user_path(category: f.category.name),  { :class => "square_btn" } %>
+            <% article.tag_list.each do |f| %>
+            <%= link_to f, user_path(category: f),  { :class => "article_category" } %>
             <% end %>
         </p>
 
-        <p class='user_article_list_comment'>
-            コメント<%= article.article_comments.count %></br>
+        <p class='article_list_comment'>
+          <%= image_tag "comment1.png" %>
+          <%= article.article_comments.count %></br>
+        </p>
+
+        <p class='article_list_likes'>
+          <%= image_tag "icon_red_heart.png"%>
+          <%= article.likes.count %>
         </p>
         <p class='user_article_edit_delete'>
         <% if @user == current_user %>
@@ -54,7 +85,14 @@
     </div>
 
     <div id="user_sidebar_right">
-        アイウエオ
+      <% @user_repos.each do |repo| %>
+      <div id="user_each_repo">
+        <p class="repo_name"><strong><%= link_to repo.name, repo.svn_url %></strong></p>
+        <% if repo.description.present? %>
+        <p class="repo_description"><%= repo.description %></p>
+        <% end %>
+      </div>
+      <% end %>
     </div>
 
     <div class="clear">

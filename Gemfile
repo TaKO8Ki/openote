@@ -5,11 +5,29 @@ ruby '2.5.1'
 
 gem 'devise'
 
-gem 'omniauth-twitter'
+gem 'omniauth-github'
+
+gem "github_api"
+
+gem "figaro"
 
 gem 'carrierwave'
 
+gem 'redcarpet'
+
+gem 'rouge'
+
 gem 'whenever', :require => false
+
+gem 'acts-as-taggable-on', '~> 6.0'
+
+gem 'jquery-ui-rails', '~> 5.0.5'
+
+gem 'jquery-rails'
+
+gem 'gon'
+
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'

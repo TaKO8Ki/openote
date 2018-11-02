@@ -1,30 +1,38 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
 
-  # You should also create an action method in this controller like this:
-  # def twitter
-  # end
+  def github; basic_action; end
 
-  # More info at:
-  # https://github.com/plataformatec/devise#omniauth
+  private
+  def basic_action
+    @omniauth = request.env['omniauth.auth']
+    if @omniauth.present?
+      @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+      unless @profile
+        @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).new
+        @profile.user = current_user || User.create!(username: @omniauth['name'], email: dammy_mail, password: dammy_password)
+        @profile.save!
+      end
+      if current_user
+        flash[:notice] = "errorだよ"
+        # raise "user is not identical" if current_user != @profile.user
+      else
+        sign_in(:user, @profile.user)
+      end
+      @profile.set_values(@omniauth)
+    end
+    redirect_to user_path(current_user)
+  end
 
-  # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
+  def dammy_mail
+    dammy_mail = "takoyaki0310@gmail.com"
+    return dammy_mail
+  end
 
-  # GET|POST /users/auth/twitter/callback
-  # def failure
-  #   super
-  # end
+  def dammy_password
+    dammy_password = "089786756"
+    return dammy_password
+  end
 
-  # protected
-
-  # The path used when OmniAuth fails
-  # def after_omniauth_failure_path_for(scope)
-  #   super(scope)
-  # end
 end

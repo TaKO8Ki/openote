@@ -1,82 +1,113 @@
+<div id='index_show_main'>
 <div id="article_wrap">
+  <div id='article_left_test'>
+    <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+  </div>
 
-    <div id='article_left'>
-        <div id="article_show">
-            <p class='article_show_date'>
-                <%= @article.updated_at.strftime("%Y-%m-%d") %>
-            </p>
-            <p>
-                <%= link_to @article.user.username, user_path(@article.user) %>
-            </p>
-             <h2>
-                 <a>
-                     <%= link_to @article.title, article_path(@article)%>
-                </a>
-             <h2>
-            <p class='article_show_category'>
-                 <% @article.article_categories.each do |f| %>
-                 <%= link_to f.category.name, articles_path(category: f.category.name), { :class => "square_btn" } %>
-                 <% end %>
-             </p>
+  <div id='article_left'>
+    <div id="article_show">
+      <p class='article_show_date'>
+        <%= @article.updated_at.strftime("%Y-%m-%d") %>
+      </p>
+      <p>
+        <%= link_to @article.user.username, user_path(@article.user) %>
+      </p>
+      <h2>
+        <a>
+          <%= @article.title %>
+        </a>
+      <h2>
+        <p class='article_show_category'>
+          <% @article.tag_list.each do |f| %>
+          <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+          <% end %>
+        </p>
+        <p>
+          <%= render partial: 'likes/like', locals: { article: @article, likes: @like } %></br>
+        </p>
+        <p class='article_show_url'>
+          <%= link_to 'github_repository_url', '#', { :class => "btn" } %>
+        </p>
+        <p class='article_show_url'>
+          <%= link_to 'service_url', '#', { :class => "btn" } %>
+        </p>
+        <p>
+          <%= markdown(@article.body) %>
+        </p>
+      </div>
 
-             <p>
-                 <%= render partial: 'likes/like', locals: { article: @article, likes: @like } %></br>
-             </p>
-
-            <p class='article_show_url'>
-                <%= link_to 'github_repository_url', '#', { :class => "btn" } %>
-            </p>
-
-            <p class='article_show_url'>
-                <%= link_to 'service_url', '#', { :class => "btn" } %>
-            </p>
-
-            <p>
-                <%= @article.body %>
-            </p>
-        </div>
-
-        <div id='article_show_comment'>
-            <h3>Comments</h3>
-            <% if  @article.article_comments.any? %>
-            <ul>
-                <% @article.article_comments.each do |comment| %>
-                <li>
-                    <%= comment.body %>
+      <div id='article_show_comment'>
+        <h3>Comments</h3>
+        <% if  @article.article_comments.any? %>
+          <ul>
+            <% @article.article_comments.each do |comment| %>
+              <li>
+                <%= comment.body %>
+                <%= comment_user(comment).username %>
+                <% if user_signed_in? %>
+                  <% if @article.user == current_user %>
                     <%= link_to '[x]',
-                    article_article_comment_path(@article, comment),
-                    method: :delete,
-                    class: 'command',
-                        data: { confirm: 'Sure?' }%>
-                </li>
+                            article_article_comment_path(@article, comment),
+                            method: :delete,
+                            class: 'command',
+                                data: { confirm: 'Sure?' }%>
+                  <% end %>
+                <% end %>
+              </li>
                 <% end %>
             </ul>
-            <% end %>
+          <% end %>
         </div>
 
-
-    <div id='article_show_comment_form'>
-        <%= form_for ([@article, @article.article_comments.build]) do |f| %>
-        <p>
-            <%= f.text_field :body %>
-        </p>
-        <p>
-            <%= f.submit %>
-        </p>
+        <% if user_signed_in? %>
+          <div id='article_show_comment_form'>
+            <%= form_for ([@article, @article.article_comments.build]) do |f| %>
+              <p>
+                <%= f.text_field :body %>
+              </p>
+              <p>
+                <%= f.submit %>
+              </p>
+            <% end %>
+          </div>
         <% end %>
-    </div>
+      </div>
+
+
+      <div id="sidebar">
+        <div id='sidebar_user_index'>
+          <ul class="user_box">
+            <li class="user_box_item">
+              <p class='picture_current_user'>
+                <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+              </p>
+            </li>
+            <li class="user_box_item">
+              <p class='sidebar_user_name'>
+                <strong>
+                  <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
+                </strong>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div id="sidebar_article_memo">
+          この記事に関するメモ
+          <%= link_to "memo", article_article_memos_path(article_id: @article.id) %>
+          <% @article.article_memos.limit(7).each do |memo| %>
+            <ul>
+              <p class='sidebar_article_likes_order'>
+              <%= memo.title %>
+              </p>
+            </ul>
+          <% end %>
+        </div>
+
 </div>
 
-    <div id="sidebar">
-        <h2>sidebar</h2>
-        <ul>
-        </ul>
-    </div>
 
-    <div class="clear">
-    </div>
-</div>
+      </div>
 
-<div id="article_show_bottom">
-
-</div>
+      <div class="clear">
+      </div>
+<div>

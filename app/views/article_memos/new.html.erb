@@ -1,0 +1,14 @@
+<%= form_for ([@article, @article.article_memos.build]) do |f| %>
+
+<div id='article_form_wrap'>
+
+  <div id='article_form_title'>
+    <%= f.text_field :title, class: "article_title" %>
+  </p>
+  <div id='article_form_body'>
+    <%= f.text_area :body, class: "article_body" %>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

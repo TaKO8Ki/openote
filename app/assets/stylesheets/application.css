@@ -10,11 +10,17 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+  *= require agate
  *= require_tree .
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
  *= require_self
  */
 
+
+ @import 'rouge';
  @charset "utf-8";
+
 
  * {
    margin: 0;
@@ -38,13 +44,22 @@
  }
 
  header{
-     background-color: #f9cc00;
-     padding: 20px;
+   width: 100%;
+   height: 70px;
+   position: fixed;
+   background-color: #f2bd00;
+   z-index: 100;
+   top: 0
  }
 
  header div#header_menu {
-     width: 100%;
-     text-align: center;
+     width: 150px;
+     margin-top: 10px;
+     margin-left: 10px;
+     height: 50px;
+     padding-top: 17px;
+     background-color: #ccc;
+     display:table
  }
 
  .notice {
@@ -59,7 +74,140 @@
    text-align: center;
  }
 
-div#devise_html_mail {
-    background-color: #ccc;
-    margin: 20px auto;
+.new_article_bottun {
+  width: 100px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  margin: 0 auto;
+}
+
+.new_article_bottun:hover {
+    background: #67c5ff;
+    color: white;
+}
+
+
+.nav_signed_in {
+    display: table;
+    width: 300px;
+    height: 70px;
+    border-spacing: 10px 0;
+    background: #FFF;
+    float: right;
+    margin-right: 5%;
+}
+
+.nav_signed_out {
+    display: table;
+    width: 250px;
+    height: 70px;
+    border-spacing: 5px 0;
+    background: #FFF;
+    float: right;
+    margin-right: 5%;
+}
+.nav__item {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.nav__item + .nav__item {
+    /* border-left: 1px solid #CCC; */
+}
+.nav__item p {
+    display: block;
+    /* padding: 15px 0; */
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.picture_header img {
+  width: 35px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin-top: 15.5px;
+  margin-bottom: 15.5px;
+}
+
+
+.g_nav {
+    background: #fff;
+    height: 70px;
+    float: right;
+    margin-right: 50px;
+}
+
+.g_nav_list>li {
+    position: relative;
+    float: left;
+    display:inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.g_nav_list>li.g_nav_itself a {
+    display: block;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.g_nav_list .g_nav_hover>.g_nav_c {
+    overflow: hidden;
+    visibility: hidden;
+    border: medium solid #ff00ff;
+}
+
+.g_nav_list .g_nav_hover>.g_nav_c li {
+    height: 0;
+    box-sizing: border-box;
+    border: none
+}
+
+.g_nav_list .g_nav_hover>.g_nav_c li:first-child {
+}
+
+.g_nav_list .g_nav_hover:hover>.g_nav_c {
+  overflow: visible;
+  visibility: visible;
+  border: medium solid #ccc;
+}
+
+.g_nav_list .g_nav_hover:hover>.g_nav_c li {
+  height: 20px;
+}
+
+.g_nav_c {
+    position: absolute;
+    width: 200px;
+    top: 69px;
+    right: 0;
+    background: #fff;
+    z-index: 10;
+    height: 120px;
+}
+
+.g_nav_c li {
+  margin-left: 5px;
+  background-color: #fff;
+  margin-bottom: 8px;
+}
+
+.g_nav_c li a {
+}
+
+
+ul.g_nav_list {
+  list-style: none;
+}
+
+ul.g_nav_c {
+  list-style: none;
 }

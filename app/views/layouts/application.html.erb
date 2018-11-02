@@ -4,33 +4,64 @@
     <title>OpenoteApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= include_gon(init: true) %>
+    <%= Gon::Base.render_data %>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+    <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <%= javascript_include_tag 'tag-it.js', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, minimum-scale=0.2, maximum-scale=2, user-scalable=yes">
-
   </head>
 
   <header>
-      <div id='header_menu'>
-          <%= link_to 'トップ', articles_path %>
-          <% if user_signed_in? %>
-          <strong><%= link_to current_user.username, user_path(current_user) %></strong>
-          <%= link_to '新規投稿', new_article_path %>
-          <%= link_to '新規投稿カテゴリー', new_category_path %>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-          <% else %>
-          <%= link_to 'サインアップ', new_user_registration_path %>
-          <%= link_to 'ログイン', new_user_session_path %>
-          <% end %>
-    </div>
+    <% if user_signed_in? %>
+    <!-- <ul class="nav_signed_in">
+      <li class="nav__item"><p><%= link_to 'トップ', articles_path %></p></li>
+      <li class="nav__item"><p><%= link_to '新規投稿', new_article_path %></p></li>
+      <li class="nav__item"><p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p></li>
+      <li class="nav__item"><p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
+    </ul>
+    <ul class="nav_test">
+      <li>
+        <a href="#">nav</a>
+        <ul>
+          <li><a href="#">sub nav</a></li>
+          <li><a href="#">sub nav</a></li>
+          <li><a href="#">sub nav</a></li>
+        </ul>
+      </li>
+    </ul> -->
+<nav class="g_nav">
+    <ul class="g_nav_list ol2 clearfix">
+        <li class="g_nav_itself"><a href="#">メニュー5</a></li>
+        <li class="g_nav_hover">
+          <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
+            <ul class="g_nav_c">
+                <li>@<%= link_to current_user.username, user_path(current_user) %></li>
+                <li><a href="#">子メニュー2</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+    <% else %>
+    <ul class="nav_signed_out">
+      <li class="nav__item"><p><%= link_to 'サインアップ', new_user_registration_path %></p></li>
+      <li class="nav__item"><p><%= link_to 'ログイン', new_user_session_path %></p></li>
+    </ul>
+    <% end %>
   </header>
 
   <body id='all_contents'>
       <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
+        <%= flash[:notice] %>
 
     <%= yield %>
   </body>

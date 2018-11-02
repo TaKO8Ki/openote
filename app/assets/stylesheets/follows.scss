@@ -1,3 +1,28 @@
 // Place all the styles related to the Follows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_follow_box {
+    display: table;
+    width: 100%;
+    height: 15px;
+    border-spacing: 0 0;
+    background: #FFF;
+    // margin-right: 5%;
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.user_follow_box_item {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.user_follow_box p {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+}
