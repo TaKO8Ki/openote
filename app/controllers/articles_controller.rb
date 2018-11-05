@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
     def show
         @like = Like.where(article_id: params[:article_id])
         @article = Article.find(params[:id])
+        gon.article_body = @article.body
     end
 
     def new

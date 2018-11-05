@@ -1,11 +1,30 @@
 <div id="user_article_wrap">
 
-    <div id="user_setting_sidebar">
-        <h2><%= @user.username %></h2>
-        <ul>
-            <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        </ul>
+  <div id="user_sidebar">
+    <div id='sidebar_user_show'>
+      <!-- <ul class="user_box_show">
+        <li class="user_box_item">
+          <p class='picture_user_show'>
+            <%= image_tag @user.picture.url if @user.picture.present? %>
+          </p>
+        </li>
+        <li class="user_box_item">
+          <p class='sidebar_user_name'>
+            <strong><%= link_to "@#{@user.username}", user_path(@user) %></strong>
+          </p>
+        </li>
+      </ul> -->
+        <p class='picture_user_show'>
+          <%= image_tag @user.picture.url if @user.picture.present? %>
+        </p>
+        <p class="user_show_profile">
+          <strong><%= link_to "@#{@user.username}", user_path(@user) %></strong>
+        </p>
+      <div id="sidebar_user_description">
+        <%= @user.description %>
+      </div>
     </div>
+  </div>
 
     <div id="user_setting_main">
         <h2>Edit <%= resource_name.to_s.humanize %></h2>
@@ -13,24 +32,24 @@
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= devise_error_messages! %>
 
-          <div class="field">
+          <div id="picture_form">
             <%= f.label :picture %>
-            <%= f.file_field :picture, autofocus: true, autocomplete: "new-password" %>
+            <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture" %>
           </div>
 
-          <div class="field">
-              <%= f.label :username %><br />
-              <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+          <div id="username_form">
+             <%= f.label :username %></br>
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit_form_username" %>
           </div>
 
-          <div class="field">
+          <div id="email_form">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
           </div>
 
-          <div class="field">
+          <div id="description_form">
               <%= f.label :description %><br />
-              <%= f.text_field :description, autofocus: true, autocomplete: "description" %>
+              <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "edit_form_description" %>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -39,7 +58,7 @@
 
           <div class="field">
                 <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-                <%= f.password_field :password, autocomplete: "new-password" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "edit_form_password" %>
                 <% if @minimum_password_length %>
                   <br />
                   <em><%= @minimum_password_length %> characters minimum</em>
@@ -48,12 +67,12 @@
 
           <div class="field">
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "edit_form_password" %>
           </div>
 
           <div class="field">
                 <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-                <%= f.password_field :current_password, autocomplete: "current-password" %>
+                <%= f.password_field :current_password, autocomplete: "current-password", class: "edit_form_password" %>
           </div>
 
           <div class="actions">

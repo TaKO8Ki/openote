@@ -8,13 +8,14 @@
     <%= Gon::Base.render_data %>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
     <script src="js/tag-it.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
     <link href="css/jquery.tagit.css" rel="stylesheet" type="text/css">
     <%= javascript_include_tag 'tag-it.js', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, minimum-scale=0.2, maximum-scale=2, user-scalable=yes">
   </head>
@@ -39,12 +40,14 @@
     </ul> -->
 <nav class="g_nav">
     <ul class="g_nav_list ol2 clearfix">
+        <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path %></li>
         <li class="g_nav_itself"><a href="#">メニュー5</a></li>
         <li class="g_nav_hover">
           <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
             <ul class="g_nav_c">
-                <li>@<%= link_to current_user.username, user_path(current_user) %></li>
-                <li><a href="#">子メニュー2</a></li>
+                <li><p class="user_name">@<%= link_to current_user.username, user_path(current_user) %></p></li>
+                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             </ul>
         </li>
     </ul>

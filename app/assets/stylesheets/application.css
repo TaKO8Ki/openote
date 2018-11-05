@@ -191,16 +191,20 @@
     right: 0;
     background: #fff;
     z-index: 10;
-    height: 120px;
+
+    padding: 5px;
+    display: inline-block;
 }
 
 .g_nav_c li {
   margin-left: 5px;
   background-color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 15px;
 }
 
 .g_nav_c li a {
+  color: #333;
 }
 
 
@@ -210,4 +214,8 @@ ul.g_nav_list {
 
 ul.g_nav_c {
   list-style: none;
+}
+
+p.user_name {
+  border-bottom: solid 2px #ccc;
 }

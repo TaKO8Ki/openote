@@ -3,6 +3,8 @@ class SocialProfile < ApplicationRecord
   store :other
   validates_uniqueness_of :uid, scope: :provider
 
+  scope :search_with_providers, ->(provider) { where(provider: provider) }
+
   def set_values(omniauth)
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
     credentials = omniauth['credentials']

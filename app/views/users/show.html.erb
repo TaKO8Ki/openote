@@ -1,9 +1,9 @@
-31<div id="user_article_wrap">
+<div id="user_article_wrap">
 
 
     <div id="user_sidebar">
       <div id='sidebar_user_show'>
-        <ul class="user_box_show">
+        <!-- <ul class="user_box_show">
           <li class="user_box_item">
             <p class='picture_user_show'>
               <%= image_tag @user.picture.url if @user.picture.present? %>
@@ -14,7 +14,13 @@
               <strong><%= link_to "@#{@user.username}", user_path(@user) %></strong>
             </p>
           </li>
-        </ul>
+        </ul> -->
+          <p class='picture_user_show'>
+            <%= image_tag @user.picture.url if @user.picture.present? %>
+          </p>
+          <p class="user_show_profile">
+            <strong><%= link_to "@#{@user.username}", user_path(@user) %></strong>
+          </p>
         <div id="sidebar_user_description">
           <%= @user.description %>
         </div>
@@ -24,35 +30,34 @@
         </ul>
         </ul>
         <% if @user == current_user %>
-        <ul>
-            <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        </ul>
         <% end %>
+
+        <div id="user_all_memos">
+          <p class="box_name">
+            <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
+          </p>
+          <% @user.article_memos.each do |memo| %>
+          <p class="user_article_memo">
+            <%= link_to memo.title, article_article_memo_path(memo) %>
+          </p>
+          <% end %>
+        </div>
         <ul>
             <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
         </ul>
         <ul>
-          <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
-        </ul>
-        <ul>
           <%= link_to "github", user_github_omniauth_authorize_path %>
         </ul>
-
-        <% @user.article_memos.each do |memo| %>
-        <p class="user_article_memo">
-          <strong><%= link_to memo.title, article_article_memo_path(memo) %></strong>
-        </p>
-        <% end %>
     </div>
 
     <div id="user_article_list">
         <% @articles.each do |article| %>
         <div id='user_article_list_bottom'>
          <h2>
-                 <%= link_to article.title, article_path(article)%>
+            <%= link_to article.title, article_path(article)%>
          <h2>
         <p class='user_article_list_date'>
-            <%= article.updated_at.strftime("%Y-%m-%d") %>
+            <%= article.updated_at.strftime("%Y/%m/%d") %>
         </p>
         <p class='user_article_list_category'>
             <% article.tag_list.each do |f| %>
@@ -85,13 +90,15 @@
     </div>
 
     <div id="user_sidebar_right">
-      <% @user_repos.each do |repo| %>
-      <div id="user_each_repo">
-        <p class="repo_name"><strong><%= link_to repo.name, repo.svn_url %></strong></p>
-        <% if repo.description.present? %>
-        <p class="repo_description"><%= repo.description %></p>
+      <% if @user_repos.present? %>
+        <% @user_repos.each do |repo| %>
+        <div id="user_each_repo">
+          <p class="repo_name"><strong><%= link_to repo.name, repo.svn_url %></strong></p>
+          <% if repo.description.present? %>
+          <p class="repo_description"><%= repo.description %></p>
+          <% end %>
+        </div>
         <% end %>
-      </div>
       <% end %>
     </div>
 

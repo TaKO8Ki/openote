@@ -4,6 +4,10 @@
 
 @charset "utf-8";
 
+@mixin box{
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
 /*記事一覧*/
 
 div#index_show_main {
@@ -133,7 +137,7 @@ div#article_wrap{
 div#article_list{
     width: 62.7%;
     float: left;
-    margin-left: 10%;
+    margin-left: 11.3%;
     background-color: #fff;
 }
 
@@ -142,8 +146,7 @@ div#article_list div#article_list_bottom {
   padding: 20px;
   margin-bottom: 10px;
   background-color: #fff;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
 }
 
 div#article_list div h2 {
@@ -172,7 +175,7 @@ div#article_list div p.article_list_comment {
 }
 
 div#article_info {
-  margin-top: 20px;
+  margin-top: 5px;
   margin-bottom: -20px;
   width: 100%;
   background-color: #ccc;
@@ -294,14 +297,9 @@ div#article_left_test {
 div#article_show{
     width: 100%;
     background-color: #fff;
-    padding: 1.5%;
+    padding: 20px;
     border: 2px solid #ccc;
     box-shadow: 5px 5px 0px 0px #ccc;
-}
-
-div#article_show div{
-    padding: 20px 0;
-
 }
 
 div#article_show  h2 {
@@ -312,12 +310,6 @@ div#article_show  h2 {
 
 div#article_show  p.article_show_url{
     font-size: 15px;
-    font-weight: bold;
-    color: #7d7d7d;
-}
-
-div#article_show  p {
-    font-size: 20px;
     font-weight: bold;
     color: #7d7d7d;
 }
@@ -334,35 +326,60 @@ div#article_show  p.article_show_date{
     color: #7d7d7d;
 }
 
+div#sidebar_article_memo {
+  @include box;
+  padding: 10px;
+}
+
+p.article_memo {
+  border-bottom: solid 1px #ccc;
+  padding-left: 15px;
+  font-size: 16px;
+}
+
 /*記事コメント*/
 
 div#article_show_comment{
     width: 100%;
     background-color: #fff;
     margin-top: 10px;
-    padding: 1.5%;
+    padding: 20px;
+    border: 2px solid #ccc;
+}
 
-    border: 1px solid #4c4e51;
-    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
-                    0 0 4px rgba(0, 0, 0, .8) inset,
-                    2px 2px 2px rgba(0, 0, 0, .4);
+div#article_show_comment li.comment_box {
+  list-style: none;
 }
 
 div#article_show_comment_form{
     width: 100%;
     margin-top: 10px;
     background-color: #fff;
-    padding: 1.5%;
-
-    border: 1px solid #4c4e51;
-    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
-                    0 0 4px rgba(0, 0, 0, .8) inset,
-                    2px 2px 2px rgba(0, 0, 0, .4);
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #ccc;
 }
 
-ul {
-  list-style-position: inside;
+div#comment_user {
+  display: inline-block;
 }
+
+p.comment {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+textarea.article_comment_form {
+  width: calc(95% - 40px);
+  height: 90px;
+  resize: none;
+  outline: none;
+  font-size: 20px;
+  padding: 20px;
+}
+
 
 /*記事作成画面*/
 
@@ -393,8 +410,7 @@ div#article_form_category {
 div#editor {
   width: calc(100% - 4px);
   height: 600px;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
   margin-top: 20px;
 }
 
@@ -419,8 +435,7 @@ input.article_title {
     font-size: 15px;
     padding: 20px;
     outline: none;
-    border: 2px solid #ccc;
-    box-shadow: 5px 5px 0px 0px #ccc;
+    @include box;
 }
 
 input.article_github {
@@ -430,8 +445,7 @@ input.article_github {
     padding: 20px;
     margin-top: 20px;
     outline: none;
-    box-shadow: 5px 5px 0px 0px #ccc;
-    border: 2px solid #ccc;
+    @include box;
 }
 
 input.article_service {
@@ -441,8 +455,7 @@ input.article_service {
     padding: 20px;
     margin-top: 20px;
     outline: none;
-    box-shadow: 5px 5px 0px 0px #ccc;
-    border: 2px solid #ccc;
+    @include box;
 }
 
 textarea.article_body {
@@ -701,7 +714,7 @@ input.login_form_actions:hover {
 /*サイドバー*/
 
 div#sidebar{
-    width: 26.3%;
+    width: 25%;
     float: right;
     background-color: #fff;
     border-radius: 5px;
@@ -728,20 +741,13 @@ p.sidebar_follow_count {
 }
 
 p.sidebar_article_likes_order {
-    font-size: 13px;
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
-    padding: 2%;
-    // font-weight: bolder;
+  font-size: 15px;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
-// a.article_link:visited {
-//   color: #797a7a;
-// }
-//
-// a:link {
-//   color: #1f2625;
-// }
 
 p.sidebar_article_likes_order:visited {
   color: #797a7a;
@@ -755,7 +761,7 @@ div#sidebar_article_likes_order {
   font-size: 13px;
   border-bottom: 1px solid #ccc;
   background-color: #fff;
-  padding: 2%;
+  padding: 20px;
 }
 
 div#sidebar h2{
@@ -775,10 +781,7 @@ div#sidebar ul li a span{
 }
 
 div#sidebar_articles {
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-bottom: 3%;
-  padding-top: 3%;
+  padding: 20px;
   margin-bottom: 3%;
   background-color: #fff;
   border: 2px solid #ccc;
@@ -791,8 +794,7 @@ div#sidebar_user{
 
 div#sidebar_user_index {
   background-color: #fff;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
@@ -841,10 +843,6 @@ div#article_date {
     border-radius: 0 7px 7px 0;
     transition: .4s;
   }
-
-  .article_category:hover {
-    background: #636363;
-}
 
  .left_sidebar_button {
     width: 50px;

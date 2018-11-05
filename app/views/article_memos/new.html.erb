@@ -1,14 +1,17 @@
-<%= form_for ([@article, @article.article_memos.build]) do |f| %>
 
 <div id='article_form_wrap'>
-
+  <%= form_for ([@article, @article.article_memos.build]) do |memo| %>
   <div id='article_form_title'>
-    <%= f.text_field :title, class: "article_title" %>
-  </p>
-  <div id='article_form_body'>
-    <%= f.text_area :body, class: "article_body" %>
-  <div>
-    <%= f.submit %>
+      <%= memo.text_field :title, class: "article_title" %>
   </div>
-<% end %>
+
+  <div id="editor">
+    <%= memo.text_area :body, class: "article_body", "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body" %>
+    <div v-html="input | marked", id="article_preview"></div>
+  </div>
+
+  <div class="submit_button">
+    <%= memo.submit %>
+  </div>
+    <% end %>
 </div>

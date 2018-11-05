@@ -6,7 +6,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @category = Category.find_by_name(params[:name])
       @all_articles = Article.where(user_id: @user)
-      @user_repos = github_repository(@user)
+      if @user.social_profiles.where(provider: "github").present?
+        @user_repos = github_repository(@user)
+      end
 
       if params[:category]
           @articles = Article.tagged_with(params[:category]).where(user_id: @user).order('created_at DESC')
@@ -33,5 +35,17 @@ class UsersController < ApplicationController
         @user  = User.find(params[:id])
         @users = @user.followers
         render 'show_follow'
+    end
+
+    private
+
+    def github_repository(user)
+      user_token = access_token_of_each_of_providers(user, "github")
+      github = Github.new oauth_token: "#{user_token}"
+      user_repos = github.repos.list
+    end
+
+    def access_token_of_each_of_providers(user, provider)
+      access_token = user.social_profiles.find_by(provider: provider).access_token
     end
 end

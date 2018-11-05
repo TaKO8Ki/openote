@@ -13,14 +13,13 @@
 
     <div id="article_list">
       <%= render "article_period" %>
-
         <% @articles.each do |article| %>
         <div id='article_list_bottom'>
          <h2>
-                 <%= link_to article.title, article_path(article), { :class => "article_link" } %>
-         <h2>
+           <%= link_to article.title, article_path(article), { :class => "article_link" } %>
+         </h2>
         <p class='article_list_date'>
-            <%= article.updated_at.strftime("%Y-%m-%d") %>
+            <%= time_ago_in_words(article.updated_at) %>
         </p>
         <p class='article_list_category'>
             <% article.tag_list.each do |f| %>
@@ -28,13 +27,11 @@
             <% end %>
         </p>
 
-
-
         <div id="article_info">
           <ul class="article_info_box">
             <li class="article_info_box_item">
               <p class='article_list_user'>
-                <%= image_tag article.user.picture.url %>
+                <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
               </p>
             </li>
             <li class="article_info_box_item">
@@ -80,6 +77,8 @@
           <li class="user_box_item"><p class='picture_current_user'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
           <li class="user_box_item">
             <p class='sidebar_user_name'>
+              <%= link_to "@fawefawef", user_path(current_user) %>
+            <p class='sidebar_user_name'>
               <strong><%= link_to "@#{current_user.username}", user_path(current_user) %></strong>
             </p>
           </li>
@@ -96,7 +95,7 @@
               <% end %>
       </div>
       <% end %>
-      <% if @ssecond_tag.present? %>
+      <% if @second_tag.present? %>
       <div id='sidebar_articles'>
         <strong><%= "##{@second_tag}" %></strong>
           <% @articles_tagged_with_second_tag.each do |article| %>

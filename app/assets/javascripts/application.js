@@ -26,6 +26,7 @@ $(document).on('turbolinks:load', function() {
 });
 
 $(document).on('turbolinks:load', function() {
+
         var renderer = new marked.Renderer();
 
         renderer.em = function(text) {
@@ -48,7 +49,7 @@ $(document).on('turbolinks:load', function() {
                 return '<pre class="hljs">' + '<div id="language">' + '<div id="language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
                 + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;}'
-                + 'div#language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
+                + 'div#language {background-color: #333;color: #000; width: 100%;}'
                 + 'div#language_itself {color: #fff;display: inline-block;}</style>';
               }
             }
@@ -57,7 +58,7 @@ $(document).on('turbolinks:load', function() {
             };
 
           renderer.blockquote = function (quote) {
-            return '<div id="quote">'+ quote + '</div>' + '<style type="text/css">div#quote {border-left:inset 10px #ccc;color: #333;padding-left: 10px;padding-top: 20px;padding-bottom: 20px;margin-left: 10px;margin-top: 10px;}</style>';
+            return '<div id="quote">'+ quote + '</div>' + '<style type="text/css">div#quote {border-left:inset 10px #ccc;color: #333;padding-left: 10px;padding-top: 15px;padding-bottom: 15px;margin-top: 10px;}</style>';
           };
 
           renderer.list = function(body, ordered, start) {
@@ -67,7 +68,7 @@ $(document).on('turbolinks:load', function() {
           };
 
           renderer.listitem = function(text) {
-            return '<li>' + text + '</li>\n' + '<style type="text/css">li ul {margin-left: 20px; padding: 0;}ul {margin-left: 10px;}</style>';
+            return '<li>' + text + '</li>\n' + '<style type="text/css">li {margin-left: 20px; white-space:normal;}</style>';
           };
 
           renderer.table = function(header, body) {
@@ -96,11 +97,14 @@ $(document).on('turbolinks:load', function() {
             return tag + content + '</' + type + '>\n';
           };
 
+          renderer.text = function(text) {
+            return '<p class="unique">' + text + '</p>'+ '<style type="text/css">p.unique {white-space:pre;}</style>';
+          };
+
 
         marked.setOptions({
             renderer: renderer,
-            breaks: true,
-            smartLists: true
+            smartLists: false
         });
 
         new Vue({

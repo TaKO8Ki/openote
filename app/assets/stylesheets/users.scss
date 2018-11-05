@@ -1,7 +1,18 @@
 /*ユーザープロフィール*/
 
+@mixin edit_form{
+  width: 60%;
+  height: 30px;
+  font-size: 100%;
+  padding: 5px;
+  outline: none;
+}
+
+@mixin box_padding {
+  padding: 10px;
+}
+
 div#user_article_wrap{
-  position: relative;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -55,13 +66,40 @@ div#user_article_list div p.user_article_edit_delete {
     margin-left: 87%;
 }
 
+/*ユーザー情報編集*/
+
 div#user_setting_main{
-    width: 72%;
-    float: left;
-    background-color: #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    margin-left: 10px;
+    width: calc(76% - 24px);
+    float: right;
+    background-color: #fff;
+    @include box_padding;
+    border: 2px solid #ccc;
+    box-shadow: 5px 5px 0px 0px #ccc;
+}
+
+input.edit_form_username {
+  @include edit_form;
+}
+
+input.edit_form_email {
+  @include edit_form;
+}
+textarea.edit_form_description {
+  width: 60%;
+  height: 80px;
+  font-size: 100%;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}
+input.edit_form_password {
+  @include edit_form;
+}
+input.edit_form_password {
+  @include edit_form;
+}
+input.edit_form_password {
+  @include edit_form;
 }
 
 div#user_follow {
@@ -101,17 +139,16 @@ div#user_sidebar{
 }
 
 div#sidebar_user_show {
-  // padding-left: 3%;
-  // padding-right: 3%;
-  // padding-top: 3%;
   background-color: #fff;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 0px 0px #ccc;
+  margin-bottom: 10px;
 }
 
 div#sidebar_user_description {
   text-align: center;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
 .user_box_show {
@@ -127,13 +164,16 @@ div#sidebar_user_description {
     padding-bottom: 5px;
 }
 
-
+.picture_user_show {
+  text-align: center;
+}
 
 .picture_user_show img {
-  width: 70px;
+  width: 100px;
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-top: 10px;
+  margin-left: auto;
 }
 
 .user_show_follow_count {
@@ -142,38 +182,45 @@ div#sidebar_user_description {
 }
 
 div#user_sidebar_right{
-    width: 26.9%;
+    width: 27%;
     float: right;
     border-radius: 5px;
-
 }
 
 div#user_each_repo {
   width: 100%;
   background-color: #fff;
-  margin-bottom: 3%;
+  margin-bottom: 10px;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 0px 0px #ccc;
 }
 
 p.repo_name {
   font-size: 15px;
-  padding: 3%;
+  @include box_padding;
 }
 
 p.repo_description {
   font-size: 15px;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-bottom: 3%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+div#user_all_memos {
+  margin-bottom: 10px;
+  @include box_padding;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
 }
 
 p.user_article_memo {
+  border-bottom: 1px solid #ccc;
   background-color: #fff;
-  margin-bottom: 3%;
-  font-size: 20px;
-  padding: 3%;
-  font-size: 15px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 16px;
 }
 
 div#user_setting_sidebar{
@@ -181,4 +228,17 @@ div#user_setting_sidebar{
     float: left;
     background-color: #ccc;
     border-radius: 5px;
+}
+
+p.box_name {
+  font-weight: bold;
+  color: #000;
+}
+
+p.box_name a {
+  color: #333;
+}
+
+p.user_show_profile {
+  text-align: center;
 }

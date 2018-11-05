@@ -24,6 +24,8 @@
 *   jQuery v1.4+
 *   jQuery UI v1.8+
 */
+
+
 (function($) {
 
     $.widget('ui.tagit', {
@@ -588,4 +590,3 @@
 
     });
 })(jQuery);
-

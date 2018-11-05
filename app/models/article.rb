@@ -11,6 +11,8 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  scope :recent, -> { order(id: :desc).limit(5) }
+
   def self.category_with(name)
     Category.find_by_name!(name).articles
   end
