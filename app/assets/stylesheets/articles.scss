@@ -548,42 +548,49 @@ div#login_form {
 
 }
 
+@mixin modal_box {
+  width: 70%;
+  margin: 0 auto;
+  border-bottom: 2px solid #ccc;
+}
+
+@mixin modal_form {
+  width: 70%;
+  height: 35px;
+  margin-top: 20px;
+  font-size: 18px;
+  padding-left: 5px;
+  outline: none;
+  border-style: none;
+  background-color: #fff;
+}
+
 div#login_form_email {
-    width: 80%;
-    text-align: center;
+  @include modal_box;
 }
 
 div#login_form_password {
-    width: 80%;
-    text-align: center;
+  @include modal_box;
 }
 
 div#login_form_rememberme {
-    width: 80%;
+    width: 100%;
 }
 
 div#login_form_actions {
-    width: 80%;
+    width: 100%;
 }
 
 div#login_form_links {
-    margin-bottom: 10px;
+  text-align: center;
 }
 
 input.login_form_email {
-    width: 70%;
-    height: 35px;
-    margin-top: 20px;
-    font-size: 18px;
-    padding-left: 5px
+    @include modal_form
 }
 
 input.login_form_password {
-    width: 70%;
-    height: 35px;
-    margin-top: 20px;
-    font-size: 18px;
-    padding-left: 5px
+  @include modal_form
 }
 
 input.login_form_rememberme {
@@ -600,14 +607,10 @@ input.login_form_actions {
     display:block;
     color: #FFF;
     text-decoration: none;
-    background-color: #f39800; /*ボタン色*/
-    border-radius: 5px; /*角丸*/
+    background-color: #ccc; /*ボタン色*/
+    border-radius: 15px; /*角丸*/
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
-}
-
-input.login_form_actions:hover {
-    background-color: #f9c500;
 }
 
 @media screen and (max-width: 800px) {

@@ -38,25 +38,78 @@
         </ul>
       </li>
     </ul> -->
+
+
+
 <nav class="g_nav">
     <ul class="g_nav_list ol2 clearfix">
-        <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path %></li>
-        <li class="g_nav_itself"><a href="#">メニュー5</a></li>
-        <li class="g_nav_hover">
-          <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
-            <ul class="g_nav_c">
-                <li><p class="user_name">@<%= link_to current_user.username, user_path(current_user) %></p></li>
-                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-            </ul>
-        </li>
+      <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path %></li>
+      <li class="g_nav_itself"><a href="#">メニュー5</a></li>
+      <li class="g_nav_hover">
+        <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
+          <ul class="g_nav_c">
+              <li><p class="user_name">@<%= link_to current_user.username, user_path(current_user) %></p></li>
+              <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+      </li>
     </ul>
 </nav>
+
+
     <% else %>
     <ul class="nav_signed_out">
       <li class="nav__item"><p><%= link_to 'サインアップ', new_user_registration_path %></p></li>
       <li class="nav__item"><p><%= link_to 'ログイン', new_user_session_path %></p></li>
     </ul>
+    <div class="popupModal1">
+     <input type="radio" name="modalPop" id="pop11" />
+     <label for="pop11">ログイン</label>
+     <input type="radio" name="modalPop" id="pop12" />
+     <label for="pop12">CLOSE</label>
+     <input type="radio" name="modalPop" id="pop13" />
+     <label for="pop13">×</label>
+     <div class="modalPopup2">
+      <div class="modalPopup3">
+       <h2 class="modalTitle">ログインフォーム</h2>
+       <div class="modalMain">
+
+
+
+         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+
+             <div id='login_form_popuup'>
+               <div id="login_form_email">
+                 <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "メールアドレス", class: "login_form_email" %>
+               </div>
+
+               <div id="login_form_password">
+                 <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード", class: "login_form_password" %>
+               </div>
+
+               <% if devise_mapping.rememberable? -%>
+               <div id="login_form_rememberme">
+                   <%= f.check_box :remember_me, class: "login_form_rememberme" %>
+                   <%= f.label :remember_me %>
+               </div>
+               <% end -%>
+
+               <div id="login_form_actions">
+                 <%= f.submit "Log in", class: "login_form_actions" %>
+               </div>
+               <% end %>
+
+               <div id='login_form_links'>
+                   <%= render "devise/shared/links" %>
+               </div>
+             </div>
+
+       </div>
+      </div>
+     </div>
+    </div>
+
     <% end %>
   </header>
 

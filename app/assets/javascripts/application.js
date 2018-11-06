@@ -49,7 +49,7 @@ $(document).on('turbolinks:load', function() {
                 return '<pre class="hljs">' + '<div id="language">' + '<div id="language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
                 + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;}'
-                + 'div#language {background-color: #333;color: #000; width: 100%;}'
+                + 'div#language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
                 + 'div#language_itself {color: #fff;display: inline-block;}</style>';
               }
             }

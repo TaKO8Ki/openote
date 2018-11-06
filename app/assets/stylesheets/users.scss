@@ -12,6 +12,11 @@
   padding: 10px;
 }
 
+@mixin box{
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
+
 div#user_article_wrap{
   width: 90%;
   margin-left: auto;
@@ -104,26 +109,25 @@ input.edit_form_password {
 
 div#user_follow {
     width: 100%;
-    background-color: #ccc;
 }
 
 input.user_follow {
-    margin-top: 0px;
     display: block;
-    width: 100%;
+    width: 35%;
     padding: 10px;
     text-align: center;
     text-decoration: none;
-    color: #EC407A;
-    border: 2px solid #EC407A;
+    color: #000;
+    border: 2px solid #ccc;
     border-radius: 3px;
-    transition: .4s;
     font-size: 15px;
+    margin: 0 auto;
+    outline: none;
 }
 
 input.user_follow:hover {
-    background: #EC407A;
-    color: #fff;
+    background: #ccc;
+    color: #000;
 }
 
 .user_icon img {
@@ -138,11 +142,45 @@ div#user_sidebar{
     margin-right: 1%;
 }
 
+/*ユーザープロフィールのユーザー画像周辺*/
+
+div#user_show_top {
+  width: 100%;
+  @include box;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+p.user_show_profile {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+p.user_name {
+  border-bottom: solid 2px #ccc;
+}
+
+td.follow_count {
+  text-align: center;
+  font-size: 16px;
+}
+
+table.follow {
+  margin: 0 auto;
+}
+
+.clear-element {
+  clear: both;
+}
+
 div#sidebar_user_show {
   background-color: #fff;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
   margin-bottom: 10px;
+  margin-top: 10px;
+  width: 37%;
+  float: left;
+  border-right: 2px solid #ccc;
 }
 
 div#sidebar_user_description {
@@ -169,7 +207,7 @@ div#sidebar_user_description {
 }
 
 .picture_user_show img {
-  width: 100px;
+  width: 170px;
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-top: 10px;
@@ -180,6 +218,8 @@ div#sidebar_user_description {
   font-size: 20px;
   text-align: center;
 }
+
+
 
 div#user_sidebar_right{
     width: 27%;
@@ -197,7 +237,16 @@ div#user_each_repo {
 
 p.repo_name {
   font-size: 15px;
+  padding-left: 5px;
+}
+
+table.github_repo {
   @include box_padding;
+}
+
+p.github_icon img {
+  width: 20px;
+  border-radius: 50%;
 }
 
 p.repo_description {
@@ -237,8 +286,4 @@ p.box_name {
 
 p.box_name a {
   color: #333;
-}
-
-p.user_show_profile {
-  text-align: center;
 }

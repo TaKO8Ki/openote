@@ -1,37 +1,24 @@
-<% @user ||= current_user %>
-<div id='sidebar_user'>
-  <ul class="user_follow_box">
-    <li class="user_follow_box_item">
-      <p>
-        &nbsp;&nbsp;フォロー
-      </p>
-    </li>
-    <li class="user_follow_box_item">
-      <p>
-        フォロワー
-      </p>
-    </li>
-  </ul>
-</div>
-<div id='sidebar_user'>
-  <ul class="user_follow_box">
-    <li class="user_follow_box_item">
-      <p>
-        <a href="<%= following_user_path(@user) %>">
-          <strong id="following" class="stat">
-            <%= @user.following.count %>
-          </strong>
-        </a>
-      </p>
-    </li>
-    <li class="user_follow_box_item">
-      <p>
-        <a href="<%= followers_user_path(@user) %>">
-          <strong id="followers" class="stat">
-            <%= @user.followers.count %>
-          </strong>
-        </a>
-      </p>
-    </li>
-  </ul>
-</div>
+<table class="follow">
+<tr>
+  <td class="follow_count">フォロー</td>
+  <td>&nbsp;&nbsp;</td>
+  <td class="follow_count">フォロワー</td>
+</tr>
+<tr>
+  <td class="follow_count">
+    <a href="<%= following_user_path(@user) %>">
+      <strong id="following" class="stat">
+        <%= @user.following.count %>
+      </strong>
+    </a>
+  </td>
+  <td>&nbsp;&nbsp;</td>
+  <td class="follow_count">
+    <a href="<%= followers_user_path(@user) %>">
+      <strong id="followers" class="stat">
+        <%= @user.followers.count %>
+      </strong>
+    </a>
+  </td>
+</tr>
+</table>

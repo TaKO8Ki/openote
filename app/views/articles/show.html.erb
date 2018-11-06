@@ -96,7 +96,7 @@
           <% @article.article_memos.limit(7).each do |memo| %>
             <ul>
               <p class='article_memo'>
-                <%= link_to memo.title, article_article_memo_path(memo) %>
+                <%= link_to memo.title, article_article_memo_path(article_id: @article.id, id: memo.id) %>
               </p>
             </ul>
           <% end %>

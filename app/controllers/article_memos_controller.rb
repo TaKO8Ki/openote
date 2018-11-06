@@ -14,7 +14,7 @@ class ArticleMemosController < ApplicationController
   end
 
   def show
-    @article_memo = Article.find(params[:id])
+    @article_memo = ArticleMemo.find(params[:id])
   end
 
   def create
