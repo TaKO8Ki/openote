@@ -5,18 +5,25 @@ ruby '2.5.1'
 
 gem 'devise'
 
+# omniauth認証関連
 gem 'omniauth-github'
 
+gem 'nokogiri'
+
+# API
 gem "github_api"
 
 gem "figaro"
 
+# 画像アップロード
 gem 'carrierwave'
 
+# markdown editor関連
 gem 'redcarpet'
 
 gem 'rouge'
 
+# 定時処理
 gem 'whenever', :require => false
 
 gem 'acts-as-taggable-on', '~> 6.0'

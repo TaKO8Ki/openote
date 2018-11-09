@@ -216,14 +216,16 @@ ul.g_nav_c {
   list-style: none;
 }
 
-/*ログインフォームポップアップ*/
+label.popup_name {
+  margin-top: 20px;
+}
+
 div#login_form_popuup {
   width: 100%;
-  background-color: #fff;
 }
 
 .popupModal1 {
-  float: right;
+  font-size: 14px;
 }
 
 .popupModal1 > input { /* ラジオボックス非表示 */
@@ -242,16 +244,17 @@ div#login_form_popuup {
     position: fixed;
     width: 90%;
     height: 80%;
-    border-radius: 20px;
+    border-radius: 5px;
     left: 50%;
     top: 50%;
     margin-top: 30px;
     -webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    background: #fff;
+    background-color: #fff;
     padding: 10px 20px;
     overflow: hidden;
+    border-top: 20px solid #efbb00;
 }
 @media (min-width: 768px) {/* PCのときはページの真ん中の600x600領域 */
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .modalPopup2{
@@ -259,6 +262,7 @@ div#login_form_popuup {
          width: 300px;
          height: 485.41019662497px;
          padding: 30px;
+         border-top: 20px solid #efbb00;
 
     }
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label {
@@ -277,7 +281,7 @@ div#login_form_popuup {
     height: 100%;
 }
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .modalPopup2 > div > iframe {
-    width: 100%;
+      width: 100%;
       height:100%;
       border:none;
       display:block;
@@ -341,11 +345,15 @@ max-width: 100%;
 }
 
 .popupModal1 .modalTitle {
-     padding-bottom: .5em;
+     padding-bottom: 10px;
+     padding-top: 10px;
      margin: .5em 0;
      border-bottom: 1px solid #ccc;
      font-weight: bold;
+     text-align: center;
+     color: #333;
 }
+
 .popupModal1 .modalMain {
      color:#222;
      text-align: left;

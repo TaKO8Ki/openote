@@ -1,6 +1,6 @@
 class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
   def header(text, level)
-    "<h#{level}>#{text}</h#{level}>" + '<style type="text/css">h' + level.to_s  + ' {border-bottom: inset 2px #ccc;}</style>'
+    '<h' + level.to_s + ' class="markdown_heading">' + "#{text}</h#{level}>" + '<style type="text/css">h' + level.to_s  + ' {border-bottom: inset 2px #ccc;}</style>'
   end
 
   def block_code(code, language)

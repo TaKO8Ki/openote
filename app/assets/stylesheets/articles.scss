@@ -302,12 +302,6 @@ div#article_show{
     box-shadow: 5px 5px 0px 0px #ccc;
 }
 
-div#article_show  h2 {
-    font-size: 45px;
-    color: #161616;
-    text-decoration: none;
-}
-
 div#article_show  p.article_show_url{
     font-size: 15px;
     font-weight: bold;
@@ -326,15 +320,46 @@ div#article_show  p.article_show_date{
     color: #7d7d7d;
 }
 
+div#sidebar_article_show {
+      width: 25%;
+      float: right;
+      background-color: #fff;
+      border-radius: 5px;
+      height: 1300px;
+}
+
+/*ページ内リンクでのアンカーでのずれ防止*/
+.markdown_heading {
+    display: block;
+    padding-top: 70px;
+    margin-top: -70px;
+}
+
 div#sidebar_article_memo {
   @include box;
   padding: 10px;
+  margin-bottom: 10px;
 }
+
+div#sidebar_article_toc {
+  @include box;
+  padding: 10px;
+  position: sticky;
+  top: 70px;
+  margin-bottom: 10px;
+}
+
 
 p.article_memo {
   border-bottom: solid 1px #ccc;
   padding-left: 15px;
   font-size: 16px;
+}
+
+ul.chapter {
+  list-style-position: inside;
+  padding: 0;
+  margin-left: 20px;
 }
 
 /*記事コメント*/
@@ -378,6 +403,29 @@ textarea.article_comment_form {
   outline: none;
   font-size: 20px;
   padding: 20px;
+}
+
+a.article_comment_delete {
+    display: inline-block;
+    padding: 10px 10px;
+    text-decoration: none;
+    background: #f7f7f7;
+    font-weight: bold;
+    box-shadow: 0px 2px 2px #ccc;
+    float: right;
+    font-size: 15px;
+}
+
+a.article_comment_delete:active {
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+}
+
+div#article_comment_button {
+  background-color: #ccc;
+  margin-top: 10px;
+  display: inline-block;
+  width: 100%;
 }
 
 
@@ -508,65 +556,54 @@ textarea.article_body {
 /*ログイン画面*/
 
 div#login {
-    width: 80%;
-    height: 500px;
-    background-color: #fff;
-    margin: 50px auto;
-    margin-top: 100px;
-
-    border: 1px solid #4c4e51;
-    box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
-                    0 0 4px rgba(0, 0, 0, .8) inset,
-                    2px 2px 2px rgba(0, 0, 0, .4);
+  width: 300px;
+  height: 485.41019662497px;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 90px;
+  padding: 30px;
+  border-top: 20px solid #efbb00;
+  border-radius: 5px;
 }
 
-div#login_left {
-    width: 49%;
-    margin: 20px auto;
-    float: left;
+p.login_form_title {
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-img.login_img {
-    margin-left: 10px;
-    width: 300px;
-    height: 300px;
-}
-
-div#login_left h1 {
-    margin: 10px;
-}
-
-div#login_left p {
-    margin-left: 30px;
-}
 
 div#login_form {
-    width: 49%;
+    width: 100%;
     height: 100%;
-    float: right;
     margin-top: 5%;
-
+    font-size: 14px;
 }
 
 @mixin modal_box {
-  width: 70%;
+  width: calc(70% + 10px);
   margin: 0 auto;
   border-bottom: 2px solid #ccc;
 }
 
 @mixin modal_form {
-  width: 70%;
+  width: 100%;
   height: 35px;
   margin-top: 20px;
   font-size: 18px;
   padding-left: 5px;
+  padding-right: 5px;
   outline: none;
   border-style: none;
   background-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
 div#login_form_email {
   @include modal_box;
+  margin-top: 35px;
 }
 
 div#login_form_password {
@@ -583,6 +620,7 @@ div#login_form_actions {
 
 div#login_form_links {
   text-align: center;
+  margin-top: 20px;
 }
 
 input.login_form_email {
@@ -602,117 +640,123 @@ input.login_form_actions {
     height: 100px;
     width: 70%;
     margin: 20px auto;
-    height: 35px;
+    height: 40px;
     font-size: 20px;
     display:block;
-    color: #FFF;
+    color: #333d;
     text-decoration: none;
-    background-color: #ccc; /*ボタン色*/
-    border-radius: 15px; /*角丸*/
+    background-color: #efbb00;
+    border-radius: 20px;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
+    outline: none;
+    border-style: none;
 }
 
-@media screen and (max-width: 800px) {
-    div#login {
-        width: 90%;
-        height: 600px;
-        background-color: #fff;
-        margin: 20px auto;
-
-        border: 1px solid #4c4e51;
-        box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
-                        0 0 4px rgba(0, 0, 0, .8) inset,
-                        2px 2px 2px rgba(0, 0, 0, .4);
-    }
-
-    div#login_left {
-        width: 100%;
-        text-align: center;
-    }
-
-    img.login_img {
-        margin-left: 10px;
-        width: 100px;
-        height: 100px;
-    }
-
-    div#login_left h1 {
-        margin: 10px;
-    }
-
-    div#login_left p {
-        margin-left: 30px;
-    }
-
-    div#login_form {
-        width: 100%;
-
-    }
-
-    div#login_form_email {
-        width: 100%;
-        text-align: center;
-    }
-
-    div#login_form_password {
-        width: 100%;
-        text-align: center;
-    }
-
-    div#login_form_rememberme {
-        width: 100%;
-    }
-
-    div#login_form_actions {
-        width: 100%;
-    }
-
-    div#login_form_links {
-        width: 100%;
-        text-align: center;
-    }
-
-    input.login_form_email {
-        width: 70%;
-        height: 35px;
-        margin: 10px auto;
-        font-size: 18px;
-        padding-left: 5px
-    }
-
-    input.login_form_password {
-        width: 70%;
-        height: 35px;
-        margin-top: 20px;
-        font-size: 18px;
-        padding-left: 5px
-    }
-
-    input.login_form_rememberme {
-        margin-top: 20px;
-        margin-left: 15%;
-    }
-
-    input.login_form_actions {
-        height: 100px;
-        width: 70%;
-        margin: 20px auto;
-        height: 35px;
-        font-size: 20px;
-        display:block;
-        color: #FFF;
-        text-decoration: none;
-        background-color: #f39800; /*ボタン色*/
-        border-radius: 5px; /*角丸*/
-        -webkit-transition: all 0.5s;
-        transition: all 0.5s;
-    }
-
-    input.login_form_actions:hover {
-        background-color: #f9c500;
-    }
+input.login_form_actions:hover {
+  background-color: #ccc;
 }
+
+// @media screen and (max-width: 800px) {
+//     div#login {
+//         width: 90%;
+//         height: 600px;
+//         background-color: #fff;
+//         margin: 20px auto;
+//
+//         border: 1px solid #4c4e51;
+//         box-shadow: 1px 1px 0 rgba(255, 255, 255, .4) inset,
+//                         0 0 4px rgba(0, 0, 0, .8) inset,
+//                         2px 2px 2px rgba(0, 0, 0, .4);
+//     }
+//
+//     div#login_left {
+//         width: 100%;
+//         text-align: center;
+//     }
+//
+//     img.login_img {
+//         margin-left: 10px;
+//         width: 100px;
+//         height: 100px;
+//     }
+//
+//     div#login_left h1 {
+//         margin: 10px;
+//     }
+//
+//     div#login_left p {
+//         margin-left: 30px;
+//     }
+//
+//     div#login_form {
+//         width: 100%;
+//
+//     }
+//
+//     div#login_form_email {
+//         width: 100%;
+//         text-align: center;
+//     }
+//
+//     div#login_form_password {
+//         width: 100%;
+//         text-align: center;
+//     }
+//
+//     div#login_form_rememberme {
+//         width: 100%;
+//     }
+//
+//     div#login_form_actions {
+//         width: 100%;
+//     }
+//
+//     div#login_form_links {
+//         width: 100%;
+//         text-align: center;
+//     }
+//
+//     input.login_form_email {
+//         width: 70%;
+//         height: 35px;
+//         margin: 10px auto;
+//         font-size: 18px;
+//         padding-left: 5px
+//     }
+//
+//     input.login_form_password {
+//         width: 70%;
+//         height: 35px;
+//         margin-top: 20px;
+//         font-size: 18px;
+//         padding-left: 5px
+//     }
+//
+//     input.login_form_rememberme {
+//         margin-top: 20px;
+//         margin-left: 15%;
+//     }
+//
+//     input.login_form_actions {
+//         height: 100px;
+//         width: 70%;
+//         margin: 20px auto;
+//         height: 35px;
+//         font-size: 20px;
+//         display:block;
+//         color: #FFF;
+//         text-decoration: none;
+//         background-color: #f39800; /*ボタン色*/
+//         border-radius: 5px; /*角丸*/
+//         -webkit-transition: all 0.5s;
+//         transition: all 0.5s;
+//     }
+//
+//     input.login_form_actions:hover {
+//         background-color: #f9c500;
+//     }
+// }
 
 /*サイドバー*/
 
@@ -771,9 +815,9 @@ div#sidebar h2{
     margin: 20px auto;
 }
 
-div#sidebar ul li{
-    list-style-type: none;
-}
+// div#sidebar ul li{
+//     list-style-type: none;
+// }
 
 div#sidebar ul li a{
     color: #000;
@@ -858,6 +902,7 @@ div#article_date {
     background: #fff;
     border-radius: 50%;
     border: medium solid #ccc;
+    margin-bottom: 10px;
 }
 
 .left_sidebar_button img {

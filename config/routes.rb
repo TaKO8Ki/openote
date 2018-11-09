@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    # get "/users/sign_in", to:  redirect("/articles")
     get 'follows/create'
     get 'follows/destroy'
     get 'users/index'

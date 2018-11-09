@@ -25,7 +25,7 @@
           <%= render partial: 'likes/like', locals: { article: @article, likes: @like } %></br>
         </p> -->
         <div id="all_body">
-          <%= markdown(@article.body) %>
+          <%= raw add_id_to_markdown(markdown(@article.body)) %>
         </div>
       </div>
 
@@ -43,12 +43,14 @@
                 </table>
                 <%= markdown(comment.body) %>
                 <% if user_signed_in? %>
+                <div id="article_comment_button">
                   <% if @article.user == current_user %>
-                    <%= link_to '[x]',
+                    <%= link_to '削除', 
                             article_article_comment_path(@article, comment),
                             method: :delete,
-                            class: 'command',
+                            class: 'article_comment_delete',
                                 data: { confirm: 'Sure?' }%>
+                  </div>
                   <% end %>
                 <% end %>
               </li>
@@ -69,10 +71,11 @@
             <% end %>
           </div>
         <% end %>
+
       </div>
 
 
-      <div id="sidebar">
+      <div id="sidebar_article_show">
         <div id='sidebar_user_index'>
           <ul class="user_box">
             <li class="user_box_item">
@@ -90,9 +93,6 @@
           </ul>
         </div>
         <div id="sidebar_article_memo">
-          <p class="article_all_memos">
-            <%= link_to "memo", article_article_memos_path(article_id: @article.id) %>
-          </p>
           <% @article.article_memos.limit(7).each do |memo| %>
             <ul>
               <p class='article_memo'>
@@ -101,6 +101,10 @@
             </ul>
           <% end %>
         </div>
+        <div id="sidebar_article_toc">
+          <%= raw @toc %>
+        </div>
+
 
 </div>
 

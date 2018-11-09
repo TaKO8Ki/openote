@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  require 'nokogiri'
   protect_from_forgery :except => [:new, :edit]
 
     def index
@@ -11,7 +12,7 @@ class ArticlesController < ApplicationController
     def show
         @like = Like.where(article_id: params[:article_id])
         @article = Article.find(params[:id])
-        gon.article_body = @article.body
+        @toc = markdown_toc_test(view_context.markdown(@article.body))
     end
 
     def new
@@ -71,7 +72,7 @@ class ArticlesController < ApplicationController
       return Time.now.all_year
     end
 
-helper_method :comment_user, :this_week, :this_month, :this_year
+helper_method :comment_user, :this_week, :this_month, :this_year, :add_id_to_markdown
 
 private
 
@@ -151,6 +152,66 @@ private
     elsif params[:created_at] == this_year
       @articles = Article.where(created_at: this_year).order('likes_count DESC')
     end
+  end
+
+  def add_id_to_markdown(content)
+    each_element = Nokogiri::HTML.parse(content)
+    headings = each_element.css(".markdown_heading")
+    id_count = 1
+    headings.each do |heading|
+      heading["id"] = "chapter_#{id_count}"
+      id_count += 1
+    end
+    return each_element
+  end
+
+  def markdown_toc_test(content)
+    id_count = 1
+    toc_text = ''
+    currentlevel = 0
+
+    doc = Nokogiri::HTML.parse(content)
+    doc.css('.markdown_heading').each do |h|
+      h["id"] = 'chapter_' + id_count.to_s
+      id_count += 1
+
+      case h.name
+      when 'h2' then
+        level = 1
+      when 'h3' then
+          level = 2
+      when 'h4' then
+          level = 3
+      when 'h5' then
+        level = 4
+      when 'h6' then
+        level = 5
+      else
+          level = 0
+      end
+
+
+      while currentlevel < level do
+          toc_text += '<ul class="chapter">'
+          currentlevel += 1
+      end
+
+      while currentlevel > level do
+          toc_text += '</ul>'
+          currentlevel -= 1
+      end
+
+      toc_text += '<li class="chapter_list"><a class="anchor" href="#' + h['id'] + '">' + h.content + "</a></li>\n";
+      end
+
+      while currentlevel > 0 do
+          toc_text += '</ul>'
+          currentlevel -= 1
+      end
+
+      toc_text = '<div id=toc>' + toc_text + '</div>'
+
+      return toc_text
   end
 
 end
