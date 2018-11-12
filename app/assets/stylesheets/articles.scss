@@ -16,12 +16,12 @@ div#index_show_main {
     margin-left : auto;
     margin-right : auto;
     margin-top: 90px;
+    background-color: #ccc;
 }
 
 div#article_wrap{
   width: 100%;
   background-color: #fcfaed;
-  position: absolute;
 }
 
 .article_period{
@@ -279,59 +279,75 @@ p.article_list_user img {
 
 /*記事詳細*/
 
-div#article_left{
-    width: 64.5%;
-    float: left;
-    background-color: #fff;
-    margin-left: 1%;
-    border-radius: 5px;
-}
-
-div#article_left_test {
-  float: left;
-  width: 5%;
-  margin-left: 0%;
-  margin-top: 100px;
-}
-
-div#article_show{
-    width: 100%;
-    background-color: #fff;
+div#article_show_center{
     padding: 20px;
     border: 2px solid #ccc;
     box-shadow: 5px 5px 0px 0px #ccc;
 }
 
-div#article_show  p.article_show_url{
-    font-size: 15px;
-    font-weight: bold;
-    color: #7d7d7d;
-}
 
-div#article_show  p.article_show_category{
+div#article_show_center  p.article_show_center_category{
     font-size: 13px;
     font-weight: bold;
     color: #7d7d7d;
 }
 
-div#article_show  p.article_show_date{
+div#article_show_center  p.article_show_center_date{
     font-size: 13px;
     font-weight: bold;
     color: #7d7d7d;
 }
 
-div#sidebar_article_show {
-      width: 25%;
-      float: right;
-      background-color: #fff;
-      border-radius: 5px;
-      height: 1300px;
+div#article_show_center p.article_show_center_title {
+  font-size: 60px;
+  font-style: bold;
 }
+
+div#article_show_center p.article_show_center_header {
+  text-align: center;
+}
+
+div#article_show_center p.article_show_center_header img {
+  width: calc(100% + 40px);
+  height: 320px;
+  margin-top: -20px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+div#article_show_left{
+    background-color: #ccc;
+    margin-right: 20px;
+}
+
+div#article_show_right{
+    margin-left: 20px;
+}
+
+table.article_show_table {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+td.article_show_center {
+  width: 64%;
+}
+
+td.article_show_left {
+  text-align: center;
+  width: 150px;
+}
+td.article_show_right {
+  width: 400px;
+}
+
 
 /*ページ内リンクでのアンカーでのずれ防止*/
 .markdown_heading {
     display: block;
-    padding-top: 70px;
+    padding-top: 75px;
     margin-top: -70px;
 }
 
@@ -344,9 +360,12 @@ div#sidebar_article_memo {
 div#sidebar_article_toc {
   @include box;
   padding: 10px;
+  margin-bottom: 10px;
+}
+
+div#sidebar_following_scroll {
   position: sticky;
   top: 70px;
-  margin-bottom: 10px;
 }
 
 
@@ -365,7 +384,7 @@ ul.chapter {
 /*記事コメント*/
 
 div#article_show_comment{
-    width: 100%;
+    width: calc(100% - 40px);
     background-color: #fff;
     margin-top: 10px;
     padding: 20px;
@@ -377,7 +396,7 @@ div#article_show_comment li.comment_box {
 }
 
 div#article_show_comment_form{
-    width: 100%;
+    width: calc(100% - 40px);
     margin-top: 10px;
     background-color: #fff;
     padding: 20px;
@@ -891,6 +910,7 @@ div#article_date {
     transition: .4s;
   }
 
+/*記事詳細画面右サイドボタン*/
  .left_sidebar_button {
     width: 50px;
     height: 50px;
@@ -899,10 +919,12 @@ div#article_date {
     font-size: 20px;
     display: block;
     text-align: center;
-    background: #fff;
+    background: #FFC107;
     border-radius: 50%;
-    border: medium solid #ccc;
     margin-bottom: 10px;
+    box-shadow: 0px 1px 10px 0px #333;
+    position: sticky;
+    top: 90px;
 }
 
 .left_sidebar_button img {

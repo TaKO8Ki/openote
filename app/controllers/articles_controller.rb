@@ -10,9 +10,12 @@ class ArticlesController < ApplicationController
     end
 
     def show
-        @like = Like.where(article_id: params[:article_id])
-        @article = Article.find(params[:id])
-        @toc = markdown_toc_test(view_context.markdown(@article.body))
+      if user_signed_in?
+        @like_hash = Like.where(user_id:current_user.id).pluck(:id,:article_id).to_h
+      end
+      @like = Like.where(article_id: params[:article_id])
+      @article = Article.find(params[:id])
+      @toc = markdown_toc_test(view_context.markdown(@article.body))
     end
 
     def new

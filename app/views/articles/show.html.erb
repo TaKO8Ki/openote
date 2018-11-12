@@ -1,34 +1,76 @@
-<div id='index_show_main'>
-<div id="article_wrap">
-  <div id='article_left_test'>
-    <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-    <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-    <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-  </div>
-
-  <div id='article_left'>
-    <div id="article_show">
-      <p class='article_show_date'>
-        <%= @article.updated_at.strftime("%Y/%m/%d") %>
-      </p>
-      <h2>
-        <a>
-          <%= @article.title %>
-        </a>
-      </h2>
-        <p class='article_show_category'>
-          <% @article.tag_list.each do |f| %>
-          <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
-          <% end %>
-        </p>
-        <!-- <p>
-          <%= render partial: 'likes/like', locals: { article: @article, likes: @like } %></br>
-        </p> -->
-        <div id="all_body">
-          <%= raw add_id_to_markdown(markdown(@article.body)) %>
+<table class=article_show_table>
+  <tr>
+      <td valign="top" class="article_show_left">
+        <div id="article_show_left">
+          <div id='article_left_buttons'>
+            <div id="likes_buttons_<%= @article.id %>">
+             <%= render partial: 'likes/like', locals: { article: @article, likes: @likes} %>
+            </div>
+            <%= link_to image_tag("article_memo_2.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+            <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+            <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+          </div>
         </div>
-      </div>
-
+      </td>
+      <td valign="top" class="article_show_center">
+        <div id="article_show_center">
+          <p class="article_show_center_header">
+            <%= image_tag @article.user.picture.url %>
+          </p>
+          <p class='article_show_center_date'>
+            <%= @article.updated_at.strftime("%Y/%m/%d") %>
+          </p>
+          <p class="article_show_center_title">
+            <%= @article.title %>
+          </p>
+            <p class='article_show_center_category'>
+              <% @article.tag_list.each do |f| %>
+              <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+              <% end %>
+            </p>
+            <div id="article_show_center_all_body">
+              <%= raw add_id_to_markdown(markdown(@article.body)) %>
+            </div>
+        </div>
+      </td>
+      <td valign="top" class="article_show_right">
+        <div id="article_show_right">
+          <div id='sidebar_user_index'>
+            <ul class="user_box">
+              <li class="user_box_item">
+                <p class='picture_current_user'>
+                  <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+                </p>
+              </li>
+              <li class="user_box_item">
+                <p class='sidebar_user_name'>
+                  <strong>
+                    <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
+                  </strong>
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div id="sidebar_following_scroll">
+            <div id="sidebar_article_toc">
+              <%= raw @toc %>
+            </div>
+            <div id="sidebar_article_memo">
+              <% @article.article_memos.limit(7).each do |memo| %>
+                <ul>
+                  <p class='article_memo'>
+                    <%= link_to memo.title, article_article_memo_path(article_id: @article.id, id: memo.id) %>
+                  </p>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
         <p class="comment">Comments</p>
         <% if  @article.article_comments.any? %>
           <ul>
@@ -45,7 +87,7 @@
                 <% if user_signed_in? %>
                 <div id="article_comment_button">
                   <% if @article.user == current_user %>
-                    <%= link_to '削除', 
+                    <%= link_to '削除',
                             article_article_comment_path(@article, comment),
                             method: :delete,
                             class: 'article_comment_delete',
@@ -71,46 +113,11 @@
             <% end %>
           </div>
         <% end %>
-
-      </div>
-
-
-      <div id="sidebar_article_show">
-        <div id='sidebar_user_index'>
-          <ul class="user_box">
-            <li class="user_box_item">
-              <p class='picture_current_user'>
-                <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
-              </p>
-            </li>
-            <li class="user_box_item">
-              <p class='sidebar_user_name'>
-                <strong>
-                  <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
-                </strong>
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div id="sidebar_article_memo">
-          <% @article.article_memos.limit(7).each do |memo| %>
-            <ul>
-              <p class='article_memo'>
-                <%= link_to memo.title, article_article_memo_path(article_id: @article.id, id: memo.id) %>
-              </p>
-            </ul>
-          <% end %>
-        </div>
-        <div id="sidebar_article_toc">
-          <%= raw @toc %>
-        </div>
+      </td>
+      <td></td>
+    </tr>
+  </table>
 
 
-</div>
-
-
-      </div>
-
-      <div class="clear">
-      </div>
-<div>
+  <div class="clear">
+  </div>

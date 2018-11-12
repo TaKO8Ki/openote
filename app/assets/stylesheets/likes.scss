@@ -1,12 +1,45 @@
 // Place all the styles related to the Likes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-p.article_list_likes {
-  font-size: 10px;
-  color: #7d7d7d;
+@mixin likes {
+  width: 50px;
+  height: 50px;
+  line-height: 150px;
+  margin: 0 auto;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: 0px 1px 10px 0px #333;
 }
 
-.article_list_likes img {
-  width: 17px;
+@mixin likes_image {
+  width: 20px;
+  height: auto;
+  vertical-align: center;
+  margin-bottom: 47px;
+}
+
+p.create_likes {
+  @include likes;
+  background: #FFC107;
+}
+
+p.create_likes img {
+  @include likes_image;
+}
+
+p.destroy_likes {
+  @include likes;
+  background: #ccc;
+}
+
+p.destroy_likes img {
+  @include likes_image;
+}
+
+p.likes_count {
+  font-style: bold;
+  margin-bottom: 30px;
 }

@@ -20,6 +20,13 @@
 //= require turbolinks
 //= require_tree .
 
+$(document).on('turbolinks:load', function(){
+    $('.article_period_clicked').on('onload', function(event){
+        event.preventDefault();
+        $(this).toggleClass('active');
+    });
+});
+
 $(document).on('turbolinks:load', function() {
     hljs.initHighlighting.called = false;
     hljs.initHighlighting();
@@ -48,7 +55,7 @@ $(document).on('turbolinks:load', function() {
               if (fileName !== -1) {
                 return '<pre class="hljs">' + '<div id="language">' + '<div id="language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
-                + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;}'
+                + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding: 20px;}'
                 + 'div#language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
                 + 'div#language_itself {color: #fff;display: inline-block;}</style>';
               }
@@ -98,6 +105,10 @@ $(document).on('turbolinks:load', function() {
           };
 
           renderer.text = function(text) {
+            var escape_letter = text.indexOf('`');
+            if (escape_letter !== -1) {
+              return text;
+            }
             return '<p class="unique">' + text + '</p>'+ '<style type="text/css">p.unique {white-space:pre;}</style>';
           };
 

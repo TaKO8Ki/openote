@@ -4,10 +4,10 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
   end
 
   def block_code(code, language)
-    if language.present?
-      '<pre id="block_quote">' + '<strong>' + '<code id="file_name">' + language.to_s + '</code></strong>' + '<code id="code">' + code.to_s  + "</code></pre>" + '<style type="text/css">pre#block_quote {margin-top: 10px;margin-left: -20px;margin-right: -20px;}code#code {padding-left: 30px;padding-right: 30px;}code#file_name{padding-left: 30px;padding-right: 30px;} </style>'
-    else
-      '<pre id="block_quote">' + '<code id="code">' +  code.to_s + '</code>' + '</pre>' + '<style type="text/css">pre#block_quote {margin-top: 10px;margin-left: -20px;margin-right: -20px;}code#code {padding-left: 30px;padding-right: 30px;}</style>';
+    if language.present? && code.present?
+      '<pre id="block_quote">' + '<strong>' + '<code id="file_name">' + language.to_s + '</code></strong>' + '<code id="code">' + code.to_s  + "</code></pre>" + '<style type="text/css">pre#block_quote {margin-top: 10px;margin-left: -20px;margin-right: -20px}code#code {padding-left: 30px;padding-right: 30px;padding-bottom: 10px}code#file_name{padding-top: 10px;padding-left: 30px;padding-right: 30px;padding-bottom: 20px;} </style>'
+    elsif code.present?
+      '<pre id="block_quote">' + '<code id="code">' +  code.to_s + '</code>' + '</pre>' + '<style type="text/css">pre#block_quote {margin-top: 10px;margin-left: -20px;margin-right: -20px;}code#code {padding-bottom: 10px;}</style>';
     end
   end
 

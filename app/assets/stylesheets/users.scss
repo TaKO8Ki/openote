@@ -17,19 +17,9 @@
   box-shadow: 5px 5px 0px 0px #ccc;
 }
 
-div#user_article_wrap{
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 90px;
-  background-color: #fff;
-}
-
 div#user_article_list{
-    width: 48%;
-    float: left;
-    border-radius: 5px;
-    margin-right: 1%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 div#user_article_list div#user_article_list_bottom {
@@ -69,6 +59,26 @@ div#user_article_list div p.user_article_edit_delete {
     font-size: 13px;
     font-weight: bold;
     margin-left: 87%;
+}
+
+table.user_show_bottom_table {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  background-color: #FFF;
+}
+
+td.user_show_left {
+  width: 200px;
+}
+
+td.user_show_center {
+  width: 50%;
+}
+
+td.user_show_right {
+  width: 250px;
 }
 
 /*ユーザー情報編集*/
@@ -135,20 +145,23 @@ input.user_follow:hover {
 }
 
 div#user_sidebar{
-    width: 23%;
-    float: left;
-    background-color: #fff;
-    border-radius: 5px;
-    margin-right: 1%;
+    background-color: #ccc;
 }
 
 /*ユーザープロフィールのユーザー画像周辺*/
 
-div#user_show_top {
-  width: 100%;
+table.user_show_top_table {
+  width: 90%;
   @include box;
-  display: inline-block;
   margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  margin-top: 90px;
+}
+
+td.user_show_profile {
+  width: 40%;
 }
 
 p.user_show_profile {
@@ -178,8 +191,6 @@ div#sidebar_user_show {
   background-color: #fff;
   margin-bottom: 10px;
   margin-top: 10px;
-  width: 37%;
-  float: left;
   border-right: 2px solid #ccc;
 }
 
@@ -222,9 +233,6 @@ div#sidebar_user_description {
 
 
 div#user_sidebar_right{
-    width: 27%;
-    float: right;
-    border-radius: 5px;
 }
 
 div#user_each_repo {
@@ -276,7 +284,6 @@ div#user_setting_sidebar{
     width: 25%;
     float: left;
     background-color: #ccc;
-    border-radius: 5px;
 }
 
 p.box_name {

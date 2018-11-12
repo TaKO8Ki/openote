@@ -21,7 +21,6 @@
  @import 'rouge';
  @charset "utf-8";
 
-
  * {
    margin: 0;
    padding: 0;
@@ -33,8 +32,18 @@
      background-color: #f9f9f9;
      font-family: "KozGoPro-Light", "小塚ゴシック Pro L", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
  }
+ body#all_contents::after {
+   clear: both;
+   content: "";
+   display: block;
+ }
 
  .clear {
+   clear: both;
+   text-align: center;
+ }
+
+ .test {
    clear: both;
    text-align: center;
  }
@@ -43,11 +52,13 @@
      text-decoration: none;
  }
 
+
+/*ヘッダー*/
  header{
    width: 100%;
    height: 70px;
    position: fixed;
-   background-color: #f2bd00;
+   background-color: #FFC107;
    z-index: 100;
    top: 0
  }
@@ -74,25 +85,37 @@
    text-align: center;
  }
 
-.new_article_bottun {
-  width: 100px;
-  height: 20px;
-  position: relative;
-  display: inline-block;
-  padding: 0.3em 1em;
-  text-decoration: none;
-  color: #67c5ff;
-  border: solid 2px #67c5ff;
-  border-radius: 3px;
-  transition: .4s;
-  margin: 0 auto;
-}
+a.new_article_buttun {
+    display: inline-block;
+    text-decoration: none;
+    background: #FF4508;
+    color: #fff;
+    padding: 9px 20px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    font-size: 18px;
+    margin-top: 13px;
+    border-radius: 2px;
+  }
 
-.new_article_bottun:hover {
-    background: #67c5ff;
-    color: white;
-}
+a.new_article_buttun:hover{
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+  }
 
+  a.new_article_buttun:before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin: -3px 5px 0 0;
+    background: url("article_memo.png") no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+  }
+
+.new_article_buttun.active {
+    background-color: #000;
+  }
 
 .nav_signed_in {
     display: table;
@@ -139,7 +162,6 @@
 
 
 .g_nav {
-    background: #fff;
     height: 70px;
     float: right;
     margin-right: 50px;
@@ -155,7 +177,6 @@
 
 .g_nav_list>li.g_nav_itself a {
     display: block;
-    padding: 20px 0;
     text-align: center;
 }
 
@@ -359,4 +380,43 @@ max-width: 100%;
      text-align: left;
      font-size: 14px;
      line-height: 1.8em;
+}
+
+a.btn-green{
+  padding: 0.5em;
+  margin: 10px 0;
+  display: block;
+  color: #fff !important;
+  background: #00913D;
+  text-decoration: none;
+  font-weight: bold;
+  font-size:16px;
+  text-align:center;
+  text-decoration:none !important;
+}
+a.btn-green:before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: -3px 5px 0 0;
+  background: url("article_memo.png") no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+a.btn-green:hover {
+    background: #6FB83F;
+}
+
+
+/*フッター*/
+footer {
+  background-color: #ccc;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+}
+
+.article_period_clicked.active {
+  background-color: #fff;
 }

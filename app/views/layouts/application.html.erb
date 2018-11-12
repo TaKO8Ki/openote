@@ -20,30 +20,15 @@
     <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, minimum-scale=0.2, maximum-scale=2, user-scalable=yes">
   </head>
 
+  <script>
+
+</script>
+
   <header>
     <% if user_signed_in? %>
-    <!-- <ul class="nav_signed_in">
-      <li class="nav__item"><p><%= link_to 'トップ', articles_path %></p></li>
-      <li class="nav__item"><p><%= link_to '新規投稿', new_article_path %></p></li>
-      <li class="nav__item"><p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p></li>
-      <li class="nav__item"><p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
-    </ul>
-    <ul class="nav_test">
-      <li>
-        <a href="#">nav</a>
-        <ul>
-          <li><a href="#">sub nav</a></li>
-          <li><a href="#">sub nav</a></li>
-          <li><a href="#">sub nav</a></li>
-        </ul>
-      </li>
-    </ul> -->
-
-
-
 <nav class="g_nav">
     <ul class="g_nav_list ol2 clearfix">
-      <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path %></li>
+      <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path, { :class => "new_article_buttun" } %></li>
       <li class="g_nav_hover">
         <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
           <ul class="g_nav_c">
@@ -136,4 +121,10 @@
 
     <%= yield %>
   </body>
+
+
+
+  <footer>
+  
+  </footer>
 </html>

@@ -12,9 +12,9 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-every 3.hours do
-  runner "User.all.each{ |user| UserMailer.send_user_like_articles(user).deliver }"
-end
+# every 3.hours do
+#   runner "User.all.each{ |user| UserMailer.send_user_like_articles(user).deliver }"
+# end
 
 # Example:
 #

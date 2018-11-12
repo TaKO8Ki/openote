@@ -1,17 +1,47 @@
 <% if user_signed_in? %>
-<% if article.like_user(current_user.id) %>
-  <%= button_to article_like_path(likes, article_id: article.id), method: :delete, remote: true do %>
-    <%= image_tag("icon_red_heart.png") %>
-    <span>
+
+  <% unless article.like_user(current_user.id).blank? %>
+    <%= link_to article_like_path(article_id: article.id ,id: article.likes[0].id), method: :delete, remote: true do %>
+      <div class="vertical_like">
+        <p class="destroy_likes">
+          <%= image_tag "check.png" %>
+        </p>
+      </div>
+    <% end %>
+    <p class="likes_count">
       <%= article.likes_count %>
-    </span>
+    </p>
+  <% else %>
+    <%= link_to article_likes_path(article.id), method: :post, remote: true do %>
+      <div class="vertical_like">
+        <p class="create_likes">
+          <%= image_tag "create_like.png" %>
+        </p>
+      </div>
+    <% end %>
+    <p class="likes_count">
+      <%= article.likes_count %>
+    </p>
   <% end %>
+
 <% else %>
-  <%= button_to article_likes_path(article), remote: true do %>
-    <%= image_tag("icon_heart.png") %>
-    <span>
-      <%= article.likes_count %>
-    </span>
+
+<% if article.likes_count.present? %>
+  <% if article.likes_count > 0 %>
+    <div class="vertical_like">
+      <i class="material-icons red-text">favorite</i>
+      <span class="red-text">
+        <%= article.likes_count %>
+      </span>
+    </div>
+  <% else %>
+    <div class="vertical_like">
+      <i class="material-icons grey-text text-darken-2">favorite_border</i>
+      <span class="grey-text text-darken-2">
+        <%= article.likes_count %>
+      </span>
+    </div>
   <% end %>
 <% end %>
+
 <% end %>
