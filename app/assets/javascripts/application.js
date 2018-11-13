@@ -61,7 +61,7 @@ $(document).on('turbolinks:load', function() {
               }
             }
               return '<pre class="hljs">' + '<code id="code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
-              + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding-left: 35px;}</style>';
+              + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding-left: 35px;padding-top: 10px;padding-bottom: 10px;}</style>';
             };
 
           renderer.blockquote = function (quote) {
@@ -75,7 +75,7 @@ $(document).on('turbolinks:load', function() {
           };
 
           renderer.listitem = function(text) {
-            return '<li>' + text + '</li>\n' + '<style type="text/css">li {margin-left: 20px; white-space:normal;}</style>';
+            return '<li class="markdown_list">' + text + '</li>\n' + '<style type="text/css">li.markdown_list {margin-left: 20px; white-space:normal;}</style>';
           };
 
           renderer.table = function(header, body) {
@@ -120,6 +120,16 @@ $(document).on('turbolinks:load', function() {
 
         new Vue({
             el: '#editor',
+            data: {
+                input: '# hello'
+            },
+            filters: {
+                marked: marked
+            }
+        })
+
+        new Vue({
+            el: '#comment_editor',
             data: {
                 input: '# hello'
             },

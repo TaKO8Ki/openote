@@ -31,6 +31,7 @@
             <div id="article_show_center_all_body">
               <%= raw add_id_to_markdown(markdown(@article.body)) %>
             </div>
+
         </div>
       </td>
       <td valign="top" class="article_show_right">
@@ -72,22 +73,23 @@
       <td></td>
       <td>
         <p class="comment">Comments</p>
+
         <% if  @article.article_comments.any? %>
-          <ul>
+
             <% @article.article_comments.each do |comment| %>
             <div id='article_show_comment'>
               <li class="comment_box">
-                <table>
+                <table class="article_comment_user">
                   <tr>
-                    <td><p class="article_list_user"><%= image_tag comment_user(comment).picture.url %></p></td>
-                    <td><strong>@<%= comment_user(comment).username %></strong></td>
+                    <td class="article_comment_picture"><%= image_tag comment_user(comment).picture.url %></td>
+                    <td class="article_comment_username"><strong>@<%= comment_user(comment).username %></strong></td>
                   </tr>
                 </table>
                 <%= markdown(comment.body) %>
                 <% if user_signed_in? %>
                 <div id="article_comment_button">
                   <% if @article.user == current_user %>
-                    <%= link_to '削除',
+                    <%= link_to '削除する',
                             article_article_comment_path(@article, comment),
                             method: :delete,
                             class: 'article_comment_delete',
@@ -102,13 +104,19 @@
           <% end %>
 
         <% if user_signed_in? %>
+
+
           <div id='article_show_comment_form'>
             <%= form_for ([@article, @article.article_comments.build]) do |f| %>
               <p>
-                <%= f.text_area :body, class: "article_comment_form" %>
+                <div id="comment_editor">
+                  <p class="comment_preview">Preview</p>
+                  <div v-html="input | marked", id="comment_preview"></div>
+                  <%= f.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_comment_form" %>
+                </div>
               </p>
-              <p>
-                <%= f.submit %>
+              <p class="article_comment_submit">
+                <%= f.submit 'コメントする', :class => "article_comment_submit" %>
               </p>
             <% end %>
           </div>
@@ -116,6 +124,8 @@
       </td>
       <td></td>
     </tr>
+
+
   </table>
 
 

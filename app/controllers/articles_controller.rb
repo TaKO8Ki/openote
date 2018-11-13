@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
       end
       @like = Like.where(article_id: params[:article_id])
       @article = Article.find(params[:id])
-      @toc = markdown_toc_test(view_context.markdown(@article.body))
+      @toc = markdown_toc(view_context.markdown(@article.body))
     end
 
     def new
@@ -168,7 +168,7 @@ private
     return each_element
   end
 
-  def markdown_toc_test(content)
+  def markdown_toc(content)
     id_count = 1
     toc_text = ''
     currentlevel = 0
@@ -192,7 +192,6 @@ private
       else
           level = 0
       end
-
 
       while currentlevel < level do
           toc_text += '<ul class="chapter">'

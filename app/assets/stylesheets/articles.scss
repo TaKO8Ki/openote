@@ -206,11 +206,6 @@ div#article_info {
     font-size: 14px;
 }
 
-div#article_test_test {
-  width: 100%;
-  background-color: #bbb;
-}
-
 p.article_list_comment {
   margin-top: 5px;
   font-size: 10px;
@@ -230,14 +225,8 @@ p.article_list_likes {
 p.article_list_user {
   font-size: 20px;
   vertical-align: center;
-  margin-right: 20px;
 }
-p.article_list_user img {
-  width: 40px;
-  border-radius: 50%;
-  margin-top: 3px;
-  border: 2px solid #ccc;
-}
+
 
 .user_box {
     display: table;
@@ -316,8 +305,8 @@ div#article_show_center p.article_show_center_header img {
 }
 
 div#article_show_left{
-    background-color: #ccc;
     margin-right: 20px;
+    height: 100%;
 }
 
 div#article_show_right{
@@ -333,14 +322,27 @@ table.article_show_table {
 
 td.article_show_center {
   width: 64%;
+  display:table-cell;
 }
 
 td.article_show_left {
   text-align: center;
   width: 150px;
+  display:table-cell;
 }
 td.article_show_right {
   width: 400px;
+  display:table-cell;
+}
+
+table{
+    height: 100%;
+    td{
+        height: 100%;
+        div#article_show_right {
+            height: 100%;
+        }
+    }
 }
 
 
@@ -363,9 +365,13 @@ div#sidebar_article_toc {
   margin-bottom: 10px;
 }
 
+li.chapter_list {
+  color: #08FFC1;
+}
+
 div#sidebar_following_scroll {
   position: sticky;
-  top: 70px;
+  top: 90px;
 }
 
 
@@ -385,6 +391,7 @@ ul.chapter {
 
 div#article_show_comment{
     width: calc(100% - 40px);
+    font-size: 20px;
     background-color: #fff;
     margin-top: 10px;
     padding: 20px;
@@ -396,12 +403,6 @@ div#article_show_comment li.comment_box {
 }
 
 div#article_show_comment_form{
-    width: calc(100% - 40px);
-    margin-top: 10px;
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-    border: 2px solid #ccc;
 }
 
 div#comment_user {
@@ -410,41 +411,82 @@ div#comment_user {
 
 p.comment {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
   font-size: 25px;
 }
 
 textarea.article_comment_form {
-  width: calc(95% - 40px);
-  height: 90px;
+  width: calc(100% - 40px);
+  margin-top: 10px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  outline:none;
+  font-size: 18px;
   resize: none;
-  outline: none;
-  font-size: 20px;
   padding: 20px;
+  height: 150px;
 }
 
 a.article_comment_delete {
     display: inline-block;
-    padding: 10px 10px;
+    padding: 5px 8px;
     text-decoration: none;
     background: #f7f7f7;
-    font-weight: bold;
     box-shadow: 0px 2px 2px #ccc;
     float: right;
-    font-size: 15px;
-}
-
-a.article_comment_delete:active {
-    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
-    transform: translateY(2px);
+    font-size: 12px;
 }
 
 div#article_comment_button {
-  background-color: #ccc;
   margin-top: 10px;
   display: inline-block;
   width: 100%;
+}
+
+/*記事詳細コメントのユーザー情報*/
+table.article_comment_user {
+  width: 200px;
+}
+
+td.article_comment_picture {
+  display: inline-block;
+}
+
+td.article_comment_picture img {
+  width: 40px;
+  border-radius: 50%;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+}
+
+td.article_comment_username {
+  display: inline-block;
+}
+
+p.article_list_user img {
+  width: 40px;
+  border-radius: 50%;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+}
+
+p.article_comment_submit {
+  text-align: center;
+}
+
+input.article_comment_submit {
+  display: inline-block;
+  text-decoration: none;
+  background: #0845FF;
+  color: #fff;
+  padding: 9px 20px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  font-size: 15px;
+  margin-top: 13px;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -911,6 +953,13 @@ div#article_date {
   }
 
 /*記事詳細画面右サイドボタン*/
+
+div#article_left_buttons {
+  position: sticky;
+  top: 190px;
+  padding-top: 100px;
+}
+
  .left_sidebar_button {
     width: 50px;
     height: 50px;
@@ -923,8 +972,6 @@ div#article_date {
     border-radius: 50%;
     margin-bottom: 10px;
     box-shadow: 0px 1px 10px 0px #333;
-    position: sticky;
-    top: 90px;
 }
 
 .left_sidebar_button img {
@@ -954,4 +1001,22 @@ background-color:#222;
 
 .highlight .err {
 background-color:#3d3535;
+}
+
+div#comment_preview {
+  width: calc(100% - 40px);
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  font-size: 18px;
+  height: 150px;
+  overflow: scroll;
+}
+
+p.comment_preview {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 10px;
 }
