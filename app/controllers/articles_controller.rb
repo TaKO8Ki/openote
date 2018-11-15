@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
         @articles_likes_order = Article.all.order('likes_count DESC').limit(10)
         articles_tagged_with_best_three_tags
         which_articles_should_be_showed
+        hot_articles
     end
 
     def show
@@ -57,24 +58,6 @@ class ArticlesController < ApplicationController
       User.find(comment.user_id)
     end
 
-    def this_week
-      from  = Time.now.at_beginning_of_day
-      to    = (from + 6.day).at_end_of_day
-      this_week = from...to
-      return this_week
-    end
-
-    def this_month
-      from  = Time.now.at_beginning_of_day
-      to    = (from + 1.month)
-      this_month = from...to
-      return this_month
-    end
-
-    def this_year
-      return Time.now.all_year
-    end
-
 helper_method :comment_user, :this_week, :this_month, :this_year, :add_id_to_markdown
 
 private
@@ -83,20 +66,44 @@ private
       params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, { :category_ids => [] })
   end
 
+  def this_week
+    from  = Time.now.at_beginning_of_day
+    to    = (from + 6.day).at_end_of_day
+    this_week = from...to
+    return this_week
+  end
+
+  def this_month
+    from  = Time.now.at_beginning_of_day
+    to    = (from + 1.month)
+    this_month = from...to
+    return this_month
+  end
+
+  def this_year
+    return Time.now.all_year
+  end
+
   def which_articles_should_be_showed
     if params[:category]
       @articles = Article.tagged_with(params[:category]).order('created_at DESC')
       @category = params[:category]
-    elsif params[:this_week]
-      @articles = Article.where(created_at: this_week).order("likes_count DESC")
-    elsif params[:this_month]
-      @articles = Article.where(created_at: this_month).order("likes_count DESC")
-    elsif params[:this_year]
-      @articles = Article.where(created_at: this_year).order("likes_count DESC")
+    elsif params[:period] == "today"
+      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day)
+    elsif params[:period] == "this_week"
+      @articles = Article.search_with_period_likes_desc(this_week)
+    elsif params[:period] == "this_month"
+      @articles = Article.search_with_period_likes_desc(this_month)
+    elsif params[:period] == "this_year"
+      @articles = Article.search_with_period_likes_desc(this_year)
     else
       @articles = Article.all.order('created_at DESC')
     end
     return @articles
+  end
+
+  def hot_articles
+    @hot_articles = Article.all.limit(2)
   end
 
   def set_available_tags_with_count
@@ -145,16 +152,6 @@ private
     @articles_tagged_with_fifth_tag = Article.tagged_with(@fifth_tag).limit(3)
     @articles_tagged_with_sixth_tag = Article.tagged_with(@sixth_tag).limit(3)
     @articles_tagged_with_seventh_tag = Article.tagged_with(@seventh_tag).limit(3)
-  end
-
-  def articles_likes_order_for_some_period
-    if params[:created_at] == this_week
-      @articles = Article.where(created_at: this_week).order('likes_count DESC')
-    elsif params[:created_at] == this_month
-      @articles = Article.where(created_at: this_month).order('likes_count DESC')
-    elsif params[:created_at] == this_year
-      @articles = Article.where(created_at: this_year).order('likes_count DESC')
-    end
   end
 
   def add_id_to_markdown(content)

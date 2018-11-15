@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
     # get "/users/sign_in", to:  redirect("/articles")
     get 'follows/create'
     get 'follows/destroy'

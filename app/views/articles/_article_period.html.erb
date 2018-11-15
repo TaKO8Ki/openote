@@ -1,45 +1,56 @@
-
 <% if params[:category].present? %>
 <% else %>
-<div id="article_date">
-  <ul class="article_box_show">
-    <li class="article_box_item">
+<table class="article_list_period_table">
+  <tr>
+    <td>
       <p>
-        <%= link_to "新着記事", articles_path(current_articles: "current_articles"), { :class => "article_period_clicked" } %>
+        <%= link_to "新着", articles_path, { :class => "article_period_clicked" } %>
       </p>
-    </li>
-    <li class="article_box_item">
-      <p>
-        <%= link_to "this week", articles_path(this_week: "this_week"), {:class => "article_period_clicked"} %>
-      </p>
-    </li>
-    <% if params[:this_month].present? %>
-    <li class="article_box_item">
-      <p>
-        <%= link_to "this week", articles_path(this_month: "this_month"), {:class => "article_period_clicked"} %>
-      </p>
-    </li>
-    <% else %>
-    <li class="article_box_item">
-      <p>
-        <%= link_to "this week", articles_path(this_month: "this_month"), {:class => "article_period"} %>
-      </p>
-    </li>
-    <% end %>
-    <% if params[:this_year].present? %>
-    <li class="article_box_item">
-      <p>
-        <%= link_to "this week", articles_path(this_year: "this_year"), {:class => "article_period_clicked"} %>
-      </p>
-    </li>
-    <% else %>
-    <li class="article_box_item">
-      <p>
-        <%= link_to "this week", articles_path(this_year: "this_year"), {:class => "article_period"} %>
-      </p>
-    </li>
-    <% end %>
-  </ul>
-
-</div>
+    </td>
+    <td>
+  <% if params[:period] == "today"%>
+    <p>
+      <%= link_to "今日", articles_path(period: "today"), {:class => "article_period_clicked"} %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "今日", articles_path(period: "today"), {:class => "article_period"} %>
+    </p>
+  <% end %>
+  </td>
+    <td>
+  <% if params[:period] == "this_week"%>
+    <p>
+      <%= link_to "週間", articles_path(period: "this_week"), {:class => "article_period_clicked"} %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "週間", articles_path(period: "this_week"), {:class => "article_period"} %>
+    </p>
+  <% end %>
+  </td>
+  <td>
+  <% if params[:period] == "this_month" %>
+    <p>
+      <%= link_to "月間", articles_path(period: "this_month"), {:class => "article_period_clicked"} %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "月間", articles_path(period: "this_month"), {:class => "article_period"} %>
+    </p>
+  <% end %>
+  </td>
+  <td>
+  <% if params[:period] == "this_year" %>
+    <p>
+      <%= link_to "年間", articles_path(period: "this_year"), {:class => "article_period_clicked"} %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "年間", articles_path(period: "this_year"), {:class => "article_period"} %>
+    </p>
+  <% end %>
+  </td>
+  </tr>
+</table>
 <% end %>

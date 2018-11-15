@@ -320,3 +320,34 @@ Running via Spring preloader in process 2920
 Running via Spring preloader in process 4088
 Running via Spring preloader in process 5164
 Running via Spring preloader in process 7138
+2018-11-13 20:00 fsevent_watch[2296] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2294] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2292] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2298] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2290] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2288] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2291] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2295] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2295] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2288] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2286] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2286] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2293] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2289] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2297] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2293] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2289] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2297] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2294] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2296] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2292] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2290] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2298] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2291] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+Running via Spring preloader in process 1866
+Running via Spring preloader in process 2940
+Running via Spring preloader in process 4158
+Running via Spring preloader in process 6052
+Running via Spring preloader in process 7241
+Running via Spring preloader in process 9017
+Running via Spring preloader in process 9297

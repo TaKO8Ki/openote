@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require highlight.pack.js
+//= require main/highlight.pack.js
 //= require rails-ujs
 //= require activestorage
 //= require jquery
@@ -18,7 +18,7 @@
 //= require jquery-ui
 //= require tag-it
 //= require turbolinks
-//= require_tree .
+//= require_tree ./main
 
 $(document).on('turbolinks:load', function(){
     $('.article_period_clicked').on('onload', function(event){

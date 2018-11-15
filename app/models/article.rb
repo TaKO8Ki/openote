@@ -1,6 +1,4 @@
 class Article < ApplicationRecord
-  include MarkdownHelper
-  require 'nokogiri'
 
   has_many :article_categories, dependent: :destroy
   has_many :categories, :through => :article_categories, dependent: :destroy
@@ -14,7 +12,9 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  scope :recent, -> { order(id: :desc).limit(5) }
+  scope :search_with_period, -> (period) { where(created_at: period) }
+  scope :recent, -> (count) { order(id: :desc).limit(count) }
+
 
   def self.category_with(name)
     Category.find_by_name!(name).articles
@@ -29,9 +29,11 @@ class Article < ApplicationRecord
   end
 
   def search(keyword)
-    Article.where("title LIKE ?", keyword)
+    self.where("title LIKE ?", keyword)
   end
 
-  
+  def search_with_period_likes_desc(period)
+    self.where(created_id: period).order("likes_count DESC")
+  end
 
 end

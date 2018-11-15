@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 gem 'devise'
 
+gem 'activeadmin'
+
 # omniauth認証関連
 gem 'omniauth-github'
 
