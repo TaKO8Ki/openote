@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-  $('#article_tags').tagit
+  $('#articl_tags').tagit
     fieldName:   'article[tag_list]'
     singleField: true
     availableTags: gon.available_tags_and_count

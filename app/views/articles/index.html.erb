@@ -187,7 +187,7 @@
             <% end %>
             <% if @first_tag.present? %>
             <div id='sidebar_articles'>
-              <strong><%= "##{@first_tag}" %></strong>
+              <!-- <strong><%= "##{@first_tag}" %></strong>
                 <% @articles_tagged_with_first_tag.each do |article| %>
               <p class='sidebar_article_likes_order'>
                 <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
@@ -253,7 +253,7 @@
                 <%= link_to article.title, article_path(article), { :class => "article_link" }  %>
               </p>
                     <% end %>
-            </div>
+            </div> -->
             <% end %>
             <!-- <div id='sidebar_articles'>
                 <% @articles_likes_order.each do |article| %>

@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   require 'nokogiri'
   protect_from_forgery :except => [:new, :edit]
+  after_action :tweet_button, only: [:show]
 
     def index
         @likes = Like.where(article_id: params[:article_id])
@@ -58,7 +59,7 @@ class ArticlesController < ApplicationController
       User.find(comment.user_id)
     end
 
-helper_method :comment_user, :this_week, :this_month, :this_year, :add_id_to_markdown
+helper_method :comment_user, :this_week, :this_month, :this_year, :add_id_to_markdown, :notification_content
 
 private
 
@@ -138,20 +139,7 @@ private
   end
 
   def articles_tagged_with_best_three_tags
-    @first_tag = tags_ranking_for_a_last_week[0][0] if tags_ranking_for_a_last_week[0].present?
-    @second_tag = tags_ranking_for_a_last_week[1][0] if tags_ranking_for_a_last_week[1].present?
-    @third_tag = tags_ranking_for_a_last_week[2][0] if tags_ranking_for_a_last_week[2].present?
-    @forth_tag = tags_ranking_for_a_last_week[3][0] if tags_ranking_for_a_last_week[3].present?
-    @fifth_tag = tags_ranking_for_a_last_week[4][0] if tags_ranking_for_a_last_week[4].present?
-    @sixth_tag = tags_ranking_for_a_last_week[5][0] if tags_ranking_for_a_last_week[5].present?
-    @seventh_tag = tags_ranking_for_a_last_week[6][0] if tags_ranking_for_a_last_week[6].present?
-    @articles_tagged_with_first_tag = Article.tagged_with(@first_tag).limit(7)
-    @articles_tagged_with_second_tag = Article.tagged_with(@second_tag).limit(5)
-    @articles_tagged_with_third_tag = Article.tagged_with(@third_tag).limit(3)
-    @articles_tagged_with_forth_tag = Article.tagged_with(@forth_tag).limit(3)
-    @articles_tagged_with_fifth_tag = Article.tagged_with(@fifth_tag).limit(3)
-    @articles_tagged_with_sixth_tag = Article.tagged_with(@sixth_tag).limit(3)
-    @articles_tagged_with_seventh_tag = Article.tagged_with(@seventh_tag).limit(3)
+    @articles_tagged_with_best_five_categories = tags_ranking_for_a_last_week.map{ |tag| Article.tagged_with(tag.first).limit(7) }
   end
 
   def add_id_to_markdown(content)
@@ -211,6 +199,28 @@ private
       toc_text = '<div id=toc>' + toc_text + '</div>'
 
       return toc_text
+  end
+
+  def notification_content(notification)
+    if notification.notified_type == "like"
+      like_user = User.find(notification.notified_by_id)
+      content = "#{like_user.username}さんがあなたの投稿にいいねをしました。"
+    elsif notification.notified_type == "comment"
+      comment_user = User.find(notification.notified_by_id)
+      content = "#{comment_user.username}さんがあなたの投稿にコメントしました。"
+    end
+    return content
+  end
+
+  def tweet_button
+    @tweet_url = URI.encode(
+      "http://twitter.com/intent/tweet?original_referer=" +
+      request.url +
+      "&url=" +
+      request.url +
+      "&text=" +
+      "記事『" + @article.title + "』を閲覧しています。"
+    )
   end
 
 end

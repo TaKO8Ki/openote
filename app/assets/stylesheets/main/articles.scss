@@ -529,11 +529,18 @@ div#article_form_category {
   box-shadow: 5px 5px 0px 0px #ccc;
 }
 
+ul#article_tags {
+  height: 40px;
+}
+
 div#editor {
   width: calc(100% - 4px);
   height: 600px;
   @include box;
-  margin-top: 20px;
+}
+
+table.editor_helper {
+  margin-top: 10px;
 }
 
 div#article_form_body {
@@ -548,8 +555,6 @@ div#article_preview {
   border-left: solid 2px #ccc;
   overflow: scroll;
 }
-
-
 
 input.article_title {
     width: calc(100% - 44px);
@@ -923,7 +928,7 @@ div#comment_preview {
   border: 2px solid #ccc;
   font-size: 18px;
   height: 150px;
-  overflow: scroll;
+
 }
 
 p.comment_preview {

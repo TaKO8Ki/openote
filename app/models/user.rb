@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :article_comments, dependent: :destroy
   has_many :article_memos, dependent: :destroy
   has_many :social_profiles, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
   devise :database_authenticatable, :registerable,

@@ -20,13 +20,88 @@
 //= require turbolinks
 //= require_tree ./main
 
+/*マークダウンエディターの補助機能*/
 $(document).on('turbolinks:load', function(){
-    $('.article_period_clicked').on('onload', function(event){
-        event.preventDefault();
-        $(this).toggleClass('active');
-    });
+  $('.markdown_code').on('click',function(e){
+    var v= $('#article_body').val();
+    var selin = $('#article_body').prop('selectionStart');
+    var selout = $('#article_body').prop('selectionEnd');
+    var befStr="```\n";
+    var aftStr="\n```";
+    var v1=v.substr(0,selin);
+    var v2=v.substr(selin,selout-selin);
+    var v3=v.substr(selout);
+    $('#article_body')
+      .val(v1+befStr+v2+aftStr+v3)
+      .prop({
+        "selectionStart":selin+befStr.length,
+        "selectionEnd":selin+befStr.length+v2.length
+        })
+      .trigger("focus");
+  });
 });
 
+$(document).on('turbolinks:load', function(){
+  $('.markdown_table').on('click',function(e){
+    var v= $('#article_body').val();
+    var selin = $('#article_body').prop('selectionStart');
+    var selout = $('#article_body').prop('selectionEnd');
+    var befStr="| hoge | hoge |\n| -- | -- |\n| hoge | hoge |";
+    var aftStr="";
+    var v1=v.substr(0,selin);
+    var v2=v.substr(selin,selout-selin);
+    var v3=v.substr(selout);
+    $('#article_body')
+      .val(v1+befStr+v2+aftStr+v3)
+      .prop({
+        "selectionStart":selin+befStr.length,
+        "selectionEnd":selin+befStr.length+v2.length
+        })
+      .trigger("focus");
+  });
+});
+
+$(document).on('turbolinks:load', function(){
+  $('.markdown_quote').on('click',function(e){
+    var v= $('#article_body').val();
+    var selin = $('#article_body').prop('selectionStart');
+    var selout = $('#article_body').prop('selectionEnd');
+    var befStr="> ";
+    var aftStr="";
+    var v1=v.substr(0,selin);
+    var v2=v.substr(selin,selout-selin);
+    var v3=v.substr(selout);
+    $('#article_body')
+      .val(v1+befStr+v2+aftStr+v3)
+      .prop({
+        "selectionStart":selin+befStr.length,
+        "selectionEnd":selin+befStr.length+v2.length
+        })
+      .trigger("focus");
+  });
+});
+
+$(document).on('turbolinks:load', function(){
+  $('.markdown_list').on('click',function(e){
+    var v= $('#article_body').val();
+    var selin = $('#article_body').prop('selectionStart');
+    var selout = $('#article_body').prop('selectionEnd');
+    var befStr="- ";
+    var aftStr="";
+    var v1=v.substr(0,selin);
+    var v2=v.substr(selin,selout-selin);
+    var v3=v.substr(selout);
+    $('#article_body')
+      .val(v1+befStr+v2+aftStr+v3)
+      .prop({
+        "selectionStart":selin+befStr.length,
+        "selectionEnd":selin+befStr.length+v2.length
+        })
+      .trigger("focus");
+  });
+});
+
+/*マークダウンエティターのプレビュー機能*/
 $(document).on('turbolinks:load', function() {
     hljs.initHighlighting.called = false;
     hljs.initHighlighting();
@@ -46,21 +121,21 @@ $(document).on('turbolinks:load', function() {
 
         renderer.heading = function (text, level) {
 
-          return   '<h' + level + '>' + text + '</h' + level + '>' + '<style type="text/css">h' + level + ' {padding-bottom: 2px;border-bottom: inset 2px #ccc;}</style>';
+          return   '<h' + level + ' class="markdown_heading">' + text + '</h' + level + '>' + '<style type="text/css">h' + level + '.markdown_heading {padding-bottom: 2px;border-bottom: inset 2px #ccc;}</style>';
         };
 
           renderer.code = function (code, language, escaped) {
             if (language !== undefined) {
               var fileName = language.indexOf('.');
               if (fileName !== -1) {
-                return '<pre class="hljs">' + '<div id="language">' + '<div id="language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
+                return '<pre class="hljs">' + '<div id="markdown_language">' + '<div id="markdown_language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
                 + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding: 20px;}'
-                + 'div#language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
-                + 'div#language_itself {color: #fff;display: inline-block;}</style>';
+                + 'div#markdown_language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
+                + 'div#markdown_language_itself {color: #fff;display: inline-block;}</style>';
               }
             }
-              return '<pre class="hljs">' + '<code id="code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
+              return '<pre class="hljs">' + '<code id="markdown_code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
               + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding-left: 35px;padding-top: 10px;padding-bottom: 10px;}</style>';
             };
 
@@ -81,14 +156,14 @@ $(document).on('turbolinks:load', function() {
           renderer.table = function(header, body) {
             if (body) body = '<tbody>' + body + '</tbody>';
 
-            return '<table>\n'
+            return '<table class="markdown_table">\n'
               + '<thead>\n'
               + header
               + '</thead>\n'
               + body
               + '</table>\n'
               + '<style type="text/css">'
-              + 'table {margin-top: 10px;border-collapse: collapse;}td {border: solid 1px;padding: 0.5em;}th {background-color: #ccc;border: solid 1px;padding: 0.5em;}'
+              + 'table.markdown_table {display: inline-block;height: auto;width: 100%height: auto;margin-top: 10px;border-collapse: collapse;text-align: center;}td.markdown_tdh {border: solid 1px;padding: 0.5em;}th {background-color: #ccc;border: solid 1px;padding: 0.5em;}'
               + '</style>';
           };
 
@@ -99,8 +174,8 @@ $(document).on('turbolinks:load', function() {
           renderer.tablecell = function(content, flags) {
             var type = flags.header ? 'th' : 'td';
             var tag = flags.align
-              ? '<' + type + ' align="' + flags.align + '">'
-              : '<' + type + '>';
+              ? '<' + type + ' align="' + flags.align + ' class="markdown_tdh">'
+              : '<' + type + ' class="markdown_tdh">';
             return tag + content + '</' + type + '>\n';
           };
 
@@ -109,7 +184,7 @@ $(document).on('turbolinks:load', function() {
             if (escape_letter !== -1) {
               return text;
             }
-            return '<p class="unique">' + text + '</p>'+ '<style type="text/css">p.unique {white-space:pre;}</style>';
+            return '<p class="markdown_text">' + text + '</p>'+ '<style type="text/css">p.markdown_text {white-space:pre;}</style>';
           };
 
 

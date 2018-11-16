@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_012450) do
+ActiveRecord::Schema.define(version: 2018_11_15_061718) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -102,6 +102,19 @@ ActiveRecord::Schema.define(version: 2018_11_15_012450) do
     t.index ["article_id", "user_id"], name: "index_likes_on_article_id_and_user_id", unique: true
     t.index ["article_id"], name: "index_likes_on_article_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notified_by_id"
+    t.integer "article_id"
+    t.string "notified_type"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "social_profiles", force: :cascade do |t|

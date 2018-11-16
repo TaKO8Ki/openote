@@ -16,8 +16,8 @@
         <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
     </div>
 
-    <div id='article_form_category'>
-        <ul id='article_tags'>
+    <div id="article_form_category">
+        <ul id='articl_tags'>
           <% @article.tag_list.each do |tag| %>
           <li>
             <%= tag %>
@@ -25,6 +25,7 @@
           <% end %>
         </ul>
     </div>
+
 
     <!-- <%= article.label :category %>
     <div id='article_form_category'>
@@ -39,11 +40,27 @@
 <%= @article.errors.messages[:body][0] %>
 <% end %>
 
+
+<table class="editor_helper">
+  <tr>
+  <td>
+<p class="markdown_code">code</p>
+</td>
+<td>
+<p class="markdown_table">table</p>
+</td>
+<td>
+<p class="markdown_quote">quote</p>
+</td>
+<td>
+<p class="markdown_list">list</p>
+</td>
+</tr>
+</table>
 <div id="editor">
-  <%= article.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body" %>
+  <%= article.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body", :id => "article_body" %>
   <div v-html="input | marked", id="article_preview"></div>
 </div>
-
 
 <div class="submit_button">
   <%= button_to 'submit', articles_path(@article), class: "submit_button"%>

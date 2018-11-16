@@ -23,5 +23,11 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     '<li class="list">' + text.to_s + '</li><style type="text/css">li.list {margin-left: 20px;white-space:normal;}ul {white-space:normal;}</style>'
   end
 
+  #redcarpetとmarked.jsでのリストの記法に少し異なりがあるので、統一するための修正
+  def preprocess(full_document)
+    renew_article = full_document.gsub("\n   - ", "\n     - ")
+    return renew_article.gsub("\n    - ", "\n     - ")
+  end
+
 
 end
