@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require main/agate
- *=require_tree ./main
+ *= require_tree ./main
  *= require jquery.tagit
  *= require tagit.ui-zendesk
  *= require_self
@@ -84,6 +84,46 @@
    color: #white;
    text-align: center;
  }
+
+/*検索フォーム*/
+input.search_button {
+  display: none;
+  text-decoration: none;
+  background: #FF4508;
+  color: #fff;
+  padding: 9px 20px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  font-size: 18px;
+  margin-top: 13px;
+  border-radius: 2px;
+  font-weight: bold;
+  outline: none;
+}
+
+input.search_form {
+  width: 400px;
+  height: 35px;
+  outline:none;
+  padding-left: 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 3px;
+  background-color: #FFF9E6;
+}
+
+table.search_form_table {
+  height: 70px;
+}
+
+p.search_picture {
+  margin-top: 10px;
+}
+
+p.search_picture img {
+  width: 25px;
+  margin-right: 2px;
+}
+
 
 a.new_article_button {
     display: inline-block;
@@ -275,134 +315,6 @@ div#login_form_popuup {
   width: 100%;
 }
 
-
-
-
-.notification1 {
-  font-size: 14px;
-  padding-top: 28px;
-}
-
-.notification1 > input { /* ラジオボックス非表示 */
-    display: none;
-}
-.notification1 > input:nth-child(1) + label {
-    cursor: pointer;
-}
-.notification2 { /* 初期設定 ポップアップ非表示 */
-    display: none;
-}
-
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .notification2 {/* ラジオ１ チェックでポップアップ表示 */
-    display: block;
-    z-index: 998;
-    position: fixed;
-    width: 200px;
-    height: 320px;
-    border-radius: 5px;
-    top: 250px;
-    right: 0;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    background-color: #fff;
-    padding: 10px 20px;
-    overflow: hidden;
-    border-top: 20px solid #efbb00;
-}
-@media (min-width: 768px) {/* PCのときはページの真ん中の600x600領域 */
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .notification2{
-  /*黄金比に設定*/
-         width: 200px;
-         height: 320px;
-         border-top: 20px solid #efbb00;
-
-    }
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label {
-     left: 50% !important;
-     top: 50% !important;
-     margin-left: 270px !important;
-     margin-top: -310px !important;
-}
-}
-
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .notification2 > div {/* */
-    overflow:auto;
-    -webkit-overflow-scrolling:touch;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-}
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .notification2 > div > iframe {
-      width: 100%;
-      height:100%;
-      border:none;
-      display:block;
-}
-
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .notification2 > div > img {/* ポップアップの中の要素 */
-max-width: 100%;
-}
-.notification1 > input:nth-child(1) + label ~ label {
-    display: none;/* ラジオ１ 以外のラベルを初期は非表示 */
-
-}
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label {
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 997;
-    text-indent: -999999px;
-    overflow: hidden;
-}
-.notification1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label {
-}
-
-.notification1 > input:nth-child(1) + label + input:nth-child(3):checked + label + input:nth-child(5) + label + .notification2,
-.notification1 > input:nth-child(1) + label + input:nth-child(3) + label + input:nth-child(5):checked + label + .notification2 {
-  /* ラジオ２と３ どっちかチェックでポップアップ非表示 */
-    display: none;
-}
-
-
-.notification2 {
-    animation: fadeIn 1s ease 0s 1 normal;
-    -webkit-animation: fadeIn 1s ease 0s 1 normal;
-}
-
-@keyframes fadeIn {
-    0% {opacity: 0}
-    100% {opacity: 1}
-}
-
-@-webkit-keyframes fadeIn {
-    0% {opacity: 0}
-    100% {opacity: 1}
-}
-
-.notification1 .notificationTitle {
-     padding-bottom: 10px;
-     padding-top: 10px;
-     margin: .5em 0;
-     border-bottom: 1px solid #ccc;
-     font-weight: bold;
-     text-align: center;
-     color: #333;
-}
-
-.notification1 .notificationMain {
-     color:#222;
-     text-align: left;
-     font-size: 14px;
-     line-height: 1.8em;
-}
-
-
-
-
 .popupModal1 {
   font-size: 14px;
 }
@@ -527,33 +439,6 @@ max-width: 100%;
      line-height: 1.8em;
 }
 
-a.btn-green{
-  padding: 0.5em;
-  margin: 10px 0;
-  display: block;
-  color: #fff !important;
-  background: #00913D;
-  text-decoration: none;
-  font-weight: bold;
-  font-size:16px;
-  text-align:center;
-  text-decoration:none !important;
-}
-a.btn-green:before {
-  content: "";
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin: -3px 5px 0 0;
-  background: url("article_memo.png") no-repeat;
-  background-size: contain;
-  vertical-align: middle;
-}
-a.btn-green:hover {
-    background: #6FB83F;
-}
-
-
 /*フッター*/
 footer {
   background-color: #ccc;
@@ -562,6 +447,24 @@ footer {
   margin-top: 10px;
 }
 
-.article_period_clicked.active {
-  background-color: #fff;
+h3.switch {
+    font-size: 22px ;
+    padding:3px 0 3px 22px ;
+    border-left: 3px solid #e91b1b;
+    margin-bottom: 2px ;
+    color: #282828 ;
+    cursor:pointer;
+}
+
+h3.active {
+    width: 300px;
+}
+
+.toggle_faq {
+    overflow: hidden;
+    padding: 5px 10px;
+}
+
+.toggle_faq.active {
+  display: none;
 }

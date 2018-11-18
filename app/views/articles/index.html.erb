@@ -130,7 +130,7 @@
               </p>
               <p class='article_list_category'>
                   <% article.tag_list.each do |f| %>
-                  <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+                  <%= link_to f, searches_path(category: f), { :class => "article_category" } %>
                   <% end %>
               </p>
 
@@ -269,13 +269,3 @@
         </td>
       </tr>
     </table>
-
-
-
-<!--
-    <div class="clear">
-    </div>
-</div>
-
-
-</div> -->

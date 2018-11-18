@@ -25,4 +25,6 @@ module MarkdownHelper
     markdown.render(text).html_safe
   end
 
+  
+
 end

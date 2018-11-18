@@ -74,38 +74,29 @@ table.article_list_period_table {
 
 a.article_period{
     display: inline-block;
-    padding: 0.5em 1em;
+    padding: 5px 20px;
     text-decoration: none;
-    background: #fff;/*ボタン色*/
-    color: #000;
-    border-bottom: solid 4px #000;
-    border-radius: 3px;
+    background: #FFFDE7;
+    color: #808080;
     font-size: 15px;
-}
-a.article_period:active {/*ボタンを押したとき*/
-    -ms-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);/*下に動く*/
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
-    border-bottom: none;
+    font-weight: bold;
+    margin: 0 20px;
+    border-radius: 3px;
+    border: solid 1px #808080;
 }
 
 a.article_period_clicked{
     display: inline-block;
-    padding: 0.5em 1em;
+    padding: 5px 20px;
     text-decoration: none;
-    background: #000;/*ボタン色*/
-    color: #FFF;
-    border-bottom: solid 4px #000;
-    border-radius: 3px;
+    background: #FFC107;
+    box-shadow: 5px 5px 0px #FF9808;
+    color: #808080;
     font-size: 15px;
-}
-a.article_period_clicked:active {/*ボタンを押したとき*/
-    -ms-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);/*下に動く*/
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
-    border-bottom: none;
+    margin: 0 20px;
+    font-weight: bold;
+    border: solid 2px #FF9808;
+    border-radius: 3px;
 }
 
 td.article_top {
@@ -131,7 +122,7 @@ div#article_list{
 
 div#article_list div#article_list_bottom {
   height: auto;
-  padding: 10px 20px;
+  padding: 15px 25px;
   margin-bottom: 10px;
   background-color: #fff;
   @include box;
@@ -507,11 +498,9 @@ input.article_comment_submit {
 
 div#article_form_wrap {
   background-color: #fff;
-  position: relative;
   width: 95%;
-  margin: 20px auto;
-  top: 50px;
-  margin-top: 50px;
+  margin: 0 auto;
+  margin-top: 90px;
 }
 div#article_form_title {
     text-align: center;
@@ -540,20 +529,106 @@ div#editor {
 }
 
 table.editor_helper {
-  margin-top: 10px;
+  background-color: #ededed;
+  padding-left: 12px;
+  padding-top: 6px;
+  width: 100%;
+  margin-right: 20px;
+}
+
+div#whole_editor {
+  margin-top: 20px;
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
+
+td.each_element {
+  width: 1%;
 }
 
 div#article_form_body {
 }
 
+@mixin picture_size {
+  width: 20px;
+}
+
+p.markdown_code {
+
+}
+
+p.markdown_code img {
+  @include picture_size;
+  height: auto;
+}
+
+p.markdown_list {
+}
+
+p.markdown_list img {
+  @include picture_size;
+  height: auto;
+}
+
+p.markdown_quote {
+}
+
+p.markdown_quote img {
+  @include picture_size;
+  height: auto;
+}
+
+p.markdown_table {
+}
+
+p.markdown_table img {
+  @include picture_size;
+  height: auto;
+}
+
+.expand_form {
+}
+
+.expand_form_after {
+  display: none;
+}
+
+p.expand_form img {
+  @include picture_size;
+}
+
+.reduce_form {
+  display: none;
+}
+
+.reduce_form_after {
+  display: inline;
+}
+
+p.reduce_form img {
+  @include picture_size;
+}
+
 div#article_preview {
-  width: calc(50% - 42px);
-  float: right;
   height: 560px;
   padding: 20px;
   background-color: #fff;
-  border-left: solid 2px #ccc;
   overflow: scroll;
+  overflow-x: hidden;
+}
+
+td.article_form_main {
+  width: 50%;
+}
+
+td.article_form_sub {
+  width: 50%;
+  border-left: solid 2px #ccc;
+}
+
+table#editor {
+  table-layout:fixed;
+  width: 100%;
 }
 
 input.article_title {
@@ -588,8 +663,7 @@ input.article_service {
 textarea.article_body {
   outline: none;
   resize: none;
-  float: left;
-  width:  calc(50% - 40px);
+  width:  calc(100% - 40px);
   height: 560px;
   font-size: 20px;
   padding: 20px;
@@ -836,6 +910,22 @@ div#sidebar_user_index {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+p.article_user_picture img {
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin-top: 10px;
+}
+
+table.sidebar_user_index {
+  width: 100%;
+}
+
+td.article_user_description {
+  font-size: 15px;
 }
 
 div#article_top_category_name {
@@ -928,7 +1018,7 @@ div#comment_preview {
   border: 2px solid #ccc;
   font-size: 18px;
   height: 150px;
-
+  overflow: scroll;
 }
 
 p.comment_preview {

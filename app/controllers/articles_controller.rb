@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
       User.find(comment.user_id)
     end
 
-helper_method :comment_user, :this_week, :this_month, :this_year, :add_id_to_markdown, :notification_content
+helper_method :comment_user, :this_week, :this_month, :this_year, :notification_content
 
 private
 
@@ -142,15 +142,15 @@ private
     @articles_tagged_with_best_five_categories = tags_ranking_for_a_last_week.map{ |tag| Article.tagged_with(tag.first).limit(7) }
   end
 
-  def add_id_to_markdown(content)
-    each_element = Nokogiri::HTML.parse(content)
-    headings = each_element.css(".markdown_heading")
-    id_count = 1
-    headings.each do |heading|
-      heading["id"] = "chapter_#{id_count}"
-      id_count += 1
+  def notification_content(notification)
+    if notification.notified_type == "like"
+      like_user = User.find(notification.notified_by_id)
+      content = "#{like_user.username}さんがあなたの投稿にいいねをしました。"
+    elsif notification.notified_type == "comment"
+      comment_user = User.find(notification.notified_by_id)
+      content = "#{comment_user.username}さんがあなたの投稿にコメントしました。"
     end
-    return each_element
+    return content
   end
 
   def markdown_toc(content)
@@ -201,17 +201,7 @@ private
       return toc_text
   end
 
-  def notification_content(notification)
-    if notification.notified_type == "like"
-      like_user = User.find(notification.notified_by_id)
-      content = "#{like_user.username}さんがあなたの投稿にいいねをしました。"
-    elsif notification.notified_type == "comment"
-      comment_user = User.find(notification.notified_by_id)
-      content = "#{comment_user.username}さんがあなたの投稿にコメントしました。"
-    end
-    return content
-  end
-
+  #ソーシャルボタン
   def tweet_button
     @tweet_url = URI.encode(
       "http://twitter.com/intent/tweet?original_referer=" +

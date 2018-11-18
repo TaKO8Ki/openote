@@ -1,0 +1,30 @@
+// Place all the styles related to the Settings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.github_integration {
+    display: inline-block;
+    text-decoration: none;
+    background: #FF4508;
+    color: #fff;
+    padding: 9px 20px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    font-size: 18px;
+    margin-top: 13px;
+    border-radius: 2px;
+    font-weight: bold;
+  }
+
+a.github_integration:hover{
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+  }
+
+a.github_integration.active {
+    background-color: #000;
+  }
+
+a.github_integration img {
+  margin-top: 10px;
+  width: 30px;
+}

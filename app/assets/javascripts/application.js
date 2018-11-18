@@ -20,6 +20,17 @@
 //= require turbolinks
 //= require_tree ./main
 
+$(document).on('turbolinks:load', function() {
+
+	//.accordion8の中のli要素の中のp要素がクリックされた時
+	$('.display_size').click(function() {
+		//クリックされた.accordion8の中のli要素の中のp要素に隣接する要素の横幅を開いたり閉じたりする。
+		$('#editor tr td.article_form_main').next().animate({width:'toggle'});
+    $(".expand_form").toggleClass("expand_form_after");
+    $(".reduce_form").toggleClass("reduce_form_after");
+	});
+});
+
 /*マークダウンエディターの補助機能*/
 $(document).on('turbolinks:load', function(){
   $('.markdown_code').on('click',function(e){
@@ -121,26 +132,22 @@ $(document).on('turbolinks:load', function() {
 
         renderer.heading = function (text, level) {
 
-          return   '<h' + level + ' class="markdown_heading">' + text + '</h' + level + '>' + '<style type="text/css">h' + level + '.markdown_heading {padding-bottom: 2px;border-bottom: inset 2px #ccc;}</style>';
+          return   '<h' + level + ' class="markdown_heading">' + text + '</h' + level + '>';
         };
 
           renderer.code = function (code, language, escaped) {
             if (language !== undefined) {
               var fileName = language.indexOf('.');
               if (fileName !== -1) {
-                return '<pre class="hljs">' + '<div id="markdown_language">' + '<div id="markdown_language_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
-                + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
-                + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding: 20px;}'
-                + 'div#markdown_language {background-color: #333;color: #000; width: 100%;margin-bottom: 20px;}'
-                + 'div#markdown_language_itself {color: #fff;display: inline-block;}</style>';
+                return '<pre class="hljs">' + '<div id="markdown_file_name">' + '<div id="markdown_file_name_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
+                + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
               }
             }
-              return '<pre class="hljs">' + '<code id="markdown_code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>'
-              + '<style type="text/css">pre.hljs {background-color: #333;margin-top:10px;margin-left: -20px;margin-right: -20px;padding-left: 35px;padding-top: 10px;padding-bottom: 10px;}</style>';
+              return '<pre class="hljs">' + '<code id="markdown_code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
             };
 
           renderer.blockquote = function (quote) {
-            return '<div id="quote">'+ quote + '</div>' + '<style type="text/css">div#quote {border-left:inset 10px #ccc;color: #333;padding-left: 10px;padding-top: 15px;padding-bottom: 15px;margin-top: 10px;}</style>';
+            return '<div id="markdown_quote">'+ quote + '</div>';
           };
 
           renderer.list = function(body, ordered, start) {
@@ -150,7 +157,7 @@ $(document).on('turbolinks:load', function() {
           };
 
           renderer.listitem = function(text) {
-            return '<li class="markdown_list">' + text + '</li>\n' + '<style type="text/css">li.markdown_list {margin-left: 20px; white-space:normal;}</style>';
+            return '<li class="markdown_list">' + text + '</li>\n';
           };
 
           renderer.table = function(header, body) {
@@ -161,10 +168,7 @@ $(document).on('turbolinks:load', function() {
               + header
               + '</thead>\n'
               + body
-              + '</table>\n'
-              + '<style type="text/css">'
-              + 'table.markdown_table {display: inline-block;height: auto;width: 100%height: auto;margin-top: 10px;border-collapse: collapse;text-align: center;}td.markdown_tdh {border: solid 1px;padding: 0.5em;}th {background-color: #ccc;border: solid 1px;padding: 0.5em;}'
-              + '</style>';
+              + '</table>\n';
           };
 
           renderer.tablerow = function(content) {
@@ -173,9 +177,14 @@ $(document).on('turbolinks:load', function() {
 
           renderer.tablecell = function(content, flags) {
             var type = flags.header ? 'th' : 'td';
+            if (type === "td") {
+              var class_name = "markdown_td"
+            } else {
+              var class_name = "markdown_th"
+            }
             var tag = flags.align
-              ? '<' + type + ' align="' + flags.align + ' class="markdown_tdh">'
-              : '<' + type + ' class="markdown_tdh">';
+              ? '<' + type + ' align="' + flags.align + ' class=' + class_name + '>'
+              : '<' + type + ' class=' + class_name + '>';
             return tag + content + '</' + type + '>\n';
           };
 
@@ -184,7 +193,7 @@ $(document).on('turbolinks:load', function() {
             if (escape_letter !== -1) {
               return text;
             }
-            return '<p class="markdown_text">' + text + '</p>'+ '<style type="text/css">p.markdown_text {white-space:pre;}</style>';
+            return '<p class="markdown_text">' + text + '</p>';
           };
 
 

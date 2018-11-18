@@ -1,0 +1,115 @@
+/*マークダウンエティターとarticle.bodyのmarkdown変換に対するstyle*/
+
+/*見出し関連*/
+h1.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+h2.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+h3.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+h4.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+h5.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+h6.markdown_heading {
+  padding-bottom: 2px;
+  border-bottom: inset 2px #ccc;}
+
+/*文字列の改行反映*/
+
+  /*article#showでの表示*/
+div#markdown_paragraph {
+  white-space:pre;
+}
+
+  /*エディター*/
+p.markdown_text {
+  white-space:pre;
+}
+
+/*リスト関連*/
+li.markdown_list {
+  margin-left: 20px;
+  white-space:normal;
+}
+
+/*コードブロック関連*/
+
+  /*article#showでの表示*/
+pre#markdown_block_code {
+  margin-top: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px 30px;
+  background-color: #333
+}
+
+code#markdown_file_name {
+  margin-bottom: 20px;
+}
+
+pre#markdown_block_code_without_file_name {
+  margin-top: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 25px 25px;
+  background-color: #333
+}
+
+  /*エディター*/
+pre.hljs {
+  background-color: #333;
+  margin-top:10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px 30px;
+}
+
+div#markdown_file_name {
+  background-color: #333;
+  color: #000;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+div#markdown_file_name_itself {
+  color: #fff;
+  display: inline-block;
+}
+
+/*引用関連*/
+div#markdown_quote {
+  border-left:inset 10px #ccc;
+  color: #333;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 10px;
+}
+
+/*テーブル関連*/
+table.markdown_table {
+  display: inline-block;
+  height: auto;
+  width:100%;
+  height: auto;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td.markdown_td {
+  border: solid 1px;
+  padding: 0.5em;
+}
+
+th.markdown_th {
+  background-color: #ccc;
+  border: solid 1px;
+  padding: 0.5em;
+}

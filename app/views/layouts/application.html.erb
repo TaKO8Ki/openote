@@ -28,6 +28,21 @@
     <% if user_signed_in? %>
 <nav class="g_nav">
     <ul class="g_nav_list ol2 clearfix">
+      <li class="g_nav_itself">
+        <table class=search_form_table>
+          <tr>
+            <td>
+              <p class="search_picture"><%= image_tag "search.png" %></p>
+            </td>
+            <td>
+              <%= form_tag(searches_path, :method => 'get', enforce_utf8: false) do %>
+                <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "プレポ全体を検索する" %>
+                <%= submit_tag 'search', :name => nil, class: "search_button" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </li>
       <li class="g_nav_itself"><%= link_to "新規投稿", new_article_path, { :class => "new_article_button" } %></li>
       <li class="g_nav_hover">
         <p class="notification_picture"><%= image_tag "notification_3.png" %></p>

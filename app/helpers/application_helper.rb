@@ -1,5 +1,5 @@
 module ApplicationHelper
-  
+
   def notification_content(notification)
     if notification.notified_type == "like"
       like_user = User.find(notification.notified_by_id)
@@ -10,5 +10,10 @@ module ApplicationHelper
     end
     return content
   end
+
+
+  def utf8_enforcer_tag
+        "".html_safe
+      end
 
 end

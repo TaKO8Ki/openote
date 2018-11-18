@@ -1,0 +1,95 @@
+<table class="user_setting_table">
+  <tr>
+    <td valign="top" class="user_setting_sidebar">
+      <div id="user_setting_sidebar">
+        <%= render :partial => 'devise/registrations/links' %>
+      </div>
+    </td>
+    <td class="gap">
+    </td>
+    <td valign="top" class="user_setting_main">
+      <div id="user_setting_main">
+        <table class="dashboard_articles_table">
+          <tr>
+            <td colspan="4">
+              検索
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <table>
+                <tr>
+                  <td>
+                    記事タイトル
+                  </td>
+                </tr>
+              </table>
+            </th>
+            <th>
+              <table>
+                <tr>
+                  <td>
+                    記事の編集・削除
+                  </td>
+                </tr>
+              </table>
+            </th>
+            <th>
+              <table>
+                <tr>
+                  <td>
+                    作成日
+                  </td>
+                  <td>
+                    <% if params[:created_at_order] == "ASC" || params[:created_at_order].nil? %>
+                    <%= link_to "▽", dashboard_path(id: current_user, created_at_order: "DESC")%>
+                    <% elsif params[:created_at_order] == "DESC" %>
+                    <%= link_to "△", dashboard_path(id: current_user, created_at_order: "ASC")%>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            </th>
+            <th>
+              <table>
+                <tr>
+                  <td>
+                    更新日
+                  </td>
+                  <td>
+                    <% if params[:updated_at_order] == "ASC" || params[:updated_at_order].nil? %>
+                    <%= link_to "▽", dashboard_path(id: current_user, updated_at_order: "DESC")%>
+                    <% elsif params[:updated_at_order] == "DESC" %>
+                    <%= link_to "△", dashboard_path(id: current_user, updated_at_order: "ASC")%>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            </th>
+          </tr>
+        <% @articles.each do |article| %>
+          <tr>
+            <td class="dashboard_article_td">
+              <%= link_to article.title, article_path(article) %>
+            </td>
+            <td class="dashboard_article_td">
+              <%= link_to '編集', edit_article_path(article), class: 'command', class: "dashboard_article_edit" %>
+              <%= link_to '削除',
+                  article_path(article),
+                  method: :delete,
+                  class: 'dashboard_article_delete',
+                  data: { confirm: 'Sure?' }%>
+            </td>
+            <td class="dashboard_article_td">
+              <%= article.created_at.strftime("%Y/%m/%d") %>
+            </td>
+            <td class="dashboard_article_td">
+              <%= article.updated_at.strftime("%Y/%m/%d") %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>

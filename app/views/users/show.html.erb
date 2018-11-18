@@ -29,17 +29,13 @@
             <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
           </p>
           <% @user.article_memos.each do |memo| %>
-          <p class="user_article_memo">
-            <%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %>
-          </p>
+          <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
           <% end %>
         </div>
         <ul>
             <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
         </ul>
-        <ul>
-          <%= link_to "github", user_github_omniauth_authorize_path %>
-        </ul>
+
     </div>
   </td>
   <td valign="top" class="user_show_center">
@@ -58,15 +54,25 @@
               <% end %>
           </p>
 
-          <p class='article_list_comment'>
-            <%= image_tag "comment1.png" %>
-            <%= article.article_comments.count %></br>
-          </p>
+          <table class="article_list_eval">
+            <td class=article_list_comments>
+              <p class='article_list_comments'>
+                <%= image_tag "comment1.png" %>
+              </p>
+            <td>
+            <td class="article_list_comments">
+                <%= article.article_comments.count %>
+            <td>
+            <td>
+              <p class='article_list_likes'>
+                <%= image_tag "icon_red_heart.png"%>
+              </p>
+            <td>
+            <td class="article_list_likes">
+                <%= article.likes.count %>
+            <td>
+          </table>
 
-          <p class='article_list_likes'>
-            <%= image_tag "icon_red_heart.png"%>
-            <%= article.likes.count %>
-          </p>
           <p class='user_article_edit_delete'>
           <% if @user == current_user %>
               <%= link_to '編集', edit_article_path(article), class: 'command' %>

@@ -1,0 +1,90 @@
+
+    <table class="article_index_table">
+
+      <tr>
+        <td colspan="2" class="article_top">
+          <% if params[:category] %>
+          <div id="article_top">
+            <div id='article_top_category_name'>
+              <strong><%= @category %></strong>
+            </div>
+          </div>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+      </td>
+        <td valign="top" class="article_index_left">
+        <%= @key_word %>
+          <div id="article_list">
+              <% @articles.each do |article| %>
+              <div id='article_list_bottom'>
+               <h2>
+                 <%= link_to article.title, article_path(article), { :class => "article_link" } %>
+               </h2>
+              <p class='article_list_date'>
+                  <%= time_ago_in_words(article.updated_at) %>
+              </p>
+              <p class='article_list_category'>
+                  <% article.tag_list.each do |f| %>
+                  <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+                  <% end %>
+              </p>
+
+
+                <table class="article_list_info">
+                  <tr>
+                  <td class="article_list_user">
+                    <p class='article_list_user_picture'>
+                      <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
+                    </p>
+                  <td>
+                  <td class="article_list_username">
+                    <%= link_to "@#{article.user.username}", users_path(article.user) %>
+                  </td>
+                  </tr>
+                </table>
+                <table class="article_list_eval">
+                  <td class=article_list_comments>
+                    <p class='article_list_comments'>
+                      <%= image_tag "comment1.png" %>
+                    </p>
+                  <td>
+                  <td class="article_list_comments">
+                      <%= article.article_comments.count %>
+                  <td>
+                  <td>
+                    <p class='article_list_likes'>
+                      <%= image_tag "icon_red_heart.png"%>
+                    </p>
+                  <td>
+                  <td class="article_list_likes">
+                      <%= article.likes.count %>
+                  <td>
+                </table>
+            </div>
+              <% end %>
+          </div>
+        </td>
+        <td valign="top" class="article_index_right">
+          <div id="sidebar">
+            <% if user_signed_in? %>
+            <div id='sidebar_user_index'>
+              <ul class="user_box">
+                <li class="user_box_item"><p class='picture_current_user'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
+                <li class="user_box_item">
+                  <p class='sidebar_user_name'>
+                    <%= link_to "@fawefawef", user_path(current_user) %>
+                  <p class='sidebar_user_name'>
+                    <strong><%= link_to "@#{current_user.username}", user_path(current_user) %></strong>
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <% end %>
+            <div id='sidebar_articles'>
+            </div>
+
+        </td>
+      </tr>
+    </table>

@@ -1,0 +1,27 @@
+<div id="user_setting_main">
+  <h2>外部サービス</h2>
+  <table>
+    <tr>
+      <td>
+        Github
+      </td>
+      <td class="gap">
+      </td>
+      <td>
+
+        <% if already_integrated(current_user, "github") == true %>
+          <%= link_to '削除',
+              user_social_profile_path(user_id: current_user, id: user_social_profile(current_user, "github")),
+              method: :delete,
+              class: 'command',
+              data: { confirm: 'Sure?' }%>
+        <% else %>
+          <%= link_to image_tag("github.png"), user_github_omniauth_authorize_path, { :class => "left_sidebar_button" } %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+
+
+</div>

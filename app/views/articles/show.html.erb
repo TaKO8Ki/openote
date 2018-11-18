@@ -30,28 +30,36 @@
               <% end %>
             </p>
             <div id="article_show_center_all_body">
-              <%= raw add_id_to_markdown(markdown(@article.body)) %>
+              <%= raw add_id_and_class_to_markdown(markdown(@article.body)) %>
             </div>
 
         </div>
       </td>
       <td valign="top" class="article_show_right">
         <div id="article_show_right">
-          <div id='sidebar_user_index'>
-            <ul class="user_box">
-              <li class="user_box_item">
-                <p class='picture_current_user'>
+            <div id="sidebar_user_index">
+            <table class="sidebar_user_index">
+              <tr>
+              <td>
+                <p class='article_user_picture'>
                   <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
                 </p>
-              </li>
-              <li class="user_box_item">
-                <p class='sidebar_user_name'>
-                  <strong>
-                    <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
-                  </strong>
-                </p>
-              </li>
-            </ul>
+              </td>
+              </tr>
+              <tr>
+              <td>
+                <strong>
+                  <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
+                </strong>
+              </td>
+              </tr>
+              <tr>
+              <td class="article_user_description">
+                <%= @article.user.description %>
+              </td>
+              </tr>
+          </table>
+
           </div>
           <div id="sidebar_following_scroll">
             <div id="sidebar_article_toc">
@@ -126,6 +134,8 @@
       <td></td>
     </tr>
 
+
+    
 
   </table>
 

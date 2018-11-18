@@ -21,6 +21,21 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :lockable, :timeoutable, :omniauthable, :omniauth_providers => [:github]
 
+
+
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
+  
   def follow(other_user)
       active_relationships.create(followed_id: other_user.id)
   end
@@ -41,10 +56,6 @@ class User < ApplicationRecord
     user_token = access_token_of_each_of_providers(user, "github")
     github = Github.new oauth_token: "#{user_token}"
     user_repos = github.repos.list
-  end
-
-  def access_token_of_each_of_providers(user, provider)
-    access_token = user.social_profiles.find_by(provider: provider).access_token
   end
 
 end

@@ -9,7 +9,7 @@
 }
 
 @mixin box_padding {
-  padding: 10px;
+  padding: 20px;
 }
 
 @mixin box{
@@ -84,12 +84,38 @@ td.user_show_right {
 /*ユーザー情報編集*/
 
 div#user_setting_main{
-    width: calc(76% - 24px);
-    float: right;
     background-color: #fff;
     @include box_padding;
-    border: 2px solid #ccc;
-    box-shadow: 5px 5px 0px 0px #ccc;
+}
+
+div#user_setting_cancel {
+  background-color: #fff;
+  @include box_padding;
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+  margin-top: 10px;
+}
+
+table.user_setting_table {
+  margin: 0 auto;
+  margin-top:90px;
+  width: 90%;
+}
+
+td.user_setting_main {
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
+
+td.user_setting_sidebar {
+  width: 30%;
+
+}
+
+div#user_setting_sidebar {
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box_padding;
 }
 
 input.edit_form_username {
@@ -272,18 +298,28 @@ div#user_all_memos {
   box-shadow: 5px 5px 0px 0px #ccc;
 }
 
-p.user_article_memo {
-  border-bottom: 1px solid #ccc;
+li.user_article_memo {
   background-color: #fff;
   padding-left: 10px;
   padding-top: 10px;
-  font-size: 16px;
+  list-style: none;
 }
 
-div#user_setting_sidebar{
-    width: 25%;
-    float: left;
-    background-color: #ccc;
+li.user_article_memo a {
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+li.user_article_memo::before {
+  position: relative;
+  top: -3px;
+  left: -8px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  content: '';
+  border-radius: 100%;
+  background: #FF4508;
 }
 
 p.box_name {
