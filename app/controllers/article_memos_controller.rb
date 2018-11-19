@@ -28,6 +28,12 @@ class ArticleMemosController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end 
+
   def destroy
       @article = Article.find(params[:article_id])
       @memo = @article.article_memos.find(params[:id])

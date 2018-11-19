@@ -12,8 +12,13 @@
           <div id="sidebar_user_description">
             <%= @user.description %>
           </div>
-          <%= render 'follow_form' if user_signed_in? %>
-          <%= render 'shared/stats' %>
+
+          <div id="follow_form">
+            <%= render 'follow_form' if user_signed_in? %>
+          </div>
+          <div id="follow-count">
+            <%= render 'shared/stats' %>
+          </div>
         </div>
       </td>
       <td valign="top"></td>

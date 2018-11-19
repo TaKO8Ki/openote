@@ -1,0 +1,59 @@
+<table class="article_list_group_table">
+  <tr>
+    <td>
+      <% if params[:group] == "time_line" %>
+      <p>
+        <%= link_to "タイムライン", articles_path(group: "time_line"), {:class => "article_group_clicked"} %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to "タイムライン", articles_path(group: "time_line"), {:class => "article_group"} %>
+      </p>
+      <% end %>
+    </td>
+    <td>
+      <% if params[:group].present? %>
+      <p>
+        <%= link_to "新着", articles_path, { :class => "article_group" } %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to "新着", articles_path, { :class => "article_group_clicked" } %>
+      </p>
+      <% end %>
+    </td>
+    <td>
+    <% if params[:group] == "today"%>
+    <p>
+      <%= link_to "今日", articles_path(group: "today"), {:class => "article_group_clicked"} %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to "今日", articles_path(group: "today"), {:class => "article_group"} %>
+    </p>
+    <% end %>
+  </td>
+    <td>
+    <% if params[:group] == "this_week"%>
+    <p>
+      <%= link_to "週間", articles_path(group: "this_week"), {:class => "article_group_clicked"} %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to "週間", articles_path(group: "this_week"), {:class => "article_group"} %>
+    </p>
+    <% end %>
+  </td>
+  <td>
+    <% if params[:group] == "this_month" %>
+    <p>
+      <%= link_to "月間", articles_path(group: "this_month"), {:class => "article_group_clicked"} %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to "月間", articles_path(group: "this_month"), {:class => "article_group"} %>
+    </p>
+    <% end %>
+  </td>
+  </tr>
+</table>

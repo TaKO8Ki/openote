@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'notifications/:id/link_through', to: 'notifications#link_through',
  as: :link_through
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations'  }
-  resources :users, :only => [:index, :show] do
+  resources :users, :only => [:show] do
     resources :social_profiles, only: [:destroy]
     resources :article_memos
       member do
@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   resources :settings, only: [:show]
   resources :dashboards, only: [:show]
   resources :searches, only: [:index]
+  resources :follow_tag_relationships, only: [:create, :destroy]
 end

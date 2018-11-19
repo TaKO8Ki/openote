@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_061718) do
+ActiveRecord::Schema.define(version: 2018_11_18_140651) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -161,6 +161,16 @@ ActiveRecord::Schema.define(version: 2018_11_15_061718) do
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_tags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id", "user_id"], name: "index_user_tags_on_tag_id_and_user_id", unique: true
+    t.index ["tag_id"], name: "index_user_tags_on_tag_id"
+    t.index ["user_id"], name: "index_user_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,14 @@
+  <% unless current_user.user_tags.where(tag_id: tag.id).blank? %>
+    <%= link_to follow_tag_relationship_path(user_id: current_user.id , id: tag.id), method: :delete, remote: true do %>
+      <p class="unfollow_tag">
+        <%= image_tag "check.png" %>
+        フォロー中
+      </p>
+    <% end %>
+  <% else %>
+    <%= link_to follow_tag_relationships_path(user_id: current_user.id, tag_id: tag.id), method: :post, remote: true do %>
+      <p class="follow_tag">
+        フォロー
+      </p>
+    <% end %>
+  <% end %>

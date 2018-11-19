@@ -7,7 +7,8 @@
              <%= render partial: 'likes/like', locals: { article: @article, likes: @likes} %>
             </div>
             <%= link_to image_tag("article_memo_2.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-            <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="left_sidebar_button"><%= image_tag "twitter.png" %></a>
+            <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="left_twitter_sidebar_button"><%= image_tag "twitter.png" %></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>" class ="left_twitter_sidebar_button" ><%= image_tag "twitter.png" %></a>
             <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
             <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
           </div>
@@ -135,10 +136,6 @@
     </tr>
 
 
-    
+
 
   </table>
-
-
-  <div class="clear">
-  </div>

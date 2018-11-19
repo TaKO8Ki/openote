@@ -50,6 +50,7 @@ p.hot_articles_picture {
 
 p.hot_articles_title {
   padding: 10px 10px;
+  font-weight: bold;
 }
 
 td.gap {
@@ -65,14 +66,14 @@ table.hot_article_eval {
   float: right;
 }
 
-table.article_list_period_table {
+table.article_list_group_table {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-a.article_period{
+a.article_group{
     display: inline-block;
     padding: 5px 20px;
     text-decoration: none;
@@ -85,7 +86,7 @@ a.article_period{
     border: solid 1px #808080;
 }
 
-a.article_period_clicked{
+a.article_group_clicked{
     display: inline-block;
     padding: 5px 20px;
     text-decoration: none;
@@ -551,6 +552,11 @@ div#article_form_body {
 
 @mixin picture_size {
   width: 20px;
+  padding: 5px;
+}
+
+@mixin picture_hover {
+  background-color: #ccc;
 }
 
 p.markdown_code {
@@ -559,15 +565,24 @@ p.markdown_code {
 
 p.markdown_code img {
   @include picture_size;
-  height: auto;
 }
 
-p.markdown_list {
+p.markdown_code:hover img {
+  @include picture_size;
+  @include picture_hover;
+}
+
+p.markdown_list:hover {
+
 }
 
 p.markdown_list img {
   @include picture_size;
-  height: auto;
+}
+
+p.markdown_list:hover img {
+  @include picture_size;
+  @include picture_hover;
 }
 
 p.markdown_quote {
@@ -575,7 +590,11 @@ p.markdown_quote {
 
 p.markdown_quote img {
   @include picture_size;
-  height: auto;
+}
+
+p.markdown_quote:hover img {
+  @include picture_size;
+  @include picture_hover;
 }
 
 p.markdown_table {
@@ -583,7 +602,11 @@ p.markdown_table {
 
 p.markdown_table img {
   @include picture_size;
-  height: auto;
+}
+
+p.markdown_table:hover img {
+  @include picture_size;
+  @include picture_hover;
 }
 
 .expand_form {
@@ -595,6 +618,11 @@ p.markdown_table img {
 
 p.expand_form img {
   @include picture_size;
+}
+
+p.expand_form:hover img {
+  @include picture_size;
+  @include picture_hover;
 }
 
 .reduce_form {
@@ -609,12 +637,18 @@ p.reduce_form img {
   @include picture_size;
 }
 
+p.reduce_form:hover img {
+  @include picture_size;
+  @include picture_hover;
+}
+
 div#article_preview {
   height: 560px;
   padding: 20px;
   background-color: #fff;
   overflow: scroll;
   overflow-x: hidden;
+  margin-right: -3px;
 }
 
 td.article_form_main {
@@ -892,16 +926,45 @@ div#sidebar ul li a span{
     color: #161616;
 }
 
-div#sidebar_articles {
-  padding: 20px;
+div#sidebar_articles_index {
   margin-bottom: 3%;
   background-color: #fff;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 0px 0px #ccc;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 400px;
 }
 
 div#sidebar_user{
   background-color: #fff;
+}
+
+p.tags_title {
+  font-size: 18px;
+  padding: 0 20px;
+  background-color: #ccc;
+}
+
+p.sidebar_tags {
+  font-size: 16px;
+  padding: 2px 20px;
+}
+
+p.sidebar_tags:hover {
+  background-color: #ededed;
+}
+
+table.popular_user {
+  display: table-cell;
+}
+
+p.popular_user {
+  padding: 0 10px;
+}
+
+p.popular_user img {
+  width: 30px;
 }
 
 div#sidebar_user_index {
@@ -984,8 +1047,27 @@ div#article_left_buttons {
 .left_sidebar_button img {
   width: 20px;
   height: auto;
-  vertical-align: center;
   margin-bottom: 47px;
+}
+
+ .left_twitter_sidebar_button {
+    width: 50px;
+    height: 50px;
+    line-height: 150px;
+    margin: 0 auto;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    background: #FFC107;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 10px 0px #333;
+}
+
+.left_twitter_sidebar_button img {
+  width: 40px;
+  height: auto;
+  margin-bottom: 37px;
 }
 
 /* 記事のmarkdown表示 */

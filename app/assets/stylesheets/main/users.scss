@@ -262,20 +262,19 @@ div#user_sidebar_right{
 }
 
 div#user_each_repo {
-  width: 100%;
+  width: calc(100% - 20px);
   background-color: #fff;
   margin-bottom: 10px;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 0px 0px #ccc;
+  padding: 10px;
 }
 
 p.repo_name {
   font-size: 15px;
-  padding-left: 5px;
 }
 
 table.github_repo {
-  @include box_padding;
 }
 
 p.github_icon img {
@@ -285,9 +284,6 @@ p.github_icon img {
 
 p.repo_description {
   font-size: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
 }
 
 div#user_all_memos {

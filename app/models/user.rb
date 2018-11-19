@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :article_memos, dependent: :destroy
   has_many :social_profiles, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :user_tags, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
   devise :database_authenticatable, :registerable,
@@ -35,7 +36,7 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
-  
+
   def follow(other_user)
       active_relationships.create(followed_id: other_user.id)
   end

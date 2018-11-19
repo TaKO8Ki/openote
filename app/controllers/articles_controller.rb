@@ -86,19 +86,18 @@ private
   end
 
   def which_articles_should_be_showed
-    if params[:category]
-      @articles = Article.tagged_with(params[:category]).order('created_at DESC')
-      @category = params[:category]
-    elsif params[:period] == "today"
-      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day)
-    elsif params[:period] == "this_week"
-      @articles = Article.search_with_period_likes_desc(this_week)
-    elsif params[:period] == "this_month"
-      @articles = Article.search_with_period_likes_desc(this_month)
-    elsif params[:period] == "this_year"
-      @articles = Article.search_with_period_likes_desc(this_year)
+    if params[:group] == "today"
+      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags)
+    elsif params[:group] == "this_week"
+      @articles = Article.search_with_period_likes_desc(this_week).includes(:tags)
+    elsif params[:group] == "this_month"
+      @articles = Article.search_with_period_likes_desc(this_month).includes(:tags)
+    elsif params[:group] == "this_year"
+      @articles = Article.search_with_period_likes_desc(this_year).includes(:tags)
+    elsif params[:group] == "time_line"
+      @articles = Article.where(user_id: current_user.following)
     else
-      @articles = Article.all.order('created_at DESC')
+      @articles = Article.all.order('created_at DESC').includes(:tags)
     end
     return @articles
   end

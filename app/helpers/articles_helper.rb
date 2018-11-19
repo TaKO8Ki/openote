@@ -23,4 +23,17 @@ module ArticlesHelper
     return each_element
   end
 
+  def popular_users
+    user_articles_likes_count = User.all.map{ |user| [user, user.articles.sum(:likes_count)]}
+    user_ranking = user_articles_likes_count.sort_by{ |_, v| -v }
+  end
+
+  def article_tags(article)
+    tags = article.tags.pluck(:name)
+  end
+
+  def tags_sorted_desc
+    ActsAsTaggableOn::Tag.order("taggings_count DESC")
+  end
+
 end

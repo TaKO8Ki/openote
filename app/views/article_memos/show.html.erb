@@ -1,2 +1,56 @@
-<%= @article_memo.title %>
-<%= @article_memo.body %>
+<table class=article_show_table>
+  <tr>
+      <td valign="top" class="article_show_left">
+      </td>
+      <td valign="top" class="article_show_center">
+        <div id="article_show_center">
+          <p class="article_show_center_header">
+            <%= image_tag User.first.picture.url %>
+          </p>
+          <p class='article_show_center_date'>
+            <%= @article_memo.updated_at.strftime("%Y/%m/%d") %>
+          </p>
+          <p class="article_show_center_title">
+            <%= @article_memo.title %>
+          </p>
+            <div id="article_show_center_all_body">
+              <%= raw add_id_and_class_to_markdown(markdown(@article_memo.body)) %>
+            </div>
+
+        </div>
+      </td>
+      <td valign="top" class="article_show_right">
+        <div id="article_show_right">
+            <div id="sidebar_user_index">
+            <table class="sidebar_user_index">
+              <tr>
+              <td>
+                <p class='article_user_picture'>
+                  <%= image_tag @article_memo.user.picture.url if @article_memo.user.picture.present? %>
+                </p>
+              </td>
+              </tr>
+              <tr>
+              <td>
+                <strong>
+                  <%= link_to "@#{@article_memo.user.username}", user_path(@article_memo.user) %>
+                </strong>
+              </td>
+              </tr>
+              <tr>
+              <td class="article_user_description">
+                <%= @article_memo.user.description %>
+              </td>
+              </tr>
+          </table>
+
+          </div>
+          <div id="sidebar_following_scroll">
+            <div id="sidebar_article_toc">
+              <%= raw @toc %>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>

@@ -1,0 +1,55 @@
+
+<div id='article_form_wrap'>
+  <%= form_for ([@article, @article.article_memos.build]) do |memo| %>
+  <div id='article_form_title'>
+      <%= memo.text_field :title, class: "article_title" %>
+  </div>
+
+  <div id=whole_editor>
+  <table class="editor_helper">
+    <tr>
+      <td class="each_element">
+        <p class="markdown_code"><%= image_tag "code.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_table"><%= image_tag "table.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_quote"><%= image_tag "quote.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_list"><%= image_tag "list.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="display_size">
+        <p class="expand_form"><%= image_tag "expand.png" %></p>
+        <p class="reduce_form"><%= image_tag "reduce.png" %></p>
+      </td>
+    </tr>
+  </table>
+
+    <table id="editor">
+      <tr>
+        <td class="article_form_main" vali
+        gn="top">
+          <%= memo.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body", :id => "article_body" %>
+        </td>
+        <td class="article_form_sub" valign="top">
+          <div v-html="input | marked", id="article_preview"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="submit_button">
+    <%= memo.submit %>
+  </div>
+    <% end %>
+</div>

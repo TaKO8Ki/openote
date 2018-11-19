@@ -1,4 +1,4 @@
 class ArticleMemo < ApplicationRecord
-  belongs_to :articles, optional: true
-  belongs_to :users, optional: true
+  belongs_to :article, optional: true
+  belongs_to :user, optional: true
 end

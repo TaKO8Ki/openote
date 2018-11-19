@@ -1,0 +1,2 @@
+module FollowTagRelationshipsHelper
+end

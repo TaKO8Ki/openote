@@ -3,10 +3,13 @@
 
       <tr>
         <td colspan="2" class="article_top">
-          <% if params[:category] %>
+          <% if params[:tag] %>
           <div id="article_top">
             <div id='article_top_category_name'>
-              <strong><%= @category %></strong>
+              <strong><%= @tag.name %></strong>
+              <div id="follow_tag_buttons_<%= @tag.id %>">
+               <%= render partial: 'follow_tag_relationships/follow_tag', locals: { tag: @tag} %>
+              </div>
             </div>
           </div>
           <% end %>
@@ -27,7 +30,7 @@
               </p>
               <p class='article_list_category'>
                   <% article.tag_list.each do |f| %>
-                  <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+                  <%= link_to f, searches_path(tag: f), { :class => "article_category" } %>
                   <% end %>
               </p>
 

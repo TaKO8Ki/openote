@@ -29,18 +29,22 @@
 <% if article.likes_count.present? %>
   <% if article.likes_count > 0 %>
     <div class="vertical_like">
-      <i class="material-icons red-text">favorite</i>
-      <span class="red-text">
-        <%= article.likes_count %>
-      </span>
+      <p class="create_likes">
+        <%= image_tag "create_like.png" %>
+      </p>
     </div>
+    <p class="likes_count">
+      <%= article.likes_count %>
+    </p>
   <% else %>
     <div class="vertical_like">
-      <i class="material-icons grey-text text-darken-2">favorite_border</i>
-      <span class="grey-text text-darken-2">
-        <%= article.likes_count %>
-      </span>
+      <p class="create_likes">
+        <%= image_tag "create_like.png" %>
+      </p>
     </div>
+    <p class="likes_count">
+      <%= article.likes_count %>
+    </p>
   <% end %>
 <% end %>
 
