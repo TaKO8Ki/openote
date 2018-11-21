@@ -1,19 +1,27 @@
 module ApplicationHelper
 
+
   def notification_content(notification)
     if notification.notified_type == "like"
-      like_user = User.find(notification.notified_by_id)
-      content = "#{like_user.username}さんがあなたの投稿にいいねをしました。"
+      content = "さんがあなたの投稿にいいねをしました。"
     elsif notification.notified_type == "comment"
-      comment_user = User.find(notification.notified_by_id)
-      content = "#{comment_user.username}さんがあなたの投稿にコメントしました。"
+      content = "さんがあなたの投稿にコメントしました。"
+    elsif notification.notified_type == "follow"
+      content = "さんがあなたをフォローしました。"
     end
     return content
   end
 
+  def notified_by(notification)
+    user = User.find(notification.notified_by_id)
+  end
+
+  def main_url
+    "http://localhost:3000"
+  end
 
   def utf8_enforcer_tag
-        "".html_safe
-      end
+    "".html_safe
+  end
 
 end

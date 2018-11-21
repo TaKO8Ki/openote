@@ -27,10 +27,11 @@
  }
 
  body#all_contents{
-     font-size: 20px;
-     color: #161616;
-     background-color: #f9f9f9;
-     font-family: "KozGoPro-Light", "小塚ゴシック Pro L", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
+   margin-top: 90px;
+   font-size: 20px;
+   color: #161616;
+   background-color: #f9f9f9;
+   font-family: "KozGoPro-Light", "小塚ゴシック Pro L", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
  }
  body#all_contents::after {
    clear: both;
@@ -136,11 +137,7 @@ a.new_article_button {
     margin-top: 13px;
     border-radius: 2px;
     font-weight: bold;
-  }
-
-
-.new_article_button.active {
-    background-color: #000;
+    cursor: pointer;
   }
 
 .nav_signed_in {
@@ -185,6 +182,7 @@ p.notification {
 
 p.picture_header {
   height: 70px;
+  cursor: pointer;
 }
 
 .picture_header img {
@@ -193,6 +191,13 @@ p.picture_header {
   border: 2px solid #ccc;
   margin-top: 15px;
   margin-bottom: 15.5px;
+}
+
+p.header_title {
+  font-weight: bold;
+  font-size:18px;
+  border-bottom: solid 1px #ccc;
+
 }
 
 
@@ -218,7 +223,9 @@ p.picture_header {
 .g_nav_list .g_nav_hover>.g_nav_c {
     overflow: hidden;
     visibility: hidden;
-    border: medium solid #ff00ff;
+    border: solid 1px #ccc;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.29);
+    background-color: #f9f9f9;
 }
 
 .g_nav_list .g_nav_hover>.g_nav_c li {
@@ -233,7 +240,6 @@ p.picture_header {
 .g_nav_list .g_nav_hover:hover>.g_nav_c {
   overflow: visible;
   visibility: visible;
-  border: medium solid #ccc;
 }
 
 .g_nav_list .g_nav_hover:hover>.g_nav_c li {
@@ -247,7 +253,7 @@ p.picture_header {
     background: #fff;
     z-index: 10;
     width: 200px;
-    padding: 5px;
+    padding: 10px;
     display: inline-block;
     height: auto;
 }
@@ -255,26 +261,29 @@ p.picture_header {
 p.notification_picture {
   height: 50px;
   padding-top: 20px;
+  cursor: pointer;
 }
 
 p.notification_picture img {
   width: 35px;
 }
 
+p.all_notifications a {
+  font-size: 13px;
+}
+
 div#notification {
-  padding: 0 5px;
   padding-bottom: 5px;
   width: 200px;
   word-wrap: break-word;
-  font-size: 15px;
 }
 
 div#notification a {
+    font-size: 13px;
 }
 
 .g_nav_c li {
   margin-left: 5px;
-  background-color: #fff;
   margin-bottom: 10px;
   font-size: 15px;
 }

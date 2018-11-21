@@ -1,4 +1,21 @@
-<p><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
-<p><%= link_to "外部サービス連携", "/settings/integration" %></p>
-<p><%= link_to "アカウントを削除する", "/settings/delete" %></p>
-<p><%= link_to "ダッシュボード", dashboard_path(current_user) %></p>
+
+<% if request.url == "#{main_url}/dashboards/articles" %>
+<p class="setting_link_clicked"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>
+<% else %>
+<p class="setting_link"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>
+<% end %>
+<% if request.url == "#{main_url}/users/edit" %>
+<p class="setting_link_clicked"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
+<% else %>
+<p class="setting_link"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
+<% end %>
+<% if request.url == "#{main_url}/settings/integration" %>
+<p class="setting_link_clicked"><%= link_to "外部サービス連携", "/settings/integration" %></p>
+<% else %>
+<p class="setting_link"><%= link_to "外部サービス連携", "/settings/integration" %></p>
+<% end %>
+<% if request.url == "#{main_url}/settings/delete" %>
+<p class="setting_link_clicked"><%= link_to "アカウントを削除する", "/settings/delete" %></p>
+<% else %>
+<p class="setting_link"><%= link_to "アカウントを削除する", "/settings/delete" %></p>
+<% end %>

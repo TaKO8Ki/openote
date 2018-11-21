@@ -1,3 +1,99 @@
 // Place all the styles related to the Notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// Place all the styles related to the Dashboards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin edit_and_delete_button {
+  display: inline-block;
+  padding: 7px 12px;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 0px 2px 2px #ccc;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+@mixin article_status {
+  padding: 10px 0px;
+}
+
+table.notifications_table {
+  margin: 0 auto;
+  margin-top:90px;
+  width: 60%;
+}
+
+td.notification {
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
+
+th {
+  text-align: center;
+}
+
+table.notification_status_table {
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  border-collapse: collapse;
+}
+
+td.notification_status {
+  width: 33%;
+  border-radius: 3px;
+  border-bottom: solid 2px #ccc;
+  @include article_status;
+}
+
+td.notification_status a {
+  width: 33%;
+}
+
+td.notification_status:hover {
+  background-color: #ededed;
+}
+
+td.notification_status_clicked_left {
+  width: 33%;
+  border-right: solid 2px #ccc;
+  @include article_status;
+}
+
+td.notification_status_clicked_left {
+  width: 33%;
+  border-left: solid 2px #ccc;
+  @include article_status;
+}
+
+td.notification_status_clicked_left a {
+  font-weight: bold;
+}
+
+td.notification_status_clicked_right a {
+  font-weight: bold;
+}
+
+div#notifications_list{
+}
+
+div#notifications_list div#notification_list_bottoom {
+  height: auto;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+div#notifications_list div h2 {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+div#notifications_list div p.notification_list_date{
+    font-size: 12px;
+    font-weight: bold;
+}

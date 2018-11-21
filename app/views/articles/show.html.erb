@@ -17,7 +17,8 @@
       <td valign="top" class="article_show_center">
         <div id="article_show_center">
           <p class="article_show_center_header">
-            <%= image_tag @article.user.picture.url %>
+            <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+            <%= image_tag "profile.png" if @article.user.picture.blank? %>
           </p>
           <p class='article_show_center_date'>
             <%= @article.updated_at.strftime("%Y/%m/%d") %>

@@ -1,7 +1,23 @@
 
 <div id='article_form_wrap'>
+
+    <table class="parent_article_table">
+      <tr>
+        <td valign="top" class="parent_article_user_picture">
+          <p class="link_icon"><%= image_tag "link.png" %></p>
+        </td>
+        <td valign="top" class="parent_article_user_picture">
+          <p class="parent_article_user"><%= link_to image_tag(@article.user.picture.url), user_path(@article.user), {:class => "article_list_user"}%></p>
+        </td>
+        <td valign="top" class="parent_article_user_main_element">
+          <p class="parent_article_user"><%= link_to @article.title, article_path(@article) %>についてのメモ</p>
+        </td>
+      </tr>
+    </table>
+
+  </dvi>
   <%= form_for ([@article, @article.article_memos.build]) do |memo| %>
-  <div id='article_form_title'>
+  <div id='article_memo_form_title'>
       <%= memo.text_field :title, class: "article_title" %>
   </div>
 
@@ -48,8 +64,8 @@
     </table>
   </div>
 
-  <div class="submit_button">
-    <%= memo.submit %>
+  <div id="article_submit_button">
+    <%= submit_tag "メモ保存", class: "article_submit_button" %>
   </div>
     <% end %>
 </div>

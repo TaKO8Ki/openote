@@ -8,87 +8,94 @@
     <td class="gap">
     </td>
     <td valign="top" class="user_setting_main">
-      <div id="user_setting_main">
-        <table class="dashboard_articles_table">
-          <tr>
-            <td colspan="4">
-              検索
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <table>
-                <tr>
-                  <td>
-                    記事タイトル
-                  </td>
-                </tr>
-              </table>
-            </th>
-            <th>
-              <table>
-                <tr>
-                  <td>
-                    記事の編集・削除
-                  </td>
-                </tr>
-              </table>
-            </th>
-            <th>
-              <table>
-                <tr>
-                  <td>
-                    作成日
-                  </td>
-                  <td>
-                    <% if params[:created_at_order] == "ASC" || params[:created_at_order].nil? %>
-                    <%= link_to "▽", dashboard_path(id: current_user, created_at_order: "DESC")%>
-                    <% elsif params[:created_at_order] == "DESC" %>
-                    <%= link_to "△", dashboard_path(id: current_user, created_at_order: "ASC")%>
-                    <% end %>
-                  </td>
-                </tr>
-              </table>
-            </th>
-            <th>
-              <table>
-                <tr>
-                  <td>
-                    更新日
-                  </td>
-                  <td>
-                    <% if params[:updated_at_order] == "ASC" || params[:updated_at_order].nil? %>
-                    <%= link_to "▽", dashboard_path(id: current_user, updated_at_order: "DESC")%>
-                    <% elsif params[:updated_at_order] == "DESC" %>
-                    <%= link_to "△", dashboard_path(id: current_user, updated_at_order: "ASC")%>
-                    <% end %>
-                  </td>
-                </tr>
-              </table>
-            </th>
-          </tr>
-        <% @articles.each do |article| %>
-          <tr>
-            <td class="dashboard_article_td">
-              <%= link_to article.title, article_path(article) %>
-            </td>
-            <td class="dashboard_article_td">
-              <%= link_to '編集', edit_article_path(article), class: 'command', class: "dashboard_article_edit" %>
+      <table class="dashboard_articles_status_table">
+        <tr>
+          <% if params[:status].blank? %>
+          <td class="article_status_clicked_left">
+            <%= link_to "全ての記事", dashboard_path %>
+          </td>
+          <% else %>
+          <td class="article_status">
+            <%= link_to "全ての記事", dashboard_path %>
+          </td>
+          <% end %>
+          <% if params[:status] == "public" %>
+          <td class="article_status_clicked_center">
+            <%= link_to "公開済み", dashboard_path(status: "public") %>
+          </td>
+          <% else %>
+          <td class="article_status">
+            <%= link_to "公開済み", dashboard_path(status: "public") %>
+          </td>
+          <% end %>
+          <% if params[:status] == "draft" %>
+          <td class="article_status_clicked_right">
+            <%= link_to "下書き", dashboard_path(status: "draft") %>
+          </td>
+          <% else %>
+          <td class="article_status">
+            <%= link_to "下書き", dashboard_path(status: "draft") %>
+          </td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="dashboard_search_form">
+        <%= form_tag(dashboard_path, :method => 'get', enforce_utf8: false) do %>
+          <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
+          <% if params[:status].present? %>
+          <%= submit_tag params[:status], name: "status", class: "search_button" %>
+          <% else %>
+          <%= submit_tag "search", name: nil, class: "search_button" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div id="dashboard_article_list">
+          <% @articles.each do |article| %>
+          <div id='dashboard_article_list_bottom'>
+           <h2>
+              <%= link_to article.title, article_path(article)%>
+           <h2>
+          <p class='dashboard_article_list_date'>
+              <%= article.updated_at.strftime("%Y/%m/%d") %>
+          </p>
+          <p class='dashboard_article_list_category'>
+              <% article.tag_list.each do |tag| %>
+              <%= link_to tag, searches_path(tag: tag),  { :class => "article_category" } %>
+              <% end %>
+          </p>
+
+          <table class="article_list_eval">
+            <td class=article_list_comments>
+              <p class='article_list_comments'>
+                <%= image_tag "comment1.png" %>
+              </p>
+            <td>
+            <td class="article_list_comments">
+                <%= article.article_comments.count %>
+            <td>
+            <td>
+              <p class='article_list_likes'>
+                <%= image_tag "icon_red_heart.png"%>
+              </p>
+            <td>
+            <td class="article_list_likes">
+                <%= article.likes.count %>
+            <td>
+          </table>
+
+          <p class='dashboard_article_edit_delete'>
+          <% if article.user == current_user %>
+              <%= link_to '編集', edit_article_path(article), class: 'command' %>
               <%= link_to '削除',
                   article_path(article),
                   method: :delete,
-                  class: 'dashboard_article_delete',
+                  class: 'command',
                   data: { confirm: 'Sure?' }%>
-            </td>
-            <td class="dashboard_article_td">
-              <%= article.created_at.strftime("%Y/%m/%d") %>
-            </td>
-            <td class="dashboard_article_td">
-              <%= article.updated_at.strftime("%Y/%m/%d") %>
-            </td>
-          </tr>
           <% end %>
-        </table>
+          </p>
+          </div>
+          <% end %>
+
       </div>
     </td>
   </tr>

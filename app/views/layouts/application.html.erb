@@ -47,19 +47,25 @@
       <li class="g_nav_hover">
         <p class="notification_picture"><%= image_tag "notification_3.png" %></p>
         <ul class="g_nav_c">
-            <li>通知</li>
+            <p class="header_title">通知</p>
             <% if current_user.notifications.present? %>
-            <div id="notification"><%= link_to notification_content(current_user.notifications.first), link_through_path(current_user.notifications.first) %></div>
+            <% current_user.notifications.each do |notification| %>
+            <div id="notification"><%= link_to notification_content(notification), link_through_path(notification) %></div>
             <% end %>
-            <div><%= link_to "通知一覧", notifications_path(user_id: current_user)%></div>
+            <% end %>
+            <p class="all_notifications"><%= link_to "全て見る", notifications_path(id: current_user)%></p>
         </ul>
       </li>
       <li class="g_nav_hover">
-        <p class='picture_header'><%= image_tag current_user.picture.url if current_user.picture.present? %></p>
+        <p class='picture_header'>
+          <%= image_tag current_user.picture.url if current_user.picture.present? %>
+          <%= image_tag "profile.png" if current_user.picture.blank? %>
+        </p>
           <ul class="g_nav_c">
-              <li><p class="user_name">@<%= link_to current_user.username, user_path(current_user) %></p></li>
-              <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <li><p class="header_title">@<%= link_to current_user.username, user_path(current_user) %></p></li>
+              <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
+              <div id="notification"><%= link_to 'ダッシュボード', "/dashboards/articles" %></div>
+              <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
           </ul>
       </li>
     </ul>

@@ -3,7 +3,7 @@
 @mixin edit_form{
   width: 60%;
   height: 30px;
-  font-size: 100%;
+  font-size: 18px;
   padding: 5px;
   outline: none;
 }
@@ -25,7 +25,6 @@ div#user_article_list{
 div#user_article_list div#user_article_list_bottom {
   height: auto;
   padding: 15px;
-  border-bottom: 1px solid #7d7d7d;
   margin-bottom: 10px;
   border: 2px solid #ccc;
   box-shadow: 5px 5px 0px 0px #ccc;
@@ -33,32 +32,28 @@ div#user_article_list div#user_article_list_bottom {
 
 div#user_article_list div h2 {
     font-size: 20px;
-    color: #161616;
     text-decoration: none;
 }
 
 div#user_article_list div p.user_article_list_date{
     font-size: 12px;
     font-weight: bold;
-    color: #7d7d7d;
 }
 
 div#user_article_list div p.user_article_list_category {
     font-size: 12px;
     font-weight: bold;
-    color: #7d7d7d;
 }
 
 div#user_article_list div p.user_article_list_comment {
     font-size: 15px;
     font-weight: bold;
-    color: #7d7d7d;
 }
 
 div#user_article_list div p.user_article_edit_delete {
     font-size: 13px;
     font-weight: bold;
-    margin-left: 87%;
+    text-align: right;
 }
 
 table.user_show_bottom_table {
@@ -113,18 +108,25 @@ td.user_setting_sidebar {
 }
 
 div#user_setting_sidebar {
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
   @include box_padding;
+}
+
+input.edit_form_picture {
+  outline: none;
 }
 
 input.edit_form_username {
   @include edit_form;
 }
 
+input.edit_form_profile_id {
+  @include edit_form;
+}
+
 input.edit_form_email {
   @include edit_form;
 }
+
 textarea.edit_form_description {
   width: 60%;
   height: 80px;
@@ -132,6 +134,7 @@ textarea.edit_form_description {
   outline: none;
   resize: none;
   padding: 5px;
+  border: solid 1px #ccc;
 }
 input.edit_form_password {
   @include edit_form;
@@ -141,6 +144,34 @@ input.edit_form_password {
 }
 input.edit_form_password {
   @include edit_form;
+}
+
+input.edit_user_info {
+  display: inline-block;
+  text-decoration: none;
+  background: #FFC107;
+  color: #fff;
+  padding: 9px 20px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  font-size: 15px;
+  margin-top: 13px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input.edit_user_password {
+  display: inline-block;
+  text-decoration: none;
+  background: #FFC107;
+  color: #fff;
+  padding: 9px 20px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  font-size: 15px;
+  margin-top: 13px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 div#user_follow {
@@ -183,7 +214,6 @@ table.user_show_top_table {
   margin-left: auto;
   margin-right: auto;
   height: auto;
-  margin-top: 90px;
 }
 
 td.user_show_profile {
@@ -325,4 +355,18 @@ p.box_name {
 
 p.box_name a {
   color: #333;
+}
+
+/*フォロー一覧画面*/
+
+div#follow_index {
+  width: 30%;
+  margin: 0 auto;
+}
+
+p.show_follow {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
 }

@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  validates :description, length: { in: 1..75 }
 
   has_many :articles
   has_many :active_relationships,  class_name:  "FollowRelationship",

@@ -29,10 +29,18 @@ class ArticleMemosController < ApplicationController
   end
 
   def edit
+    @article_memo = ArticleMemo.find(params[:id])
+    set_available_tags_with_count
   end
 
   def update
-  end 
+    @article_memo = ArticleMemo.find(params[:id])
+    if @article_memo.update(article_memo_params)
+        redirect_to @article_memo.user
+    else
+        render 'edit'
+    end
+  end
 
   def destroy
       @article = Article.find(params[:article_id])
@@ -45,4 +53,5 @@ class ArticleMemosController < ApplicationController
   def article_memo_params
       params.require(:article_memo).permit(:title, :body, :user_id, :article_id)
   end
+  
 end

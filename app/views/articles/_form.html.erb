@@ -73,8 +73,7 @@
 
   <table id="editor">
     <tr>
-      <td class="article_form_main" vali
-      gn="top">
+      <td class="article_form_main" valign="top">
         <%= article.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_body", :id => "article_body" %>
       </td>
       <td class="article_form_sub" valign="top">
@@ -83,10 +82,11 @@
     </tr>
   </table>
 </div>
+<div id="article_submit_button">
+  <%= submit_tag "下書き保存",  name: "save_as_draft", class: "article_submit_as_draft_button" %>
+  <%= submit_tag "プレポに投稿する", class: "article_submit_button", data: { confirm: 'Sure?' } %>
+</div>
 
 
   <% end %>
-  <div class="submit_button">
-    <%= button_to 'submit', articles_path(@article), class: "submit_button"%>
-  </div>
   </div>

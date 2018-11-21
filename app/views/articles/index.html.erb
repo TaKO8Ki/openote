@@ -162,7 +162,12 @@
             <% if user_signed_in? %>
             <div id='sidebar_user_index'>
               <ul class="user_box">
-                <li class="user_box_item"><p class='picture_current_user'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
+                <li class="user_box_item">
+                  <p class='picture_current_user'>
+                    <%= image_tag current_user.picture.url if current_user.picture.present? %>
+                    <%= image_tag "profile.png" if current_user.picture.blank? %>
+                  </p>
+                </li>
                 <li class="user_box_item">
                   <p class='sidebar_user_name'>
                     <%= link_to "@fawefawef", user_path(current_user) %>
@@ -185,25 +190,19 @@
               <% end %>
             </div>
             <% end %>
-            <div id='sidebar_articles_index'>
               <table class="popular_user">
               <% popular_users.each do |user| %>
                 <tr>
-                  <td rowspan="2" valign="top">
+                  <td valign="top" class="popular_user_picture">
                     <p class="popular_user"><%= image_tag user.first.picture.url if user.first.picture.present?%></p>
                   </td>
-                  <td valign="top">
+                  <td valign="top" class="popular_user_main_element">
                     <p class="popular_user"><%= link_to user.first.username, user_path(user.first) %></p>
-                  </td>
-                </tr>
-                <tr>
-                  <td valign="top">
-                  <p class="popular_user"><%= link_to user.first.username, user_path(user.first) %></p>
+                    <p class="popular_user"><%= link_to "@#{user.first.username}", user_path(user.first) %></p>
                   </td>
                 </tr>
               <% end %>
               </table>
-            </div>
 
         </td>
       </tr>

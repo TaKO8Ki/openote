@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_140651) do
+ActiveRecord::Schema.define(version: 2018_11_20_091302) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_140651) do
     t.datetime "updated_at", null: false
     t.string "user_id"
     t.integer "likes_count"
+    t.string "status", default: "public"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -107,12 +108,12 @@ ActiveRecord::Schema.define(version: 2018_11_18_140651) do
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
     t.integer "notified_by_id"
-    t.integer "article_id"
+    t.integer "action_id"
+    t.integer "comment_id"
     t.string "notified_type"
     t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_notifications_on_article_id"
     t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
@@ -198,6 +199,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_140651) do
     t.string "username"
     t.string "picture"
     t.text "description"
+    t.string "profile_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

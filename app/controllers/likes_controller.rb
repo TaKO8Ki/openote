@@ -26,7 +26,7 @@ class LikesController < ApplicationController
        Notification.create(user_id: @article.user.id,
         notified_by_id: current_user.id,
         article_id: @article.id,
-        notified_type: 'いいね')
+        notified_type: 'like')
      end
 
 

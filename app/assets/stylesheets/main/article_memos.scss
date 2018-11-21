@@ -2,7 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin box{
+  border: 2px solid #ccc;
+  box-shadow: 5px 5px 0px 0px #ccc;
+}
+
 input.article_memo_body {
   width: 80%;
   height: 300px;
+}
+
+div#parent_article_table {
+  @include box;
+}
+
+table.parent_article_table a {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+td.parent_article_user_main_element {
+  display: inline-block;
+}
+
+td.parent_article_user_picture {
+  width: 10px
+}
+
+p.parent_article_user {
+  padding: 0 5px;
+  text-align: center;
+  font-size: 18px;
+}
+
+p.parent_article_user img {
+  width: 20px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+}
+
+p.link_icon img {
+  width: 20px;
+  margin-top: 5px;
+}
+
+div#article_memo_form_title {
+  text-align: center;
+  margin-top: 10px;
 }

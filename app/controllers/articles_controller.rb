@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
         @like_hash = Like.where(user_id:current_user.id).pluck(:id,:article_id).to_h
       end
       @like = Like.where(article_id: params[:article_id])
-      @article = Article.find(params[:id])
+      @article = Article.search_with_status("public").find(params[:id])
       @toc = markdown_toc(view_context.markdown(@article.body))
     end
 
@@ -28,6 +28,9 @@ class ArticlesController < ApplicationController
     def create
         @article = Article.new(article_params)
         @article.user_id = current_user.id
+        if params[:save_as_draft]
+          save_article_as_draft
+        end
         if @article.save
             redirect_to articles_path
         else
@@ -59,12 +62,16 @@ class ArticlesController < ApplicationController
       User.find(comment.user_id)
     end
 
-helper_method :comment_user, :this_week, :this_month, :this_year, :notification_content
+helper_method :comment_user, :this_week, :this_month, :this_year
 
 private
 
   def article_params
-      params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, { :category_ids => [] })
+      params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, :status,  { :category_ids => [] })
+  end
+
+  def save_article_as_draft(article)
+    @article.update(status: "draft")
   end
 
   def this_week
@@ -87,17 +94,17 @@ private
 
   def which_articles_should_be_showed
     if params[:group] == "today"
-      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags)
     elsif params[:group] == "this_week"
-      @articles = Article.search_with_period_likes_desc(this_week).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_week).includes(:tags)
     elsif params[:group] == "this_month"
-      @articles = Article.search_with_period_likes_desc(this_month).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_month).includes(:tags)
     elsif params[:group] == "this_year"
-      @articles = Article.search_with_period_likes_desc(this_year).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_year).includes(:tags)
     elsif params[:group] == "time_line"
-      @articles = Article.where(user_id: current_user.following)
+      @articles = Article.search_with_status("public").where(user_id: current_user.following)
     else
-      @articles = Article.all.order('created_at DESC').includes(:tags)
+      @articles = Article.search_with_status("public").all.order('created_at DESC').includes(:tags)
     end
     return @articles
   end
@@ -139,17 +146,6 @@ private
 
   def articles_tagged_with_best_three_tags
     @articles_tagged_with_best_five_categories = tags_ranking_for_a_last_week.map{ |tag| Article.tagged_with(tag.first).limit(7) }
-  end
-
-  def notification_content(notification)
-    if notification.notified_type == "like"
-      like_user = User.find(notification.notified_by_id)
-      content = "#{like_user.username}さんがあなたの投稿にいいねをしました。"
-    elsif notification.notified_type == "comment"
-      comment_user = User.find(notification.notified_by_id)
-      content = "#{comment_user.username}さんがあなたの投稿にコメントしました。"
-    end
-    return content
   end
 
   def markdown_toc(content)

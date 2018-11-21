@@ -1,0 +1,40 @@
+<table class="notifications_table">
+  <tr>
+    <td valign="top" class="notification">
+      <table class="notification_status_table">
+        <tr>
+          <% if params[:status].blank? %>
+          <td class="notification_status_clicked_left">
+            <%= link_to "未読のお知らせ", notifications_path %>
+          </td>
+          <% else %>
+          <td class="notification_status">
+            <%= link_to "未読のお知らせ", notifications_path %>
+          </td>
+          <% end %>
+          <% if params[:status] == "public" %>
+          <td class="notification_status_clicked_left">
+            <%= link_to "既読のお知らせ", notifications_path(status: "public") %>
+          </td>
+          <% else %>
+          <td class="notification_status">
+            <%= link_to "既読のお知らせ", notifications_path(status: "public") %>
+          </td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="notifications_list">
+          <% @notifications.each do |notification| %>
+          <div id='notification_list_bottoom'>
+           <h2>
+              <%= link_to notified_by(notification).username, user_path(notified_by(notification)) %><%= link_to notification_content(notification), "efawe"%>
+           <h2>
+          <p class='notification_list_date'>
+              <%= notification.created_at.strftime("%Y/%m/%d") %>
+          </p>
+          </div>
+          <% end %>
+      </div>
+    </td>
+  </tr>
+</table>

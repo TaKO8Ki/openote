@@ -1,15 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  notified_by: one
-  article: one
-  notified_type: MyString
-  read: false
-
-two:
-  user: two
-  notified_by: two
-  article: two
-  notified_type: MyString
-  read: false
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

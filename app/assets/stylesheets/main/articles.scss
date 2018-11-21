@@ -15,7 +15,6 @@ div#index_show_main {
     width: 85%;
     margin-left : auto;
     margin-right : auto;
-    margin-top: 90px;
     background-color: #ccc;
 }
 
@@ -501,7 +500,6 @@ div#article_form_wrap {
   background-color: #fff;
   width: 95%;
   margin: 0 auto;
-  margin-top: 90px;
 }
 div#article_form_title {
     text-align: center;
@@ -610,6 +608,7 @@ p.markdown_table:hover img {
 }
 
 .expand_form {
+  display: inline-block;
 }
 
 .expand_form_after {
@@ -704,41 +703,37 @@ textarea.article_body {
   border: none;
 }
 
-
-
-.submit_button {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+div#article_submit_button {
+  text-align: right;
 }
 
-.submit_button {
-  width: 200px;
-  height: 60px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
-  color: #000;
-  background-color: #fff;
-  border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
+input.article_submit_button {
+    display: inline-block;
+    text-decoration: none;
+    background: #FFC107;
+    color: #fff;
+    padding: 9px 20px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    font-size: 18px;
+    margin-top: 13px;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
   }
 
-.submit_button:hover {
-  background-color: #2EE59D;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  color: #fff;
-  transform: translateY(-7px);
-}
-
+input.article_submit_as_draft_button {
+    display: inline-block;
+    text-decoration: none;
+    background: #ccc;
+    color: #fff;
+    padding: 9px 20px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    font-size: 18px;
+    margin-top: 13px;
+    border-radius: 2px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
 /*ログイン画面*/
 
@@ -747,7 +742,6 @@ div#login {
   height: 485.41019662497px;
   background-color: #fff;
   margin: 0 auto;
-  margin-top: 90px;
   padding: 30px;
   border-top: 20px solid #efbb00;
   border-radius: 5px;
@@ -780,8 +774,6 @@ div#login_form {
   height: 35px;
   margin-top: 20px;
   font-size: 18px;
-  padding-left: 5px;
-  padding-right: 5px;
   outline: none;
   border-style: none;
   background-color: #fff;
@@ -847,10 +839,9 @@ input.login_form_actions:hover {
 /*サイドバー*/
 
 table.article_index_table {
-  width: 80%;
+  width: 75%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 90px;
 }
 
 td.article_index_left {
@@ -956,15 +947,36 @@ p.sidebar_tags:hover {
 }
 
 table.popular_user {
-  display: table-cell;
+  width: 100%;
+  padding: 2px 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  @include box;
+}
+
+td.popular_user_main_element {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+td.popular_user_picture {
+  width: 10px;
 }
 
 p.popular_user {
-  padding: 0 10px;
+  padding: 0 5px;
+  margin-top: -10px;
+}
+
+p.popular_user a {
+  font-size: 15px;
 }
 
 p.popular_user img {
-  width: 30px;
+  width: 50px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+  margin-top: 10px;
 }
 
 div#sidebar_user_index {

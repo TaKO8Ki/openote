@@ -15,29 +15,34 @@
           <%= devise_error_messages! %>
 
           <div id="picture_form">
-            <%= f.label :picture %>
+            プロフィール画像
             <p class="article_user_picture">
-            <%= image_tag current_user.picture.url %></br>
-            <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture" %>
-          </p>
+              <%= image_tag current_user.picture.url %></br>
+              <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture" %>
+            </p>
           </div>
 
           <div id="username_form">
-             <%= f.label :username %></br>
+             ユーザーネーム</br>
               <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit_form_username" %>
           </div>
 
+          <div id="profile_id_form">
+             ユーザーID</br>
+              <%= f.text_field :profile_id, autofocus: true, autocomplete: "profile_id", class: "edit_form_profile_id" %>
+          </div>
+
           <div id="email_form">
-              <%= f.label :email %><br />
+              メールアドレス<br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
           </div>
 
           <div id="description_form">
-              <%= f.label :description %><br />
+              自己紹介文<br />
               <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "edit_form_description" %>
           </div>
           <div class="actions">
-              <%= f.submit "Update" %>
+              <%= f.submit "ユーザー情報を更新する", :class => "edit_user_info" %>
           </div>
           <% end %>
 
@@ -45,21 +50,22 @@
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
 
+        </br>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |t| %>
             <div class="field">
-                  <%= t.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                  パスワード<br />
                   <%= t.password_field :password, autocomplete: "new-password", class: "edit_form_password" %>
                   <% if @minimum_password_length %>
                     <br />
-                    <em><%= @minimum_password_length %> characters minimum</em>
+                    <em><%= @minimum_password_length %> 文字以上</em>
                   <% end %>
             </div>
             <div class="field">
-                  <%= t.label :password_confirmation %><br />
+                  パスワード確認用<br />
                   <%= t.password_field :password_confirmation, autocomplete: "new-password", class: "edit_form_password" %>
             </div>
             <div class="actions">
-                <%= t.submit "Update" %>
+                <%= t.submit "パスワード変更", :class => "edit_user_password" %>
             </div>
           <% end %>
       </div>

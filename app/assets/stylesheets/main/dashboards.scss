@@ -12,6 +12,10 @@
   border-radius: 2px;
 }
 
+@mixin article_status {
+  padding: 10px 0px;
+}
+
 table.dashboard_articles_table {
   width: 100%;
   border-collapse: collapse;
@@ -21,12 +25,59 @@ table.dashboard_articles_table {
 td.dashboard_article_td {
   text-align: left;
   font-size: 16px;
-  border-bottom: solid 1px #ccc;
-  padding: 10px 10px;
 }
 
 th {
   text-align: center;
+}
+
+table.dashboard_articles_status_table {
+  width: 100%;
+  text-align: center;
+  height: 35px;
+  border-collapse: collapse;
+}
+
+td.article_status {
+  width: 33%;
+  border-radius: 3px;
+  border-bottom: solid 2px #ccc;
+  @include article_status;
+}
+
+td.article_status a {
+  width: 33%;
+}
+
+td.article_status:hover {
+  background-color: #ededed;
+}
+
+td.article_status_clicked_left {
+  width: 33%;
+  border-right: solid 2px #ccc;
+  @include article_status;
+}
+td.article_status_clicked_center {
+  width: 33%;
+  border-left: solid 2px #ccc;
+  border-right: solid 2px #ccc;
+  @include article_status;
+}
+td.article_status_clicked_right {
+  width: 33%;
+  border-left: solid 2px #ccc;
+  @include article_status;
+}
+
+td.article_status_clicked_left a {
+  font-weight: bold;
+}
+td.article_status_clicked_center a {
+  font-weight: bold;
+}
+td.article_status_clicked_right a {
+  font-weight: bold;
 }
 
 a.dashboard_article_delete {
@@ -37,4 +88,76 @@ a.dashboard_article_delete {
 a.dashboard_article_edit {
   @include edit_and_delete_button;
   background: #808080;
+}
+
+div#dashboard_search_form {
+  text-align: right;
+}
+
+input.dashboard_search_form {
+  width: 30%;
+  height: 35px;
+  outline:none;
+  padding-left: 10px;
+  font-size: 12px;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+div#dashboard_article_list{
+}
+
+div#dashboard_article_list div#dashboard_article_list_bottom {
+  height: auto;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+div#dashboard_article_list div h2 {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+div#dashboard_article_list div p.dashboard_article_list_date{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div#dashboard_article_list div p.dashboard_article_list_category {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div#dashboard_article_list div p.dashboard_article_list_comment {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+div#dashboard_article_list div p.dashboard_article_edit_delete {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+}
+
+p.setting_link a {
+  font-size: 18px;
+  color: #727272;
+}
+
+p.setting_link {
+  padding: 5px;
+}
+
+p.setting_link_clicked {
+  padding: 5px;
+}
+
+p.setting_link_clicked a {
+  font-size: 22px;
+  font-weight: bold;
 }

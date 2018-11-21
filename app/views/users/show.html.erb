@@ -5,6 +5,7 @@
         <div id='sidebar_user_show'>
             <p class='picture_user_show'>
               <%= image_tag @user.picture.url if @user.picture.present? %>
+              <%= image_tag "profile.png" if @user.picture.blank? %>
             </p>
             <p class="user_show_profile">
             <%= link_to "@#{@user.username}", user_path(@user) %>
@@ -124,94 +125,3 @@
     </td>
   </tr>
 </table>
-
-  <!-- <div class="clear-element"></div>
-
-    <div id="user_sidebar">
-        <div id="user_all_memos">
-          <p class="box_name">
-            <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
-          </p>
-          <% @user.article_memos.each do |memo| %>
-          <p class="user_article_memo">
-            <%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %>
-          </p>
-          <% end %>
-        </div>
-        <ul>
-            <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
-        </ul>
-        <ul>
-          <%= link_to "github", user_github_omniauth_authorize_path %>
-        </ul>
-    </div>
-
-    <div id="user_article_list">
-        <% @articles.each do |article| %>
-        <div id='user_article_list_bottom'>
-         <h2>
-            <%= link_to article.title, article_path(article)%>
-         <h2>
-        <p class='user_article_list_date'>
-            <%= article.updated_at.strftime("%Y/%m/%d") %>
-        </p>
-        <p class='user_article_list_category'>
-            <% article.tag_list.each do |f| %>
-            <%= link_to f, user_path(category: f),  { :class => "article_category" } %>
-            <% end %>
-        </p>
-
-        <p class='article_list_comment'>
-          <%= image_tag "comment1.png" %>
-          <%= article.article_comments.count %></br>
-        </p>
-
-        <p class='article_list_likes'>
-          <%= image_tag "icon_red_heart.png"%>
-          <%= article.likes.count %>
-        </p>
-        <p class='user_article_edit_delete'>
-        <% if @user == current_user %>
-            <%= link_to '編集', edit_article_path(article), class: 'command' %>
-            <%= link_to '削除',
-                article_path(article),
-                method: :delete,
-                class: 'command',
-                data: { confirm: 'Sure?' }%>
-        <% end %>
-        </p>
-        </div>
-        <% end %>
-
-    </div>
-
-    <div id="user_sidebar_right">
-      <% if @user_repos.present? %>
-        <% @user_repos.each do |repo| %>
-        <div id="user_each_repo">
-          <table class="github_repo">
-            <tr>
-              <td>
-                <p class="github_icon">
-                  <%= image_tag "github.png" %>
-                </p>
-              </td>
-              <td>
-                <p class="repo_name">
-                  <strong><%= link_to repo.name, repo.svn_url %></strong>
-                </p>
-              </td>
-            </table>
-          </tr>
-          <% if repo.description.present? %>
-          <p class="repo_description"><%= repo.description %></p>
-          <% end %>
-        </div>
-        <% end %>
-      <% end %>
-    </div> -->
-
-    <div class="clear">
-    </div>
-
-<!-- </div> -->

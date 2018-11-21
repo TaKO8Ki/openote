@@ -1,34 +1,3 @@
-<% provide(:title, @title) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-    <p class='picture_follow_profile'>
-      <%= image_tag @user.picture.url if @user.picture.present? %>
-  </p>
-      <h1><%= @user.email %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>articles:</b> <%= @user.articles.count %></span>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-      <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-         <p class='picture_follower'>
-            <%=image_tag user.picture.url if user.picture.present? %>
-        </p>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <h3><%= @title %></h3>
-    <% if @users.any? %>
-      <ul class="users follow">
-        <%= render 'follow_index' %>
-      </ul>
+<p class="show_follow"><%= link_to "@#{@user.username}", user_path(@user) %>の<%= @title %></p>
 
-    <% end %>
-  </div>
-</div>
+<%= render 'follow_index' %>
