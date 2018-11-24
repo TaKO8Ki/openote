@@ -21,35 +21,42 @@
 //= require tag-it
 //= require turbolinks
 //= require_tree ./main
+//
+/*記事作成画面でarticle_pictureを選択すると自動的にsubmnitされる*/
+$(document).on('turbolinks:load', function () {
+  $("#article_picture_form").change(function () {
+    $('.article_picture_submit').click();
+  });
+});
 
-	// $ (function() {
-	//     $.getJSON("http://localhost:3000/article_pictures", function(data) {
-	//         var ulObj = $("#demo");
-	//         var len = data.length;
-	//
-	//         for(var i = 0; i < len; i++) {
-	//             ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
-	//         }
-	//     });
-	// });
+/*画像保存アイコンをクリックしたらfile_fieldがクリックされる*/
+$(document).on('turbolinks:load', function () {
+	$('.article_picture_form_sub').on('click', function() {
+		 $('.article_picture_field').click();
+  });
+});
 
-		// $(function(){
-		// 	  $(document).on("click", ".markdown_code", function(){
-		//       $.ajax({
-		//         type:'get',
-		//         url: "http://localhost:3000/article_pictures",
-		//         dataType:'json',
-		//         cache: false,
-		//         success: function(data){
-		//
-		//             $('#demo').html(data);
-		//
-		//         }
-		//       });
-		//     });
-		// });
-
-
+/*article_pictures_controllerから送られたjsonを受け取って表示する*/
+$(document).on('turbolinks:load', function() {
+	$('#article_picture_form').on('ajax:success', function(event) {
+	    data = event.detail[0];
+			var v= $('#article_body').val();
+	    var selin = $('#article_body').prop('selectionStart');
+	    var selout = $('#article_body').prop('selectionEnd');
+	    var befStr="\n" + '![image]' + '(' + data['picture']['url'] + ')';
+	    var aftStr="";
+	    var v1=v.substr(0,selin);
+	    var v2=v.substr(selin,selout-selin);
+	    var v3=v.substr(selout);
+	    $('#article_body')
+	      .val(v1+befStr+v2+aftStr+v3)
+	      .prop({
+	        "selectionStart":selin+befStr.length,
+	        "selectionEnd":selin+befStr.length+v2.length
+	        })
+	      .trigger("focus");
+	  });
+});
 
 $(document).on('turbolinks:load', function() {
 
@@ -69,26 +76,6 @@ $(document).on('turbolinks:load', function(){
     var selin = $('#article_body').prop('selectionStart');
     var selout = $('#article_body').prop('selectionEnd');
     var befStr="```\n";
-    var aftStr="\n```";
-    var v1=v.substr(0,selin);
-    var v2=v.substr(selin,selout-selin);
-    var v3=v.substr(selout);
-    $('#article_body')
-      .val(v1+befStr+v2+aftStr+v3)
-      .prop({
-        "selectionStart":selin+befStr.length,
-        "selectionEnd":selin+befStr.length+v2.length
-        })
-      .trigger("focus");
-  });
-});
-
-$(document).on('turbolinks:load', function(){
-  $('.markdown_code').on('click',function(e){
-    var v= $('#article_body').val();
-    var selin = $('#article_body').prop('selectionStart');
-    var selout = $('#article_body').prop('selectionEnd');
-    var befStr=gon.article_picture;
     var aftStr="\n```";
     var v1=v.substr(0,selin);
     var v2=v.substr(selin,selout-selin);
@@ -246,6 +233,15 @@ $(document).on('turbolinks:load', function() {
             }
             return '<p class="markdown_text">' + text + '</p>';
           };
+
+
+					renderer.image = function(href, title, text) {
+					  if (href === null) {
+					    return text;
+					  }
+					  var out = '<p class="markdown_image"><img src="' + href + '" alt="' + text + '"></p>';
+					  return out;
+					};
 
 
         marked.setOptions({

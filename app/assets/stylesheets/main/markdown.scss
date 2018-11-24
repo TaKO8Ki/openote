@@ -113,3 +113,11 @@ th.markdown_th {
   border: solid 1px;
   padding: 0.5em;
 }
+
+
+/*表示する画像*/
+
+p.markdown_image img {
+  width: 400px;
+  height: auto;
+}

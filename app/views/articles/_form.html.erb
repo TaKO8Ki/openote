@@ -16,7 +16,6 @@
         <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
     </div>
 
-    <!-- <%= article.file_field :picture, id: :post_image, multiple: true %> -->
 
     <div id="article_form_category">
         <ul id='articl_tags'>
@@ -36,45 +35,44 @@
         <% end %>
     </div> -->
 
-
-
-
 <% if @article.errors.any? %>
 <%= @article.errors.messages[:body][0] %>
 <% end %>
 
-
 <div id=whole_editor>
-<table class="editor_helper">
-  <tr>
-    <td class="each_element">
-      <p class="markdown_code"><%= image_tag "code.png" %></p>
-    </td>
-    <td class="gap">
-    </td>
-    <td class="each_element">
-      <p class="markdown_table"><%= image_tag "table.png" %></p>
-    </td>
-    <td class="gap">
-    </td>
-    <td class="each_element">
-      <p class="markdown_quote"><%= image_tag "quote.png" %></p>
-    </td>
-    <td class="gap">
-    </td>
-    <td class="each_element">
-      <p class="markdown_list"><%= image_tag "list.png" %></p>
-    </td>
-    <td class="gap">
-    </td>
-    <td class="display_size">
-      <p class="expand_form"><%= image_tag "expand.png" %></p>
-      <p class="reduce_form"><%= image_tag "reduce.png" %></p>
-    </td>
-  </tr>
-</table>
-
-
+  <table class="editor_helper">
+    <tr>
+      <td class="each_element">
+        <p class="markdown_code"><%= image_tag "code.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_table"><%= image_tag "table.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_quote"><%= image_tag "quote.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="markdown_list"><%= image_tag "list.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="each_element">
+        <p class="article_picture_form_sub"><%= image_tag "picture.png" %></p>
+      </td>
+      <td class="gap">
+      </td>
+      <td class="display_size">
+        <p class="expand_form"><%= image_tag "expand.png" %></p>
+        <p class="reduce_form"><%= image_tag "reduce.png" %></p>
+      </td>
+    </tr>
+  </table>
 
   <table id="editor">
     <tr>
@@ -90,23 +88,11 @@
 <div id="article_submit_button">
   <%= submit_tag "下書き保存",  name: "save_as_draft", class: "article_submit_as_draft_button" %>
   <%= submit_tag "プレポに投稿する", class: "article_submit_button", data: { confirm: 'Sure?' } %>
+  <% end %>
+</div>
 </div>
 
-
-  <% end %>
-  </div>
-
-  <!-- <%= form_tag(article_pictures_path, :method => 'post', enforce_utf8: false) do  %>
-    <%= file_field :article_picture, :picture %>
-    <%= submit_tag 'search', :name => nil %>
-  <% end %> -->
-
-  <ul id="demo">
-  </ul>
-
-
-
-  <%= form_with url: article_pictures_path do |form| %>
-    <%= form.file_field 'article_picture[picture]' %>
-    <%= form.submit class: "hoge_hoge" %>
-  <% end %>
+<%= form_with url: article_pictures_path, enctype: "multipart/form-data", id: :article_picture_form do |form| %>
+  <%= form.file_field 'article_picture[picture]', :class => 'article_picture_field' %>
+  <%= form.submit class: "article_picture_submit" %>
+<% end %>

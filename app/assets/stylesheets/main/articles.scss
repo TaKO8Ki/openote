@@ -607,6 +607,22 @@ p.markdown_table:hover img {
   @include picture_hover;
 }
 
+/*article_pictureのフォームでそのまま保存しようとすると
+モデルの違いで不都合が起きるので、
+この画像をクリックしたらfile_fieldがクリックされるようになっている*/
+p.article_picture_form_sub img {
+  @include picture_size;
+}
+
+p.article_picture_form_sub:hover img {
+  @include picture_size;
+  @include picture_hover;
+}
+
+input.article_picture_field {
+  display: none;
+}
+
 .expand_form {
   display: inline-block;
 }
@@ -647,7 +663,7 @@ div#article_preview {
   background-color: #fff;
   overflow: scroll;
   overflow-x: hidden;
-  margin-right: -3px;
+  margin-right: -2px;
 }
 
 td.article_form_main {
@@ -733,6 +749,14 @@ input.article_submit_as_draft_button {
     border-radius: 2px;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  input.article_picture_field {
+
+  }
+
+  input.article_picture_submit {
+    display: none;
   }
 
 /*ログイン画面*/

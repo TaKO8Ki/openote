@@ -21,8 +21,6 @@ class ArticlesController < ApplicationController
     end
 
     def new
-      gon.clear
-      gon.article_picture = ArticlePicture.where(user_id: current_user.id).last.picture.url
       set_available_tags_with_count
       @article = Article.new
     end
