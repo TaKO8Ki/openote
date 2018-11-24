@@ -6,6 +6,7 @@ class Article < ApplicationRecord
   has_many :article_comments, dependent: :destroy
   has_many :article_memos, dependent: :destroy
   belongs_to :user
+  mount_uploaders :picture, PictureUploader
   acts_as_taggable
 
   validates :title, presence: true

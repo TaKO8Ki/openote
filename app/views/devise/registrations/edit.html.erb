@@ -18,9 +18,36 @@
             プロフィール画像
             <p class="article_user_picture">
               <%= image_tag current_user.picture.url %></br>
-              <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture" %>
+              <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture", id: "post_image" %>
             </p>
           </div>
+
+          <div id="preview"></div>
+
+          <style type="text/css">div#preview img {width: 30px;}</style>
+
+          <script>
+          function Filepreview(evt){
+           var files = evt.target.files;
+
+          document.getElementById('preview').innerHTML =""
+
+           for(var i = 0; i < 3;i++){
+           var reader = new FileReader();
+           var f = files[i]
+           reader.onload = (function(){
+           return function(e) {
+           var span = document.createElement('span');
+           span.innerHTML= "<img src='" +e.target.result + "'>";
+           document.getElementById('preview').insertBefore(span,null);
+           };
+           })(f);
+           reader.readAsDataURL(f);
+           }
+          }
+          document.getElementById('post_image').addEventListener('change',Filepreview,false);
+          </script>
+
 
           <div id="username_form">
              ユーザーネーム</br>
@@ -42,7 +69,7 @@
               <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "edit_form_description" %>
           </div>
           <div class="actions">
-              <%= f.submit "ユーザー情報を更新する", :class => "edit_user_info" %>
+              <%= f.submit "Update", :class => "edit_user_info" %>
           </div>
           <% end %>
 
@@ -65,7 +92,7 @@
                   <%= t.password_field :password_confirmation, autocomplete: "new-password", class: "edit_form_password" %>
             </div>
             <div class="actions">
-                <%= t.submit "パスワード変更", :class => "edit_user_password" %>
+                <%= t.submit "Update", :class => "edit_user_password" %>
             </div>
           <% end %>
       </div>

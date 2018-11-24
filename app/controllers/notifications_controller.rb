@@ -1,7 +1,11 @@
 class NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.where(user_id:current_user)
+    if params[:read] == "true"
+      @notifications = Notification.where(user_id:current_user, read: true)
+    else
+      @notifications = Notification.where(user_id:current_user)
+    end
   end
 
   def link_through

@@ -1,0 +1,9 @@
+<%= form_for @article_picture, :html => { :class => 'form-horizontal remote_form', :multipart => true , :remote => true },:format => :json,:authenticity_token => true  do |g| %>
+<div id="form_group">
+  <%= g.label :picture %>
+  <%= g.file_field :picture%>
+  <div id="controls">
+    <%= g.submit %>
+  </div>
+</div>
+<% end %>

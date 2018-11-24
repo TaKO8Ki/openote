@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :article_pictures
   get 'social_profiles/destroy'
   get 'notifications/link_through'
   devise_for :admin_users, ActiveAdmin::Devise.config

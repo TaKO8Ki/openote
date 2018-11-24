@@ -1,0 +1,10 @@
+I"(function() {
+  $(document).on('turbolinks:load', function() {
+    return $('form.rimotipartpic_form').bind('ajax:complete', function(e, data, status, error) {
+      console.log(data);
+      return console.log(data.responseText);
+    });
+  });
+
+}).call(this);
+:ET

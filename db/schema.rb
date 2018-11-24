@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_20_091302) do
+ActiveRecord::Schema.define(version: 2018_11_22_120900) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(version: 2018_11_20_091302) do
     t.index ["user_id"], name: "index_article_memos_on_user_id"
   end
 
+  create_table "article_pictures", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -77,6 +84,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_091302) do
     t.string "user_id"
     t.integer "likes_count"
     t.string "status", default: "public"
+    t.json "picture"
   end
 
   create_table "categories", force: :cascade do |t|

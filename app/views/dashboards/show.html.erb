@@ -53,7 +53,11 @@
           <% @articles.each do |article| %>
           <div id='dashboard_article_list_bottom'>
            <h2>
+             <% if params[:status] == "draft" %>
+               <%= link_to article.title, edit_article_path(article) %>
+            <% else%>
               <%= link_to article.title, article_path(article)%>
+            <% end %>
            <h2>
           <p class='dashboard_article_list_date'>
               <%= article.updated_at.strftime("%Y/%m/%d") %>

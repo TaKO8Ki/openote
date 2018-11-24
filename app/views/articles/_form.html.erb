@@ -16,6 +16,8 @@
         <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
     </div>
 
+    <!-- <%= article.file_field :picture, id: :post_image, multiple: true %> -->
+
     <div id="article_form_category">
         <ul id='articl_tags'>
           <% @article.tag_list.each do |tag| %>
@@ -33,6 +35,7 @@
         <%= category.label { category.check_box + category.text } %>
         <% end %>
     </div> -->
+
 
 
 
@@ -71,6 +74,8 @@
   </tr>
 </table>
 
+
+
   <table id="editor">
     <tr>
       <td class="article_form_main" valign="top">
@@ -90,3 +95,18 @@
 
   <% end %>
   </div>
+
+  <!-- <%= form_tag(article_pictures_path, :method => 'post', enforce_utf8: false) do  %>
+    <%= file_field :article_picture, :picture %>
+    <%= submit_tag 'search', :name => nil %>
+  <% end %> -->
+
+  <ul id="demo">
+  </ul>
+
+
+
+  <%= form_with url: article_pictures_path do |form| %>
+    <%= form.file_field 'article_picture[picture]' %>
+    <%= form.submit class: "hoge_hoge" %>
+  <% end %>

@@ -3,7 +3,7 @@
     <td valign="top" class="notification">
       <table class="notification_status_table">
         <tr>
-          <% if params[:status].blank? %>
+          <% if params[:read].blank? %>
           <td class="notification_status_clicked_left">
             <%= link_to "未読のお知らせ", notifications_path %>
           </td>
@@ -12,13 +12,13 @@
             <%= link_to "未読のお知らせ", notifications_path %>
           </td>
           <% end %>
-          <% if params[:status] == "public" %>
-          <td class="notification_status_clicked_left">
-            <%= link_to "既読のお知らせ", notifications_path(status: "public") %>
+          <% if params[:read] == "true" %>
+          <td class="notification_status_clicked_right">
+            <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
           </td>
           <% else %>
           <td class="notification_status">
-            <%= link_to "既読のお知らせ", notifications_path(status: "public") %>
+            <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
           </td>
           <% end %>
         </tr>
@@ -27,7 +27,15 @@
           <% @notifications.each do |notification| %>
           <div id='notification_list_bottoom'>
            <h2>
-              <%= link_to notified_by(notification).username, user_path(notified_by(notification)) %><%= link_to notification_content(notification), "efawe"%>
+             <% if notification.notified_type == "like" %>
+             <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>が<%= link_to "あなたの投稿", article_path(notification.action_id) %>にいいねしました
+
+             <% elsif notification.notified_type == "comment" %>
+             が<%= link_to notified_by(notification).username, user_path(notified_by(notification))%>
+             <%= link_to "あなたの投稿", article_path(notification.action_id) %>にコメントしました
+             <% elsif notification.notified_type == "follow" %>
+             <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>があなたをフォローしました
+             <% end %>
            <h2>
           <p class='notification_list_date'>
               <%= notification.created_at.strftime("%Y/%m/%d") %>

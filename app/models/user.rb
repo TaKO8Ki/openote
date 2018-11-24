@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :social_profiles, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :user_tags, dependent: :destroy
+  has_many :article_pictures, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
   devise :database_authenticatable, :registerable,

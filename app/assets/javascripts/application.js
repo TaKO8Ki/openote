@@ -10,6 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery.remotipart
+//= require dropzone
 //= require main/highlight.pack.js
 //= require rails-ujs
 //= require activestorage
@@ -19,6 +21,35 @@
 //= require tag-it
 //= require turbolinks
 //= require_tree ./main
+
+	// $ (function() {
+	//     $.getJSON("http://localhost:3000/article_pictures", function(data) {
+	//         var ulObj = $("#demo");
+	//         var len = data.length;
+	//
+	//         for(var i = 0; i < len; i++) {
+	//             ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
+	//         }
+	//     });
+	// });
+
+		// $(function(){
+		// 	  $(document).on("click", ".markdown_code", function(){
+		//       $.ajax({
+		//         type:'get',
+		//         url: "http://localhost:3000/article_pictures",
+		//         dataType:'json',
+		//         cache: false,
+		//         success: function(data){
+		//
+		//             $('#demo').html(data);
+		//
+		//         }
+		//       });
+		//     });
+		// });
+
+
 
 $(document).on('turbolinks:load', function() {
 
@@ -38,6 +69,26 @@ $(document).on('turbolinks:load', function(){
     var selin = $('#article_body').prop('selectionStart');
     var selout = $('#article_body').prop('selectionEnd');
     var befStr="```\n";
+    var aftStr="\n```";
+    var v1=v.substr(0,selin);
+    var v2=v.substr(selin,selout-selin);
+    var v3=v.substr(selout);
+    $('#article_body')
+      .val(v1+befStr+v2+aftStr+v3)
+      .prop({
+        "selectionStart":selin+befStr.length,
+        "selectionEnd":selin+befStr.length+v2.length
+        })
+      .trigger("focus");
+  });
+});
+
+$(document).on('turbolinks:load', function(){
+  $('.markdown_code').on('click',function(e){
+    var v= $('#article_body').val();
+    var selin = $('#article_body').prop('selectionStart');
+    var selout = $('#article_body').prop('selectionEnd');
+    var befStr=gon.article_picture;
     var aftStr="\n```";
     var v1=v.substr(0,selin);
     var v2=v.substr(selin,selout-selin);

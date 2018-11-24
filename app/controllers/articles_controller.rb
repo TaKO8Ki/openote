@@ -21,6 +21,8 @@ class ArticlesController < ApplicationController
     end
 
     def new
+      gon.clear
+      gon.article_picture = ArticlePicture.where(user_id: current_user.id).last.picture.url
       set_available_tags_with_count
       @article = Article.new
     end
@@ -67,7 +69,7 @@ helper_method :comment_user, :this_week, :this_month, :this_year
 private
 
   def article_params
-      params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, :status,  { :category_ids => [] })
+      params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, :status, { :picture => [] }, { :category_ids => [] })
   end
 
   def save_article_as_draft(article)

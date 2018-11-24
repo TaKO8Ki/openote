@@ -103,6 +103,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    dropzonejs-rails (0.8.4)
+      rails (> 3.1)
     erubi (1.7.1)
     execjs (2.7.0)
     faraday (0.15.3)
@@ -243,6 +245,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    remotipart (1.4.2)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -316,6 +319,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  dropzonejs-rails
   figaro
   github_api
   gon
@@ -329,6 +333,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.1)
   redcarpet
+  remotipart
   rouge
   sass-rails (~> 5.0)
   selenium-webdriver
