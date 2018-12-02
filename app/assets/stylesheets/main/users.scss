@@ -9,25 +9,27 @@
 }
 
 @mixin box_padding {
-  padding: 20px;
+  padding: 10px;
 }
 
 @mixin box{
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  background-color: #fff;
+  border-radius: 3px;
 }
 
 div#user_article_list{
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 10px;
+  @include box;
 }
 
 div#user_article_list div#user_article_list_bottom {
   height: auto;
   padding: 15px;
   margin-bottom: 10px;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 div#user_article_list div h2 {
@@ -50,22 +52,16 @@ div#user_article_list div p.user_article_list_comment {
     font-weight: bold;
 }
 
-div#user_article_list div p.user_article_edit_delete {
-    font-size: 13px;
-    font-weight: bold;
-    text-align: right;
-}
 
 table.user_show_bottom_table {
-  width: 90%;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
-  background-color: #FFF;
 }
 
 td.user_show_left {
-  width: 200px;
+  width: 25%;
 }
 
 td.user_show_center {
@@ -73,7 +69,7 @@ td.user_show_center {
 }
 
 td.user_show_right {
-  width: 250px;
+  width: 25%;
 }
 
 /*ユーザー情報編集*/
@@ -94,12 +90,11 @@ div#user_setting_cancel {
 table.user_setting_table {
   margin: 0 auto;
   margin-top:90px;
-  width: 90%;
+  width: 970px;
 }
 
 td.user_setting_main {
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
 }
 
 td.user_setting_sidebar {
@@ -174,27 +169,53 @@ input.edit_user_password {
   cursor: pointer;
 }
 
-div#user_follow {
-    width: 100%;
+div#user_follow_form {
+  width: 40%;
+  margin: 0 auto;
 }
 
-input.user_follow {
+input.user_unfollow {
     display: block;
-    width: 35%;
-    padding: 10px;
+    width: 80%;
+    padding: 8px;
     text-align: center;
     text-decoration: none;
-    color: #000;
-    border: 2px solid #ccc;
+    color: #fff;
+    border: none;
     border-radius: 3px;
     font-size: 15px;
     margin: 0 auto;
     outline: none;
+    background-color: #FFC107;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border: solid 2px #FFC107;
+}
+
+input.user_follow {
+    display: block;
+    width: 80%;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFC107;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    margin: 0 auto;
+    outline: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 2px #FFC107;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .5s;
 }
 
 input.user_follow:hover {
-    background: #ccc;
-    color: #000;
+  background-color: #FFECB3;
 }
 
 .user_icon img {
@@ -202,22 +223,13 @@ input.user_follow:hover {
 }
 
 div#user_sidebar{
-    background-color: #ccc;
+  margin-top: 10px;
 }
 
 /*ユーザープロフィールのユーザー画像周辺*/
 
-table.user_show_top_table {
-  width: 90%;
-  @include box;
-  margin-bottom: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  height: auto;
-}
-
 td.user_show_profile {
-  width: 40%;
+  @include box;
 }
 
 p.user_show_profile {
@@ -248,6 +260,7 @@ div#sidebar_user_show {
   margin-bottom: 10px;
   margin-top: 10px;
   border-right: 2px solid #ccc;
+  width: 50%;
 }
 
 div#sidebar_user_description {
@@ -289,14 +302,14 @@ div#sidebar_user_description {
 
 
 div#user_sidebar_right{
+  margin-top: 10px;
 }
 
 div#user_each_repo {
   width: calc(100% - 20px);
   background-color: #fff;
   margin-bottom: 10px;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
   padding: 10px;
 }
 
@@ -317,17 +330,13 @@ p.repo_description {
 }
 
 div#user_all_memos {
-  margin-bottom: 10px;
   @include box_padding;
-  background-color: #fff;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  @include box;
 }
 
 li.user_article_memo {
   background-color: #fff;
   padding-left: 10px;
-  padding-top: 10px;
   list-style: none;
 }
 

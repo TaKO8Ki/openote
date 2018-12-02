@@ -13,7 +13,20 @@
 }
 
 @mixin article_status {
+}
+
+@mixin select_status_button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
   padding: 10px 0px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  font-size: 18px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-bottom: 10px;
 }
 
 table.dashboard_articles_table {
@@ -41,43 +54,68 @@ table.dashboard_articles_status_table {
 td.article_status {
   width: 33%;
   border-radius: 3px;
-  border-bottom: solid 2px #ccc;
+  @include article_status;
+}
+
+td.article_status_center {
+  width: 33%;
+  border-radius: 3px;
   @include article_status;
 }
 
 td.article_status a {
-  width: 33%;
+  @include select_status_button;
+  background-color: #ccc;
+  width: 100%;
+  transition: all .5s;
 }
 
-td.article_status:hover {
-  background-color: #ededed;
+td.article_status a:hover {
+  background-color: #a8a8a8;
+}
+
+td.article_status_center a {
+  width: calc(100% - 20px);
+  @include select_status_button;
+  font-weight: bold;
+  background-color: #ccc;
+  transition: all .5s;
+}
+
+td.article_status_center a:hover {
+  background-color: #a8a8a8;
 }
 
 td.article_status_clicked_left {
   width: 33%;
-  border-right: solid 2px #ccc;
   @include article_status;
 }
 td.article_status_clicked_center {
   width: 33%;
-  border-left: solid 2px #ccc;
-  border-right: solid 2px #ccc;
   @include article_status;
 }
 td.article_status_clicked_right {
   width: 33%;
-  border-left: solid 2px #ccc;
   @include article_status;
 }
 
 td.article_status_clicked_left a {
+  @include select_status_button;
   font-weight: bold;
+  background-color: #FF4508;
+  width: 100%;
 }
 td.article_status_clicked_center a {
+  @include select_status_button;
   font-weight: bold;
+  background-color: #FF4508;
+  width: calc(100% - 20px);
 }
 td.article_status_clicked_right a {
+  @include select_status_button;
   font-weight: bold;
+  background-color: #FF4508;
+  width: 100%;
 }
 
 a.dashboard_article_delete {
@@ -103,12 +141,14 @@ input.dashboard_search_form {
   border: none;
   border-bottom: solid 1px #ccc;
   border-radius: 3px;
-  background-color: #f9f9f9;
+  background-color: #fff;
   margin-top: 10px;
   margin-right: 20px;
 }
 
 div#dashboard_article_list{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  background-color: #fff;
 }
 
 div#dashboard_article_list div#dashboard_article_list_bottom {

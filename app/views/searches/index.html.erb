@@ -45,9 +45,6 @@
                   <td class="article_list_username">
                     <%= link_to "@#{article.user.username}", user_path(article.user) %>
                   </td>
-                  </tr>
-                </table>
-                <table class="article_list_eval">
                   <td class=article_list_comments>
                     <p class='article_list_comments'>
                       <%= image_tag "comment1.png" %>
@@ -58,12 +55,13 @@
                   <td>
                   <td>
                     <p class='article_list_likes'>
-                      <%= image_tag "icon_red_heart.png"%>
+                      <%= image_tag "create_like.png"%>
                     </p>
                   <td>
                   <td class="article_list_likes">
                       <%= article.likes.count %>
                   <td>
+                  </tr>
                 </table>
             </div>
               <% end %>
@@ -72,18 +70,7 @@
         <td valign="top" class="article_index_right">
           <div id="sidebar">
             <% if user_signed_in? %>
-            <div id='sidebar_user_index'>
-              <ul class="user_box">
-                <li class="user_box_item"><p class='picture_current_user'><%= image_tag current_user.picture.url if current_user.picture.present? %></p></li>
-                <li class="user_box_item">
-                  <p class='sidebar_user_name'>
-                    <%= link_to "@fawefawef", user_path(current_user) %>
-                  <p class='sidebar_user_name'>
-                    <strong><%= link_to "@#{current_user.username}", user_path(current_user) %></strong>
-                  </p>
-                </li>
-              </ul>
-            </div>
+            <%= render 'articles/current_user_sidebar' %>
             <% end %>
             <div id='sidebar_articles'>
             </div>

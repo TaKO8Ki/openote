@@ -1,39 +1,36 @@
 
-  <table class="user_show_top_table">
-    <tr>
-      <td valign="top" class="user_show_profile">
-        <div id='sidebar_user_show'>
-            <p class='picture_user_show'>
-              <%= image_tag @user.picture.url if @user.picture.present? %>
-              <%= image_tag "profile.png" if @user.picture.blank? %>
-            </p>
-            <p class="user_show_profile">
-            <%= link_to "@#{@user.username}", user_path(@user) %>
-            </p>
+
+  <table class="user_show_bottom_table">
+  <tr>
+    <td valign="top" class="user_show_profile" colspan="3">
+      <div id='sidebar_user_show'>
+          <p class='picture_user_show'>
+            <%= image_tag @user.picture.url if @user.picture.present? %>
+            <%= image_tag "profile.png" if @user.picture.blank? %>
+          </p>
+          <p class="user_show_profile">
+          <%= link_to "#{@user.username}", user_path(@user) %>
+          </p>
+
           <div id="sidebar_user_description">
             <%= @user.description %>
           </div>
 
-          <div id="follow_form">
-            <%= render 'follow_form' if user_signed_in? %>
-          </div>
-          <div id="follow-count">
-            <%= render 'shared/stats' %>
-          </div>
+        <div id="user_follow_form">
+          <%= render "follow_form" %>
         </div>
-      </td>
-      <td valign="top"></td>
-    </tr>
-  </table>
-
-  <table class="user_show_bottom_table">
+        <div id="follow-count">
+          <%= render 'shared/stats' %>
+        </div>
+      </div>
+    </td>
   <tr>
     <td valign="top" class="user_show_left">
+      <!-- <p class="box_name">
+        <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
+      </p> -->
       <div id="user_sidebar">
         <div id="user_all_memos">
-          <p class="box_name">
-            <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
-          </p>
           <% @user.article_memos.each do |memo| %>
           <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
           <% end %>
@@ -71,7 +68,7 @@
             <td>
             <td>
               <p class='article_list_likes'>
-                <%= image_tag "icon_red_heart.png"%>
+                <%= image_tag "create_like.png"%>
               </p>
             <td>
             <td class="article_list_likes">
@@ -79,16 +76,7 @@
             <td>
           </table>
 
-          <p class='user_article_edit_delete'>
-          <% if @user == current_user %>
-              <%= link_to '編集', edit_article_path(article), class: 'command' %>
-              <%= link_to '削除',
-                  article_path(article),
-                  method: :delete,
-                  class: 'command',
-                  data: { confirm: 'Sure?' }%>
-          <% end %>
-          </p>
+
           </div>
           <% end %>
 

@@ -1,38 +1,37 @@
 <table class="notifications_table">
   <tr>
-    <td valign="top" class="notification">
-      <table class="notification_status_table">
-        <tr>
-          <% if params[:read].blank? %>
-          <td class="notification_status_clicked_left">
-            <%= link_to "未読のお知らせ", notifications_path %>
-          </td>
-          <% else %>
-          <td class="notification_status">
-            <%= link_to "未読のお知らせ", notifications_path %>
-          </td>
-          <% end %>
-          <% if params[:read] == "true" %>
-          <td class="notification_status_clicked_right">
-            <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
-          </td>
-          <% else %>
-          <td class="notification_status">
-            <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
-          </td>
-          <% end %>
-        </tr>
-      </table>
+    <% if params[:read].blank? %>
+    <td class="notification_status_clicked_left" valign="top">
+      <%= link_to "未読のお知らせ", notifications_path %>
+    </td>
+    <% else %>
+    <td class="notification_status_left" valign="top">
+      <%= link_to "未読のお知らせ", notifications_path %>
+    </td>
+    <% end %>
+    <% if params[:read] == "true" %>
+    <td class="notification_status_clicked_right" valign="top">
+      <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
+    </td>
+    <% else %>
+    <td class="notification_status_right" valign="top">
+      <%= link_to "既読のお知らせ", notifications_path(read: "true") %>
+    </td>
+    <% end %>
+  </tr>
+  <% if @notifications.present? %>
+  <tr>
+    <td valign="top" class="notification" colspan="2">
       <div id="notifications_list">
           <% @notifications.each do |notification| %>
           <div id='notification_list_bottoom'>
            <h2>
              <% if notification.notified_type == "like" %>
-             <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>が<%= link_to "あなたの投稿", article_path(notification.action_id) %>にいいねしました
+             <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>が<%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にいいねしました
 
              <% elsif notification.notified_type == "comment" %>
              が<%= link_to notified_by(notification).username, user_path(notified_by(notification))%>
-             <%= link_to "あなたの投稿", article_path(notification.action_id) %>にコメントしました
+             <%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にコメントしました
              <% elsif notification.notified_type == "follow" %>
              <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>があなたをフォローしました
              <% end %>
@@ -45,4 +44,5 @@
       </div>
     </td>
   </tr>
+  <% end %>
 </table>

@@ -1,0 +1,11 @@
+<table class="current_user">
+  <tr>
+    <td valign="top" class="current_user_picture">
+      <p class="current_user"><%= image_tag current_user.picture.url if current_user.picture.present?%></p>
+    </td>
+    <td valign="top" class="current_user_main_element">
+      <p class="current_user"><strong><%= link_to current_user.username, user_path(current_user) %></strong></p>
+      <p class="current_user"><%= link_to "@#{current_user.profile_id}", user_path(current_user) %></p>
+    </td>
+  </tr>
+</table>

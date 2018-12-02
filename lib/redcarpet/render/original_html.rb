@@ -32,11 +32,21 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     '<tr>\n' + content.to_s + '</tr>\n'
   end
 
+  def image(link, title, alt_text)
+    if link == nil
+      return text
+    end
+    out = '<p class="markdown_image"><img src="' + link.to_s + '" alt="' + alt_text.to_s + '"></p>'
+    return out
+  end
+
   #redcarpetとmarked.jsでのリストの記法に少し異なりがあるので、統一するための修正
   def preprocess(full_document)
     renew_article = full_document.gsub("\n   - ", "\n     - ")
     return renew_article.gsub("\n    - ", "\n     - ")
   end
+
+
 
 
 end

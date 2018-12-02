@@ -5,9 +5,16 @@
 @charset "utf-8";
 
 @mixin box{
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
 }
+
+@mixin editor_box {
+  border: 2px solid #ccc;
+}
+
+/*articleのwidthは1200pxで固定*/
 /*記事一覧*/
 
 div#index_show_main {
@@ -42,6 +49,7 @@ p.hot_articles_picture img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 5px 5px 0 0;
 }
 
 p.hot_articles_picture {
@@ -76,27 +84,25 @@ a.article_group{
     display: inline-block;
     padding: 5px 20px;
     text-decoration: none;
-    background: #FFFDE7;
-    color: #808080;
+    background: #ccc;
+    color: #fff;
     font-size: 15px;
     font-weight: bold;
     margin: 0 20px;
     border-radius: 3px;
-    border: solid 1px #808080;
 }
 
 a.article_group_clicked{
-    display: inline-block;
-    padding: 5px 20px;
-    text-decoration: none;
-    background: #FFC107;
-    box-shadow: 5px 5px 0px #FF9808;
-    color: #808080;
-    font-size: 15px;
-    margin: 0 20px;
-    font-weight: bold;
-    border: solid 2px #FF9808;
-    border-radius: 3px;
+  display: inline-block;
+  padding: 7px 30px;
+  text-decoration: none;
+  background: #FFC107;
+  box-shadow: 0.5px 0.5px 10px #ccc;
+  color: #fff;
+  font-size: 15px;
+  margin: 0 20px;
+  font-weight: bold;
+  border-radius: 3px;
 }
 
 td.article_top {
@@ -116,15 +122,32 @@ div#article_top {
 
 div#article_list{
     width: calc(100% - 20px);
-    background-color: #fff;
     margin-right: 20px;
+}
+
+table.article_list_top_table {
+  width: 100%;
+}
+
+p.article_status {
+  display: inline-block;
+  padding: 7px 30px;
+  text-decoration: none;
+  color: #FFC107;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 30px;
+  border: solid 3px #FFC107;
+}
+
+td.article_list_status {
+  text-align: right;
 }
 
 div#article_list div#article_list_bottom {
   height: auto;
   padding: 15px 25px;
   margin-bottom: 10px;
-  background-color: #fff;
   @include box;
 }
 
@@ -176,10 +199,6 @@ td.article_list_username a {
   vertical-align: middle
 }
 
-table.article_list_eval {
-  margin-left: 20px;
-}
-
 td.article_list_comments {
   font-size: 12px;
   font-weight: bold;
@@ -197,7 +216,8 @@ p.article_list_user_picture img {
 }
 
 p.article_list_comments {
-  margin-right: 5px
+  margin-right: 5px;
+  margin-left: 10px;
 }
 
 p.article_list_comments img {
@@ -270,8 +290,7 @@ p.article_list_user {
 
 div#article_show_center{
     padding: 20px;
-    border: 2px solid #ccc;
-    box-shadow: 5px 5px 0px 0px #ccc;
+    @include box;
 }
 
 
@@ -319,7 +338,7 @@ table.article_show_table {
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 1200px;
 }
 
 td.article_show_center {
@@ -347,6 +366,12 @@ table{
     }
 }
 
+/*記事詳細フォロー*/
+
+div#article_user_follow_form {
+  width: 80%;
+  margin: 0 auto;
+}
 
 /*ページ内リンクでのアンカーでのずれ防止*/
 .markdown_heading {
@@ -362,17 +387,18 @@ div#sidebar_article_memo {
 }
 
 div#sidebar_article_toc {
-  @include box;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 div#sidebar_article_toc  a {
-  color: #4D3A02;
+  color: #808080;
 }
 
 li.chapter_list {
-  color: #4D3A02;
+  margin-top: -5px;
+  font-size: 18px;
+  list-style: none;
 }
 
 div#sidebar_following_scroll {
@@ -401,7 +427,8 @@ div#article_show_comment{
     background-color: #fff;
     margin-top: 10px;
     padding: 5px 20px;
-    border: 2px solid #ccc;
+    box-shadow: 0.5px 0.5px 10px 0px #ccc;
+    border-radius: 3px;
 }
 
 div#article_show_comment li.comment_box {
@@ -436,15 +463,21 @@ textarea.article_comment_form {
 
 a.article_comment_delete {
     display: inline-block;
-    padding: 7px 8px;
+    padding: 7px 10px;
     text-decoration: none;
     background: #808080;
     color: #fff;
-    box-shadow: 0px 2px 2px #ccc;
     float: right;
     font-size: 12px;
     border-radius: 2px;
+    transition: all .5s;
 }
+
+a.article_comment_delete:hover {
+  background-color: #ccc;
+}
+
+
 
 div#article_comment_button {
   margin-top: 10px;
@@ -497,7 +530,6 @@ input.article_comment_submit {
 /*記事作成画面*/
 
 div#article_form_wrap {
-  background-color: #fff;
   width: 95%;
   margin: 0 auto;
 }
@@ -514,7 +546,6 @@ div#article_form_category {
   margin-top: 20px;
   background-color: #fff;
   border: 1px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
 }
 
 ul#article_tags {
@@ -525,6 +556,10 @@ div#editor {
   width: calc(100% - 4px);
   height: 600px;
   @include box;
+}
+
+table#editor {
+  background-color: #fff;
 }
 
 table.editor_helper {
@@ -538,7 +573,6 @@ table.editor_helper {
 div#whole_editor {
   margin-top: 20px;
   border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
 }
 
 td.each_element {
@@ -686,7 +720,7 @@ input.article_title {
     font-size: 15px;
     padding: 20px;
     outline: none;
-    @include box;
+    @include editor_box;
 }
 
 input.article_github {
@@ -696,7 +730,7 @@ input.article_github {
     padding: 20px;
     margin-top: 20px;
     outline: none;
-    @include box;
+    @include editor_box;
 }
 
 input.article_service {
@@ -706,7 +740,7 @@ input.article_service {
     padding: 20px;
     margin-top: 20px;
     outline: none;
-    @include box;
+    @include editor_box;
 }
 
 textarea.article_body {
@@ -863,7 +897,7 @@ input.login_form_actions:hover {
 /*サイドバー*/
 
 table.article_index_table {
-  width: 75%;
+  width: 1050px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -942,13 +976,12 @@ div#sidebar ul li a span{
 }
 
 div#sidebar_articles_index {
-  margin-bottom: 3%;
-  background-color: #fff;
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  margin-bottom: 10px;
+  @include box;
   overflow: scroll;
   overflow-x: hidden;
-  height: 400px;
+  height: auto;
+  padding: 5px 0px;
 }
 
 div#sidebar_user{
@@ -956,9 +989,19 @@ div#sidebar_user{
 }
 
 p.tags_title {
-  font-size: 18px;
+  font-size: 15px;
   padding: 0 20px;
-  background-color: #ccc;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+a.article_tag {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  border-radius: 3px;
+  width: 100%;
 }
 
 p.sidebar_tags {
@@ -980,7 +1023,7 @@ table.popular_user {
 
 td.popular_user_main_element {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 td.popular_user_picture {
@@ -993,18 +1036,80 @@ p.popular_user {
 }
 
 p.popular_user a {
+  font-size: 13px;
+}
+
+table.current_user {
+  width: 100%;
+  padding: 2px 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  @include box;
+}
+
+td.current_user_main_element {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+td.current_user_picture {
+  width: 10px;
+}
+
+p.current_user {
+  padding: 0 5px;
+  margin-top: -10px;
+}
+
+p.current_user a {
   font-size: 15px;
 }
 
-p.popular_user img {
+p.current_user img {
   width: 50px;
   border-radius: 50%;
   border: solid 2px #ccc;
   margin-top: 10px;
 }
 
-div#sidebar_user_index {
+p.popular_user img {
+  width: 40px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+  margin-top: 10px;
+}
+
+li.hot_tag_articles {
   background-color: #fff;
+  padding-left: 20px;
+  list-style: none;
+}
+
+li.hot_tag_articles a {
+  font-size: 15px;
+  word-wrap: break-word;
+}
+
+li.hot_tag_articles::before {
+  position: relative;
+  top: -3px;
+  left: -8px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  content: '';
+  border-radius: 100%;
+  background: #FF4508;
+}
+
+p.user_title {
+  padding: 0 10px;
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+div#sidebar_user_index {
   @include box;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -1024,7 +1129,8 @@ table.sidebar_user_index {
 }
 
 td.article_user_description {
-  font-size: 15px;
+  font-size: 13px;
+  color: #828282;
 }
 
 div#article_top_category_name {
@@ -1058,7 +1164,7 @@ div#article_date {
     font-size: 13px;
   }
 
-/*記事詳細画面右サイドボタン*/
+/*記事詳細画面左サイドボタン*/
 
 div#article_left_buttons {
   position: sticky;
@@ -1094,7 +1200,7 @@ div#article_left_buttons {
     font-size: 20px;
     display: block;
     text-align: center;
-    background: #FFC107;
+    background: #ccc;
     border-radius: 50%;
     margin-bottom: 10px;
     box-shadow: 0px 1px 10px 0px #333;

@@ -36,5 +36,7 @@ module ArticlesHelper
     ActsAsTaggableOn::Tag.order("taggings_count DESC")
   end
 
-
+  def tag_articles_ranking(tag)
+    articles_tagged_with_each_tag = Article.tagged_with(tag).order("created_at DESC").limit(5).order("likes_count DESC")
+  end
 end

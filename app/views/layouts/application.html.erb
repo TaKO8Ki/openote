@@ -47,11 +47,13 @@
       <li class="g_nav_hover">
         <p class="notification_picture"><%= image_tag "notification_3.png" %></p>
         <ul class="g_nav_c">
-            <p class="header_title">通知</p>
-            <% if current_user.notifications.present? %>
-            <% current_user.notifications.each do |notification| %>
-            <div id="notification"><%= link_to notification_content(notification), link_through_path(notification) %></div>
+            <p class="header_title">お知らせ</p>
+            <% if notification_not_read(current_user.notifications).present? %>
+            <% notification_not_read(current_user.notifications).each do |notification| %>
+            <div id="notification"><%= link_to notification_content(notification), notifications_path %></div>
             <% end %>
+            <% else %>
+            <div id="notification">未読のお知らせはありません。</div>
             <% end %>
             <p class="all_notifications"><%= link_to "全て見る", notifications_path(id: current_user)%></p>
         </ul>

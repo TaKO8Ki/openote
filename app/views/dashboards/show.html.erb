@@ -7,7 +7,7 @@
     </td>
     <td class="gap">
     </td>
-    <td valign="top" class="user_setting_main">
+    <td valign="top">
       <table class="dashboard_articles_status_table">
         <tr>
           <% if params[:status].blank? %>
@@ -24,7 +24,7 @@
             <%= link_to "公開済み", dashboard_path(status: "public") %>
           </td>
           <% else %>
-          <td class="article_status">
+          <td class="article_status_center">
             <%= link_to "公開済み", dashboard_path(status: "public") %>
           </td>
           <% end %>
@@ -39,21 +39,21 @@
           <% end %>
         </tr>
       </table>
-      <div id="dashboard_search_form">
-        <%= form_tag(dashboard_path, :method => 'get', enforce_utf8: false) do %>
-          <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
-          <% if params[:status].present? %>
-          <%= submit_tag params[:status], name: "status", class: "search_button" %>
-          <% else %>
-          <%= submit_tag "search", name: nil, class: "search_button" %>
-          <% end %>
-        <% end %>
-      </div>
       <div id="dashboard_article_list">
+        <div id="dashboard_search_form">
+          <%= form_tag(dashboard_path, :method => 'get', enforce_utf8: false) do %>
+            <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
+            <% if params[:status].present? %>
+            <%= submit_tag params[:status], name: "status", class: "search_button" %>
+            <% else %>
+            <%= submit_tag "search", name: nil, class: "search_button" %>
+            <% end %>
+          <% end %>
+        </div>
           <% @articles.each do |article| %>
           <div id='dashboard_article_list_bottom'>
            <h2>
-             <% if params[:status] == "draft" %>
+             <% if article.status == "draft" %>
                <%= link_to article.title, edit_article_path(article) %>
             <% else%>
               <%= link_to article.title, article_path(article)%>
@@ -79,7 +79,7 @@
             <td>
             <td>
               <p class='article_list_likes'>
-                <%= image_tag "icon_red_heart.png"%>
+                <%= image_tag "create_like.png"%>
               </p>
             <td>
             <td class="article_list_likes">

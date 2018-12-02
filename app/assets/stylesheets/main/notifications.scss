@@ -17,65 +17,102 @@
   border-radius: 2px;
 }
 
+@mixin select_status_button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 20px 0px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  font-size: 18px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
 @mixin article_status {
-  padding: 10px 0px;
+  height: 70px;
 }
 
 table.notifications_table {
   margin: 0 auto;
-  margin-top:90px;
-  width: 60%;
+  width: 800px;
 }
 
 td.notification {
-  border: 2px solid #ccc;
-  box-shadow: 5px 5px 0px 0px #ccc;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  background-color: #fff;
+  width: 800px;
+  border-radius: 3px;
 }
 
 th {
   text-align: center;
 }
 
-table.notification_status_table {
-  width: 100%;
-  text-align: center;
-  height: 35px;
-  border-collapse: collapse;
-}
 
-td.notification_status {
+td.notification_status_left {
   width: 33%;
   border-radius: 3px;
-  border-bottom: solid 2px #ccc;
   @include article_status;
+  text-align: center;
+  padding-right: 5px;
 }
 
-td.notification_status a {
+td.notification_status_right {
   width: 33%;
+  border-radius: 3px;
+  @include article_status;
+  text-align: center;
+  padding-left: 5px;
 }
 
-td.notification_status:hover {
-  background-color: #ededed;
+td.notification_status_left a {
+  @include select_status_button;
+  background: #ccc;
+  transition: all .5s;
+}
+
+td.notification_status_right a {
+  @include select_status_button;
+  background: #ccc;
+  transition: all .5s;
+}
+
+td.notification_status_left a:hover {
+  background-color: #a8a8a8;
+}
+
+td.notification_status_right a:hover {
+  background-color: #a8a8a8;
 }
 
 td.notification_status_clicked_left {
-  width: 33%;
-  border-right: solid 2px #ccc;
   @include article_status;
+  width: 33%;
+  text-align: center;
+  padding-right: 5px;
 }
 
 td.notification_status_clicked_right {
-  width: 33%;
-  border-left: solid 2px #ccc;
   @include article_status;
+  width: 33%;
+  text-align: center;
+  padding-left: 5px;
 }
 
 td.notification_status_clicked_left a {
   font-weight: bold;
+  @include select_status_button;
+  background: #FF4508;
 }
 
 td.notification_status_clicked_right a {
   font-weight: bold;
+  @include select_status_button;
+  background: #FF4508;
 }
 
 div#notifications_list{

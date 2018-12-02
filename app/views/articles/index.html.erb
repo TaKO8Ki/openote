@@ -21,7 +21,7 @@
                             </p>
                           <td>
                           <td class="article_list_username">
-                            <%= link_to "@#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %>
+                            <%= link_to "#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %>
                           </td>
                         </tr>
                         </table>
@@ -41,7 +41,7 @@
                             <td>
                             <td>
                               <p class='article_list_likes'>
-                                <%= image_tag "icon_red_heart.png"%>
+                                <%= image_tag "create_like.png"%>
                               </p>
                             <td>
                             <td class="article_list_likes">
@@ -70,7 +70,7 @@
                             </p>
                           <td>
                           <td class="article_list_username">
-                            <%= link_to "@#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %>
+                            <%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %>
                           </td>
                         </tr>
                         </table>
@@ -90,7 +90,7 @@
                             <td>
                             <td>
                               <p class='article_list_likes'>
-                                <%= image_tag "icon_red_heart.png"%>
+                                <%= image_tag "create_like.png"%>
                               </p>
                             <td>
                             <td class="article_list_likes">
@@ -107,12 +107,23 @@
             </table>
             <% end %>
           <div id="article_list">
-            <%= render "article_group" %>
+              <%= render "article_group" %>
               <% @articles.each do |article| %>
               <div id='article_list_bottom'>
-               <h2>
-                 <%= link_to article.title, article_path(article), { :class => "article_link" } %>
-               </h2>
+                <table class="article_list_top_table">
+                  <tr>
+                    <td>
+                     <h2>
+                       <%= link_to article.title, article_path(article), { :class => "article_link" } %>
+                     </h2>
+                   </td>
+                   <% if article.github_repository_url.present? %>
+                   <td class="article_list_status">
+                     <p class="article_status">オープンソース<p>
+                   </td>
+                   <% end %>
+                 </tr>
+               </table>
               <p class='article_list_date'>
                   <%= time_ago_in_words(article.updated_at) %>
               </p>
@@ -131,11 +142,8 @@
                     </p>
                   <td>
                   <td class="article_list_username">
-                    <%= link_to "@#{article.user.username}", user_path(article.user) %>
+                    <%= link_to "#{article.user.username}", user_path(article.user) %>
                   </td>
-                  </tr>
-                </table>
-                <table class="article_list_eval">
                   <td class=article_list_comments>
                     <p class='article_list_comments'>
                       <%= image_tag "comment1.png" %>
@@ -146,12 +154,13 @@
                   <td>
                   <td>
                     <p class='article_list_likes'>
-                      <%= image_tag "icon_red_heart.png"%>
+                      <%= image_tag "create_like.png"%>
                     </p>
                   <td>
                   <td class="article_list_likes">
                       <%= article.likes.count %>
                   <td>
+                  </tr>
                 </table>
             </div>
               <% end %>
@@ -160,49 +169,53 @@
         <td valign="top" class="article_index_right">
           <div id="sidebar">
             <% if user_signed_in? %>
-            <div id='sidebar_user_index'>
-              <ul class="user_box">
-                <li class="user_box_item">
-                  <p class='picture_current_user'>
-                    <%= image_tag current_user.picture.url if current_user.picture.present? %>
-                    <%= image_tag "profile.png" if current_user.picture.blank? %>
-                  </p>
-                </li>
-                <li class="user_box_item">
-                  <p class='sidebar_user_name'>
-                    <%= link_to "@fawefawef", user_path(current_user) %>
-                  <p class='sidebar_user_name'>
-                    <strong><%= link_to "@#{current_user.username}", user_path(current_user) %></strong>
-                  </p>
-                </li>
-              </ul>
-            </div>
+              <%= render 'current_user_sidebar' %>
             <% end %>
             <% if user_signed_in? %>
+
             <div id='sidebar_articles_index'>
               <p class="tags_title">フォロー中のタグ</p>
-              <% following_tags(current_user).each do |following_tag| %>
-              <p class="sidebar_tags"><%= link_to "##{following_tag.name}", searches_path(tag: following_tag.name) %></p>
+              <% following_tags(current_user).limit(5).each do |following_tag| %>
+              <p class="sidebar_tags"><%= link_to "##{following_tag.name}", searches_path(tag: following_tag.name), {:class => "article_tag"} %></p>
               <% end %>
+            </div>
+            <div id='sidebar_articles_index'>
               <p class="tags_title">人気のタグ</p>
               <% tags_sorted_desc.each do |popular_tag| %>
-              <p class="sidebar_tags"><%= link_to "##{popular_tag.name}", searches_path(tag: popular_tag.name) %></p>
+              <p class="sidebar_tags"><%= link_to "##{popular_tag.name}", searches_path(tag: popular_tag.name), {:class => "article_tag"} %></p>
               <% end %>
             </div>
             <% end %>
               <table class="popular_user">
+                <tr>
+                  <td colspan="2">
+                    <p class="user_title">ホットなユーザー</p>
+                  </td>
+                </tr>
               <% popular_users.each do |user| %>
                 <tr>
-                  <td valign="top" class="popular_user_picture">
+                  <td valign="top" class="popular_user_picture" valign="top">
                     <p class="popular_user"><%= image_tag user.first.picture.url if user.first.picture.present?%></p>
                   </td>
-                  <td valign="top" class="popular_user_main_element">
-                    <p class="popular_user"><%= link_to user.first.username, user_path(user.first) %></p>
-                    <p class="popular_user"><%= link_to "@#{user.first.username}", user_path(user.first) %></p>
+                  <td valign="top" class="popular_user_main_element" valign="top">
+                    <p class="popular_user"><strong><%= link_to user.first.username, user_path(user.first) %></strong></p>
+                    <p class="popular_user"><%= link_to "@#{user.first.profile_id}", user_path(user.first) %></p>
                   </td>
                 </tr>
               <% end %>
               </table>
+
+
+                <% @hot_tags.each do |tag| %>
+                <div id='sidebar_articles_index'>
+                  <p class="tags_title"><%= link_to "##{tag.first}", searches_path(tag: tag.first), {:class => "article_tag"} %></p>
+                  <% tag_articles_ranking(tag.first).each do |article| %>
+                  <li class="hot_tag_articles"><%= link_to article.title, article_path(article) %></li>
+                  <% end %>
+                </div>
+                <% end %>
+
+
 
         </td>
       </tr>

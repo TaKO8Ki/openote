@@ -6,11 +6,9 @@
             <div id="likes_buttons_<%= @article.id %>">
              <%= render partial: 'likes/like', locals: { article: @article, likes: @likes} %>
             </div>
-            <%= link_to image_tag("article_memo_2.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+            <%= link_to image_tag("article_memo_3.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
             <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="left_twitter_sidebar_button"><%= image_tag "twitter.png" %></a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>" class ="left_twitter_sidebar_button" ><%= image_tag "twitter.png" %></a>
-            <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-            <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+            <a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="left_twitter_sidebar_button"><%= image_tag "twitter.png" %></a>
           </div>
         </div>
       </td>
@@ -51,8 +49,11 @@
               <tr>
               <td>
                 <strong>
-                  <%= link_to "@#{@article.user.username}", user_path(@article.user) %>
+                  <%= link_to "#{@article.user.username}", user_path(@article.user) %>
                 </strong>
+                <div id="article_user_follow_form">
+                  <%= render 'users/follow_form' %>
+                </div>
               </td>
               </tr>
               <tr>
@@ -64,18 +65,20 @@
 
           </div>
           <div id="sidebar_following_scroll">
+            <% if @toc.present? %>
             <div id="sidebar_article_toc">
               <%= raw @toc %>
             </div>
+            <% end %>
+            <% if @article.article_memos.present? %>
             <div id="sidebar_article_memo">
               <% @article.article_memos.limit(7).each do |memo| %>
                 <ul>
-                  <p class='article_memo'>
-                    <%= link_to memo.title, article_article_memo_path(article_id: @article.id, id: memo.id) %>
-                  </p>
+                  <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
                 </ul>
               <% end %>
             </div>
+            <% end %>
           </div>
         </div>
       </td>
@@ -90,10 +93,15 @@
             <% @article.article_comments.each do |comment| %>
             <div id='article_show_comment'>
               <li class="comment_box">
-                <table class="article_comment_user">
+                <table>
                   <tr>
-                    <td class="article_comment_picture"><%= image_tag comment_user(comment).picture.url %></td>
-                    <td class="article_comment_username"><strong>@<%= comment_user(comment).username %></strong></td>
+                    <td valign="top" class="popular_user_picture">
+                      <p class="popular_user"><%= image_tag comment_user(comment).picture.url %></p>
+                    </td>
+                    <td valign="top" class="popular_user_main_element">
+                      <p class="popular_user"><strong><%= link_to comment_user(comment).username, user_path(comment_user(comment)) %></strong></p>
+                      <p class="popular_user"><%= link_to "@#{comment_user(comment).profile_id}", user_path(comment_user(comment)) %></p>
+                    </td>
                   </tr>
                 </table>
                 <%= markdown(comment.body) %>

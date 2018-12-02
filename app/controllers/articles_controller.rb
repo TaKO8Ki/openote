@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
     def index
         @likes = Like.where(article_id: params[:article_id])
         @articles_likes_order = Article.all.order('likes_count DESC').limit(10)
-        articles_tagged_with_best_three_tags
+        @hot_tags = tags_ranking_for_a_last_week[0..2]
         which_articles_should_be_showed
         hot_articles
     end
@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
       @like = Like.where(article_id: params[:article_id])
       @article = Article.search_with_status("public").find(params[:id])
       @toc = markdown_toc(view_context.markdown(@article.body))
+      @user = @article.user
     end
 
     def new
@@ -142,10 +143,6 @@ private
     end
     tags_ranking = tags_count.sort_by{ |_, v| -v }
     return tags_ranking
-  end
-
-  def articles_tagged_with_best_three_tags
-    @articles_tagged_with_best_five_categories = tags_ranking_for_a_last_week.map{ |tag| Article.tagged_with(tag.first).limit(7) }
   end
 
   def markdown_toc(content)
