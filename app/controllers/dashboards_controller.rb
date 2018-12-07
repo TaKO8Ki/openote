@@ -10,13 +10,13 @@ class DashboardsController < ApplicationController
 
   def search_articles_with_status
     if params[:status] == "public"
-      @source_articles = Article.search_with_user(current_user).search_with_status("public")
+      @source_articles = Article.search_with_user(current_user).search_with_status("public").order("created_at DESC")
       @kind_of_articles = "公開記事"
     elsif params[:status] == "draft"
-      @source_articles = Article.search_with_user(current_user).search_with_status("draft")
+      @source_articles = Article.search_with_user(current_user).search_with_status("draft").order("created_at DESC")
       @kind_of_articles = "下書き"
     else
-      @source_articles = Article.search_with_user(current_user).search_with_user(current_user)
+      @source_articles = Article.search_with_user(current_user).search_with_user(current_user).order("created_at DESC")
       @kind_of_articles = "全ての記事"
     end
   end
@@ -25,7 +25,7 @@ class DashboardsController < ApplicationController
     if params[:created_at_order].present?
       @articles = @source_articles.sort_in_created_at_order(params[:created_at_order])
     elsif params[:updated_at_order].present?
-      @articles = @source_articles.sort_in_updated_ats_order(params[:updated_at_order])
+      @articles = @source_articles.sort_in_updated_at_order(params[:updated_at_order])
     elsif params[:d_q].present?
       @articles = @source_articles.search_with_keyword(params[:d_q])
     else

@@ -22,6 +22,30 @@
 //= require turbolinks
 //= require_tree ./main
 //
+
+$(document).on('turbolinks:load', function() {
+	//クリックしたときのファンクションをまとめて指定
+	$('.tab li').click(function() {
+
+		//.index()を使いクリックされたタブが何番目かを調べ、
+		//indexという変数に代入します。
+		var index = $('.tab li').index(this);
+
+		//コンテンツを一度すべて非表示にし、
+		$('.content li').css('display','none');
+
+		//クリックされたタブと同じ順番のコンテンツを表示します。
+		$('.content li').eq(index).css('display','block');
+
+		//一度タブについているクラスselectを消し、
+		$('.tab li').removeClass('select');
+
+		//クリックされたタブのみにクラスselectをつけます。
+		$(this).addClass('select')
+	});
+});
+
+
 /*記事作成画面でarticle_pictureを選択すると自動的にsubmnitされる*/
 $(document).on('turbolinks:load', function () {
   $("#article_picture_form").change(function () {

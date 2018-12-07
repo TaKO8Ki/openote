@@ -18,8 +18,9 @@ class Article < ApplicationRecord
   scope :search_with_status, -> (status) {where(status: status)}
   scope :search_with_period_likes_desc, -> (period) { where(created_at: period).order("likes_count DESC") }
   scope :sort_in_created_at_order, -> (order) {order("created_at #{order}")}
-  scope :sort_in_updated_ats_order, -> (order) {order("updated_at #{order}")}
+  scope :sort_in_updated_at_order, -> (order) {order("updated_at #{order}")}
   scope :recent, -> (count) { order(id: :desc).limit(count) }
+  scope :likes_desc, -> {order("likes_count DESC")}
 
 
   def self.category_with(name)

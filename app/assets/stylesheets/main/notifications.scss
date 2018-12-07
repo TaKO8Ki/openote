@@ -104,25 +104,28 @@ td.notification_status_clicked_right {
 }
 
 td.notification_status_clicked_left a {
-  font-weight: bold;
   @include select_status_button;
   background: #FF4508;
 }
 
 td.notification_status_clicked_right a {
-  font-weight: bold;
   @include select_status_button;
   background: #FF4508;
 }
 
+div#notifications_list a{
+  font-weight: bold;
+  font-size: 18px;
+}
+
 div#notifications_list{
+  font-size: 18px;
 }
 
 div#notifications_list div#notification_list_bottoom {
   height: auto;
   padding: 20px;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
 }
 
 div#notifications_list div h2 {
@@ -132,5 +135,4 @@ div#notifications_list div h2 {
 
 div#notifications_list div p.notification_list_date{
     font-size: 12px;
-    font-weight: bold;
 }

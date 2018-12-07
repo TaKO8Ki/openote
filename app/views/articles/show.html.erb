@@ -84,9 +84,8 @@
       </td>
     </tr>
     <tr>
-      <td></td>
+      <td class="article_comment_side"></td>
       <td>
-        <p class="comment">Comments</p>
 
         <% if  @article.article_comments.any? %>
 
@@ -121,30 +120,29 @@
                 <% end %>
             </ul>
           <% end %>
-
-        <% if user_signed_in? %>
-
-
-          <div id='article_show_comment_form'>
-            <%= form_for ([@article, @article.article_comments.build]) do |f| %>
-              <p>
-                <div id="comment_editor">
-                  <p class="comment_preview">Preview</p>
-                  <div v-html="input | marked", id="comment_preview"></div>
-                  <%= f.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_comment_form" %>
-                </div>
-              </p>
-              <p class="article_comment_submit">
-                <%= f.submit 'コメントする', :class => "article_comment_submit" %>
-              </p>
+          <% if user_signed_in? %>
+            <div id="comment_editor">
+              <ul class="tab">
+                <li class="select">タブ1</li>
+                <li>タブ2</li>
+              </ul>
+              <ul class="content">
+                  <li>
+                    <div id='article_show_comment_form'>
+                      <%= form_for ([@article, @article.article_comments.build]) do |f| %>
+                        <%= f.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_comment_form" %>
+                    </div>
+                  </li>
+                  <li class="hide"><div v-html="input | marked", id="comment_preview"></div></li>
+                </ul>
+                <p class="article_comment_submit">
+                  <%= f.submit 'コメントする', :class => "article_comment_submit" %>
+                </p>
+                <% end %>
+            </div>
             <% end %>
-          </div>
-        <% end %>
+
       </td>
-      <td></td>
+      <td class="article_comment_side"></td>
     </tr>
-
-
-
-
   </table>

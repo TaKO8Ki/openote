@@ -26,56 +26,70 @@
 
   <header>
     <% if user_signed_in? %>
-<nav class="g_nav">
-    <ul class="g_nav_list ol2 clearfix">
-      <li class="g_nav_itself">
-        <table class=search_form_table>
-          <tr>
-            <td>
-              <p class="search_picture"><%= image_tag "search.png" %></p>
-            </td>
-            <td>
-              <%= form_tag(searches_path, :method => 'get', enforce_utf8: false) do %>
-                <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "プレポ全体を検索する" %>
-                <%= submit_tag 'search', :name => nil, class: "search_button" %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-      </li>
-      <li class="g_nav_itself"><%= link_to "投稿する", new_article_path, { :class => "new_article_button" } %></li>
-      <li class="g_nav_hover">
-        <p class="notification_picture"><%= image_tag "notification_3.png" %></p>
-        <ul class="g_nav_c">
-            <p class="header_title">お知らせ</p>
-            <% if notification_not_read(current_user.notifications).present? %>
-            <% notification_not_read(current_user.notifications).each do |notification| %>
-            <div id="notification"><%= link_to notification_content(notification), notifications_path %></div>
-            <% end %>
-            <% else %>
-            <div id="notification">未読のお知らせはありません。</div>
-            <% end %>
-            <p class="all_notifications"><%= link_to "全て見る", notifications_path(id: current_user)%></p>
-        </ul>
-      </li>
-      <li class="g_nav_hover">
-        <p class='picture_header'>
-          <%= image_tag current_user.picture.url if current_user.picture.present? %>
-          <%= image_tag "profile.png" if current_user.picture.blank? %>
-        </p>
-          <ul class="g_nav_c">
-              <li><p class="header_title">@<%= link_to current_user.username, user_path(current_user) %></p></li>
-              <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
-              <div id="notification"><%= link_to 'ダッシュボード', "/dashboards/articles" %></div>
-              <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
-          </ul>
-      </li>
-    </ul>
-</nav>
-
+    <table class="header_menu">
+      <tr>
+        <td>
+          <table class=search_form_table>
+            <tr>
+              <td>
+                <p class="search_picture"><%= image_tag "search.png" %></p>
+              </td>
+              <td>
+                <%= form_tag(searches_path, :method => 'get', enforce_utf8: false) do %>
+                  <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "プレポ全体を検索する" %>
+                  <%= submit_tag 'search', :name => nil, class: "search_button" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td class="test">
+          <%= link_to "投稿する", new_article_path, { :class => "new_article_button" } %>
+        </td>
+        <td>
+          <nav class="g_nav">
+            <ul class="g_nav_list ol2 clearfix">
+                <li class="g_nav_hover">
+                  <p class="notification_picture"><%= image_tag "notification_3.png" %></p>
+                  <ul class="g_nav_c">
+                      <p class="header_title">お知らせ</p>
+                      <% if notification_not_read(current_user.notifications).present? %>
+                      <% notification_not_read(current_user.notifications).each do |notification| %>
+                      <div id="notification"><%= link_to notification_content(notification), notifications_path %></div>
+                      <% end %>
+                      <% else %>
+                      <div id="notification">未読のお知らせはありません。</div>
+                      <% end %>
+                      <p class="all_notifications"><%= link_to "全て見る", notifications_path(id: current_user)%></p>
+                  </ul>
+                </li>
+            </ul>
+          </nav>
+        </td>
+        <td>
+          <nav class="g_nav">
+            <ul class="g_nav_list ol2 clearfix">
+              <li class="g_nav_hover">
+                <p class='picture_header'>
+                  <%= image_tag current_user.picture.url if current_user.picture.present? %>
+                  <%= image_tag "profile.png" if current_user.picture.blank? %>
+                </p>
+                  <ul class="g_nav_c">
+                      <li><p class="header_title">@<%= link_to current_user.username, user_path(current_user) %></p></li>
+                      <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
+                      <div id="notification"><%= link_to 'ダッシュボード', "/dashboards/articles" %></div>
+                      <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
+                  </ul>
+              </li>
+              <ul>
+          </nav>
+        </td>
+      </tr>
+    </table>
     <% else %>
-    <ul class="nav_signed_out">
-      <li class="nav__item">
+    <table class="header_menu">
+      <tr>
+        <td>
         <table class=search_form_table>
           <tr>
             <td>
@@ -89,8 +103,12 @@
             </td>
           </tr>
         </table>
-      </li>
-      <li class="nav__item"><p><%= link_to 'サインアップ', new_user_registration_path %></p></li>
+      </td>
+      <td>
+        <p class="signed_up"><%= link_to 'サインアップ', new_user_registration_path %></p>
+      </td>
+      <td>
+      <ul class="nav_signed_out">
       <li class="nav__item">
         <p>
           <div class="popupModal1">
@@ -155,6 +173,9 @@
     </p>
   </li>
 </ul>
+</td>
+</tr>
+</table>
 
 
     <% end %>
@@ -164,7 +185,6 @@
       <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
       <% end %>
-        <%= flash[:notice] %>
 
     <%= yield %>
   </body>

@@ -1,11 +1,14 @@
 /*ユーザープロフィール*/
 
 @mixin edit_form{
-  width: 60%;
+  width: 90%;
   height: 30px;
   font-size: 18px;
   padding: 5px;
   outline: none;
+  background-color: #f6f6f6;
+  border: solid 1px #ccc;
+  border-radius: 3px;
 }
 
 @mixin box_padding {
@@ -76,7 +79,9 @@ td.user_show_right {
 
 div#user_setting_main{
     background-color: #fff;
-    @include box_padding;
+    padding: 20px;
+    @include box;
+    margin-bottom: 10px;
 }
 
 div#user_setting_cancel {
@@ -89,12 +94,11 @@ div#user_setting_cancel {
 
 table.user_setting_table {
   margin: 0 auto;
-  margin-top:90px;
-  width: 970px;
+  width: 1000px;
 }
 
 td.user_setting_main {
-  @include box;
+
 }
 
 td.user_setting_sidebar {
@@ -106,8 +110,29 @@ div#user_setting_sidebar {
   @include box_padding;
 }
 
+div#user_edit_form_picture img {
+  width: 70px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+}
+
+div#user_edit_form {
+  margin-bottom: 20px;
+}
+
+div#user_edit_form_picture{
+}
+
+div#edit_user_info {
+}
+
+p.user_edit_title {
+  font-size: 15px;
+}
+
 input.edit_form_picture {
   outline: none;
+  margin-bottom: 20px;
 }
 
 input.edit_form_username {
@@ -123,13 +148,15 @@ input.edit_form_email {
 }
 
 textarea.edit_form_description {
-  width: 60%;
-  height: 80px;
-  font-size: 100%;
+  width: 90%;
+  height: 150px;
+  font-size: 18px;
   outline: none;
   resize: none;
   padding: 5px;
+  background-color: #f6f6f6;
   border: solid 1px #ccc;
+  border-radius: 3px;
 }
 input.edit_form_password {
   @include edit_form;
@@ -144,29 +171,36 @@ input.edit_form_password {
 input.edit_user_info {
   display: inline-block;
   text-decoration: none;
-  background: #FFC107;
+  background: #FF4508;
   color: #fff;
   padding: 9px 20px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-  font-size: 15px;
-  margin-top: 13px;
+  font-size: 13px;
   border-radius: 2px;
-  font-weight: bold;
   cursor: pointer;
+  border: none;
+  transition: all .5s;
+}
+
+input.edit_user_info:hover {
+  background-color: #FF794D;
 }
 
 input.edit_user_password {
   display: inline-block;
   text-decoration: none;
-  background: #FFC107;
+  background: #FF4508;
   color: #fff;
   padding: 9px 20px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-  font-size: 15px;
-  margin-top: 13px;
+  font-size: 13px;
+  margin-top: 5px;
   border-radius: 2px;
-  font-weight: bold;
   cursor: pointer;
+  border: none;
+  transition: all .5s;
+}
+
+input.edit_user_password:hover {
+  background-color: #FF794D;
 }
 
 div#user_follow_form {

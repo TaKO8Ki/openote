@@ -1,5 +1,5 @@
 
-<% if request.url == "#{main_url}/dashboards/articles" %>
+<% if request.url.start_with?("#{main_url}/dashboards/articles") %>
 <p class="setting_link_clicked"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>
 <% else %>
 <p class="setting_link"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>

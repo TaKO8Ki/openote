@@ -2,9 +2,9 @@ class NotificationsController < ApplicationController
 
   def index
     if params[:read] == "true"
-      @notifications = Notification.where(user_id:current_user, read: true)
+      @notifications = Notification.where(user_id:current_user, read: true).order("created_at DESC")
     else
-      @notifications = Notification.where(user_id:current_user, read: false)
+      @notifications = Notification.where(user_id:current_user, read: false).order("created_at DESC")
     end
   end
 

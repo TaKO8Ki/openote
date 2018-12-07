@@ -1,17 +1,21 @@
 <div id="user_setting_main">
-  <h2>外部サービス</h2>
-      <p class="github_icon">
-        <%= image_tag "github.png" %>
-        Github
-      </p>
+  <strong>外部サービス</strong>
+  <table>
+    <tr>
+      <td valign="top">
+
+      </td>
+      <td valign="top">
         <% if already_integrated(current_user, "github") == true %>
-          <%= link_to '連携を解除する',
+          <%= link_to 'Github連携を解除する',
               user_social_profile_path(user_id: current_user, id: user_social_profile(current_user, "github")),
               method: :delete,
-              class: 'github_integration',
+              class: 'github_integration_clicked',
               data: { confirm: 'Sure?' }%>
         <% else %>
-          <%= link_to "連携する", user_github_omniauth_authorize_path, { :class => "github_integration" } %>
+          <%= link_to "Github連携する", user_github_omniauth_authorize_path, { :class => "github_integration" } %>
         <% end %>
-
+      </td>
+    </tr>
+  </table>
 </div>

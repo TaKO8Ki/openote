@@ -187,6 +187,7 @@ div#dashboard_article_list div p.dashboard_article_edit_delete {
 p.setting_link a {
   font-size: 18px;
   color: #727272;
+  padding-left: 10px;
 }
 
 p.setting_link {
@@ -197,7 +198,18 @@ p.setting_link_clicked {
   padding: 5px;
 }
 
+
 p.setting_link_clicked a {
-  font-size: 22px;
+  font-size: 18px;
+  display: inline-block;
+  text-decoration: none;
+  background: #a8a8a8;
+  color: #fff;
+  border-radius: 2px;
   font-weight: bold;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  width: 100%;
 }
