@@ -1,37 +1,41 @@
 
     <table class="article_index_table">
-
-      <tr>
-        <td colspan="2" class="article_top">
-          <% if params[:tag] %>
-          <div id="article_top">
-            <div id='article_top_category_name'>
-              <strong><%= @tag.name %></strong>
-              <div id="follow_tag_buttons_<%= @tag.id %>">
-               <%= render partial: 'follow_tag_relationships/follow_tag', locals: { tag: @tag} %>
-              </div>
-            </div>
+      <% if params[:tag] %>
+      <div id="article_top">
+        <div id='article_top_category_name'>
+          <%= @tag.name %>
+          <% if user_signed_in? %>
+          <div id="follow_tag_buttons_<%= @tag.id %>">
+           <%= render partial: 'follow_tag_relationships/follow_tag', locals: { tag: @tag} %>
           </div>
           <% end %>
-        </td>
-      </tr>
+        </div>
+      </div>
+      <% end %>
+
       <tr>
       </td>
         <td valign="top" class="article_index_left">
-        <%= @key_word %>
           <div id="article_list">
               <% @articles.each do |article| %>
+              <%= link_to article_path(article) do %>
               <div id='article_list_bottom'>
-               <h2>
-                 <%= link_to article.title, article_path(article), { :class => "article_link" } %>
-               </h2>
-              <p class='article_list_date'>
-                  <%= time_ago_in_words(article.updated_at) %>
-              </p>
+                <table class="article_list_top_table">
+                  <tr>
+                    <td>
+                     <h2>
+                       <object><%= link_to article.title, article_path(article), { :class => "article_link" } %></object>
+                     </h2>
+                   </td>
+                 </tr>
+               </table>
               <p class='article_list_category'>
-                  <% article.tag_list.each do |f| %>
-                  <%= link_to f, searches_path(tag: f), { :class => "article_category" } %>
+                <% article_tags(article).each do |tag| %>
+                  <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
+                  <% if article.github_repository_url.present? %>
+                  <object><%= link_to "#オープンソース", searches_path(tag: tag), { :class => "article_list_tag" }%></object>
                   <% end %>
+                <% end %>
               </p>
 
 
@@ -39,33 +43,46 @@
                   <tr>
                   <td class="article_list_user">
                     <p class='article_list_user_picture'>
-                      <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
+                      <object><%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %></object>
                     </p>
                   <td>
                   <td class="article_list_username">
-                    <%= link_to "@#{article.user.username}", user_path(article.user) %>
+                    <object><%= link_to "#{article.user.username}", user_path(article.user) %></object>
                   </td>
-                  <td class=article_list_comments>
-                    <p class='article_list_comments'>
-                      <%= image_tag "comment1.png" %>
-                    </p>
-                  <td>
-                  <td class="article_list_comments">
-                      <%= article.article_comments.count %>
-                  <td>
-                  <td>
-                    <p class='article_list_likes'>
-                      <%= image_tag "create_like.png"%>
-                    </p>
-                  <td>
-                  <td class="article_list_likes">
-                      <%= article.likes.count %>
-                  <td>
                   </tr>
                 </table>
+                <table>
+                <tr>
+                <td class=article_list_comments>
+                  <p class='article_list_comments'>
+                    <%= image_tag "comment1.png" %>
+                  </p>
+                <td>
+                <td class="article_list_comments">
+                    <%= article.article_comments.count %>
+                <td>
+                <td>
+                  <p class='article_list_likes'>
+                    <%= image_tag "create_like.png"%>
+                  </p>
+                <td>
+                <td class="article_list_likes">
+                    <%= article.likes.count %>
+                <td>
+                <td class="article_list_username">
+                  <p class='article_list_date'>
+                      <%= time_ago_in_words(article.updated_at) %>
+                  </p>
+                </td>
+                </tr>
+              </table>
             </div>
+            <% end %>
               <% end %>
           </div>
+
+
+
         </td>
         <td valign="top" class="article_index_right">
           <div id="sidebar">

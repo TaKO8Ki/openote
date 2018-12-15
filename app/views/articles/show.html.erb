@@ -3,20 +3,32 @@
       <td valign="top" class="article_show_left">
         <div id="article_show_left">
           <div id='article_left_buttons'>
-            <div id="likes_buttons_<%= @article.id %>">
-             <%= render partial: 'likes/like', locals: { article: @article, likes: @likes} %>
+            <div class="eval_mobile">
+              <div id="likes_buttons_<%= @article.id %>">
+               <%= render partial: 'likes/like', locals: { article: @article, likes: @likes} %>
+              </div>
             </div>
-            <%= link_to image_tag("article_memo_3.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
-            <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="left_twitter_sidebar_button"><%= image_tag "twitter.png" %></a>
-            <a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="left_twitter_sidebar_button"><%= image_tag "twitter.png" %></a>
+            <p class="eval_mobile">
+              <%= link_to image_tag("article_memo_3.png"), new_article_article_memo_path(article_id: @article.id) , { :class => "left_sidebar_button" } %>
+            </p>
+            <div class="eval_mobile">
+              <div id="stocks_buttons_<%= @article.id %>">
+               <%= render partial: 'stocks/stock', locals: { article: @article, likes: @stocks} %>
+              </div>
+            </div>
+            <p class="eval_mobile">
+              <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="twitter_button"><%= image_tag "twitter.png" %></a>
+            </p>
+            <p class="eval_mobile">
+              <a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="social_button"><%= image_tag "facebook.png" %></a>
+            </p>
           </div>
         </div>
       </td>
       <td valign="top" class="article_show_center">
         <div id="article_show_center">
           <p class="article_show_center_header">
-            <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
-            <%= image_tag "profile.png" if @article.user.picture.blank? %>
+            <%= image_tag @article.picture.first.url if @article.picture.first.present? %>
           </p>
           <p class='article_show_center_date'>
             <%= @article.updated_at.strftime("%Y/%m/%d") %>
@@ -25,8 +37,8 @@
             <%= @article.title %>
           </p>
             <p class='article_show_center_category'>
-              <% @article.tag_list.each do |f| %>
-              <%= link_to f, articles_path(category: f), { :class => "article_category" } %>
+              <% @article.tag_list.each do |tag| %>
+              <%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %>
               <% end %>
             </p>
             <div id="article_show_center_all_body">
@@ -51,9 +63,11 @@
                 <strong>
                   <%= link_to "#{@article.user.username}", user_path(@article.user) %>
                 </strong>
-                <div id="article_user_follow_form">
-                  <%= render 'users/follow_form' %>
-                </div>
+                <% if user_signed_in? %>
+                  <div id="article_user_follow_form">
+                    <%= render 'users/follow_form' %>
+                  </div>
+                <% end %>
               </td>
               </tr>
               <tr>
@@ -72,7 +86,7 @@
             <% end %>
             <% if @article.article_memos.present? %>
             <div id="sidebar_article_memo">
-              <% @article.article_memos.limit(7).each do |memo| %>
+              <% public_article_memo(@article, 7).each do |memo| %>
                 <ul>
                   <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
                 </ul>
@@ -84,9 +98,174 @@
       </td>
     </tr>
     <tr>
-      <td class="article_comment_side"></td>
+      <td class="article_comment_side_left"></td>
       <td>
 
+        <table class=each_other_article>
+          <tr>
+            <% if @other_articles.first.present? %>
+            <td valign="top" class="other_article">
+              <%= link_to article_path(id: @other_articles.first.id) do %>
+              <div id="test">
+              <p class="other_articles_picture"><%= image_tag @other_articles.first.user.picture.url %></p>
+              <p class="other_articles_title"><object><%= link_to @other_articles.first.title, article_path(id: @other_articles.first) %></object></p>
+              <table class="other_article_info">
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    <table class="other_article_eval">
+                      <tr>
+                        <td class=article_list_comments>
+                          <p class='article_list_comments'>
+                            <%= image_tag "comment1.png" %>
+                          </p>
+                        <td>
+                        <td class="article_list_comments">
+                            <%= @other_articles.first.article_comments.count %>
+                        <td>
+                        <td>
+                          <p class='article_list_likes'>
+                            <%= image_tag "create_like.png"%>
+                          </p>
+                        <td>
+                        <td class="article_list_likes">
+                            <%= @other_articles.first.likes.count %>
+                        <td>
+                      <tr>
+                    </table>
+                    </td>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <% end %>
+            </td>
+            <% end %>
+            <td class="gap">
+            </td>
+            <% if @other_articles.second.present? %>
+            <td valign="top" class="other_article">
+              <%= link_to article_path(id: @other_articles.second.id) do %>
+              <div id="test">
+              <p class="other_articles_picture"><%= image_tag @other_articles.second.user.picture.url %></p>
+              <p class="other_articles_title"><object><%= link_to @other_articles.second.title, article_path(id: @other_articles.second) %></object></p>
+              <table class="other_article_info">
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    <table class="other_article_eval">
+                      <tr>
+                        <td class=article_list_comments>
+                          <p class='article_list_comments'>
+                            <%= image_tag "comment1.png" %>
+                          </p>
+                        <td>
+                        <td class="article_list_comments">
+                            <%= @other_articles.second.article_comments.count %>
+                        <td>
+                        <td>
+                          <p class='article_list_likes'>
+                            <%= image_tag "create_like.png"%>
+                          </p>
+                        <td>
+                        <td class="article_list_likes">
+                            <%= @other_articles.second.likes.count %>
+                        <td>
+                      <tr>
+                    </table>
+                    </td>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <% end %>
+            </td>
+            <% end %>
+            <td class="gap">
+            </td>
+            <% if @other_articles.third.present? %>
+            <td valign="top" class="other_article">
+              <div id="test">
+              <%= link_to article_path(id: @other_articles.third.id) do %>
+
+              <p class="other_articles_picture"><%= image_tag @other_articles.third.user.picture.url %></p>
+              <p class="other_articles_title"><object><%= link_to @other_articles.third.title, article_path(id: @other_articles.third) %></object></p>
+                    <table class="other_article_eval">
+                      <tr>
+                        <td class=article_list_comments>
+                          <p class='article_list_comments'>
+                            <%= image_tag "comment1.png" %>
+                          </p>
+                        <td>
+                        <td class="article_list_comments">
+                            <%= @other_articles.third.article_comments.count %>
+                        <td>
+                        <td>
+                          <p class='article_list_likes'>
+                            <%= image_tag "create_like.png"%>
+                          </p>
+                        <td>
+                        <td class="article_list_likes">
+                            <%= @other_articles.third.likes.count %>
+                        <td>
+                      <tr>
+                    </table>
+            <% end %>
+                </div>
+            </td>
+            <% end %>
+          </tr>
+        </table>
+
+        <div id="user_info_mobile">
+          <table class="sidebar_user_index">
+            <tr>
+            <td>
+              <p class='article_user_picture'>
+                <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+              </p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+              <strong>
+                <%= link_to "#{@article.user.username}", user_path(@article.user) %>
+              </strong>
+              <% if user_signed_in? %>
+              <% end %>
+            </td>
+            </tr>
+            <tr>
+            <td class="article_user_description">
+              <%= @article.user.description %>
+            </td>
+            </tr>
+        </table>
+      </div>
+
+        <div id="article_memos">
+          <p class="article_show_title">公開されているメモ</p>
+          <% if @article.article_memos.present? %>
+          <% @article.article_memos.limit(5).each do |memo| %>
+          <li><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
+          <% end %>
+          <% else %>
+          <p>公開れているメモはありません</p>
+          <% end %>
+        </div>
+
+        <div id="related_articles">
+          <p class="article_show_title">関連記事</p>
+          <% if related_articles(@article).present? %>
+          <% related_articles(@article).each do |article| %>
+          <li><%= link_to article.title, article_path(article) %></li>
+          <% end %>
+          <% else %>
+          <p>関連する記事はありません</p>
+          <% end %>
+        </div>
         <% if  @article.article_comments.any? %>
 
             <% @article.article_comments.each do |comment| %>
@@ -95,11 +274,11 @@
                 <table>
                   <tr>
                     <td valign="top" class="popular_user_picture">
-                      <p class="popular_user"><%= image_tag comment_user(comment).picture.url %></p>
+                      <p class="comment_user"><%= image_tag comment_user(comment).picture.url %></p>
                     </td>
                     <td valign="top" class="popular_user_main_element">
-                      <p class="popular_user"><strong><%= link_to comment_user(comment).username, user_path(comment_user(comment)) %></strong></p>
-                      <p class="popular_user"><%= link_to "@#{comment_user(comment).profile_id}", user_path(comment_user(comment)) %></p>
+                      <p class="comment_user"><strong><%= link_to comment_user(comment).username, user_path(comment_user(comment)) %></strong></p>
+                      <p class="comment_user"><%= link_to "@#{comment_user(comment).profile_id}", user_path(comment_user(comment)) %></p>
                     </td>
                   </tr>
                 </table>
@@ -111,7 +290,7 @@
                             article_article_comment_path(@article, comment),
                             method: :delete,
                             class: 'article_comment_delete',
-                                data: { confirm: 'Sure?' }%>
+                                data: { confirm: "削除してもよろしいですか？" }%>
                   </div>
                   <% end %>
                 <% end %>
@@ -123,8 +302,8 @@
           <% if user_signed_in? %>
             <div id="comment_editor">
               <ul class="tab">
-                <li class="select">タブ1</li>
-                <li>タブ2</li>
+                <li class="select">編集</li>
+                <li>プレビュー</li>
               </ul>
               <ul class="content">
                   <li>
@@ -143,6 +322,6 @@
             <% end %>
 
       </td>
-      <td class="article_comment_side"></td>
+      <td class="article_comment_side_right"></td>
     </tr>
   </table>

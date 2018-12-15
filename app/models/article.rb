@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   has_many :categories, :through => :article_categories, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :stocks, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :article_memos, dependent: :destroy
   belongs_to :user
@@ -33,6 +34,10 @@ class Article < ApplicationRecord
 
   def like_user(user_id)
     likes.find_by(user_id: user_id)
+  end
+
+  def stock_user(user_id)
+    stocks.find_by(user_id: user_id)
   end
 
   def search(keyword)

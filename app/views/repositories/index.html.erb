@@ -1,0 +1,40 @@
+
+
+<div id="setting_links_mobile">
+  <%= render :partial => 'devise/registrations/links' %>
+</div>
+<table class="user_setting_table">
+  <tr>
+    <td valign="top" class="user_setting_sidebar">
+      <div id="user_setting_sidebar">
+        <%= render :partial => 'devise/registrations/links' %>
+      </div>
+    </td>
+    <td class="gap_mobile">
+    </td>
+    <td valign="top">
+      <div id="all_repo">
+      <% @repositories.each do |repository| %>
+      <div id="repo_list">
+        <table class="github_repo_list">
+          <tr>
+            <td>
+              <p class="repo_name">
+                <strong><%= repository.name %></strong>
+              </p>
+            </td>
+            <td class="github_status_button">
+              <div>
+                <div id="repositories_buttons_<%= repository.id %>">
+                 <%= render partial: 'repository', locals: {repository: repository} %>
+                </div>
+              </div>
+            </td>
+            </tr>
+          </table>
+      </div>
+      <% end %>
+      </div>
+    </td>
+  </tr>
+</table>

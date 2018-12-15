@@ -9,6 +9,11 @@
 <% else %>
 <p class="setting_link"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
 <% end %>
+<% if request.url.end_with?("repositories") %>
+<p class="setting_link_clicked"><%= link_to "レポジトリの公開", "/repositories"%></p>
+<% else %>
+<p class="setting_link"><%= link_to "レポジトリの公開", "/repositories"%></p>
+<% end %>
 <% if request.url == "#{main_url}/settings/integration" %>
 <p class="setting_link_clicked"><%= link_to "外部サービス連携", "/settings/integration" %></p>
 <% else %>

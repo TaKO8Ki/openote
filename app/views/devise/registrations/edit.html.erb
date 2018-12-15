@@ -1,3 +1,6 @@
+<div id="setting_links_mobile">
+<%= render :partial => 'devise/registrations/links' %>
+</div>
 <table class="user_setting_table">
   <tr>
     <td valign="top" class="user_setting_sidebar">
@@ -5,7 +8,7 @@
         <%= render 'links' %>
       </div>
     </td>
-    <td class="gap">
+    <td class="gap_mobile">
     </td>
     <td valign="top" class="user_setting_main">
       <div id="user_setting_main">
@@ -16,37 +19,16 @@
             <p class="user_edit_title">プロフィール画像</p>
             <p class="user_edit_title">
               <div id="user_edit_form_picture">
-                  <%= image_tag current_user.picture.url %>
+                <% if current_user.picture.present? %>
+                <%= image_tag current_user.picture.url %>
+                <% else%>
+                <%= image_tag "profile.png" %>
+                <% end %>
               </div>
               <div id="user_edit_form_picture">
                 <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture", id: "post_image" %>
               </div>
           </p>
-
-          <style type="text/css">div#preview img {width: 70px;border-radius: 50%;border: solid 2px #ccc;}</style>
-
-          <script>
-          function Filepreview(evt){
-           var files = evt.target.files;
-
-          document.getElementById('preview').innerHTML =""
-
-           for(var i = 0; i < 3;i++){
-           var reader = new FileReader();
-           var f = files[i]
-           reader.onload = (function(){
-           return function(e) {
-           var span = document.createElement('span');
-           span.innerHTML= "<img src='" +e.target.result + "'>";
-           document.getElementById('preview').insertBefore(span,null);
-           };
-           })(f);
-           reader.readAsDataURL(f);
-           }
-          }
-          document.getElementById('post_image').addEventListener('change',Filepreview,false);
-          </script>
-
 
           <div id="user_edit_form">
              <p class="user_edit_title">ユーザーネーム</p>
@@ -64,6 +46,11 @@
           </div>
 
           <div id="user_edit_form">
+              <p class="user_edit_title">各種リンク</p>
+              <%= f.text_field :link, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
+          </div>
+
+          <div id="user_edit_form">
               <p class="user_edit_title">自己紹介文</p>
               <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "edit_form_description" %>
           </div>
@@ -76,9 +63,8 @@
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
         </div>
-
-<div id="user_setting_main">
-  <strong>パスワードの変更</strong>
+        <div id="user_setting_bottom">
+          <strong>パスワードの変更</strong>
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |t| %>
             <div id="user_edit_form">
                   <p class="user_edit_title">パスワード</p>
@@ -92,7 +78,7 @@
               <%= t.submit "変更する", :class => "edit_user_password" %>
             </div>
           <% end %>
-      </div>
-    </td>
-  </tr>
-</table>
+        </div>
+      </td>
+    </tr>
+  </table>

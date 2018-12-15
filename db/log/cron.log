@@ -1,0 +1,474 @@
+Running via Spring preloader in process 22660
+Running via Spring preloader in process 22758
+Running via Spring preloader in process 24085
+Running via Spring preloader in process 27227
+Running via Spring preloader in process 30331
+Running via Spring preloader in process 31999
+Running via Spring preloader in process 34597
+Running via Spring preloader in process 38129
+Running via Spring preloader in process 40219
+Running via Spring preloader in process 42553
+Running via Spring preloader in process 43628
+Running via Spring preloader in process 47482
+Running via Spring preloader in process 50691
+Running via Spring preloader in process 2215
+Running via Spring preloader in process 4119
+Running via Spring preloader in process 6117
+Running via Spring preloader in process 8988
+Running via Spring preloader in process 12047
+Running via Spring preloader in process 14994
+Running via Spring preloader in process 16136
+Running via Spring preloader in process 18769
+Running via Spring preloader in process 21862
+Running via Spring preloader in process 24947
+Running via Spring preloader in process 27034
+Running via Spring preloader in process 29286
+Running via Spring preloader in process 31464
+Running via Spring preloader in process 32826
+Running via Spring preloader in process 33184
+Running via Spring preloader in process 34665
+Running via Spring preloader in process 36363
+Running via Spring preloader in process 37802
+Running via Spring preloader in process 40240
+Running via Spring preloader in process 42471
+Running via Spring preloader in process 44822
+Running via Spring preloader in process 47638
+Running via Spring preloader in process 61721
+Running via Spring preloader in process 62649
+Running via Spring preloader in process 73383
+Running via Spring preloader in process 76680
+Running via Spring preloader in process 78387
+Running via Spring preloader in process 82366
+Running via Spring preloader in process 84058
+Running via Spring preloader in process 86270
+Running via Spring preloader in process 88190
+Running via Spring preloader in process 90132
+Running via Spring preloader in process 1774
+Running via Spring preloader in process 2874
+Running via Spring preloader in process 3904
+Running via Spring preloader in process 4681
+Running via Spring preloader in process 7115
+Running via Spring preloader in process 2334
+Running via Spring preloader in process 3896
+/Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:181:in `rbuf_fill': Net::ReadTimeout (Net::ReadTimeout)
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:157:in `readuntil'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:167:in `readline'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:950:in `recv_response'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:935:in `block in getok'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:960:in `critical'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:933:in `getok'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:822:in `starttls'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:560:in `do_start'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:518:in `start'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:109:in `start_smtp_session'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:100:in `deliver!'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:2160:in `do_delivery'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `block in deliver'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:560:in `block in deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `block in instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:558:in `deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `deliver'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/delegate.rb:83:in `method_missing'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `block in <main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `eval'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/command.rb:27:in `run'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/invocation.rb:126:in `invoke_command'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor.rb:387:in `dispatch'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command/base.rb:65:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command.rb:46:in `invoke'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands.rb:18:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `block in require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/loaded_features_index.rb:65:in `register'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:20:in `require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:29:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `block in require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/bin/rails:9:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `block in load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `load'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from -e:1:in `<main>'
+Running via Spring preloader in process 5956
+Running via Spring preloader in process 8020
+Running via Spring preloader in process 11914
+Running via Spring preloader in process 13744
+Running via Spring preloader in process 16242
+Running via Spring preloader in process 23590
+Running via Spring preloader in process 26281
+Running via Spring preloader in process 44526
+Running via Spring preloader in process 47796
+Running via Spring preloader in process 3100
+Running via Spring preloader in process 3940
+/Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:539:in `initialize': execution expired (Net::OpenTimeout)
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:539:in `open'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:539:in `tcp_socket'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:549:in `block in do_start'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/timeout.rb:103:in `timeout'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:548:in `do_start'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:518:in `start'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:109:in `start_smtp_session'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:100:in `deliver!'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:2160:in `do_delivery'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `block in deliver'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:560:in `block in deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `block in instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:558:in `deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `deliver'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/delegate.rb:83:in `method_missing'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `block in <main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `eval'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/command.rb:27:in `run'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/invocation.rb:126:in `invoke_command'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor.rb:387:in `dispatch'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command/base.rb:65:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command.rb:46:in `invoke'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands.rb:18:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `block in require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/loaded_features_index.rb:65:in `register'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:20:in `require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:29:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `block in require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/bin/rails:9:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `block in load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `load'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from -e:1:in `<main>'
+Running via Spring preloader in process 4623
+Running via Spring preloader in process 5878
+Running via Spring preloader in process 6857
+Running via Spring preloader in process 7733
+Running via Spring preloader in process 11623
+Running via Spring preloader in process 14150
+Running via Spring preloader in process 15590
+Running via Spring preloader in process 17354
+Running via Spring preloader in process 19125
+Running via Spring preloader in process 22521
+Running via Spring preloader in process 24833
+Running via Spring preloader in process 26479
+Running via Spring preloader in process 28159
+Running via Spring preloader in process 29604
+Running via Spring preloader in process 31425
+Running via Spring preloader in process 31654
+Running via Spring preloader in process 33384
+Running via Spring preloader in process 34876
+Running via Spring preloader in process 2440
+Running via Spring preloader in process 4095
+Running via Spring preloader in process 7339
+Running via Spring preloader in process 9052
+Running via Spring preloader in process 10405
+Running via Spring preloader in process 12125
+Running via Spring preloader in process 15207
+Running via Spring preloader in process 16730
+Running via Spring preloader in process 18155
+Running via Spring preloader in process 20787
+Running via Spring preloader in process 24565
+Running via Spring preloader in process 29680
+Running via Spring preloader in process 33406
+Running via Spring preloader in process 35339
+Running via Spring preloader in process 42456
+Running via Spring preloader in process 47096
+Running via Spring preloader in process 48916
+Running via Spring preloader in process 52114
+Running via Spring preloader in process 72325
+Running via Spring preloader in process 12304
+/Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:981:in `check_auth_response': 534-5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbvr (Net::SMTPAuthenticationError)
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:736:in `auth_plain'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:728:in `authenticate'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:565:in `do_start'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:518:in `start'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:109:in `start_smtp_session'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:100:in `deliver!'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:2160:in `do_delivery'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `block in deliver'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:560:in `block in deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `block in instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:558:in `deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `deliver'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/delegate.rb:83:in `method_missing'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `block in <main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `eval'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/command.rb:27:in `run'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/invocation.rb:126:in `invoke_command'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor.rb:387:in `dispatch'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command/base.rb:65:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command.rb:46:in `invoke'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands.rb:18:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `block in require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/loaded_features_index.rb:65:in `register'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:20:in `require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:29:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `block in require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/bin/rails:9:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `block in load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `load'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from -e:1:in `<main>'
+Running via Spring preloader in process 14906
+Running via Spring preloader in process 21039
+Running via Spring preloader in process 26065
+Running via Spring preloader in process 28066
+Running via Spring preloader in process 47924
+Running via Spring preloader in process 2181
+Running via Spring preloader in process 3713
+Running via Spring preloader in process 5394
+Running via Spring preloader in process 6833
+/Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:181:in `rbuf_fill': Net::ReadTimeout (Net::ReadTimeout)
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:157:in `readuntil'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/protocol.rb:167:in `readline'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:950:in `recv_response'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:912:in `block in data'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:960:in `critical'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:898:in `data'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:659:in `block in send_message'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:854:in `rcptto_list'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:659:in `send_message'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp_connection.rb:54:in `deliver!'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:101:in `block in deliver!'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/net/smtp.rb:519:in `start'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:109:in `start_smtp_session'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/network/delivery_methods/smtp.rb:100:in `deliver!'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:2160:in `do_delivery'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `block in deliver'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:560:in `block in deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `block in instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/notifications.rb:168:in `instrument'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/actionmailer-5.2.1/lib/action_mailer/base.rb:558:in `deliver_mail'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/mail-2.7.0/lib/mail/message.rb:260:in `deliver'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/delegate.rb:83:in `method_missing'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `block in <main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:41:in `each'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `eval'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands/runner/runner_command.rb:41:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/command.rb:27:in `run'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor/invocation.rb:126:in `invoke_command'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/thor-0.20.0/lib/thor.rb:387:in `dispatch'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command/base.rb:65:in `perform'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/command.rb:46:in `invoke'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/railties-5.2.1/lib/rails/commands.rb:18:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:21:in `block in require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/loaded_features_index.rb:65:in `register'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:20:in `require_with_bootsnap_lfi'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:29:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `block in require'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:287:in `require'
+	from /Users/tako8ki/Documents/GitHub/openote/bin/rails:9:in `<main>'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.3.2/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:50:in `load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `block in load'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:253:in `load_dependency'
+	from /Users/tako8ki/Documents/GitHub/openote/vendor/bundle/ruby/2.5.0/gems/activesupport-5.2.1/lib/active_support/dependencies.rb:281:in `load'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from /Users/tako8ki/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems/core_ext/kernel_require.rb:59:in `require'
+	from -e:1:in `<main>'
+Running via Spring preloader in process 7915
+Running via Spring preloader in process 11144
+Running via Spring preloader in process 13625
+Running via Spring preloader in process 17108
+Running via Spring preloader in process 3282
+Running via Spring preloader in process 7862
+Running via Spring preloader in process 8741
+Running via Spring preloader in process 10525
+Running via Spring preloader in process 11340
+Running via Spring preloader in process 12132
+Running via Spring preloader in process 2194
+Running via Spring preloader in process 3778
+Running via Spring preloader in process 2300
+Running via Spring preloader in process 2920
+Running via Spring preloader in process 4088
+Running via Spring preloader in process 5164
+Running via Spring preloader in process 7138
+2018-11-13 20:00 fsevent_watch[2296] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2294] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2292] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2298] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2290] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2288] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2291] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2295] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2295] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2288] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2286] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2286] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2293] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2289] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2297] (FSEvents.framework) 2018-11-13 20:00 fsevent_watch[2293] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2289] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2297] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2294] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2296] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-11-13 20:00 fsevent_watch[2292] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2290] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2298] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-11-13 20:00 fsevent_watch[2291] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+Running via Spring preloader in process 1866
+Running via Spring preloader in process 2940
+Running via Spring preloader in process 4158
+Running via Spring preloader in process 6052
+Running via Spring preloader in process 7241
+Running via Spring preloader in process 9017
+Running via Spring preloader in process 9297
+Running via Spring preloader in process 3268
+Running via Spring preloader in process 1823
+Running via Spring preloader in process 2868
+Running via Spring preloader in process 3562
+Running via Spring preloader in process 4232
+Running via Spring preloader in process 6724
+Running via Spring preloader in process 7944
+Running via Spring preloader in process 9340
+Running via Spring preloader in process 11295
+Running via Spring preloader in process 12340
+Running via Spring preloader in process 13582
+Running via Spring preloader in process 15756
+Running via Spring preloader in process 17670
+Running via Spring preloader in process 20200
+Running via Spring preloader in process 21661
+Running via Spring preloader in process 23869
+Running via Spring preloader in process 25494
+Running via Spring preloader in process 27091
+Running via Spring preloader in process 29938
+Running via Spring preloader in process 31465
+Running via Spring preloader in process 35545
+Running via Spring preloader in process 39043
+Running via Spring preloader in process 41058
+Running via Spring preloader in process 42927
+Running via Spring preloader in process 44336
+Running via Spring preloader in process 45670
+Running via Spring preloader in process 46856
+Running via Spring preloader in process 50792
+Running via Spring preloader in process 51620
+Running via Spring preloader in process 53483
+Running via Spring preloader in process 55687
+Running via Spring preloader in process 57484
+Running via Spring preloader in process 59286
+Running via Spring preloader in process 61330
+Running via Spring preloader in process 61635
+Running via Spring preloader in process 62483
+Running via Spring preloader in process 64221
+Running via Spring preloader in process 66173
+Running via Spring preloader in process 68219
+Running via Spring preloader in process 70049
+Running via Spring preloader in process 71068
+Running via Spring preloader in process 71930
+Running via Spring preloader in process 72500
+Running via Spring preloader in process 74035
+Running via Spring preloader in process 74721
+Running via Spring preloader in process 75107
+Running via Spring preloader in process 76843
+Running via Spring preloader in process 79173
+Running via Spring preloader in process 80376
+Running via Spring preloader in process 82005
+Running via Spring preloader in process 82943
+Running via Spring preloader in process 84101
+Running via Spring preloader in process 85137
+Running via Spring preloader in process 86718
+Running via Spring preloader in process 87783
+Running via Spring preloader in process 88517
+Running via Spring preloader in process 91557
+Running via Spring preloader in process 92404
+Running via Spring preloader in process 93181
+Running via Spring preloader in process 93998
+Running via Spring preloader in process 2534
+Running via Spring preloader in process 4847
+Running via Spring preloader in process 5865
+Running via Spring preloader in process 8816
+Running via Spring preloader in process 11593
+Running via Spring preloader in process 13328
+Running via Spring preloader in process 16803
+Running via Spring preloader in process 18999
+Running via Spring preloader in process 20206
+Running via Spring preloader in process 22134
+Running via Spring preloader in process 25948
+Running via Spring preloader in process 28032
+Running via Spring preloader in process 32659
+Running via Spring preloader in process 34534
+Running via Spring preloader in process 36208
+Running via Spring preloader in process 39190
+Running via Spring preloader in process 41009
+Running via Spring preloader in process 41504
+Running via Spring preloader in process 42615
+Running via Spring preloader in process 43811
+Running via Spring preloader in process 45235
+Running via Spring preloader in process 45699
+Running via Spring preloader in process 47225
+Running via Spring preloader in process 49081
+Running via Spring preloader in process 50120
+Running via Spring preloader in process 51340
+Running via Spring preloader in process 53971
+Running via Spring preloader in process 55010
+Running via Spring preloader in process 56326
+Running via Spring preloader in process 57962
+Running via Spring preloader in process 60108
+Running via Spring preloader in process 63520
+Running via Spring preloader in process 65497
+2018-12-10 19:37 fsevent_watch[2530] (FSEvents.framework) 2018-12-10 19:37 fsevent_watch[2529] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2528] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)2018-12-10 19:37 fsevent_watch[2524] (FSEvents.framework) 2018-12-10 19:37 fsevent_watch[2532] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)2018-12-10 19:37 fsevent_watch[2529] (FSEvents.framework) 
+2018-12-10 19:37 fsevent_watch[2527] (FSEvents.framework) 2018-12-10 19:37 fsevent_watch[2523] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2523] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2524] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2526] (FSEvents.framework) 2018-12-10 19:37 fsevent_watch[2522] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2528] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2533] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2530] (FSEvents.framework) 
+2018-12-10 19:37 fsevent_watch[2527] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2521] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2521] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2531] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2522] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2525] (FSEvents.framework) server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2531] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2532] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+2018-12-10 19:37 fsevent_watch[2525] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+server_gone_StreamRef_callback: ERROR: FSEvents_connect() => Unknown service name (1102)
+2018-12-10 19:37 fsevent_watch[2526] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+
+2018-12-10 19:37 fsevent_watch[2533] (FSEvents.framework) server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+
+server_gone_StreamRef_callback: failed to reconnect to server! (kr 0x44e)
+Running via Spring preloader in process 3650
+Running via Spring preloader in process 5882

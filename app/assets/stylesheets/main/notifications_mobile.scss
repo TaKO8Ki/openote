@@ -1,0 +1,25 @@
+@media (max-width: 768px) {
+  table.notifications_table {
+    width: 100%;
+  }
+
+  td.notification {
+    box-shadow: none;
+  }
+
+  td.notification_status_right a {
+    font-size: 15px;
+  }
+
+  td.notification_status_clicked_left a {
+    font-size: 15px;
+  }
+
+  td.notification_status_left a {
+    font-size: 15px;
+  }
+
+  td.notification_status_clicked_right a {
+    font-size: 15px;
+  }
+}

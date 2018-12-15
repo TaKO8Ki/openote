@@ -36,6 +36,9 @@
   height: 70px;
 }
 
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
+
 table.notifications_table {
   margin: 0 auto;
   width: 800px;
@@ -105,12 +108,12 @@ td.notification_status_clicked_right {
 
 td.notification_status_clicked_left a {
   @include select_status_button;
-  background: #FF4508;
+  background: $baseColor;
 }
 
 td.notification_status_clicked_right a {
   @include select_status_button;
-  background: #FF4508;
+  background: $baseColor;
 }
 
 div#notifications_list a{

@@ -1,0 +1,74 @@
+@media (max-width: 768px) {
+  table.user_setting_table {
+    width: 100%;
+  }
+
+  td.user_setting_sidebar {
+    display: none;
+  }
+
+  td.user_setting_main {
+    width: 100%;
+  }
+
+  td.gap_mobile {
+    display: none;
+  }
+
+  div#user_setting_main {
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  div#user_setting_bottom {
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  table.user_show_table {
+    width: 100%;
+  }
+
+  div#sidebar_user_show {
+    border: none;
+    width: 100%;
+    box-shadow: 0.5px 0.5px 10px #ccc;
+    border-radius: 5px;
+    padding-bottom: 10px;
+  }
+
+  td.user_show_profile {
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  td.user_show_left {
+    display: none;
+  }
+
+  td.user_show_right {
+    display: none;
+  }
+
+  table.following_user {
+    width: 95%;
+  }
+
+  div#user_each_repo {
+    box-shadow: none;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  div#setting_links_mobile {
+    display: none;
+  }
+
+  #user_sub_info-open {
+    display: none;
+  }
+}

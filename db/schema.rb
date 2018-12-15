@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_120900) do
+ActiveRecord::Schema.define(version: 2018_12_14_092041) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_120900) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "public"
     t.index ["article_id"], name: "index_article_memos_on_article_id"
     t.index ["user_id"], name: "index_article_memos_on_user_id"
   end
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_120900) do
     t.integer "likes_count"
     t.string "status", default: "public"
     t.json "picture"
+    t.integer "stocks_count"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -126,6 +128,16 @@ ActiveRecord::Schema.define(version: 2018_11_22_120900) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "repositories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "status", default: "public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "repo_id"
+  end
+
   create_table "social_profiles", force: :cascade do |t|
     t.integer "user_id"
     t.string "provider"
@@ -145,6 +157,16 @@ ActiveRecord::Schema.define(version: 2018_11_22_120900) do
     t.string "access_secret"
     t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true
     t.index ["user_id"], name: "index_social_profiles_on_user_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "user_id"], name: "index_stocks_on_article_id_and_user_id", unique: true
+    t.index ["article_id"], name: "index_stocks_on_article_id"
+    t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -208,6 +230,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_120900) do
     t.string "picture"
     t.text "description"
     t.string "profile_id"
+    t.string "link"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

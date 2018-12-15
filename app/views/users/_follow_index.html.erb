@@ -1,31 +1,34 @@
 <% if @users.any? %>
 
-<div id="follow_index">
 <% @users.each do |user| %>
-<table class="popular_user">
-  <tr>
-    <td valign="top" class="popular_user_picture">
-      <p class="popular_user">  <%= image_tag user.picture.url if user.picture.present? %></p>
-    </td>
-    <td valign="top" class="popular_user_main_element">
-      <p class="popular_user"><%= link_to user.username, user_path(user) %></p>
-      <p class="popular_user"><%= link_to user.username, user_path(user) %></p>
-    </td>
-  </tr>
+  <table class="following_user">
+    <tr>
+      <td valign="top" class="following_user_picture">
+        <p class="following_user">
+           <% if user.picture.present? %>
+          <%= image_tag user.picture.url %>
+          <% else %>
+          <%= image_tag "profile.png" %>
+          <% end %>
+        </p>
+      </td>
+      <td valign="top" class="following_user_main_element">
+        <p class="following_user"><strong><%= link_to user.username, user_path(user) %></strong></p>
+        <p class="following_user"><%= link_to "@#{user.profile_id}", user_path(user) %></p>
+      </td>
+    </tr>
   </table>
 <% end %>
-</div>
+
 
 <% else %>
 
-<div id="follow_index">
-<table class="popular_user">
+<table class="following_user">
   <tr>
-    <td valign="top" class="popular_user_picture">
-      no followers
+    <td>
+      <p class="no_followers"><%= @nobody %></p>
     </td>
   </tr>
 </table>
-</div>
 
 <% end %>

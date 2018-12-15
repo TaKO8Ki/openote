@@ -46,6 +46,17 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     return renew_article.gsub("\n    - ", "\n     - ")
   end
 
+  def link(link, title, content)
+    if link.nil?
+      return content
+    end
+    output = '<a href="' + link + '"' + 'class="markdown_link"'
+    if title.present?
+      output += ' title="' + title + '"'
+    end
+    output += '>' + content + '</a>'
+    return output
+  end
 
 
 

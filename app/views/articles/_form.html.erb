@@ -16,6 +16,10 @@
         <%= article.text_field :service_url, :placeholder => "service_url", class: "article_service" %>
     </div>
 
+    <div id='article_form_service'>
+        <%= article.file_field :picture, :placeholder => "service_url", class: "article_service", :multiple => true %>
+    </div>
+
 
     <div id="article_form_category">
         <ul id='articl_tags'>

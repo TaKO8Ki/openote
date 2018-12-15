@@ -1,12 +1,36 @@
-@media (max-width: 768px) {
-  input.search_form {
-    max-width: 200px;
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
 }
+
+@media (min-width: 768px) {
+  table.eval_mobile {
+    display: none;
+  }
+
+  div#article_memos {
+    display: none;
+  }
+
+  div#user_info_mobile {
+    display: none;
+  }
+
+  div#hot_article_2 {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
 
 /*記事詳細*/
 
   table.article_show_table {
     width: 100%;
+    margin-top: -20px;
+    font-size: 15px;
+    border-spacing: 0;
   }
 
   td.article_show_right {
@@ -14,20 +38,41 @@
   }
 
   td.article_show_left {
-    display: none;
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    right: 65px;
+  }
+
+  div#sign_up_form {
+    width: calc(100% + 10px);
+    margin-left: 5px;
+  }
+
+  div#article_left_buttons {
+    top: 0;
+    padding-top: 0px;
+  }
+
+  .eval_mobile {
+    display: table-cell;
   }
 
   td.article_show_center {
     width: 100%;
   }
 
-  td.article_comment_side {
+  p.hot_articles_picture img {
+    height: 150px;
+  }
+
+  td.article_comment_side_right {
     display: none;
   }
 
   div#article_show_center p.article_show_center_title {
     font-size: 30px;
-    font-style: bold;
+    font-weight: bold;
   }
 
   div#article_show_center p.article_show_center_header img {
@@ -39,7 +84,7 @@
     object-fit: cover;
   }
 
-  td.test {
+  td.header_mobile {
     display: none;
   }
 
@@ -52,33 +97,89 @@ div#article_show_center {
     border-radius: 0;
   }
 
+  table.each_other_article {
+    display: none;
+  }
+
+  div#user_info_mobile {
+    background-color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  div#related_articles {
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  div#article_memos {
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  p.comment_user img {
+    width: 25px;
+  }
+
+  div#comment_editor {
+    box-shadow: none;
+    border-radius: 0px;
+  }
+
+  .tab {
+    border-radius: 0px;
+  }
+
   div#article_show_comment {
     box-shadow: 0px 0px 0px 0px;
     border: 0;
-  }
-
-  div#comment_preview {
-    display: none;
+    font-size: 15px;
   }
 
 /*記事一覧*/
   table.article_index_table {
-    width: 99%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  td.article_index_left {
+    padding-right: 0px;
   }
 
   table.each_hot_article {
     border-spacing: 0;
     display: inline-block;
     margin: 0 auto;
-    width: calc(100% + 20px);
-    padding-left: 5px;
+    width: 100%;
     margin-bottom: 5px;
+    padding-right: 0px;
+}
+
+td.hot_article_1 {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+
+div#hot_article_1 {
+  background-color: #fff;
+  margin-bottom: 10px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+}
+
+div#hot_article_2 {
+  background-color: #fff;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
 }
 
   div#article_list div#article_list_bottom {
-    width: calc(100% - 30px);
     padding: 15px 20px;
-    margin-left: 5px;
 }
 
 div#article_list div h2 {
@@ -101,6 +202,14 @@ td.each_hot_article {
 
   td.article_index_right {
     display: none;
+}
+
+input.article_submit_button {
+  font-size: 13px;
+}
+
+input.article_submit_as_draft_button {
+  font-size: 13px;
 }
 
 }

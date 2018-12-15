@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'dropzonejs-rails'
 
+gem 'devise-i18n'
+
+gem 'devise-i18n-views'
+
 gem 'remotipart'
 
 ruby '2.5.1'

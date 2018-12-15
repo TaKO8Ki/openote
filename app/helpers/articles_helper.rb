@@ -39,4 +39,45 @@ module ArticlesHelper
   def tag_articles_ranking(tag)
     articles_tagged_with_each_tag = Article.tagged_with(tag).order("created_at DESC").limit(5).order("likes_count DESC")
   end
+
+  def public_article_memo(article, limit)
+    article.article_memos.where(status: "public").limit(limit)
+  end
+
+  def tags_ranking_for_a_last_week
+    now = Time.current
+    articles_for_this_week = Article.where("created_at > ?", now.beginning_of_week)
+    all_articles_tags = []
+    articles_for_this_week.each do |article|
+      all_articles_tags.push(article.tag_list)
+    end
+    all_articles_tags.flatten!
+
+    tags_count = {}
+    all_articles_tags.each do |tag|
+      if tags_count[tag] == nil
+        tags_count[tag] = 1
+      else
+        tags_count[tag] += 1
+      end
+    end
+    tags_ranking = tags_count.sort_by{ |_, v| -v }
+    return tags_ranking
+  end
+
+  def hot_tags
+    hot_tags = tags_ranking_for_a_last_week[0..2]
+  end
+
+  def related_articles(article)
+    article_tags_random = article.tag_list.sample(3)
+    related_articles = []
+    article_tags_random.each do |tag|
+      articles = Article.tagged_with(tag).sort_in_created_at_order("DESC").search_with_status("public").limit(2)
+      related_articles += articles
+    end
+    return related_articles
+  end
+
+
 end

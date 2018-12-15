@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+
+  <% unless article.stock_user(current_user.id).blank? %>
+    <%= link_to article_stock_path(article_id: article.id ,id: article.stocks[0].id), method: :delete, remote: true do %>
+      <div class="vertical_stock">
+        <p class="destroy_stocks">
+          <%= image_tag "tag.png" %>
+        </p>
+      </div>
+    <% end %>
+    <p class="stocks_count_clicked">
+      <%= article.stocks_count %>
+    </p>
+  <% else %>
+    <%= link_to article_stocks_path(article.id), method: :post, remote: true do %>
+      <div class="vertical_stock">
+        <p class="create_stocks">
+          <%= image_tag "tag.png" %>
+        </p>
+      </div>
+    <% end %>
+    <p class="stocks_count">
+      <%= article.stocks_count %>
+    </p>
+  <% end %>
+
+<% else %>
+
+<% if article.stocks_count.present? %>
+  <% if article.stocks_count > 0 %>
+    <div class="vertical_stock">
+      <p class="create_stocks">
+        <%= image_tag "tag.png" %>
+      </p>
+    </div>
+    <p class="stocks_count">
+      <%= article.stocks_count %>
+    </p>
+  <% else %>
+    <div class="vertical_stock">
+      <p class="create_stocks">
+        <%= image_tag "tag.png" %>
+      </p>
+    </div>
+    <p class="stocks_count">
+      <%= article.stocks_count %>
+    </p>
+  <% end %>
+<% end %>
+
+<% end %>

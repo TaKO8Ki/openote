@@ -1,0 +1,1 @@
+$('#repositorys_buttons_<%= @user.id %>').html("<%= j(render partial: 'repositories/repository', locals: {user: @user}) %>");

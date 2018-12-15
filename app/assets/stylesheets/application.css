@@ -55,6 +55,10 @@
      text-decoration: none;
  }
 
+ div.timeout {
+   display: none;
+ }
+
 
 /*ヘッダー*/
  header{
@@ -64,11 +68,17 @@
    background-color: #FFC107;
    z-index: 100;
    top: 0;
-   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.35);
+   box-shadow: 0 2px 4px 0 #ccc;
  }
 
 table.header_menu {
   float: right;
+}
+
+div#all_header_menu {
+  width: 1200px;
+  margin: 0 auto;
+  height: 70px;
 }
 
  .notice {
@@ -85,8 +95,11 @@ table.header_menu {
 
  .alert {
    background-color: red;
-   color: #white;
    text-align: center;
+   width: 95%;
+   margin: 0 auto;
+   border-radius: 5px;
+   margin-bottom: 10px;
  }
 
 /*検索フォーム*/
@@ -130,6 +143,7 @@ p.search_picture img {
 
 p.signed_up {
   font-size: 14px;
+  margin-top: 24px;
 }
 
 
@@ -159,7 +173,6 @@ a.new_article_button {
 
 .nav_signed_out {
     display: table;
-    height: 70px;
     border-spacing: 5px 0;
 }
 .nav__item {
@@ -186,6 +199,7 @@ p.notification {
 p.picture_header {
   height: 70px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .picture_header img {
@@ -194,13 +208,15 @@ p.picture_header {
   border: 2px solid #ccc;
   margin-top: 15px;
   margin-bottom: 15.5px;
+  object-fit: cover;
+  height: 40px;
 }
 
 p.header_title {
   font-weight: bold;
   font-size:18px;
   border-bottom: solid 1px #ccc;
-
+  margin-bottom: 10px;
 }
 
 
@@ -247,7 +263,7 @@ p.header_title {
 
 .g_nav_c {
     position: absolute;
-    top: 69px;
+    top: 68px;
     right: 0;
     background: #fff;
     z-index: 10;
@@ -261,6 +277,7 @@ p.notification_picture {
   height: 50px;
   padding-top: 20px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 p.notification_picture img {
@@ -312,6 +329,7 @@ div#login_form_popuup {
 
 .popupModal1 {
   font-size: 14px;
+  margin-top: 24px;
 }
 
 .popupModal1 > input { /* ラジオボックス非表示 */
@@ -340,7 +358,7 @@ div#login_form_popuup {
     background-color: #fff;
     padding: 10px 20px;
     overflow: hidden;
-    border-top: 20px solid #efbb00;
+    border-top: 20px solid #FFC107;
 }
 @media (min-width: 768px) {/* PCのときはページの真ん中の600x600領域 */
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label + .modalPopup2{
@@ -348,7 +366,7 @@ div#login_form_popuup {
          width: 300px;
          height: 485.41019662497px;
          padding: 30px;
-         border-top: 20px solid #efbb00;
+         border-top: 20px solid #FFC107;
 
     }
 .popupModal1 > input:nth-child(1):checked + label + input:nth-child(3) + label + input:nth-child(5) + label {
@@ -421,10 +439,11 @@ max-width: 100%;
      padding-bottom: 10px;
      padding-top: 10px;
      margin: .5em 0;
-     border-bottom: 1px solid #ccc;
+     border-bottom: 2px solid #ccc;
      font-weight: bold;
      text-align: center;
      color: #333;
+     font-size: 20px;
 }
 
 .popupModal1 .modalMain {
@@ -436,7 +455,7 @@ max-width: 100%;
 
 /*フッター*/
 footer {
-  background-color: #ccc;
+  background-color: #f6f6f6;
   width: 100%;
   height: 100px;
   margin-top: 10px;
@@ -469,10 +488,192 @@ a {
 }
 
 
-/*モバイルレスポンシブ*/
+#nav-drawer {
+  position: relative;
+  margin-top: 7px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+/*チェックボックス等は非表示に*/
+.nav-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+#nav-open span:before {
+  bottom: -8px;
+}
+#nav-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用の薄黒カバー*/
+#nav-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+}
+
+#nav-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 75%;
+  max-width: 330px;
+  height: 100%;
+  background: #fff;
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+}
+
+
+#nav-input:checked ~ #nav-close {
+  display: block;
+  opacity: .5;
+}
+
+#nav-input:checked ~ #nav-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+
+@media (min-width: 768px) {
+  div#nav-drawer {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
+
+  header {
+    height: 50px;
+  }
+
+  body#all_contents {
+    margin-top: 70px;
+  }
+
+    div#all_header_menu {
+      width: auto;
+      height: 50px;
+    }
+
+    table.header_menu {
+      height: 50px;
+    }
+
+    table.search_form_table {
+      height: 50px;
+    }
+
+    p.notification_picture img {
+      width: 30px;
+      position: relative;
+      bottom: 12px;
+    }
+
+    td.g_nav {
+      display: none;
+    }
+
+  .g_nav {
+      height: 50px;
+
+  }
+
+  .g_nav_c {
+    right: -3px;
+    top: 48px;
+  }
+
   input.search_form {
     max-width: 200px;
+    margin-bottom: 3px;
+    padding-left: 5px;
 }
+
+p.search_picture img {
+  width: 20px;
+  margin-right: 2px;
+  margin-bottom: 3px;
+}
+
+table.current_user {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+div#sidebar_articles_index {
+  box-shadow: none;
+  background-color: transparent;
+  border-bottom: solid 1px #ccc;
+  border-radius: 0px;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+table.popular_user {
+  box-shadow: none;
+  background-color: transparent;
+  border-radius: 0px;
+}
+
+div#setting_mobile {
+  padding-left: 20px;
+  border-bottom: solid 1px #ccc;
+}
+
+.popupModal1 {
+    font-size: 8px;
+    margin-top: 16px;
+}
+
+p.signed_up {
+  font-size: 8px;
+  margin-top: 16px;
+}
+
+p.search_picture {
+  display: none;
+}
+
+}
+
+@media (max-width: 500px) {
+    input.search_form {
+      max-width: 130px;
+      margin-bottom: 3px;
+  }
 }

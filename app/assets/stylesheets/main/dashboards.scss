@@ -102,19 +102,19 @@ td.article_status_clicked_right {
 td.article_status_clicked_left a {
   @include select_status_button;
   font-weight: bold;
-  background-color: #FF4508;
+  background-color: #FFC107;
   width: 100%;
 }
 td.article_status_clicked_center a {
   @include select_status_button;
   font-weight: bold;
-  background-color: #FF4508;
+  background-color: #FFC107;
   width: calc(100% - 20px);
 }
 td.article_status_clicked_right a {
   @include select_status_button;
   font-weight: bold;
-  background-color: #FF4508;
+  background-color: #FFC107;
   width: 100%;
 }
 
@@ -153,13 +153,12 @@ div#dashboard_article_list{
 
 div#dashboard_article_list div#dashboard_article_list_bottom {
   height: auto;
-  padding: 20px;
+  padding: 18px;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
 }
 
 div#dashboard_article_list div h2 {
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
 }
 
@@ -211,5 +210,18 @@ p.setting_link_clicked a {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
-  width: 100%;
+  width: calc(100% - 10px);
+}
+
+a.dashboard_button {
+  display: inline-block;
+  text-decoration: none;
+  background: #333;
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
 }

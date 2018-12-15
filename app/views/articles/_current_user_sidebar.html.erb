@@ -1,7 +1,13 @@
 <table class="current_user">
   <tr>
     <td valign="top" class="current_user_picture">
-      <p class="current_user"><%= image_tag current_user.picture.url if current_user.picture.present?%></p>
+      <p class="current_user">
+        <% if current_user.picture.present? %>
+        <%= image_tag current_user.picture.url %>
+        <% else %>
+        <%= image_tag "profile.png" %>
+        <% end %>
+      </p>
     </td>
     <td valign="top" class="current_user_main_element">
       <p class="current_user"><strong><%= link_to current_user.username, user_path(current_user) %></strong></p>

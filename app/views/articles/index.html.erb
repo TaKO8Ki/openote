@@ -3,23 +3,69 @@
       <tr>
       </td>
         <td valign="top" class="article_index_left">
+
+          <% if user_signed_in? %>
+          <% else %>
+                <div id="sign_up_form">
+                  <p class="service_description">プレポは、エンジニアリングに特化したオープンソース推奨のプレスリリースサービスです。<br/>
+                        あなたが作ったサービスをオープンソースでプレスリリースして、他のプログラマーと情報を共有しましょう！
+                  </p>
+
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <%= devise_error_messages! %>
+
+                    <div class="field">
+                      <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "ユーザーネーム", class: "sign_up_form"  %>
+                    </div>
+
+                    <div class="field">
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "sign_up_form" %>
+                    </div>
+
+                    <div class="field">
+                      <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em>
+                      <% end %>
+                      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "sign_up_form" %>
+                    </div>
+
+                    <div class="field">
+
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認用", class: "sign_up_form" %>
+                    </div>
+
+                    <div class="sign_up_submit">
+                      <%= f.submit "プレスリリースを始める", :class => "sign_up_submit" %>
+                    </div>
+                    <p class="omniauth_description">外部アカウントで登録する</p>
+                    <%- if devise_mapping.omniauthable? %>
+                      <%- resource_class.omniauth_providers.each do |provider| %>
+                      <p>
+                        <table class="omniauth_links">
+                          <tr>
+                          <%- resource_class.omniauth_providers.each do |provider| %>
+                              <td>
+                                <%= link_to image_tag("github.png"), omniauth_authorize_path(resource_name, provider) , { :class => "sign_omniauth_button" } %>
+                              </td>
+                          <% end -%>
+                        </tr>
+                        </table>
+                      </p>
+                      <% end -%>
+                    <% end -%>
+                  <% end %>
+                </div>
+          <% end %>
+
           <% if params[:group] == "time_line" %>
           <% else %>
             <table class=each_hot_article>
               <tr>
                 <td valign="top" class="hot_article_1">
+                  <%= link_to article_path(id: @hot_articles.first.id) do %>
+                  <div id="hot_article_1">
                   <p class="hot_articles_picture"><%= image_tag @hot_articles.first.user.picture.url %></p>
-                  <p class="hot_articles_title"><%= link_to @hot_articles.first.title, article_path(@hot_articles.first) %></p>
-                  <% if article_tags(@hot_articles.first).present? %>
-                  <p class='hot_articles_tag'>
-                    <% article_tags(@hot_articles.first).each do |tag| %>
-                      <%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_category" } %>
-                    <% end %>
-                  </p>
-                  <% else %>
-                  <p class="hot_articles_dammy">
-                  </p>
-                  <% end %>
+                  <p class="hot_articles_title"><object><%= link_to @hot_articles.first.title, article_path(id: @hot_articles.first.id) %></object></p>
                   <table class="hot_article_info">
                     <tr>
                       <td>
@@ -27,11 +73,11 @@
                         <tr>
                           <td class="article_list_user">
                             <p class='article_list_user_picture'>
-                              <%= link_to (image_tag(@hot_articles.first.user.picture.url)), user_path(@hot_articles.first.user) %>
+                              <object><%= link_to (image_tag(@hot_articles.first.user.picture.url)), user_path(@hot_articles.first.user) %></object>
                             </p>
                           <td>
                           <td class="article_list_username">
-                            <%= link_to "#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %>
+                            <object><%= link_to "#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %></object>
                           </td>
                         </tr>
                         </table>
@@ -63,17 +109,65 @@
                       </td>
                     </tr>
                   </table>
+                </div>
+                <% end %>
+                <%= link_to article_path(@hot_articles.second) do %>
+                <div id="hot_article_2">
+                <p class="hot_articles_picture"><%= image_tag @hot_articles.second.user.picture.url %></p>
+                <p class="hot_articles_title"><object><%= link_to @hot_articles.second.title, article_path(@hot_articles.second) %></object></p>
+                <table class="hot_article_info">
+                  <tr>
+                    <td>
+                    <table>
+                      <tr>
+                        <td class="article_list_user">
+                          <p class='article_list_user_picture'>
+                            <object><%= link_to (image_tag(@hot_articles.second.user.picture.url)), user_path(@hot_articles.second.user) %></object>
+                          </p>
+                        <td>
+                        <td class="article_list_username">
+                          <object><%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %></object>
+                        </td>
+                      </tr>
+                      </table>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      <table class="hot_article_eval">
+                        <tr>
+                          <td class=article_list_comments>
+                            <p class='article_list_comments'>
+                              <%= image_tag "comment1.png" %>
+                            </p>
+                          <td>
+                          <td class="article_list_comments">
+                              <%= @hot_articles.second.article_comments.count %>
+                          <td>
+                          <td>
+                            <p class='article_list_likes'>
+                              <%= image_tag "create_like.png"%>
+                            </p>
+                          <td>
+                          <td class="article_list_likes">
+                              <%= @hot_articles.second.likes.count %>
+                          <td>
+                        <tr>
+                      </table>
+                      </td>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <% end %>
                 </td>
-                <td class="gap">
+                <td class="gap_mobile">
                 </td>
                 <td valign="top" class="hot_article_2">
+                  <%= link_to article_path(@hot_articles.second) do %>
+                  <div>
                   <p class="hot_articles_picture"><%= image_tag @hot_articles.second.user.picture.url %></p>
-                  <p class="hot_articles_title"><%= link_to @hot_articles.second.title, article_path(@hot_articles.second) %></p>
-                  <p class='hot_articles_tag'>
-                    <% article_tags(@hot_articles.second).each do |tag| %>
-                      <%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_category" } %>
-                    <% end %>
-                  </p>
+                  <p class="hot_articles_title"><object><%= link_to @hot_articles.second.title, article_path(@hot_articles.second) %></object></p>
                   <table class="hot_article_info">
                     <tr>
                       <td>
@@ -81,11 +175,11 @@
                         <tr>
                           <td class="article_list_user">
                             <p class='article_list_user_picture'>
-                              <%= link_to (image_tag(@hot_articles.second.user.picture.url)), user_path(@hot_articles.second.user) %>
+                              <object><%= link_to (image_tag(@hot_articles.second.user.picture.url)), user_path(@hot_articles.second.user) %></object>
                             </p>
                           <td>
                           <td class="article_list_username">
-                            <%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %>
+                            <object><%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %></object>
                           </td>
                         </tr>
                         </table>
@@ -117,28 +211,31 @@
                       </td>
                     </tr>
                   </table>
-                </td>
+                </div>
+                <% end %>
+              </td>
               </tr>
             </table>
             <% end %>
           <div id="article_list">
               <%= render "article_group" %>
               <% @articles.each do |article| %>
+              <%= link_to article_path(article) do %>
               <div id='article_list_bottom'>
                 <table class="article_list_top_table">
                   <tr>
                     <td>
                      <h2>
-                       <%= link_to article.title, article_path(article), { :class => "article_link" } %>
+                       <object><%= link_to article.title, article_path(article), { :class => "article_link" } %></object>
                      </h2>
                    </td>
                  </tr>
                </table>
               <p class='article_list_category'>
                 <% article_tags(article).each do |tag| %>
-                  <%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_category" } %>
+                  <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
                   <% if article.github_repository_url.present? %>
-                  <%= link_to "#オープンソース", searches_path(tag: tag), { :class => "article_category" }%>
+                  <object><%= link_to "#オープンソース", searches_path(tag: "オープンソース"), { :class => "special_tag" }%></object>
                   <% end %>
                 <% end %>
               </p>
@@ -148,11 +245,11 @@
                   <tr>
                   <td class="article_list_user">
                     <p class='article_list_user_picture'>
-                      <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
+                      <object><%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %></object>
                     </p>
                   <td>
                   <td class="article_list_username">
-                    <%= link_to "#{article.user.username}", user_path(article.user) %>
+                    <object><%= link_to "#{article.user.username}", user_path(article.user) %></object>
                   </td>
                   </tr>
                 </table>
@@ -182,28 +279,33 @@
                 </tr>
               </table>
             </div>
+            <% end %>
               <% end %>
           </div>
         </td>
         <td valign="top" class="article_index_right">
           <div id="sidebar">
             <% if user_signed_in? %>
-              <%= render 'current_user_sidebar' %>
+              <%= render 'articles/current_user_sidebar' %>
             <% end %>
             <% if user_signed_in? %>
 
+            <% if following_tags(current_user).present? %>
             <div id='sidebar_articles_index'>
               <p class="tags_title">フォロー中のタグ</p>
               <% following_tags(current_user).limit(5).each do |following_tag| %>
               <p class="sidebar_tags"><%= link_to "##{following_tag.name}", searches_path(tag: following_tag.name), {:class => "article_tag"} %></p>
               <% end %>
             </div>
+            <% end %>
+            <% if tags_sorted_desc.present? %>
             <div id='sidebar_articles_index'>
               <p class="tags_title">人気のタグ</p>
               <% tags_sorted_desc.each do |popular_tag| %>
               <p class="sidebar_tags"><%= link_to "##{popular_tag.name}", searches_path(tag: popular_tag.name), {:class => "article_tag"} %></p>
               <% end %>
             </div>
+            <% end %>
             <% end %>
               <table class="popular_user">
                 <tr>
@@ -214,7 +316,13 @@
               <% popular_users.each do |user| %>
                 <tr>
                   <td valign="top" class="popular_user_picture" valign="top">
-                    <p class="popular_user"><%= image_tag user.first.picture.url if user.first.picture.present?%></p>
+                    <p class="popular_user">
+                      <% if user.first.picture.present? %>
+                      <%= image_tag user.first.picture.url %>
+                      <% else %>
+                      <%= image_tag "profile.png" %>
+                      <% end %>
+                  </p>
                   </td>
                   <td valign="top" class="popular_user_main_element" valign="top">
                     <p class="popular_user"><strong><%= link_to user.first.username, user_path(user.first) %></strong></p>
@@ -233,6 +341,7 @@
                   <% end %>
                 </div>
                 <% end %>
+              </div>
 
 
 

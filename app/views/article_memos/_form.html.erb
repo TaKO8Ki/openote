@@ -10,7 +10,7 @@
           <p class="parent_article_user"><%= link_to image_tag(@article.user.picture.url), user_path(@article.user), {:class => "article_list_user"}%></p>
         </td>
         <td valign="top" class="parent_article_user_main_element">
-          <p class="parent_article_user"><%= link_to @article.title, article_path(@article) %>についてのメモ</p>
+          <p class="parent_article_user"><%= link_to @article.title, article_path(@article) %></p>
         </td>
       </tr>
     </table>
@@ -65,7 +65,8 @@
   </div>
 
   <div id="article_submit_button">
-    <%= submit_tag "メモ保存", class: "article_submit_button" %>
+    <%= submit_tag "公開メモとして保存", class: "article_submit_button" %>
+    <%= submit_tag "プライベートメモとして保存",  name: "save_as_private", class: "article_submit_as_draft_button" %>
   </div>
     <% end %>
 </div>

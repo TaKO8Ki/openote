@@ -18,60 +18,125 @@
 @mixin box{
   box-shadow: 0.5px 0.5px 10px 0px #ccc;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
-div#user_article_list{
-  margin-left: 20px;
-  margin-right: 20px;
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
+
+table.user_show_table {
+  width: 1200px;
+  border-spacing: 0;
+  margin: 0 auto;
+}
+
+div#user_article_list {
   margin-top: 10px;
-  @include box;
 }
 
 div#user_article_list div#user_article_list_bottom {
   height: auto;
-  padding: 15px;
+  padding: 15px 25px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+  @include box;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 div#user_article_list div h2 {
-    font-size: 20px;
+    font-size: 18px;
+    color: #161616;
     text-decoration: none;
 }
 
 div#user_article_list div p.user_article_list_date{
     font-size: 12px;
     font-weight: bold;
+    color: #7d7d7d;
+    margin-left: 15px;
 }
 
 div#user_article_list div p.user_article_list_category {
     font-size: 12px;
     font-weight: bold;
+    color: #7d7d7d;
 }
 
 div#user_article_list div p.user_article_list_comment {
-    font-size: 15px;
+    font-size: 10px;
     font-weight: bold;
+    color: #7d7d7d;
+    margin-top: 4px;
 }
 
-
-table.user_show_bottom_table {
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+table.user_article_list_info {
+  width: 20%;
   margin-top: 10px;
 }
 
-td.user_show_left {
-  width: 25%;
+td.user_article_list_user {
+  width: 20%;
 }
 
-td.user_show_center {
-  width: 50%;
+div#user_article_list_comments {
+  margin-left: 20px;
+}
+
+td.user_article_list_comments {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+td.user_article_list_likes {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+p.user_article_list_user_picture img {
+  width: 30px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+p.user_article_list_user_picture:hover img{
+  opacity: .5;
+}
+
+p.user_article_list_comments {
+  margin-right: 5px;
+}
+
+p.user_article_list_comments img {
+  width: 20px;
+  height: auto;
+}
+
+p.user_article_list_likes {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+p.user_article_list_likes img {
+  width: 20px;
+  height: auto;
+}
+
+.user_article_list_comment img {
+  width: 17px;
+  height: auto;
+}
+
+p.user_article_list_likes{
+
 }
 
 td.user_show_right {
+  width: 25%;
+}
+
+td.user_show_left {
   width: 25%;
 }
 
@@ -81,7 +146,13 @@ div#user_setting_main{
     background-color: #fff;
     padding: 20px;
     @include box;
-    margin-bottom: 10px;
+}
+
+div#user_setting_bottom{
+    background-color: #fff;
+    padding: 20px;
+    @include box;
+    margin-top: 10px;
 }
 
 div#user_setting_cancel {
@@ -114,6 +185,8 @@ div#user_edit_form_picture img {
   width: 70px;
   border-radius: 50%;
   border: solid 2px #ccc;
+  object-fit: cover;
+  height: 70px;
 }
 
 div#user_edit_form {
@@ -133,18 +206,22 @@ p.user_edit_title {
 input.edit_form_picture {
   outline: none;
   margin-bottom: 20px;
+  -webkit-appearance: none;
 }
 
 input.edit_form_username {
   @include edit_form;
+  -webkit-appearance: none;
 }
 
 input.edit_form_profile_id {
   @include edit_form;
+  -webkit-appearance: none;
 }
 
 input.edit_form_email {
   @include edit_form;
+  -webkit-appearance: none;
 }
 
 textarea.edit_form_description {
@@ -157,21 +234,17 @@ textarea.edit_form_description {
   background-color: #f6f6f6;
   border: solid 1px #ccc;
   border-radius: 3px;
+  -webkit-appearance: none;
 }
 input.edit_form_password {
   @include edit_form;
-}
-input.edit_form_password {
-  @include edit_form;
-}
-input.edit_form_password {
-  @include edit_form;
+  -webkit-appearance: none;
 }
 
 input.edit_user_info {
   display: inline-block;
   text-decoration: none;
-  background: #FF4508;
+  background: $baseColor;
   color: #fff;
   padding: 9px 20px;
   font-size: 13px;
@@ -179,16 +252,17 @@ input.edit_user_info {
   cursor: pointer;
   border: none;
   transition: all .5s;
+  -webkit-appearance: none;
 }
 
 input.edit_user_info:hover {
-  background-color: #FF794D;
+  background-color:$hoverColor;
 }
 
 input.edit_user_password {
   display: inline-block;
   text-decoration: none;
-  background: #FF4508;
+  background: $baseColor;
   color: #fff;
   padding: 9px 20px;
   font-size: 13px;
@@ -197,10 +271,11 @@ input.edit_user_password {
   cursor: pointer;
   border: none;
   transition: all .5s;
+  -webkit-appearance: none;
 }
 
 input.edit_user_password:hover {
-  background-color: #FF794D;
+  background-color: $hoverColor;
 }
 
 div#user_follow_form {
@@ -226,6 +301,7 @@ input.user_unfollow {
     cursor: pointer;
     font-weight: bold;
     border: solid 2px #FFC107;
+    -webkit-appearance: none;
 }
 
 input.user_follow {
@@ -246,6 +322,8 @@ input.user_follow {
     font-weight: bold;
     cursor: pointer;
     transition: all .5s;
+    -webkit-appearance: none;
+    background: #fff;
 }
 
 input.user_follow:hover {
@@ -254,6 +332,10 @@ input.user_follow:hover {
 
 .user_icon img {
   width: 50%;
+}
+
+p.no_followers {
+  margin-bottom: 10px;
 }
 
 div#user_sidebar{
@@ -266,10 +348,27 @@ td.user_show_profile {
   @include box;
 }
 
-p.user_show_profile {
+p.user_show_username {
   text-align: center;
   font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+p.user_show_profile_id {
+  text-align: center;
   font-size: 18px;
+  margin-bottom: 5px;
+}
+
+table.user_show_link {
+  font-size: 15px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+p.user_show_link img {
+  width: 13px;
 }
 
 p.user_name {
@@ -279,6 +378,100 @@ p.user_name {
 td.follow_count {
   text-align: center;
   font-size: 16px;
+}
+
+
+#user_sub_info-drawer {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+/*チェックボックス等は非表示に*/
+.user_sub_info-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#user_sub_info-open {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  line-height: 150px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  background: #fdf9f3;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0.5px 0.5px 5px 1px #ccc;
+  transition: all .5s;
+}
+
+#user_sub_info-open img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  margin-bottom: 50px;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#user_sub_info-open span, #user_sub_info-open span:before, #user_sub_info-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+#user_sub_info-open span:before {
+  bottom: -8px;
+}
+#user_sub_info-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用の薄黒カバー*/
+#user_sub_info-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+}
+
+#user_sub_info-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 75%;
+  max-width: 330px;
+  height: 100%;
+  background: #fff;
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+}
+
+
+#user_sub_info-input:checked ~ #user_sub_info-close {
+  display: block;
+  opacity: .5;
+}
+
+#user_sub_info-input:checked ~ #user_sub_info-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
 
 table.follow {
@@ -291,16 +484,15 @@ table.follow {
 
 div#sidebar_user_show {
   background-color: #fff;
-  margin-bottom: 10px;
-  margin-top: 10px;
   border-right: 2px solid #ccc;
   width: 50%;
+  border-radius: 5px 0 0 5px;
 }
 
 div#sidebar_user_description {
   text-align: center;
   font-size: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .user_box_show {
@@ -322,10 +514,12 @@ div#sidebar_user_description {
 
 .picture_user_show img {
   width: 170px;
+  height: 170px;
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-top: 10px;
   margin-left: auto;
+  object-fit: cover;
 }
 
 .user_show_follow_count {
@@ -369,7 +563,6 @@ div#user_all_memos {
 }
 
 li.user_article_memo {
-  background-color: #fff;
   padding-left: 10px;
   list-style: none;
 }
@@ -403,7 +596,7 @@ p.box_name a {
 /*フォロー一覧画面*/
 
 div#follow_index {
-  width: 30%;
+  width: 15%;
   margin: 0 auto;
 }
 
@@ -412,4 +605,39 @@ p.show_follow {
   font-weight: bold;
   font-size: 20px;
   margin-bottom: 10px;
+}
+
+table.following_user {
+  width: 35%;
+  padding: 2px 10px;
+  padding-top: 10px;
+  @include box;
+  margin: 0 auto;
+}
+
+td.following_user_main_element {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+td.following_user_picture {
+  width: 10px;
+}
+
+p.following_user {
+  padding: 0 5px;
+  margin-top: -10px;
+}
+
+p.following_user a {
+  font-size: 15px;
+}
+
+p.following_user img {
+  width: 50px;
+  border-radius: 50%;
+  border: solid 2px #ccc;
+  margin-top: 10px;
+  object-fit: cover;
+  height: 50px;
 }

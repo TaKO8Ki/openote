@@ -1,34 +1,49 @@
-<h2>Sign up</h2>
+<table class="sign_up_2">
+  <tr>
+    <td>
+      <div id="sign_up_form">
+        <p class="service_description">プレポは、エンジニアリングに特化したオープンソース推奨のプレスリリースサービスです。<br/>
+              あなたが作ったサービスをオープンソースでプレスリリースして、他のプログラマーと情報を共有しましょう！
+        </p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
+          <div class="field">
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "ユーザーネーム", class: "sign_up_form"  %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "sign_up_form" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+          <div class="field">
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード(6文字以上)", class: "sign_up_form" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+          <div class="field">
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認用", class: "sign_up_form" %>
+          </div>
 
-<%= render "devise/shared/links" %>
+          <div class="sign_up_submit">
+            <%= f.submit "プレスリリースを始める", :class => "sign_up_submit" %>
+          </div>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+            <table class="omniauth_links">
+              <tr>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+                  <td>
+                    <%= link_to image_tag("github.png"), omniauth_authorize_path(resource_name, provider) , { :class => "sign_omniauth_button" } %>
+                  </td>
+              <% end -%>
+            </tr>
+            </table>
+            <% end -%>
+          <% end -%>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>

@@ -24,4 +24,14 @@ module UsersHelper
     return following_tags
   end
 
+  def github_repository(user)
+    user_token = access_token_of_each_of_providers(user, "github")
+    github = Github.new oauth_token: "#{user_token}"
+    user_repos = github.repos.list
+  end
+
+  def access_token_of_each_of_providers(user, provider)
+    access_token = user.social_profiles.find_by(provider: provider).access_token
+  end
+
 end

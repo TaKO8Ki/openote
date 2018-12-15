@@ -1,0 +1,65 @@
+// Place all the styles related to the Repositories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
+
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+@mixin repositories {
+  display: inline-block;
+  text-decoration: none;
+  background: $baseColor;
+  color: #fff;
+  padding: 9px 30px;
+  font-size: 18px;
+  border-radius: 2px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+table.github_repo_list {
+  width: 100%;
+}
+
+td.github_status_button {
+  text-align: right;
+}
+
+div#all_repo {
+  @include box;
+  margin: 0 auto;
+  padding: 5px 0px;
+}
+
+div#repo_list {
+  background-color: #fff;
+  border-bottom: solid 1px #ccc;
+  padding: 10px;
+}
+
+a.public_repository {
+  @include repositories;
+  background: #FFC107;
+  transition: all .5s;
+}
+
+a.public_repository:hover {
+  background: $hoverColor;
+}
+
+a.private_repository {
+  @include repositories;
+  background: #ccc;
+  transition: all .5s;
+}
+
+a.private_repository:hover {
+  background-color: #a8a8a8;
+}

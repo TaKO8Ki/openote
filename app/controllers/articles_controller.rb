@@ -4,11 +4,14 @@ class ArticlesController < ApplicationController
   after_action :tweet_button, only: [:show]
 
     def index
-        @likes = Like.where(article_id: params[:article_id])
-        @articles_likes_order = Article.all.order('likes_count DESC').limit(10)
-        @hot_tags = tags_ranking_for_a_last_week[0..2]
-        which_articles_should_be_showed
-        hot_articles
+      if current_user.present? && current_user.profile_id.blank?
+        current_user.update(profile_id: current_user.username)
+      end
+      @likes = Like.where(article_id: params[:article_id])
+      @articles_likes_order = Article.all.order('likes_count DESC').limit(10)
+      @hot_tags = tags_ranking_for_a_last_week[0..2]
+      hot_articles
+      which_articles_should_be_showed
     end
 
     def show
@@ -17,6 +20,7 @@ class ArticlesController < ApplicationController
       end
       @like = Like.where(article_id: params[:article_id])
       @article = Article.search_with_status("public").find(params[:id])
+      other_articles
       @toc = markdown_toc(view_context.markdown(@article.body))
       @user = @article.user
     end
@@ -30,7 +34,7 @@ class ArticlesController < ApplicationController
         @article = Article.new(article_params)
         @article.user_id = current_user.id
         if params[:save_as_draft]
-          save_article_as_draft
+          save_article_as_draft(@article)
         end
         if @article.save
             redirect_to articles_path
@@ -72,7 +76,7 @@ private
   end
 
   def save_article_as_draft(article)
-    @article.update(status: "draft")
+    article.update(status: "draft")
   end
 
   def this_week
@@ -95,17 +99,17 @@ private
 
   def which_articles_should_be_showed
     if params[:group] == "today"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_week"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_week).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_week).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_month"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_month).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_month).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_year"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_year).includes(:tags)
+      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_year).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "time_line"
       @articles = Article.search_with_status("public").where(user_id: current_user.following)
     else
-      @articles = Article.search_with_status("public").all.order('created_at DESC').includes(:tags)
+      @articles = Article.all
     end
     return @articles
   end
@@ -191,6 +195,10 @@ private
       toc_text = '<div id=toc>' + toc_text + '</div>'
 
       return toc_text
+  end
+
+  def other_articles
+    @other_articles = Article.search_with_user(@article.user).sort_in_created_at_order("DESC").limit(3)
   end
 
   #ソーシャルボタン

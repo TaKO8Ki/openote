@@ -21,6 +21,9 @@ class ArticleMemosController < ApplicationController
     @article = Article.find(params[:article_id])
     @article_memo = @article.article_memos.new(article_memo_params)
     @article_memo.user_id = current_user.id
+    if params[:save_as_private]
+      save_article_memo_as_private(@article_memo)
+    end
     if @article_memo.save
       redirect_to article_path(@article)
     else
@@ -53,5 +56,9 @@ class ArticleMemosController < ApplicationController
   def article_memo_params
       params.require(:article_memo).permit(:title, :body, :user_id, :article_id)
   end
-  
+
+  def save_article_memo_as_private(article_memo)
+    article_memo.update(status: "private")
+  end
+
 end

@@ -3,22 +3,34 @@
 /*見出し関連*/
 h1.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: solid 1px #ccc;
+  -webkit-appearance: none;
+}
 h2.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: solid 1px #ccc;
+  -webkit-appearance: none;
+}
 h3.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: solid 1px #ccc;
+  -webkit-appearance: none;
+}
 h4.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: solid 1px #ccc;
+  -webkit-appearance: none;
+}
 h5.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: solid 1px #ccc;
+  -webkit-appearance: none;
+}
 h6.markdown_heading {
   padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;}
+  border-bottom: inset 2px #ccc;
+  -webkit-appearance: none;
+}
 
 /*文字列の改行反映*/
 
@@ -120,4 +132,11 @@ th.markdown_th {
 p.markdown_image img {
   width: 400px;
   height: auto;
+  margin-top: 10px;
+}
+
+/*リンク*/
+
+a.markdown_link {
+  color: blue;
 }

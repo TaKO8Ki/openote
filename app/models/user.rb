@@ -10,12 +10,14 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes, dependent: :destroy
+  has_many :stocks, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :article_memos, dependent: :destroy
   has_many :social_profiles, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :user_tags, dependent: :destroy
   has_many :article_pictures, dependent: :destroy
+  has_many :repositories, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
   devise :database_authenticatable, :registerable,
@@ -58,5 +60,6 @@ class User < ApplicationRecord
     github = Github.new oauth_token: "#{user_token}"
     user_repos = github.repos.list
   end
+
 
 end

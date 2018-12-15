@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  div#dashboard_article_list{
+    box-shadow: none;
+  }
+
+  td.article_status a {
+    font-size: 15px;
+  }
+
+  td.article_status_center a {
+    font-size: 15px;
+  }
+
+  td.article_status_clicked_left a {
+    font-size: 15px;
+  }
+  td.article_status_clicked_center a {
+    font-size: 15px;
+  }
+  td.article_status_clicked_right a {
+    font-size: 15px;
+  }
+}

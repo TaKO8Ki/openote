@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   get 'likes/destroy'
   get 'article_comments/create'
   get 'article_comments/destroy'
+  get 'repositories', to: 'repositories#index'
   get 'notifications/:id/link_through', to: 'notifications#link_through',
  as: :link_through
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations'  }
   resources :users, :only => [:show] do
     resources :social_profiles, only: [:destroy]
     resources :article_memos
+    resources :repositories, only: [:create, :update, :destory]
       member do
           get :following, :followers
       end
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   resources :articles do
       resources :article_comments, only: [:create, :destroy]
       resources :likes, only: [:create, :destroy]
+      resources :stocks, only: [:create, :destroy]
       resources :article_memos
   end
   resources :categories

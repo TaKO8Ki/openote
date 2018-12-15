@@ -1,6 +1,6 @@
 
 
-  <table class="user_show_bottom_table">
+  <table class="user_show_table">
   <tr>
     <td valign="top" class="user_show_profile" colspan="3">
       <div id='sidebar_user_show'>
@@ -8,107 +8,166 @@
             <%= image_tag @user.picture.url if @user.picture.present? %>
             <%= image_tag "profile.png" if @user.picture.blank? %>
           </p>
-          <p class="user_show_profile">
+          <p class="user_show_username">
           <%= link_to "#{@user.username}", user_path(@user) %>
           </p>
-
+          <p class="user_show_profile_id">
+            <%= link_to "@#{@user.profile_id}", user_path(@user) %>
+          </p>
           <div id="sidebar_user_description">
             <%= @user.description %>
           </div>
-
-        <div id="user_follow_form">
-          <%= render "follow_form" %>
+          <table class="user_show_link">
+            <tr>
+              <td>
+                <p class="user_show_link"><%= image_tag "link.png" %></p>
+              </td>
+              <td>
+                <%= link_to @user.link, @user.link %>
+              </td>
+            </tr>
+          </table>
+          <% if user_signed_in? %>
+          <div id="user_follow_form">
+            <%= render "follow_form" %>
+          </div>
+          <% end %>
+          <div id="follow-count">
+            <%= render 'shared/stats' %>
+          </div>
         </div>
-        <div id="follow-count">
-          <%= render 'shared/stats' %>
-        </div>
+      </td>
+    <tr>
+      <td valign="top" class="user_show_left">
+        <div id="user_sidebar">
+          <div id="user_all_memos">
+            <% @user.article_memos.each do |memo| %>
+            <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
+            <% end %>
+          </div>
+          <ul>
+              <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
+          </ul>
       </div>
     </td>
-  <tr>
-    <td valign="top" class="user_show_left">
-      <!-- <p class="box_name">
-        <%= link_to 'memoした投稿', user_path(memo: @user.article_memos) %>
-      </p> -->
-      <div id="user_sidebar">
-        <div id="user_all_memos">
-          <% @user.article_memos.each do |memo| %>
-          <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
-          <% end %>
-        </div>
-        <ul>
-            <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
-        </ul>
+    <td valign="top" class="user_show_center">
+      <div id="user_sub_info-drawer">
+        <input id="user_sub_info-input" type="checkbox" class="user_sub_info-unshown">
+        <label id="user_sub_info-open" for="user_sub_info-input"><%= image_tag "code.png" %></label>
+        <label class="user_sub_info-unshown" id="user_sub_info-close" for="user_sub_info-input"></label>
+        <div id="user_sub_info-content">
+          <div id="user_sidebar_right">
+            <% if @user_repos.present? %>
+              <% @user_repos.each do |repo| %>
+              <% if public_repo?(repo) %>
+              <div id="user_each_repo">
+                <table class="github_repo">
+                  <tr>
+                    <td>
+                      <p class="github_icon">
+                        <%= image_tag "github.png" %>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="repo_name">
+                        <strong><%= link_to repo.name, repo.svn_url %></strong>
+                      </p>
+                    </td>
+                    </tr>
+                  </table>
 
-    </div>
-  </td>
-  <td valign="top" class="user_show_center">
-      <div id="user_article_list">
-          <% @articles.each do |article| %>
-          <div id='user_article_list_bottom'>
-           <h2>
-              <%= link_to article.title, article_path(article)%>
-           <h2>
-          <p class='user_article_list_date'>
-              <%= article.updated_at.strftime("%Y/%m/%d") %>
-          </p>
-          <p class='user_article_list_category'>
-              <% article.tag_list.each do |f| %>
-              <%= link_to f, user_path(category: f),  { :class => "article_category" } %>
+                <% if repo.description.present? %>
+                <p class="repo_description"><%= repo.description %></p>
+                <% end %>
+              </div>
               <% end %>
-          </p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-          <table class="article_list_eval">
-            <td class=article_list_comments>
-              <p class='article_list_comments'>
+      <div id="user_article_list">
+
+          <% @articles.each do |article| %>
+          <%= link_to article_path(article) do %>
+          <div id='user_article_list_bottom'>
+            <table class="user_article_list_top_table">
+              <tr>
+                <td>
+                 <h2>
+                   <object><%= link_to article.title, article_path(article), { :class => "article_link" } %></object>
+                 </h2>
+               </td>
+             </tr>
+           </table>
+          <p class='user_article_list_category'>
+            <% article_tags(article).each do |tag| %>
+              <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
+              <% if article.github_repository_url.present? %>
+              <object><%= link_to "#オープンソース", searches_path(tag: "オープンソース"), { :class => "special_tag" }%></object>
+              <% end %>
+            <% end %>
+          </p>
+            <table>
+            <tr>
+            <td class=user_article_list_comments>
+              <p class='user_article_list_comments'>
                 <%= image_tag "comment1.png" %>
               </p>
             <td>
-            <td class="article_list_comments">
+            <td class="user_article_list_comments">
                 <%= article.article_comments.count %>
             <td>
             <td>
-              <p class='article_list_likes'>
+              <p class='user_article_list_likes'>
                 <%= image_tag "create_like.png"%>
               </p>
             <td>
-            <td class="article_list_likes">
+            <td class="user_article_list_likes">
                 <%= article.likes.count %>
             <td>
+            <td class="user_article_list_username">
+              <p class='user_article_list_date'>
+                  <%= time_ago_in_words(article.updated_at) %>
+              </p>
+            </td>
+            </tr>
           </table>
-
-
-          </div>
-          <% end %>
-
-      </div>
-    </td>
-    <td valign="top" class="user_show_right">
-      <div id="user_sidebar_right">
-        <% if @user_repos.present? %>
-          <% @user_repos.each do |repo| %>
-          <div id="user_each_repo">
-            <table class="github_repo">
-              <tr>
-                <td>
-                  <p class="github_icon">
-                    <%= image_tag "github.png" %>
-                  </p>
-                </td>
-                <td>
-                  <p class="repo_name">
-                    <strong><%= link_to repo.name, repo.svn_url %></strong>
-                  </p>
-                </td>
-                </tr>
-              </table>
-
-            <% if repo.description.present? %>
-            <p class="repo_description"><%= repo.description %></p>
-            <% end %>
-          </div>
-          <% end %>
+        </div>
         <% end %>
+          <% end %>
       </div>
+      </td>
+      <td valign="top" class="user_show_right">
+        <div id="user_sidebar_right">
+          <% if @user_repos.present? %>
+            <% @user_repos.each do |repo| %>
+            <% if public_repo?(repo) %>
+            <div id="user_each_repo">
+              <table class="github_repo">
+                <tr>
+                  <td>
+                    <p class="github_icon">
+                      <%= image_tag "github.png" %>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="repo_name">
+                      <strong><%= link_to repo.name, repo.svn_url %></strong>
+                    </p>
+                  </td>
+                  </tr>
+                </table>
+
+              <% if repo.description.present? %>
+              <p class="repo_description"><%= repo.description %></p>
+              <% end %>
+            </div>
+            <% end %>
+            <% end %>
+          <% end %>
+        </div>
 
     </td>
   </tr>
