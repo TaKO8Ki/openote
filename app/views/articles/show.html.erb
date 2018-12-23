@@ -16,10 +16,10 @@
                <%= render partial: 'stocks/stock', locals: { article: @article, likes: @stocks} %>
               </div>
             </div>
-            <p class="eval_mobile">
+            <p class="eval_none">
               <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="twitter_button"><%= image_tag "twitter.png" %></a>
             </p>
-            <p class="eval_mobile">
+            <p class="eval_none">
               <a href="https://www.facebook.com/share.php?url=<%= request.url %>" rel="nofollow" target="_blank" class="social_button"><%= image_tag "facebook.png" %></a>
             </p>
           </div>
@@ -54,7 +54,11 @@
               <tr>
               <td>
                 <p class='article_user_picture'>
-                  <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+                  <% if @article.user.picture.present? %>
+                  <%= link_to image_tag(@article.user.picture.url), user_path(@article.user) %>
+                  <% else %>
+                  <%= link_to image_tag("profile.png"), user_path(@article.user) %>
+                  <% end %>
                 </p>
               </td>
               </tr>
@@ -101,13 +105,20 @@
       <td class="article_comment_side_left"></td>
       <td>
 
+        <% if @other_articles.present? %>
         <table class=each_other_article>
           <tr>
             <% if @other_articles.first.present? %>
             <td valign="top" class="other_article">
               <%= link_to article_path(id: @other_articles.first.id) do %>
-              <div id="test">
-              <p class="other_articles_picture"><%= image_tag @other_articles.first.user.picture.url %></p>
+              <div>
+              <p class="other_articles_picture">
+                <% if @other_articles.first.picture.first.present? %>
+                <%= image_tag @other_articles.first.picture.first.url %>
+                <% else %>
+                <%= image_tag "profile.png" %>
+                <% end %>
+              </p>
               <p class="other_articles_title"><object><%= link_to @other_articles.first.title, article_path(id: @other_articles.first) %></object></p>
               <table class="other_article_info">
                 <tr>
@@ -147,8 +158,14 @@
             <% if @other_articles.second.present? %>
             <td valign="top" class="other_article">
               <%= link_to article_path(id: @other_articles.second.id) do %>
-              <div id="test">
-              <p class="other_articles_picture"><%= image_tag @other_articles.second.user.picture.url %></p>
+              <div>
+              <p class="other_articles_picture">
+                <% if @other_articles.second.picture.first.present? %>
+                <%= image_tag @other_articles.second.picture.first.url %>
+                <% else %>
+                <%= image_tag "profile.png" %>
+                <% end %>
+              </p>
               <p class="other_articles_title"><object><%= link_to @other_articles.second.title, article_path(id: @other_articles.second) %></object></p>
               <table class="other_article_info">
                 <tr>
@@ -187,10 +204,16 @@
             </td>
             <% if @other_articles.third.present? %>
             <td valign="top" class="other_article">
-              <div id="test">
+              <div>
               <%= link_to article_path(id: @other_articles.third.id) do %>
 
-              <p class="other_articles_picture"><%= image_tag @other_articles.third.user.picture.url %></p>
+              <p class="other_articles_picture">
+                <% if @other_articles.third.picture.first.present? %>
+                <%= image_tag @other_articles.third.picture.first.url %>
+                <% else %>
+                <%= image_tag "profile.png" %>
+                <% end %>
+              </p>
               <p class="other_articles_title"><object><%= link_to @other_articles.third.title, article_path(id: @other_articles.third) %></object></p>
                     <table class="other_article_eval">
                       <tr>
@@ -218,13 +241,18 @@
             <% end %>
           </tr>
         </table>
+        <% end %>
 
         <div id="user_info_mobile">
           <table class="sidebar_user_index">
             <tr>
             <td>
               <p class='article_user_picture'>
-                <%= image_tag @article.user.picture.url if @article.user.picture.present? %>
+                <% if @article.user.picture.present? %>
+                <%= link_to image_tag(@article.user.picture.url), user_path(@article.user) %>
+                <% else %>
+                <%= link_to image_tag("profile.png"), user_path(@article.user) %>
+                <% end %>
               </p>
             </td>
             </tr>

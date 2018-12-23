@@ -3,9 +3,9 @@
     <td valign="top" class="current_user_picture">
       <p class="current_user">
         <% if current_user.picture.present? %>
-        <%= image_tag current_user.picture.url %>
+        <%= link_to image_tag(current_user.picture.url), user_path(current_user) %>
         <% else %>
-        <%= image_tag "profile.png" %>
+        <%= link_to image_tag("profile.png"), user_path(current_user) %>
         <% end %>
       </p>
     </td>

@@ -1,0 +1,112 @@
+<div id="setting_links_mobile">
+  <%= render :partial => 'devise/registrations/links' %>
+</div>
+<table class="user_setting_table">
+  <tr>
+    <td valign="top" class="user_setting_sidebar">
+      <div id="user_setting_sidebar">
+        <%= render :partial => 'devise/registrations/links' %>
+      </div>
+    </td>
+    <td class="gap_mobile">
+    </td>
+    <td valign="top" class="user_setting_main">
+      <table class="dashboard_articles_status_table">
+        <tr>
+          <% if params[:status].blank? %>
+          <td class="article_status_clicked_left">
+            <%= link_to "全ての記事", dashboards_path %>
+          </td>
+          <% else %>
+          <td class="article_status">
+            <%= link_to "全ての記事", dashboards_path %>
+          </td>
+          <% end %>
+          <% if params[:status] == "public" %>
+          <td class="article_status_clicked_center">
+            <%= link_to "公開済み", dashboards_path(status: "public") %>
+          </td>
+          <% else %>
+          <td class="article_status_center">
+            <%= link_to "公開済み", dashboards_path(status: "public") %>
+          </td>
+          <% end %>
+          <% if params[:status] == "draft" %>
+          <td class="article_status_clicked_right">
+            <%= link_to "下書き", dashboards_path(status: "draft") %>
+          </td>
+          <% else %>
+          <td class="article_status">
+            <%= link_to "下書き", dashboards_path(status: "draft") %>
+          </td>
+          <% end %>
+        </tr>
+      </table>
+      <div id="dashboard_article_list">
+        <div id="dashboard_search_form">
+          <%= form_tag(dashboards_path, :method => 'get', enforce_utf8: false) do %>
+            <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
+            <% if params[:status].present? %>
+            <%= submit_tag params[:status], name: "status", class: "search_button" %>
+            <% else %>
+            <%= submit_tag "search", name: nil, class: "search_button" %>
+            <% end %>
+          <% end %>
+        </div>
+          <% @articles.each do |article| %>
+          <div id='dashboard_article_list_bottom'>
+           <h2>
+             <% if article.status == "draft" %>
+               <%= link_to article.title, edit_article_path(article) %>
+            <% else%>
+              <%= link_to article.title, article_path(article)%>
+            <% end %>
+           <h2>
+          <p class='dashboard_article_list_date'>
+              <%= article.updated_at.strftime("%Y/%m/%d") %>
+          </p>
+          <p class='dashboard_article_list_category'>
+            <% article_tags(article).each do |tag| %>
+              <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
+            <% end %>
+            <% if article.github_repository_url.present? %>
+            <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
+            <% end %>
+          </p>
+
+          <table class="article_list_eval">
+            <td class=article_list_comments>
+              <p class='article_list_comments'>
+                <%= image_tag "comment1.png" %>
+              </p>
+            <td>
+            <td class="article_list_comments">
+                <%= article.article_comments.count %>
+            <td>
+            <td>
+              <p class='article_list_likes'>
+                <%= image_tag "create_like.png"%>
+              </p>
+            <td>
+            <td class="article_list_likes">
+                <%= article.likes.count %>
+            <td>
+          </table>
+
+          <p class='dashboard_article_edit_delete'>
+          <% if article.user == current_user %>
+              <%= link_to '編集', edit_article_path(article), class: 'dashboard_button' %>
+              <%= link_to '削除',
+                  article_path(article),
+                  method: :delete,
+                  class: 'dashboard_button',
+                  data: { confirm: "タイトル「#{article.title}」を削除します。よろしいですか？" }%>
+          <% end %>
+          </p>
+          </div>
+          <% end %>
+
+      </div>
+    </td>
+  </tr>
+</table>

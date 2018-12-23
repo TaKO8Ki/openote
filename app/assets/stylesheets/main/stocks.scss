@@ -22,6 +22,16 @@
   margin-bottom: 47px;
 }
 
+@mixin box_padding {
+  padding: 10px 0px;
+}
+
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 $baseColor: #FFC107;
 $hoverColor: #FFD966;
 
@@ -72,4 +82,61 @@ background-color: #ccc;
 padding: 0px 5px;
 border-radius: 5px;
 box-shadow: 0.5px 0.5px 10px #ccc;
+}
+
+
+table.stocks_table {
+  margin: 0 auto;
+  width: 1000px;
+}
+
+td.stocks_main {
+
+}
+
+td.stocks_sidebar {
+  width: 30%;
+}
+
+div#stocks_sidebar {
+  @include box_padding;
+  @include box;
+}
+
+table.stock_title_mobile {
+  margin: 0 auto;
+}
+
+td.stock_logo img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+
+p.stock_title {
+  font-weight: bold;
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+p.stock_tag {
+  font-size: 18px;
+  margin-bottom: 5px;
+  padding: 0px 20px;
+}
+
+p.stock_tag:hover {
+  background: #ededed;
+}
+
+a.stock_tag {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  border-radius: 3px;
+  width: 100%;
 }

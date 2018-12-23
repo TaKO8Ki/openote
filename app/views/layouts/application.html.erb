@@ -38,7 +38,7 @@
                 </td>
                 <td>
                   <%= form_tag(searches_path, :method => 'get', enforce_utf8: false) do %>
-                    <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "プレポ全体を検索する" %>
+                    <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "全体を検索する" %>
                     <%= submit_tag 'search', :name => nil, class: "search_button" %>
                   <% end %>
                 </td>
@@ -73,14 +73,18 @@
               <ul class="g_nav_list ol2 clearfix">
                 <li class="g_nav_hover">
                   <p class='picture_header'>
-                    <%= image_tag current_user.picture.url if current_user.picture.present? %>
-                    <%= image_tag "profile.png" if current_user.picture.blank? %>
+                    <% if current_user.picture.present? %>
+                    <%= image_tag current_user.picture.url %>
+                    <% else %>
+                    <%= image_tag "profile.png" %>
+                    <% end %>
                   </p>
                     <ul class="g_nav_c">
-                        <li><p class="header_title">@<%= link_to current_user.username, user_path(current_user) %></p></li>
-                        <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
-                        <div id="notification"><%= link_to 'ダッシュボード', "/dashboards/articles" %></div>
-                        <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
+                      <p class="header_title">@<%= link_to current_user.username, user_path(current_user) %></p>
+                      <div id="notification"><%= link_to 'ストックした記事', stocks_path %></div>
+                      <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
+                      <div id="notification"><%= link_to 'ダッシュボード', dashboards_path %></div>
+                      <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
                     </ul>
                 </li>
                 <ul>
@@ -96,8 +100,9 @@
                   <% if user_signed_in? %>
                   <%= render 'articles/current_user_sidebar' %>
                   <div id="setting_mobile">
+                    <div id="notification"><%= link_to 'ストックした記事', stocks_path %></div>
                     <div id="notification"><%= link_to '設定', edit_user_registration_path %></div>
-                    <div id="notification"><%= link_to 'ダッシュボード', "/dashboards/articles" %></div>
+                    <div id="notification"><%= link_to 'ダッシュボード', dashboards_path %></div>
                     <div id="notification"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></div>
                   </div>
                   <% if following_tags(current_user).present? %>
@@ -138,7 +143,7 @@
             </td>
             <td>
               <%= form_tag(searches_path, :method => 'get', enforce_utf8: false) do %>
-                <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "プレポ全体を検索する" %>
+                <%= text_field_tag :q, params[:q], class: "search_form", :placeholder => "全体を検索する" %>
                 <%= submit_tag 'search', :name => nil, class: "search_button" %>
               <% end %>
             </td>

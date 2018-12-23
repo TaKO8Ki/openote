@@ -9,9 +9,9 @@ class NotificationsController < ApplicationController
   end
 
   def link_through
-    @notification = Notification.find(params[:id])
-    @notification.update read: true
-     redirect_to articles_path
+    notifications = Notification.where(user_id: current_user.id)
+    notifications.update_all(read: true)
+    redirect_to notifications_path
    end
 
 

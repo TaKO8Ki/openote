@@ -25,7 +25,7 @@ class ArticleCommentsController < ApplicationController
        return if @article.user.id == current_user.id
        Notification.create(user_id: @article.user.id,
         notified_by_id: current_user.id,
-        article_id: @article.id,
+        action_id: @article.id,
         notified_type: 'comment',
         comment_id: @article_comment.id)
      end

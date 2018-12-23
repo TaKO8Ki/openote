@@ -47,6 +47,15 @@ div#sign_up_form {
   margin-bottom: 10px;
 }
 
+div#sign_up_form_2 {
+  width: 70%;
+  background-color: #fff;
+  height: auto;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
 input.sign_up_form {
   width: 100%;
   height: 35px;
@@ -54,7 +63,8 @@ input.sign_up_form {
   border-bottom: solid 1px #ccc;
   outline: none;
   margin-bottom: 10px;
-  font-size: 13px;
+  margin-top: 10px;
+  font-size: 15px;
   -webkit-box-shadow: 0 0 0px 1000px white inset;
   -webkit-appearance: none;
 }
@@ -69,7 +79,7 @@ input.sign_up_submit {
   text-decoration: none;
   background: #FFC107;
   color: #fff;
-  font-size: 15px;
+  font-size: 18px;
   margin: 0 20px;
   font-weight: bold;
   border-radius: 20px;
@@ -157,16 +167,17 @@ p.omniauth_description {
 table.each_hot_article {
   border-spacing: 0;
   display: inline-block;
+  table-layout: fixed;
 }
 
 
 td.hot_article_1 {
-  width: calc(50% - 5px);
+  width: 365px;
   @include box;
 }
 
 td.hot_article_2 {
-  width: calc(50% - 5px);
+  width: 365px;
   @include box;
 }
 
@@ -183,6 +194,7 @@ p.hot_articles_picture {
 p.hot_articles_title {
   padding: 0px 10px;
   font-weight: bold;
+  font-size: 23px;
 }
 
 p.hot_articles_tag {
@@ -432,7 +444,7 @@ p.article_list_user {
 /*記事詳細*/
 
 div#article_show_center{
-    padding: 20px;
+    padding: 20px 35px;
     @include box;
 }
 
@@ -459,11 +471,11 @@ div#article_show_center p.article_show_center_header {
 }
 
 div#article_show_center p.article_show_center_header img {
-  width: calc(100% + 40px);
+  width: calc(100% + 70px);
   height: 320px;
   margin-top: -20px;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -35px;
+  margin-right: -35px;
   object-fit: cover;
 
 }
@@ -617,6 +629,8 @@ p.comment_user img {
   border-radius: 50%;
   border: solid 2px #ccc;
   margin-top: 10px;
+  object-fit: cover;
+  height: 30px;
 }
 
 div#article_show_comment_form{
@@ -671,13 +685,12 @@ div#article_comment_button {
 table.each_other_article {
   border-spacing: 0;
   margin-top: 10px;
-  width: 810px;
 }
 
 
 td.other_article {
   @include box;
-  width: 32.7%;
+  width: 260px;
 }
 
 p.other_articles_picture img {
@@ -776,6 +789,15 @@ form.new_article_comment {
 
 
 /*記事作成画面*/
+div#error {
+  margin-top: 5px;
+  background-color: #f2dede;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #a94442;
+  border: solid 1px #ebccd1;
+}
 
 div#article_form_wrap {
   width: 95%;
@@ -789,6 +811,11 @@ div#article_form_github {
 }
 div#article_form_service {
     text-align: center;
+}
+
+div#article_form_picture {
+  text-align: left;
+  margin-top: 10px;
 }
 div#article_form_category {
   margin-top: 20px;
@@ -1343,6 +1370,11 @@ p.current_user img {
   margin-top: 10px;
   object-fit: cover;
   height: 50px;
+  transition: all .5s;
+}
+
+p.current_user:hover img {
+  opacity: .5;
 }
 
 p.popular_user img {
@@ -1352,6 +1384,11 @@ p.popular_user img {
   margin-top: 10px;
   object-fit: cover;
   height: 40px;
+  transition: all .5s;
+}
+
+p.popular_user:hover img {
+  opacity: .5;
 }
 
 li.hot_tag_articles {
@@ -1399,6 +1436,11 @@ p.article_user_picture img {
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-top: 10px;
+  transition: all .5s;
+}
+
+p.article_user_picture:hover img {
+  opacity: .5;
 }
 
 table.sidebar_user_index {
@@ -1408,6 +1450,8 @@ table.sidebar_user_index {
 td.article_user_description {
   font-size: 13px;
   color: #828282;
+  padding: 0px 5px;
+  font-size: 13px;
 }
 
 div#article_top_category_name {
@@ -1437,7 +1481,7 @@ div#article_date {
     background: #ECECEC;
     border-radius: 0 7px 7px 0;
     transition: .4s;
-    font-size: 13px;
+    font-size: 11px;
     margin-top: 5px;
   }
 
@@ -1454,12 +1498,12 @@ div#article_date {
     background: #FFC107;
     border-radius: 0 7px 7px 0;
     transition: .4s;
-    font-size: 13px;
+    font-size: 11px;
     margin-top: 5px;
   }
 
   .special_tag:hover {
-    background-color: #ccc;
+    background-color: $hoverColor;
   }
 
 /*記事詳細画面左サイドボタン*/

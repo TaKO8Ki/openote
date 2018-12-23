@@ -3,7 +3,7 @@ class DashboardsController < ApplicationController
   before_action :search_articles_with_some_conditions
   before_action :authenticate_user!
 
-  def show
+  def dashboards 
   end
 
   private

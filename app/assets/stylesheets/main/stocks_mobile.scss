@@ -1,0 +1,45 @@
+@media (min-width: 768px) {
+  p.stock_title_mobile {
+    display: none;
+  }
+
+  table.stock_title_mobile {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+
+  table.stocks_table {
+    width: 100%;
+  }
+
+  td.stocks_sidebar {
+    display: none;
+  }
+
+  td.stocks_main {
+  width: 100%;
+  padding: 0px 10px;
+  }
+
+  td.gap_mobile {
+  display: none;
+  }
+
+  div#stocks_main {
+  box-shadow: none;
+  border-radius: 0px;
+  }
+
+  div#stocks_bottom {
+  box-shadow: none;
+  border-radius: 0px;
+  }
+
+  p.stock_title_mobile {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+}

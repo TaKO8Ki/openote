@@ -15,44 +15,73 @@
         <strong>プロフィールの設定</strong>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
             <p class="user_edit_title">プロフィール画像</p>
             <p class="user_edit_title">
               <div id="user_edit_form_picture">
                 <% if current_user.picture.present? %>
                 <%= image_tag current_user.picture.url %>
-                <% else%>
+                <% else %>
                 <%= image_tag "profile.png" %>
                 <% end %>
               </div>
               <div id="user_edit_form_picture">
                 <%= f.file_field :picture, autofocus: true, autocomplete: "new-password", class: "edit_form_picture", id: "post_image" %>
+                <% if @user.errors[:picture].any? %>
+                <div id="user_error">
+                  <%= "プロフィール画像#{@user.errors.messages[:picture][0]}" %>
+                </div>
+                <% end %>
               </div>
           </p>
 
           <div id="user_edit_form">
              <p class="user_edit_title">ユーザーネーム</p>
               <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "edit_form_username" %>
+              <% if @user.errors[:username].any? %>
+              <div id="user_error">
+                <%= "ユーザーネーム#{@user.errors.messages[:usernane][0]}" %>
+              </div>
+              <% end %>
           </div>
 
           <div id="user_edit_form">
              <p class="user_edit_title">ユーザーID</p>
               <%= f.text_field :profile_id, autofocus: true, autocomplete: "profile_id", class: "edit_form_profile_id" %>
+              <% if @user.errors[:profile_id].any? %>
+              <div id="user_error">
+                <%= "ユーザーID#{@user.errors.messages[:profile_id][0]}" %>
+              </div>
+              <% end %>
           </div>
 
           <div id="user_edit_form">
               <p class="user_edit_title">メールアドレス</p>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
+              <% if @user.errors[:email].any? %>
+              <div id="user_error">
+                <%= "メールアドレス#{@user.errors.messages[:email][0]}" %>
+              </div>
+              <% end %>
           </div>
 
           <div id="user_edit_form">
               <p class="user_edit_title">各種リンク</p>
-              <%= f.text_field :link, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
+              <%= f.text_field :social_link, autofocus: true, autocomplete: "email", class: "edit_form_email" %>
+              <% if @user.errors[:social_link].any? %>
+              <div id="user_error">
+                <%= "このリンク#{@user.errors.messages[:social_link][0]}" %>
+              </div>
+              <% end %>
           </div>
 
           <div id="user_edit_form">
               <p class="user_edit_title">自己紹介文</p>
               <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "edit_form_description" %>
+              <% if @user.errors[:description].any? %>
+              <div id="user_error">
+                <%= "自己紹介文#{@user.errors.messages[:social_link][0]}" %>
+              </div>
+              <% end %>
           </div>
           <div id="edit_user_info">
             <%= f.submit "更新する", :class => "edit_user_info" %>
@@ -69,10 +98,20 @@
             <div id="user_edit_form">
                   <p class="user_edit_title">パスワード</p>
                   <%= t.password_field :password, autocomplete: "new-password", class: "edit_form_password" %>
+                  <% if @user.errors[:password].any? %>
+                  <div id="user_error">
+                    <%= "パスワード#{@user.errors.messages[:password][0]}" %>
+                  </div>
+                  <% end %>
             </div>
             <div id="user_edit_form">
                   <p class="user_edit_title">パスワード確認用</p>
                   <%= t.password_field :password_confirmation, autocomplete: "new-password", class: "edit_form_password" %>
+                  <% if @user.errors[:password_confirmation].any? %>
+                  <div id="user_error">
+                    <%= "パスワード確認用#{@user.errors.messages[:password_confirmation][0]}" %>
+                  </div>
+                  <% end %>
             </div>
             <div id="edit_user_info">
               <%= t.submit "変更する", :class => "edit_user_password" %>

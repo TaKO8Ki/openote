@@ -15,8 +15,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @profile.save!
       end
       if current_user
-        flash[:notice] = "errorだよ"
-        # raise "user is not identical" if current_user != @profile.user
+        flash[:notice] = "外部アプリケーションとの連携が完了しました" if current_user == @profile.user
+        flash[:alert] = "このアカウントは他のユーザーによって連携されています" if current_user != @profile.user
       else
         sign_in(:user, @profile.user)
       end
@@ -26,12 +26,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def dammy_mail
-    dammy_mail = "takoyaki0310@gmail.com"
+    dammy_mail = "hoge@example.com"
     return dammy_mail
   end
 
   def dammy_password
-    dammy_password = "089786756"
+    dammy_password = "000000"
     return dammy_password
   end
 

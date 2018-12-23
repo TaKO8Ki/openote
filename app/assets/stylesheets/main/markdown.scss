@@ -1,53 +1,60 @@
 /*マークダウンエティターとarticle.bodyのmarkdown変換に対するstyle*/
 
 /*見出し関連*/
-h1.markdown_heading {
+@mixin heading {
   padding-bottom: 2px;
   border-bottom: solid 1px #ccc;
-  -webkit-appearance: none;
+  margin-bottom: 15px;
+}
+
+@mixin font_size {
+  font-size: 16px;
+}
+
+@mixin line_height {
+  line-height: 200%;
+}
+
+
+h1.markdown_heading {
+  @include heading;
 }
 h2.markdown_heading {
-  padding-bottom: 2px;
-  border-bottom: solid 1px #ccc;
-  -webkit-appearance: none;
+  @include heading;
 }
 h3.markdown_heading {
-  padding-bottom: 2px;
-  border-bottom: solid 1px #ccc;
-  -webkit-appearance: none;
+  @include heading;
 }
 h4.markdown_heading {
-  padding-bottom: 2px;
-  border-bottom: solid 1px #ccc;
-  -webkit-appearance: none;
+  @include heading;
 }
 h5.markdown_heading {
-  padding-bottom: 2px;
-  border-bottom: solid 1px #ccc;
-  -webkit-appearance: none;
+  @include heading;
 }
 h6.markdown_heading {
-  padding-bottom: 2px;
-  border-bottom: inset 2px #ccc;
-  -webkit-appearance: none;
+  @include heading;
 }
 
 /*文字列の改行反映*/
 
   /*article#showでの表示*/
 div#markdown_paragraph {
-  white-space:pre;
+  white-space: pre-line;
+  @include font_size;
+  @include line_height;
 }
 
   /*エディター*/
 p.markdown_text {
   white-space:pre;
+  @include font_size;
 }
 
 /*リスト関連*/
 li.markdown_list {
   margin-left: 20px;
   white-space:normal;
+  @include font_size;
 }
 
 /*コードブロック関連*/
@@ -55,10 +62,11 @@ li.markdown_list {
   /*article#showでの表示*/
 pre#markdown_block_code {
   margin-top: 10px;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -35px;
+  margin-right: -35px;
   padding: 20px 30px;
-  background-color: #333
+  background-color: #333;
+  @include font_size;
 }
 
 code#markdown_file_name {
@@ -70,7 +78,8 @@ pre#markdown_block_code_without_file_name {
   margin-left: -20px;
   margin-right: -20px;
   padding: 25px 25px;
-  background-color: #333
+  background-color: #333;
+  @include font_size;
 }
 
   /*エディター*/
@@ -80,6 +89,7 @@ pre.hljs {
   margin-left: -20px;
   margin-right: -20px;
   padding: 20px 30px;
+  @include font_size;
 }
 
 div#markdown_file_name {
@@ -87,11 +97,13 @@ div#markdown_file_name {
   color: #000;
   width: 100%;
   margin-bottom: 20px;
+  @include font_size;
 }
 
 div#markdown_file_name_itself {
   color: #fff;
   display: inline-block;
+  @include font_size;
 }
 
 /*引用関連*/
@@ -102,6 +114,7 @@ div#markdown_quote {
   padding-top: 15px;
   padding-bottom: 15px;
   margin-top: 10px;
+  @include font_size;
 }
 
 /*テーブル関連*/
@@ -113,6 +126,7 @@ table.markdown_table {
   margin-top: 10px;
   border-collapse: collapse;
   text-align: center;
+  @include font_size;
 }
 
 td.markdown_td {
@@ -139,4 +153,5 @@ p.markdown_image img {
 
 a.markdown_link {
   color: blue;
+  @include font_size;
 }

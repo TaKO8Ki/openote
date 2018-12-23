@@ -3,7 +3,11 @@ class SocialProfilesController < ApplicationController
   before_action :correct_user!
 
   def destroy
+    if @profile.provider == "github"
+      Repository.where(user_id: current_user.id).destroy_all
+    end
     @profile.destroy
+    flash[:notice] = "外部アプリケーションとの連携を解除しました"
     redirect_to user_path(@user)
   end
 

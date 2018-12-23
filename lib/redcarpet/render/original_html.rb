@@ -19,6 +19,15 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     '<div id="markdown_quote">' + "#{quote}" + '</div>'
   end
 
+  def list(contents, list_type)
+    if list_type == :ordered
+      type = "ol"
+    elsif list_type == :unordered
+      type = "ul"
+    end
+    return "<" + type + ">\n" + contents + '</' + type + ">\n"
+  end
+
   def list_item(text, list_type)
     '<li class="markdown_list">' + text.to_s + '</li>'
   end
@@ -40,12 +49,6 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     return out
   end
 
-  #redcarpetとmarked.jsでのリストの記法に少し異なりがあるので、統一するための修正
-  def preprocess(full_document)
-    renew_article = full_document.gsub("\n   - ", "\n     - ")
-    return renew_article.gsub("\n    - ", "\n     - ")
-  end
-
   def link(link, title, content)
     if link.nil?
       return content
@@ -58,6 +61,12 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
     return output
   end
 
+  #redcarpetとmarked.jsでのリストの記法に少し異なりがあるので、統一するための修正
+  def preprocess(whole_document)
+    renew_article = whole_document.gsub("\n   - ", "\n     - ")
+    renew_article = renew_article.gsub(/(\r\n){1,1}-/, "\r\n\r\n-")
+    return renew_article.gsub("\n    - ", "\n     - ")
+  end
 
 
 end

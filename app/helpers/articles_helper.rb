@@ -24,7 +24,7 @@ module ArticlesHelper
   end
 
   def popular_users
-    user_articles_likes_count = User.all.map{ |user| [user, user.articles.sum(:likes_count)]}
+    user_articles_likes_count = User.where.not(username: nil).map{ |user| [user, user.articles.sum(:likes_count)]}
     user_ranking = user_articles_likes_count.sort_by{ |_, v| -v }
   end
 
@@ -73,7 +73,7 @@ module ArticlesHelper
     article_tags_random = article.tag_list.sample(3)
     related_articles = []
     article_tags_random.each do |tag|
-      articles = Article.tagged_with(tag).sort_in_created_at_order("DESC").search_with_status("public").limit(2)
+      articles = Article.tagged_with(tag).sort_in_created_at_order("DESC").search_with_status("public").reject{ |article| article == article }
       related_articles += articles
     end
     return related_articles

@@ -1,10 +1,14 @@
 
     <table class="article_index_table">
-      <% if params[:tag] %>
+      <% if params[:tag] || params[:status] %>
       <div id="article_top">
         <div id='article_top_category_name'>
+          <% if params[:status].nil? %>
           <%= @tag.name %>
-          <% if user_signed_in? %>
+          <% else %>
+          <%= params[:status] %>
+          <% end %>
+          <% if user_signed_in? && params[:status].nil? %>
           <div id="follow_tag_buttons_<%= @tag.id %>">
            <%= render partial: 'follow_tag_relationships/follow_tag', locals: { tag: @tag} %>
           </div>
@@ -32,9 +36,9 @@
               <p class='article_list_category'>
                 <% article_tags(article).each do |tag| %>
                   <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
-                  <% if article.github_repository_url.present? %>
-                  <object><%= link_to "#オープンソース", searches_path(tag: tag), { :class => "article_list_tag" }%></object>
-                  <% end %>
+                <% end %>
+                <% if article.github_repository_url.present? %>
+                <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
                 <% end %>
               </p>
 
@@ -43,7 +47,13 @@
                   <tr>
                   <td class="article_list_user">
                     <p class='article_list_user_picture'>
-                      <object><%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %></object>
+                      <object>
+                        <% if article.user.picture.present? %>
+                        <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
+                        <% else %>
+                        <%= link_to (image_tag("profile.png")), user_path(article.user) %>
+                        <% end %>
+                      </object>
                     </p>
                   <td>
                   <td class="article_list_username">
@@ -71,7 +81,7 @@
                 <td>
                 <td class="article_list_username">
                   <p class='article_list_date'>
-                      <%= time_ago_in_words(article.updated_at) %>
+                      <%= time_ago_in_words(article.created_at) %>
                   </p>
                 </td>
                 </tr>

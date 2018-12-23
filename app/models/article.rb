@@ -13,6 +13,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion: { in: %w(draft public) }
+  validates :github_repository_url, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_url_present?
 
   scope :search_with_keyword, -> (keyword) {where("title like '%" + keyword + "%'")}
   scope :search_with_user, -> (user) {where(user_id: user)}
@@ -42,6 +43,10 @@ class Article < ApplicationRecord
 
   def search(keyword)
     self.where("title LIKE ?", keyword)
+  end
+
+  def is_url_present?
+    self.github_repository_url.present?
   end
 
 

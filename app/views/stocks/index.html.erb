@@ -1,0 +1,90 @@
+
+<p class="stock_title_mobile">ストック記事一覧</p>
+<table class="stocks_table">
+  <tr>
+    <td valign="top" class="stocks_sidebar">
+      <div id="stocks_sidebar">
+        <p class="stock_title">ストック記事一覧</p>
+
+        <% @kinds_of_tags.each do |tag_name, tag_count| %>
+        <p class="stock_tag">
+          <%= link_to "#{tag_name}(#{tag_count})", stocks_path(tag: tag_name), class: "stock_tag" %>
+        </p>
+        <% end %>
+      </div>
+    </td>
+    <td class="gap_mobile">
+    </td>
+    <td valign="top" class="stocks_main">
+      <div id="article_list">
+          <% @stocked_articles.each do |article| %>
+          <%= link_to article_path(article) do %>
+          <div id='article_list_bottom'>
+            <table class="article_list_top_table">
+              <tr>
+                <td>
+                 <h2>
+                   <object><%= link_to article.title, article_path(article), { :class => "article_link" } %></object>
+                 </h2>
+               </td>
+             </tr>
+           </table>
+          <p class='article_list_category'>
+            <% article_tags(article).each do |tag| %>
+              <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
+            <% end %>
+            <% if article.github_repository_url.present? %>
+            <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
+            <% end %>
+
+
+            <table class="article_list_info">
+              <tr>
+              <td class="article_list_user">
+                <p class='article_list_user_picture'>
+                  <object>
+                    <% if article.user.picture.present? %>
+                    <%= link_to (image_tag(article.user.picture.url)), user_path(article.user) %>
+                    <% else %>
+                    <%= link_to (image_tag("profile.png")), user_path(article.user) %>
+                    <% end %>
+                  </object>
+                </p>
+              <td>
+              <td class="article_list_username">
+                <object><%= link_to "#{article.user.username}", user_path(article.user) %></object>
+              </td>
+              </tr>
+            </table>
+            <table>
+            <tr>
+            <td class=article_list_comments>
+              <p class='article_list_comments'>
+                <%= image_tag "comment1.png" %>
+              </p>
+            <td>
+            <td class="article_list_comments">
+                <%= article.article_comments.count %>
+            <td>
+            <td>
+              <p class='article_list_likes'>
+                <%= image_tag "create_like.png"%>
+              </p>
+            <td>
+            <td class="article_list_likes">
+                <%= article.likes.count %>
+            <td>
+            <td class="article_list_username">
+              <p class='article_list_date'>
+                  <%= time_ago_in_words(article.created_at) %>
+              </p>
+            </td>
+            </tr>
+          </table>
+        </div>
+        <% end %>
+          <% end %>
+      </div>
+    </td>
+  </tr>
+</table>

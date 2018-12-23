@@ -20,6 +20,11 @@ class User < ApplicationRecord
   has_many :repositories, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
+  validates :profile_id, uniqueness: true
+  validates :profile_id, presence: true
+  validates :description , length: { maximum: 256 }
+  validates :social_link, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_url_present?
+
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :lockable, :timeoutable, :omniauthable, :omniauth_providers => [:github]
@@ -59,6 +64,10 @@ class User < ApplicationRecord
     user_token = access_token_of_each_of_providers(user, "github")
     github = Github.new oauth_token: "#{user_token}"
     user_repos = github.repos.list
+  end
+
+  def is_url_present?
+    self.social_link.present?
   end
 
 

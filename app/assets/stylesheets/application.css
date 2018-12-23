@@ -19,8 +19,6 @@
  *= require_self
  */
 
-
- @import 'rouge';
  @charset "utf-8";
 
  * {
@@ -30,7 +28,6 @@
 
  body#all_contents{
    margin-top: 90px;
-   font-size: 20px;
    color: #161616;
    background-color: #f6f6f6;
    font-family: "KozGoPro-Light", "小塚ゴシック Pro L", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, sans-serif;
@@ -82,23 +79,28 @@ div#all_header_menu {
 }
 
  .notice {
-    color: #333;
-    text-align: center;
-    background-color: #ccc;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 10px 0px;
-    margin: 0 auto;
-    width: 98%;
-    margin-bottom: 10px;
- }
+   text-align: center;
+   background-color: #dff0d8;
+   border-radius: 5px;
+   font-size: 15px;
+   padding: 10px 0px;
+   margin: 0 auto;
+   width: 95%;
+   margin-bottom: 10px;
+   color: #3c763d;
+   border: solid 1px #d6e9c6;
+}
 
  .alert {
-   background-color: red;
-   text-align: center;
    width: 95%;
    margin: 0 auto;
+   text-align: center;
+   background-color: #f2dede;
+   padding: 10px 0px;
    border-radius: 5px;
+   font-size: 15px;
+   color: #a94442;
+   border: solid 1px #ebccd1;
    margin-bottom: 10px;
  }
 

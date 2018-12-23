@@ -17,6 +17,10 @@
     display: none;
   }
 
+  div#hot_article_1 {
+    display: none;
+  }
+
   div#hot_article_2 {
     display: none;
   }
@@ -41,12 +45,10 @@
     position: fixed;
     height: auto;
     bottom: 0;
-    right: 65px;
+    right: 5px;
   }
 
   div#sign_up_form {
-    width: calc(100% + 10px);
-    margin-left: 5px;
   }
 
   div#article_left_buttons {
@@ -54,9 +56,21 @@
     padding-top: 0px;
   }
 
+  p.eval_none {
+    display: none;
+  }
+
   .eval_mobile {
     display: table-cell;
   }
+
+  .article_list_tag {
+    font-size: 11px;
+    }
+
+  .special_tag {
+    font-size: 11px;
+    }
 
   td.article_show_center {
     width: 100%;
@@ -122,6 +136,7 @@ div#article_show_center {
 
   p.comment_user img {
     width: 25px;
+    height: 25px;
   }
 
   div#comment_editor {
@@ -140,6 +155,12 @@ div#article_show_center {
   }
 
 /*記事一覧*/
+
+table.current_user {
+  border-radius: 0px;
+  border-bottom: solid 1px #ccc;
+}
+
   table.article_index_table {
     width: 100%;
     padding-left: 10px;
@@ -151,17 +172,11 @@ div#article_show_center {
   }
 
   table.each_hot_article {
-    border-spacing: 0;
-    display: inline-block;
-    margin: 0 auto;
-    width: 100%;
-    margin-bottom: 5px;
-    padding-right: 0px;
+    display: none;
 }
 
-td.hot_article_1 {
-  box-shadow: none;
-  background-color: transparent;
+p.hot_articles_title {
+  font-size: 20px;
 }
 
 
@@ -176,6 +191,7 @@ div#hot_article_2 {
   background-color: #fff;
   box-shadow: 0.5px 0.5px 10px 0px #ccc;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
   div#article_list div#article_list_bottom {
@@ -183,7 +199,7 @@ div#hot_article_2 {
 }
 
 div#article_list div h2 {
-    font-size: 18px;
+    font-size: 20px;
     color: #161616;
     text-decoration: none;
 }

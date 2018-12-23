@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery.remotipart
-//= require dropzone
 //= require main/highlight.pack.js
 //= require rails-ujs
 //= require activestorage

@@ -1,8 +1,8 @@
 
-<% if request.url.start_with?("#{main_url}/dashboards/articles") %>
-<p class="setting_link_clicked"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>
+<% if request.url.include?("dashboards") %>
+<p class="setting_link_clicked"><%= link_to "ダッシュボード", dashboards_path %></p>
 <% else %>
-<p class="setting_link"><%= link_to "ダッシュボード", "/dashboards/articles" %></p>
+<p class="setting_link"><%= link_to "ダッシュボード", dashboards_path %></p>
 <% end %>
 <% if request.url == "#{main_url}/users/edit" %>
 <p class="setting_link_clicked"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
@@ -10,17 +10,17 @@
 <p class="setting_link"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
 <% end %>
 <% if request.url.end_with?("repositories") %>
-<p class="setting_link_clicked"><%= link_to "レポジトリの公開", "/repositories"%></p>
+<p class="setting_link_clicked"><%= link_to "レポジトリの公開", settings_repositories_path %></p>
 <% else %>
-<p class="setting_link"><%= link_to "レポジトリの公開", "/repositories"%></p>
+<p class="setting_link"><%= link_to "レポジトリの公開", settings_repositories_path %></p>
 <% end %>
 <% if request.url == "#{main_url}/settings/integration" %>
-<p class="setting_link_clicked"><%= link_to "外部サービス連携", "/settings/integration" %></p>
+<p class="setting_link_clicked"><%= link_to "外部サービス連携", settings_integration_path %></p>
 <% else %>
-<p class="setting_link"><%= link_to "外部サービス連携", "/settings/integration" %></p>
+<p class="setting_link"><%= link_to "外部サービス連携", settings_integration_path %></p>
 <% end %>
-<% if request.url == "#{main_url}/settings/delete" %>
-<p class="setting_link_clicked"><%= link_to "アカウントを削除する", "/settings/delete" %></p>
+<% if request.url == "#{main_url}/settings/delete_account" %>
+<p class="setting_link_clicked"><%= link_to "アカウントを削除する", settings_delete_account_path %></p>
 <% else %>
-<p class="setting_link"><%= link_to "アカウントを削除する", "/settings/delete" %></p>
+<p class="setting_link"><%= link_to "アカウントを削除する", settings_delete_account_path %></p>
 <% end %>

@@ -4,8 +4,8 @@ class ArticlesController < ApplicationController
   after_action :tweet_button, only: [:show]
 
     def index
-      if current_user.present? && current_user.profile_id.blank?
-        current_user.update(profile_id: current_user.username)
+      if current_user.present? && current_user.username.blank?
+        current_user.update(username: current_user.profile_id)
       end
       @likes = Like.where(article_id: params[:article_id])
       @articles_likes_order = Article.all.order('likes_count DESC').limit(10)
@@ -31,16 +31,17 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        @article = Article.new(article_params)
-        @article.user_id = current_user.id
-        if params[:save_as_draft]
-          save_article_as_draft(@article)
-        end
-        if @article.save
-            redirect_to articles_path
-        else
-            render 'new'
-        end
+      error_title
+      @article = Article.new(article_params)
+      @article.user_id = current_user.id
+      if params[:save_as_draft]
+        save_article_as_draft(@article)
+      end
+      if @article.save
+          redirect_to articles_path
+      else
+          render new_article_path
+      end
     end
 
     def edit
@@ -99,19 +100,19 @@ private
 
   def which_articles_should_be_showed
     if params[:group] == "today"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_week"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_week).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = Article.search_with_period_likes_desc(this_week).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_month"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_month).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = Article.search_with_period_likes_desc(this_month).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "this_year"
-      @articles = Article.search_with_status("public").search_with_period_likes_desc(this_year).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = Article.search_with_period_likes_desc(this_year).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
     elsif params[:group] == "time_line"
-      @articles = Article.search_with_status("public").where(user_id: current_user.following)
+      @articles = Article.where(user_id: current_user.following)
     else
       @articles = Article.all
     end
-    return @articles
+    return @articles.search_with_status("public").sort_in_created_at_order("DESC")
   end
 
   def hot_articles
@@ -198,7 +199,11 @@ private
   end
 
   def other_articles
-    @other_articles = Article.search_with_user(@article.user).sort_in_created_at_order("DESC").limit(3)
+    @other_articles = Article.search_with_user(@article.user).sort_in_created_at_order("DESC").limit(3).reject{ |article| article == @article }
+  end
+
+  def error_title
+    @error_title = ["タイトル", "このURL", "本文"]
   end
 
   #ソーシャルボタン

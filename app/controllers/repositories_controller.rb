@@ -1,6 +1,11 @@
 class RepositoriesController < ApplicationController
   def index
-    @repositories = Repository.where(user_id: current_user.id).order("created_at DESC")
+    if current_user.social_profiles.where(provider: "github").present?
+      manage_repository(current_user)
+      @repositories = Repository.where(user_id: current_user.id).order("created_at DESC")
+    else
+      @non_repositories =  "Githubとの連携をして、レポジトリを公開しましょう"
+    end
   end
 
   def update
@@ -20,14 +25,14 @@ class RepositoriesController < ApplicationController
     access_token = user.social_profiles.find_by(provider: provider).access_token
   end
 
-  def manage_repository
-    repo_ids = github_repository(current_user).map(&:id)
-    repo_should_be_deleted = Repisitory.where.not(id: repo_ids)
+  def manage_repository(user)
+    repo_ids = github_repository(user).map(&:id)
+    repo_should_be_deleted = Repository.where.not(repo_id: repo_ids)
 
-    github_repository(current_user).each do |repo|
-      repository = Repository.find_by(repo_id: repo.id).present?
-      if repo.nil?
-        Repository.create(user_id: current_user, repo_id: repo.id)
+    github_repository(user).each do |repo|
+      repository = Repository.find_by(repo_id: repo.id)
+      if repository.nil?
+        Repository.create(name: repo.name, user_id: user.id, repo_id: repo.id)
       end
     end
     if repo_should_be_deleted.present?

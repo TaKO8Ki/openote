@@ -12,9 +12,23 @@ Rails.application.routes.draw do
   get 'likes/destroy'
   get 'article_comments/create'
   get 'article_comments/destroy'
-  get 'repositories', to: 'repositories#index'
+  get 'users', to: 'articles#index'
+
+  get 'privacy_policy', to: 'statics#privacy_policy'
+  get 'rules', to: 'statics#rules'
+  get 'contact', to: 'statics#contact'
+  get 'about', to: 'statics#about'
+
+  #設定関係
+  get 'dashboards', to: 'dashboards#dashboards'
+  get 'settings/repositories', to: 'repositories#index'
+  get 'settings/integration', to: 'settings#integration'
+  get 'settings/delete_account', to: 'settings#delete_account'
+
+  #通知
   get 'notifications/:id/link_through', to: 'notifications#link_through',
  as: :link_through
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations'  }
   resources :users, :only => [:show] do
     resources :social_profiles, only: [:destroy]
@@ -35,8 +49,7 @@ Rails.application.routes.draw do
   resources :article_categories
   resources :follow_relationships, only: [:create, :destroy]
   resources :notifications, only: [:index]
-  resources :settings, only: [:show]
-  resources :dashboards, only: [:show]
   resources :searches, only: [:index]
   resources :follow_tag_relationships, only: [:create, :destroy]
+  resources :stocks, only: [:index]
 end

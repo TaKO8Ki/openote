@@ -44,7 +44,7 @@ div#user_article_list div#user_article_list_bottom {
 }
 
 div#user_article_list div h2 {
-    font-size: 18px;
+    font-size: 20px;
     color: #161616;
     text-decoration: none;
 }
@@ -166,6 +166,7 @@ div#user_setting_cancel {
 table.user_setting_table {
   margin: 0 auto;
   width: 1000px;
+  border-spacing: 0px;
 }
 
 td.user_setting_main {
@@ -191,6 +192,17 @@ div#user_edit_form_picture img {
 
 div#user_edit_form {
   margin-bottom: 20px;
+}
+
+div#user_error {
+margin-top: 5px;
+background-color: #f2dede;
+padding: 5px;
+border-radius: 5px;
+font-size: 15px;
+color: #a94442;
+border: solid 1px #ebccd1;
+width: 90%;
 }
 
 div#user_edit_form_picture{
@@ -377,22 +389,30 @@ p.user_name {
 
 td.follow_count {
   text-align: center;
-  font-size: 16px;
+  font-size: 12px;
+}
+
+td.follow_count a {
+  font-size: 18px;
+}
+
+table.user_sub_info_table {
+  display: inline-block;
 }
 
 
-#user_sub_info-drawer {
+#user_sub_info_1-drawer {
   margin-top: 10px;
   padding-left: 10px;
 }
 
 /*チェックボックス等は非表示に*/
-.user_sub_info-unshown {
+.user_sub_info_1-unshown {
   display:none;
 }
 
 /*アイコンのスペース*/
-#user_sub_info-open {
+#user_sub_info_1-open {
   display: inline-block;
   vertical-align: middle;
   width: 45px;
@@ -408,7 +428,7 @@ td.follow_count {
   transition: all .5s;
 }
 
-#user_sub_info-open img {
+#user_sub_info_1-open img {
   width: 20px;
   height: 20px;
   object-fit: cover;
@@ -416,7 +436,7 @@ td.follow_count {
 }
 
 /*ハンバーガーアイコンをCSSだけで表現*/
-#user_sub_info-open span, #user_sub_info-open span:before, #user_sub_info-open span:after {
+#user_sub_info_1-open span, #user_sub_info_1-open span:before, #user_sub_info_1-open span:after {
   position: absolute;
   height: 3px;/*線の太さ*/
   width: 25px;/*長さ*/
@@ -426,15 +446,15 @@ td.follow_count {
   content: '';
   cursor: pointer;
 }
-#user_sub_info-open span:before {
+#user_sub_info_1-open span:before {
   bottom: -8px;
 }
-#user_sub_info-open span:after {
+#user_sub_info_1-open span:after {
   bottom: -16px;
 }
 
 /*閉じる用の薄黒カバー*/
-#user_sub_info-close {
+#user_sub_info_1-close {
   display: none;/*はじめは隠しておく*/
   position: fixed;
   z-index: 99;
@@ -447,7 +467,7 @@ td.follow_count {
   transition: .3s ease-in-out;
 }
 
-#user_sub_info-content {
+#user_sub_info_1-content {
   overflow: auto;
   position: fixed;
   top: 0;
@@ -463,12 +483,113 @@ td.follow_count {
 }
 
 
-#user_sub_info-input:checked ~ #user_sub_info-close {
+#user_sub_info_1-input:checked ~ #user_sub_info_1-close {
   display: block;
   opacity: .5;
 }
 
-#user_sub_info-input:checked ~ #user_sub_info-content {
+#user_sub_info_1-input:checked ~ #user_sub_info_1-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+
+
+#user_sub_info_2-drawer {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+#user_sub_info_2-drawer {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+/*チェックボックス等は非表示に*/
+.user_sub_info_2-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#user_sub_info_2-open {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  line-height: 150px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  background: #fdf9f3;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0.5px 0.5px 5px 1px #ccc;
+  transition: all .5s;
+}
+
+#user_sub_info_2-open img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  margin-bottom: 50px;
+  margin-right: 0.5px;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#user_sub_info_2-open span, #user_sub_info_2-open span:before, #user_sub_info_2-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+#user_sub_info_2-open span:before {
+  bottom: -8px;
+}
+#user_sub_info_2-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用の薄黒カバー*/
+#user_sub_info_2-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+}
+
+#user_sub_info_2-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 75%;
+  max-width: 330px;
+  height: 100%;
+  background: #fff;
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+}
+
+
+#user_sub_info_2-input:checked ~ #user_sub_info_2-close {
+  display: block;
+  opacity: .5;
+}
+
+#user_sub_info_2-input:checked ~ #user_sub_info_2-content {
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
   box-shadow: 6px 0 25px rgba(0,0,0,.15);
@@ -491,7 +612,7 @@ div#sidebar_user_show {
 
 div#sidebar_user_description {
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
   margin-bottom: 5px;
 }
 
@@ -520,6 +641,11 @@ div#sidebar_user_description {
   margin-top: 10px;
   margin-left: auto;
   object-fit: cover;
+  transition: all .5s;
+}
+
+.picture_user_show:hover img {
+  opacity: .5;
 }
 
 .user_show_follow_count {
@@ -554,7 +680,7 @@ p.github_icon img {
 }
 
 p.repo_description {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 div#user_all_memos {
@@ -581,7 +707,7 @@ li.user_article_memo::before {
   height: 6px;
   content: '';
   border-radius: 100%;
-  background: #FF4508;
+  background: #333;
 }
 
 p.box_name {
@@ -640,4 +766,9 @@ p.following_user img {
   margin-top: 10px;
   object-fit: cover;
   height: 50px;
+  transition: all .5s;
+}
+
+p.following_user:hover img {
+  opacity: .5;
 }

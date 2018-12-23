@@ -5,10 +5,10 @@
     <tr>
       <td valign="top" class="following_user_picture">
         <p class="following_user">
-           <% if user.picture.present? %>
-          <%= image_tag user.picture.url %>
+          <% if user.picture.present? %>
+          <%= link_to image_tag(user.picture.url), user_path(user) %>
           <% else %>
-          <%= image_tag "profile.png" %>
+          <%= link_to image_tag("profile.png"), user_path(user) %>
           <% end %>
         </p>
       </td>

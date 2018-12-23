@@ -26,7 +26,7 @@
               <tr>
               <td>
                 <p class='article_user_picture'>
-                  <%= image_tag @article_memo.user.picture.url if @article_memo.user.picture.present? %>
+                  <%= link_to image_tag(@article_memo.user.picture.url), user_path(@article_memo.user) %>
                 </p>
               </td>
               </tr>

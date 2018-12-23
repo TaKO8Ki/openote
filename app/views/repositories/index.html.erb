@@ -1,5 +1,3 @@
-
-
 <div id="setting_links_mobile">
   <%= render :partial => 'devise/registrations/links' %>
 </div>
@@ -14,6 +12,7 @@
     </td>
     <td valign="top">
       <div id="all_repo">
+        <% if @non_repositories.nil? %>
       <% @repositories.each do |repository| %>
       <div id="repo_list">
         <table class="github_repo_list">
@@ -33,6 +32,11 @@
             </tr>
           </table>
       </div>
+      <% end %>
+      <% else %>
+      <p class="repo_name">
+        <%= @non_repositories %>
+      </p>
       <% end %>
       </div>
     </td>

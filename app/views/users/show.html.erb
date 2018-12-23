@@ -5,8 +5,11 @@
     <td valign="top" class="user_show_profile" colspan="3">
       <div id='sidebar_user_show'>
           <p class='picture_user_show'>
-            <%= image_tag @user.picture.url if @user.picture.present? %>
-            <%= image_tag "profile.png" if @user.picture.blank? %>
+            <% if @user.picture.present? %>
+            <%= link_to image_tag(@user.picture.url), user_path(@user) %>
+            <% else %>
+            <%= image_tag "profile.png" %>
+            <% end %>
           </p>
           <p class="user_show_username">
           <%= link_to "#{@user.username}", user_path(@user) %>
@@ -19,11 +22,13 @@
           </div>
           <table class="user_show_link">
             <tr>
-              <td>
+              <td valign="top">
                 <p class="user_show_link"><%= image_tag "link.png" %></p>
               </td>
-              <td>
-                <%= link_to @user.link, @user.link %>
+              <td valign="top">
+                <% if @user.social_link.present? %>
+                <%= link_to @user.social_link, "#{@user.social_link}" %>
+                <% end %>
               </td>
             </tr>
           </table>
@@ -51,41 +56,74 @@
       </div>
     </td>
     <td valign="top" class="user_show_center">
-      <div id="user_sub_info-drawer">
-        <input id="user_sub_info-input" type="checkbox" class="user_sub_info-unshown">
-        <label id="user_sub_info-open" for="user_sub_info-input"><%= image_tag "code.png" %></label>
-        <label class="user_sub_info-unshown" id="user_sub_info-close" for="user_sub_info-input"></label>
-        <div id="user_sub_info-content">
-          <div id="user_sidebar_right">
-            <% if @user_repos.present? %>
-              <% @user_repos.each do |repo| %>
-              <% if public_repo?(repo) %>
-              <div id="user_each_repo">
-                <table class="github_repo">
-                  <tr>
-                    <td>
-                      <p class="github_icon">
-                        <%= image_tag "github.png" %>
-                      </p>
-                    </td>
-                    <td>
-                      <p class="repo_name">
-                        <strong><%= link_to repo.name, repo.svn_url %></strong>
-                      </p>
-                    </td>
-                    </tr>
-                  </table>
 
-                <% if repo.description.present? %>
-                <p class="repo_description"><%= repo.description %></p>
-                <% end %>
+      <table class="user_sub_info_table">
+        <tr>
+          <td>
+            <div id="user_sub_info_1-drawer">
+              <input id="user_sub_info_1-input" type="checkbox" class="user_sub_info_1-unshown">
+              <label id="user_sub_info_1-open" for="user_sub_info_1-input"><%= image_tag "code.png" %></label>
+              <label class="user_sub_info_1-unshown" id="user_sub_info_1-close" for="user_sub_info_1-input"></label>
+              <div id="user_sub_info_1-content">
+                <div id="user_sidebar_right">
+                  <% if @user_repos.present? %>
+                    <% @user_repos.each do |repo| %>
+                    <% if public_repo?(repo) %>
+                    <div id="user_each_repo">
+                      <table class="github_repo">
+                        <tr>
+                          <td>
+                            <p class="github_icon">
+                              <%= image_tag "github.png" %>
+                            </p>
+                          </td>
+                          <td>
+                            <p class="repo_name">
+                              <strong><%= link_to repo.name, repo.svn_url %></strong>
+                            </p>
+                          </td>
+                          </tr>
+                        </table>
+
+                      <% if repo.description.present? %>
+                      <p class="repo_description"><%= repo.description %></p>
+                      <% end %>
+                    </div>
+                    <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
               </div>
-              <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+            </div>
+          </td>
+          <td>
+          </td>
+          <td>
+            <div id="user_sub_info_2-drawer">
+              <input id="user_sub_info_2-input" type="checkbox" class="user_sub_info_2-unshown">
+              <label id="user_sub_info_2-open" for="user_sub_info_2-input"><%= image_tag "article_memo_3.png" %></label>
+              <label class="user_sub_info_2-unshown" id="user_sub_info_2-close" for="user_sub_info_2-input"></label>
+              <div id="user_sub_info_2-content">
+                <div id="user_sidebar_right">
+                  <% if @user_repos.present? %>
+                    <% @user_repos.each do |repo| %>
+                    <% if public_repo?(repo) %>
+                    <div id="user_all_memos">
+                      <% @user.article_memos.each do |memo| %>
+                      <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
+                      <% end %>
+                    </div>
+                    <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+          </td>
+        </tr>
+      </table>
 
       <div id="user_article_list">
 
@@ -104,9 +142,9 @@
           <p class='user_article_list_category'>
             <% article_tags(article).each do |tag| %>
               <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
-              <% if article.github_repository_url.present? %>
-              <object><%= link_to "#オープンソース", searches_path(tag: "オープンソース"), { :class => "special_tag" }%></object>
-              <% end %>
+            <% end %>
+            <% if article.github_repository_url.present? %>
+            <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
             <% end %>
           </p>
             <table>
@@ -129,7 +167,7 @@
             <td>
             <td class="user_article_list_username">
               <p class='user_article_list_date'>
-                  <%= time_ago_in_words(article.updated_at) %>
+                  <%= time_ago_in_words(article.created_at) %>
               </p>
             </td>
             </tr>

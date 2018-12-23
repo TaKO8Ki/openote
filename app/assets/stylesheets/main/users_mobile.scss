@@ -56,10 +56,23 @@
     width: 95%;
   }
 
+  div#user_article_list {
+    margin-top: 0px;
+  }
+
   div#user_each_repo {
     box-shadow: none;
     border-bottom: solid 1px #ccc;
     margin-bottom: 0px;
+    border-radius: 0px;
+  }
+
+  div#user_all_memos {
+    box-shadow: none;
+  }
+
+  div#user_follow_form {
+    width: 70%;
   }
 }
 
@@ -68,7 +81,14 @@
     display: none;
   }
 
-  #user_sub_info-open {
+  table.user_sub_info_table {
+    display: none;
+  }
+
+  #user_sub_info_1-open {
+    display: none;
+  }
+  #user_sub_info_2-open {
     display: none;
   }
 }
