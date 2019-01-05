@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def show
       @user = User.find(params[:id])
-      @category = Category.find_by_name(params[:name])
       @all_articles = Article.where(user_id: @user)
       @user_link = @user.social_link
       if @user.social_profiles.where(provider: "github").present?

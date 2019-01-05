@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+  div.privacy_policy {
+    box-shadow: none;
+    width: calc(100% - 70px);
+    border-radius: 0px;
+  }
+
+  div.rules {
+    box-shadow: none;
+    width: calc(100% - 70px);
+    border-radius: 0px;
+  }
+}

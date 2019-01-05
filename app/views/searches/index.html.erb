@@ -37,7 +37,7 @@
                 <% article_tags(article).each do |tag| %>
                   <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
                 <% end %>
-                <% if article.github_repository_url.present? %>
+                <% if article.repository_url.present? %>
                 <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
                 <% end %>
               </p>

@@ -15,14 +15,18 @@ class ArticlesController < ApplicationController
     end
 
     def show
-      if user_signed_in?
-        @like_hash = Like.where(user_id:current_user.id).pluck(:id,:article_id).to_h
-      end
       @like = Like.where(article_id: params[:article_id])
-      @article = Article.search_with_status("public").find(params[:id])
+      article = Article.search_with_status("public").find(params[:id])
+      @article = article
       other_articles
       @toc = markdown_toc(view_context.markdown(@article.body))
-      @user = @article.user
+      @user = article.user
+      if user_signed_in?
+        @like_hash = Like.where(user_id:current_user.id).pluck(:id,:article_id).to_h
+        if current_user != article.user
+          add_article_page_view
+        end
+      end
     end
 
     def new
@@ -131,7 +135,7 @@ private
 
   def tags_ranking_for_a_last_week
     now = Time.current
-    articles_for_this_week = Article.where("created_at > ?", now.beginning_of_week)
+    articles_for_this_week = Article.where("created_at > ?", now.beginning_of_year)
     all_articles_tags = []
     articles_for_this_week.each do |article|
       all_articles_tags.push(article.tag_list)
@@ -216,6 +220,10 @@ private
       "&text=" +
       "記事『" + @article.title + "』を閲覧しています。"
     )
+  end
+
+  def add_article_page_view
+    @article.page_view.increment(1)
   end
 
 end

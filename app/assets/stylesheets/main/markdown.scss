@@ -38,7 +38,7 @@ h6.markdown_heading {
 /*文字列の改行反映*/
 
   /*article#showでの表示*/
-div#markdown_paragraph {
+div.markdown_paragraph {
   white-space: pre-line;
   @include font_size;
   @include line_height;
@@ -47,33 +47,33 @@ div#markdown_paragraph {
   /*エディター*/
 p.markdown_text {
   white-space:pre;
-  @include font_size;
 }
 
 /*リスト関連*/
 li.markdown_list {
   margin-left: 20px;
   white-space:normal;
+  line-height: 35px;
   @include font_size;
 }
 
 /*コードブロック関連*/
 
   /*article#showでの表示*/
-pre#markdown_block_code {
+pre.markdown_block_code {
   margin-top: 10px;
   margin-left: -35px;
-  margin-right: -35px;
+  margin-right: -20px;
   padding: 20px 30px;
   background-color: #333;
   @include font_size;
 }
 
-code#markdown_file_name {
+code.markdown_file_name {
   margin-bottom: 20px;
 }
 
-pre#markdown_block_code_without_file_name {
+pre.markdown_block_code_without_file_name {
   margin-top: 10px;
   margin-left: -20px;
   margin-right: -20px;
@@ -92,7 +92,7 @@ pre.hljs {
   @include font_size;
 }
 
-div#markdown_file_name {
+div.markdown_file_name {
   background-color: #333;
   color: #000;
   width: 100%;
@@ -100,14 +100,14 @@ div#markdown_file_name {
   @include font_size;
 }
 
-div#markdown_file_name_itself {
+div.markdown_file_name_itself {
   color: #fff;
   display: inline-block;
   @include font_size;
 }
 
 /*引用関連*/
-div#markdown_quote {
+div.markdown_quote {
   border-left:inset 10px #ccc;
   color: #333;
   padding-left: 10px;

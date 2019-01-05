@@ -40,6 +40,10 @@ module ArticlesHelper
     articles_tagged_with_each_tag = Article.tagged_with(tag).order("created_at DESC").limit(5).order("likes_count DESC")
   end
 
+  def random_tags
+    ActsAsTaggableOn::Tag.all.map(&:name).sample(5)
+  end
+
   def public_article_memo(article, limit)
     article.article_memos.where(status: "public").limit(limit)
   end

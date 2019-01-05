@@ -21,6 +21,9 @@ class ArticleMemosController < ApplicationController
     @article = Article.find(params[:article_id])
     @article_memo = @article.article_memos.new(article_memo_params)
     @article_memo.user_id = current_user.id
+    if current_user != @article.user
+      add_article_point_by_memos
+    end 
     if params[:save_as_private]
       save_article_memo_as_private(@article_memo)
     end
@@ -59,6 +62,14 @@ class ArticleMemosController < ApplicationController
 
   def save_article_memo_as_private(article_memo)
     article_memo.update(status: "private")
+  end
+
+  def add_article_point_by_memos
+    if @article.is_open_source?
+      @article.point.increment(6 * 3/2)
+    else
+      @article.point.increment(6)
+    end
   end
 
 end

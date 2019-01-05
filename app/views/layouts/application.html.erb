@@ -27,12 +27,13 @@
   <header>
     <% if user_signed_in? %>
     <div id="all_header_menu">
+      <%= link_to image_tag("Orepen (9).png"), articles_path, class: "header_picture" %>
+      <%= link_to image_tag("orepen_log.png"), articles_path, class: "header_picture_mobile" %>
       <table class="header_menu">
         <tr>
           <td valign="top">
             <table class=search_form_table>
               <tr>
-
                 <td>
                   <p class="search_picture"><%= image_tag "search.png" %></p>
                 </td>
@@ -245,15 +246,9 @@
 
 
   <footer>
-    <table>
-      <tr>
-        <td>
-          プライバシーポリシー
-        </td>
-        <td>
-          お問い合わせ
-        </td>
-      </tr>
-    </table>
+    <%= link_to "プライバシーポリシー", privacy_policy_path, class: "footer" %>
+    <%= link_to "利用規約", rules_path, class: "footer" %>
+    <%= link_to "Orepenとは", about_path, class: "footer" %>
+    <%= link_to "問い合わせ", "#", class: "footer" %>
   </footer>
 </html>

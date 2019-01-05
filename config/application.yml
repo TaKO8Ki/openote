@@ -12,3 +12,6 @@
 
 GITHUB_ID: 93bed6feeb85ebc603ee
 GITHUB_SECRET: 3d9dc86bfc64d6b230298634a0db879984b4efef
+redis:
+  REDIS_HOST: localhost
+  REDIS_PORT: 6379

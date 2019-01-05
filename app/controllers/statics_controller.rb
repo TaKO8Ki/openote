@@ -12,6 +12,6 @@ class StaticsController < ApplicationController
   end
 
   def about
-    @title = "とは？"
+    @title = "Orepen とは？"
   end
 end

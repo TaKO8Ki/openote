@@ -1,17 +1,21 @@
-<table class="current_user">
-  <tr>
-    <td valign="top" class="current_user_picture">
-      <p class="current_user">
-        <% if current_user.picture.present? %>
-        <%= link_to image_tag(current_user.picture.url), user_path(current_user) %>
-        <% else %>
-        <%= link_to image_tag("profile.png"), user_path(current_user) %>
-        <% end %>
-      </p>
-    </td>
-    <td valign="top" class="current_user_main_element">
-      <p class="current_user"><strong><%= link_to current_user.username, user_path(current_user) %></strong></p>
-      <p class="current_user"><%= link_to "@#{current_user.profile_id}", user_path(current_user) %></p>
-    </td>
-  </tr>
-</table>
+<%= link_to user_path(id: current_user.id) do %>
+  <table class="current_user">
+    <tr>
+      <td valign="top" class="current_user_picture">
+        <p class="current_user">
+          <object>
+          <% if current_user.picture.present? %>
+          <%= link_to image_tag(current_user.picture.url), user_path(current_user) %>
+          <% else %>
+          <%= link_to image_tag("profile.png"), user_path(current_user) %>
+          <% end %>
+          </object>
+        </p>
+      </td>
+      <td valign="top" class="current_user_main_element">
+        <p class="current_user"><strong><object><%= link_to current_user.username, user_path(current_user) %></object></strong></p>
+        <p class="current_user"><object><%= link_to "@#{current_user.profile_id}", user_path(current_user) %><object></p>
+      </td>
+    </tr>
+  </table>
+<% end %>

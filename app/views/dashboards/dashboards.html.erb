@@ -44,14 +44,20 @@
       </table>
       <div id="dashboard_article_list">
         <div id="dashboard_search_form">
-          <%= form_tag(dashboards_path, :method => 'get', enforce_utf8: false) do %>
-            <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
-            <% if params[:status].present? %>
-            <%= submit_tag params[:status], name: "status", class: "search_button" %>
-            <% else %>
-            <%= submit_tag "search", name: nil, class: "search_button" %>
-            <% end %>
-          <% end %>
+                <%= form_tag(dashboards_path, :method => 'get', enforce_utf8: false, class: "dashboard_search_form") do %>
+                  <div class="selectWrap">
+                    <%= hidden_field_tag :status, params[:status] if params[:status ]%>
+                    <%= select_tag :order, options_for_select(@select_box), class: "dashboard_search_select" %>
+                  </div>
+                <% end %>
+                <%= form_tag(dashboards_path, :method => 'get', enforce_utf8: false) do %>
+                  <%= text_field_tag :d_q, params[:d_q], class: "dashboard_search_form", :placeholder => "#{@kind_of_articles}を検索する" %>
+                  <% if params[:status].present? %>
+                  <%= submit_tag params[:status], name: "status", class: "search_button" %>
+                  <% else %>
+                  <%= submit_tag "search", name: nil, class: "search_button" %>
+                  <% end %>
+                <% end %>
         </div>
           <% @articles.each do |article| %>
           <div id='dashboard_article_list_bottom'>
@@ -63,13 +69,13 @@
             <% end %>
            <h2>
           <p class='dashboard_article_list_date'>
-              <%= article.updated_at.strftime("%Y/%m/%d") %>
+              <%= article.created_at.strftime("%Y/%m/%d") %>
           </p>
           <p class='dashboard_article_list_category'>
             <% article_tags(article).each do |tag| %>
               <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
             <% end %>
-            <% if article.github_repository_url.present? %>
+            <% if article.repository_url.present? %>
             <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
             <% end %>
           </p>
@@ -90,6 +96,9 @@
             <td>
             <td class="article_list_likes">
                 <%= article.likes.count %>
+            <td>
+            <td class="article_list_likes">
+                <%= page_view(article) %>
             <td>
           </table>
 

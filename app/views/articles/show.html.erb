@@ -31,7 +31,7 @@
             <%= image_tag @article.picture.first.url if @article.picture.first.present? %>
           </p>
           <p class='article_show_center_date'>
-            <%= @article.updated_at.strftime("%Y/%m/%d") %>
+            <%= "#{@article.updated_at.strftime("%Y/%m/%d")}に更新" %>
           </p>
           <p class="article_show_center_title">
             <%= @article.title %>
@@ -83,7 +83,7 @@
 
           </div>
           <div id="sidebar_following_scroll">
-            <% if @toc.present? %>
+            <% if @toc != nil %>
             <div id="sidebar_article_toc">
               <%= raw @toc %>
             </div>
@@ -108,18 +108,18 @@
         <% if @other_articles.present? %>
         <table class=each_other_article>
           <tr>
-            <% if @other_articles.first.present? %>
+            <% @other_articles.each do |other_article| %>
             <td valign="top" class="other_article">
-              <%= link_to article_path(id: @other_articles.first.id) do %>
+              <%= link_to article_path(id: other_article.id) do %>
               <div>
               <p class="other_articles_picture">
-                <% if @other_articles.first.picture.first.present? %>
-                <%= image_tag @other_articles.first.picture.first.url %>
+                <% if other_article.picture.first.present? %>
+                <%= image_tag other_article.picture.first.url %>
                 <% else %>
                 <%= image_tag "profile.png" %>
                 <% end %>
               </p>
-              <p class="other_articles_title"><object><%= link_to @other_articles.first.title, article_path(id: @other_articles.first) %></object></p>
+              <p class="other_articles_title"><object><%= link_to other_article.title, article_path(id: other_article) %></object></p>
               <table class="other_article_info">
                 <tr>
                     <td>
@@ -133,7 +133,7 @@
                           </p>
                         <td>
                         <td class="article_list_comments">
-                            <%= @other_articles.first.article_comments.count %>
+                            <%= other_article.article_comments.count %>
                         <td>
                         <td>
                           <p class='article_list_likes'>
@@ -141,7 +141,7 @@
                           </p>
                         <td>
                         <td class="article_list_likes">
-                            <%= @other_articles.first.likes.count %>
+                            <%= other_article.likes.count %>
                         <td>
                       <tr>
                     </table>
@@ -151,92 +151,6 @@
               </table>
             </div>
             <% end %>
-            </td>
-            <% end %>
-            <td class="gap">
-            </td>
-            <% if @other_articles.second.present? %>
-            <td valign="top" class="other_article">
-              <%= link_to article_path(id: @other_articles.second.id) do %>
-              <div>
-              <p class="other_articles_picture">
-                <% if @other_articles.second.picture.first.present? %>
-                <%= image_tag @other_articles.second.picture.first.url %>
-                <% else %>
-                <%= image_tag "profile.png" %>
-                <% end %>
-              </p>
-              <p class="other_articles_title"><object><%= link_to @other_articles.second.title, article_path(id: @other_articles.second) %></object></p>
-              <table class="other_article_info">
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                    <table class="other_article_eval">
-                      <tr>
-                        <td class=article_list_comments>
-                          <p class='article_list_comments'>
-                            <%= image_tag "comment1.png" %>
-                          </p>
-                        <td>
-                        <td class="article_list_comments">
-                            <%= @other_articles.second.article_comments.count %>
-                        <td>
-                        <td>
-                          <p class='article_list_likes'>
-                            <%= image_tag "create_like.png"%>
-                          </p>
-                        <td>
-                        <td class="article_list_likes">
-                            <%= @other_articles.second.likes.count %>
-                        <td>
-                      <tr>
-                    </table>
-                    </td>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <% end %>
-            </td>
-            <% end %>
-            <td class="gap">
-            </td>
-            <% if @other_articles.third.present? %>
-            <td valign="top" class="other_article">
-              <div>
-              <%= link_to article_path(id: @other_articles.third.id) do %>
-
-              <p class="other_articles_picture">
-                <% if @other_articles.third.picture.first.present? %>
-                <%= image_tag @other_articles.third.picture.first.url %>
-                <% else %>
-                <%= image_tag "profile.png" %>
-                <% end %>
-              </p>
-              <p class="other_articles_title"><object><%= link_to @other_articles.third.title, article_path(id: @other_articles.third) %></object></p>
-                    <table class="other_article_eval">
-                      <tr>
-                        <td class=article_list_comments>
-                          <p class='article_list_comments'>
-                            <%= image_tag "comment1.png" %>
-                          </p>
-                        <td>
-                        <td class="article_list_comments">
-                            <%= @other_articles.third.article_comments.count %>
-                        <td>
-                        <td>
-                          <p class='article_list_likes'>
-                            <%= image_tag "create_like.png"%>
-                          </p>
-                        <td>
-                        <td class="article_list_likes">
-                            <%= @other_articles.third.likes.count %>
-                        <td>
-                      <tr>
-                    </table>
-            <% end %>
-                </div>
             </td>
             <% end %>
           </tr>
@@ -302,7 +216,13 @@
                 <table>
                   <tr>
                     <td valign="top" class="popular_user_picture">
-                      <p class="comment_user"><%= image_tag comment_user(comment).picture.url %></p>
+                      <p class="comment_user">
+                      <% if @article.user.picture.present? %>
+                      <%= link_to image_tag(comment_user(comment).picture.url), user_path(comment_user(comment)) %>
+                      <% else %>
+                      <%= link_to image_tag("profile.png"), user_path(comment_user(comment)) %>
+                      <% end %>
+                      </p>
                     </td>
                     <td valign="top" class="popular_user_main_element">
                       <p class="comment_user"><strong><%= link_to comment_user(comment).username, user_path(comment_user(comment)) %></strong></p>
@@ -318,7 +238,7 @@
                             article_article_comment_path(@article, comment),
                             method: :delete,
                             class: 'article_comment_delete',
-                                data: { confirm: "削除してもよろしいですか？" }%>
+                            data: { confirm: "削除してもよろしいですか？" }%>
                   </div>
                   <% end %>
                 <% end %>
@@ -328,6 +248,8 @@
             </ul>
           <% end %>
           <% if user_signed_in? %>
+
+
             <div id="comment_editor">
               <ul class="tab">
                 <li class="select">編集</li>
@@ -336,18 +258,23 @@
               <ul class="content">
                   <li>
                     <div id='article_show_comment_form'>
-                      <%= form_for ([@article, @article.article_comments.build]) do |f| %>
-                        <%= f.text_area :body, "v-model" => "input", "debouce" => "300", :placeholder => "body", :class => "article_comment_form" %>
+                      <%= form_tag(article_article_comments_path(article_id: @article.id), class: "article_comment_form") do %>
+                        <%= text_area_tag "article_comment[body]","",  {"v-model" =>  "input", "debouce" => "300", placeholder: "body", class: "article_comment_field"} %>
+                        <%= submit_tag 'コメントする', :class => "article_comment_submit" %>
                     </div>
                   </li>
                   <li class="hide"><div v-html="input | marked", id="comment_preview"></div></li>
                 </ul>
-                <p class="article_comment_submit">
-                  <%= f.submit 'コメントする', :class => "article_comment_submit" %>
-                </p>
                 <% end %>
+                <div class="article_comment_submit">
+                  <p class="article_comment_submit_button">
+                    コメントする
+                  </p>
+                </div>
             </div>
             <% end %>
+
+
 
       </td>
       <td class="article_comment_side_right"></td>

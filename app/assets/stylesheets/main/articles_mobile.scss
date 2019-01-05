@@ -1,3 +1,9 @@
+@mixin button_mobile {
+  width: 100%;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
 @mixin box{
   box-shadow: 0.5px 0.5px 10px 0px #ccc;
   border-radius: 5px;
@@ -45,15 +51,20 @@
     position: fixed;
     height: auto;
     bottom: 0;
-    right: 5px;
+    width: 100%;
   }
 
   div#sign_up_form {
   }
 
+  div#article_show_left{
+    margin-right: 0px;
+  }
+
   div#article_left_buttons {
     top: 0;
     padding-top: 0px;
+    width: 100%;
   }
 
   p.eval_none {
@@ -62,6 +73,9 @@
 
   .eval_mobile {
     display: table-cell;
+    position: relative;
+    bottom: -34px;
+    width: 3%;
   }
 
   .article_list_tag {
@@ -74,6 +88,7 @@
 
   td.article_show_center {
     width: 100%;
+    box-shadow: none;
   }
 
   p.hot_articles_picture img {
@@ -107,7 +122,6 @@ div#article_show_center {
     background-color: #fff;
     width: calc(100% - 40px);
     border: none;
-    box-shadow: 0px 0px 0px 0px;
     border-radius: 0;
   }
 
@@ -135,8 +149,8 @@ div#article_show_center {
   }
 
   p.comment_user img {
-    width: 25px;
-    height: 25px;
+    width:30px;
+    height:30px;
   }
 
   div#comment_editor {
@@ -226,6 +240,11 @@ input.article_submit_button {
 
 input.article_submit_as_draft_button {
   font-size: 13px;
+}
+
+.left_sidebar_button {
+  @include button_mobile;
+  border-left: solid 1px #D9A407;
 }
 
 }

@@ -46,13 +46,14 @@
       <td valign="top" class="user_show_left">
         <div id="user_sidebar">
           <div id="user_all_memos">
+            <% if @user.article_memos.present? %>
             <% @user.article_memos.each do |memo| %>
             <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
             <% end %>
+            <% else %>
+            公開されているメモはありません
+            <% end %>
           </div>
-          <ul>
-              <%= link_to 'いいねした投稿', user_path(like: @user.likes) %>
-          </ul>
       </div>
     </td>
     <td valign="top" class="user_show_center">
@@ -143,7 +144,7 @@
             <% article_tags(article).each do |tag| %>
               <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
             <% end %>
-            <% if article.github_repository_url.present? %>
+            <% if article.repository_url.present? %>
             <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
             <% end %>
           </p>
@@ -180,30 +181,34 @@
       <td valign="top" class="user_show_right">
         <div id="user_sidebar_right">
           <% if @user_repos.present? %>
-            <% @user_repos.each do |repo| %>
-            <% if public_repo?(repo) %>
-            <div id="user_each_repo">
-              <table class="github_repo">
-                <tr>
-                  <td>
-                    <p class="github_icon">
-                      <%= image_tag "github.png" %>
-                    </p>
-                  </td>
-                  <td>
-                    <p class="repo_name">
-                      <strong><%= link_to repo.name, repo.svn_url %></strong>
-                    </p>
-                  </td>
-                  </tr>
-                </table>
+          <% @user_repos.each do |repo| %>
+          <% if public_repo?(repo) %>
+          <div id="user_each_repo">
+            <table class="github_repo">
+              <tr>
+                <td>
+                  <p class="github_icon">
+                    <%= image_tag "github.png" %>
+                  </p>
+                </td>
+                <td>
+                  <p class="repo_name">
+                    <strong><%= link_to repo.name, repo.svn_url %></strong>
+                  </p>
+                </td>
+                </tr>
+              </table>
 
-              <% if repo.description.present? %>
-              <p class="repo_description"><%= repo.description %></p>
-              <% end %>
-            </div>
+            <% if repo.description.present? %>
+            <p class="repo_description"><%= repo.description %></p>
             <% end %>
-            <% end %>
+          </div>
+          <% end %>
+          <% end %>
+          <% else %>
+          <div id="user_each_repo">
+            公開されているレポジトリはありません。
+          </div>
           <% end %>
         </div>
 

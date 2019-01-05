@@ -1,0 +1,60 @@
+<div class="about_top">
+  <p class="about_title"><%= image_tag "Orepen (9).png" %></p>
+  <p class="about_sub_title">
+    Orepenとは、オープンソース推奨型のプレスリリースサービスです。
+  </p>
+</div>
+
+<div class="about_detail">
+  <table class="about_table_top">
+    <tr>
+      <td class="about_td">
+        <div class="each_service">
+          <p class="about_picture"><%= image_tag "article_memo_3.png" %></p>
+          <p class="about_service_title">メモ</p>
+          <p class="about_description">記事に関するメモを取ることができます。メモを公開して、他の人と共有することも可能です。</p>
+        </div>
+      </td>
+      <td class="about_td">
+        <div class="each_service">
+          <p class="about_picture"><%= image_tag "pen.png" %></p>
+          <p class="about_service_title">Markdown</p>
+          <p class="about_description">記事をマークダウン記法で投稿することができます。</p>
+        </div>
+      </td>
+      <td class="about_td">
+        <div class="each_service">
+          <p class="about_picture"><%= image_tag "tag.png" %></p>
+          <p class="about_service_title">ストック</p>
+          <p class="about_description">あとでもう一度見たいプレスリリース記事をストックしておくことができます。</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table class="about_table_bottom">
+    <tr>
+      <td class="about_td">
+        <div class="each_service">
+          <p class="about_picture"><%= image_tag "order.png" %></p>
+          <p class="about_service_title">記事の表示</p>
+          <p class="about_description">あなたの記事がどれだけの人に見られているかを確認することができます。</p>
+        </div>
+      </td>
+      <td class="about_td">
+        <div class="each_service">
+          <p class="about_picture"><%= image_tag "file.png" %></p>
+          <p class="about_service_title">レポジトリ</p>
+          <p class="about_description">あなたのレポジトリを公開することが可能です。もちろん非公開にしておくこともできます。</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p class="about_main_description">
+  このようにOrepenでは、質の高いオープンソースのサービスがしっかりと評価されるようになっており、うまくPRに繋がるようになっています。また、プログラミング学習などの目的でオープンソースを探す時は、より自分の目的にあったものを見つけることができます。
+</p>
+
+<p class="about_button">
+  <%= link_to "プレスリリースをする", new_user_registration_path, class: "about_button" %>
+</p>

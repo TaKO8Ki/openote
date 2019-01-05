@@ -8,10 +8,140 @@
   background-color: #fff;
 }
 
+@mixin title {
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 35px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #ccc;
+}
+
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
+
 /*プライバシーポリシー*/
 div.privacy_policy {
   @include box;
   width: 900px;
   margin: 0 auto;
   padding: 20px 35px;
+}
+
+p.privacy_policy_title {
+  @include title;
+}
+
+div.rules {
+  @include box;
+  padding: 20px 35px;
+  margin: 0 auto;
+  width: 900px;
+}
+
+p.rules_title {
+  @include title;
+}
+
+div.about_top {
+  background: #FFC107;
+  padding: 80px 50px;
+  text-align: center;
+  color: #4a4a4b;
+}
+
+p.about_title img {
+  width: 70%;
+}
+
+p.about_sub_title {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+p.about_description {
+  text-align: center;
+  font-size: 15px;
+}
+
+p.about_main_description {
+  text-align: left;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 40px;
+  line-height: 35px;
+}
+
+table.about_table_top {
+  width: 950px;
+  margin: 0 auto;
+  border-spacing: 25px;
+}
+
+table.about_table_bottom {
+  width: 641px;
+  margin: 0 auto;
+  border-spacing: 25px 0px;
+}
+
+td.about_td {
+  width: 30%;
+}
+
+div.each_service {
+  @include box;
+  padding: 30px 20px;
+  height: 220px;
+}
+
+p.about_service_title {
+  font-size: 22px;
+  text-align: center;
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.about_picture {
+   width: 110px;
+   height: 100px;
+   line-height: 150px;
+   margin: 0 auto;
+   font-size: 20px;
+   display: block;
+   text-align: center;
+   border-radius: 50%;
+}
+
+.about_picture img {
+ width: 90px;
+ height: auto;
+ margin-bottom: 47px;
+}
+
+p.about_button {
+  text-align: center;
+  margin-top: 45px;
+}
+
+a.about_button {
+  padding: 20px 35px;
+  background: #FFC107;
+  border-radius: 100px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 auto;
+  color: #fff;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  transition: all 0.5s;
+}
+
+a.about_button:hover {
+  background: $hoverColor;
 }

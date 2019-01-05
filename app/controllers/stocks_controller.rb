@@ -43,4 +43,20 @@ class StocksController < ApplicationController
       end
     end
   end
+
+  def add_article_point_by_stocks
+    if @article.is_open_source?
+      @article.point.increment(2 * 3/2)
+    else
+      @article.point.increment(2)
+    end
+  end
+
+  def remove_article_point_by_stocks
+    if @article.is_open_source?
+      @article.point.decrement(2 * 3/2)
+    else
+      @article.point.decrement(2)
+    end
+  end
 end

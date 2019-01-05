@@ -5,18 +5,18 @@ class Redcarpet::Render::OriginalHTML < Redcarpet::Render::HTML
 
   def block_code(code, language)
     if language.present? && code.present?
-      '<pre id="markdown_block_code">' + '<strong>' + '<code id="markdown_file_name">' + language.to_s + '</code></strong>' + '<code id="markdown_code">' + code.to_s  + "</code></pre>"
+      '<pre class="markdown_block_code">' + '<strong>' + '<code class="markdown_file_name">' + language.to_s + '</code></strong>' + '<code class="markdown_code">' + code.to_s  + "</code></pre>"
     elsif code.present?
-      '<pre id="markdown_block_code_without_file_name">' + '<code id="markdown_code">' +  code.to_s + '</code>' + '</pre>'
+      '<pre class="markdown_block_code_without_file_name">' + '<code class="markdown_code">' +  code.to_s + '</code>' + '</pre>'
     end
   end
 
   def paragraph(text)
-    return '<div id="markdown_paragraph">' + text.to_s + '</div>'
+    return '<div class="markdown_paragraph">' + text.to_s + '</div>'
   end
 
   def block_quote(quote)
-    '<div id="markdown_quote">' + "#{quote}" + '</div>'
+    '<div class="markdown_quote">' + "#{quote}" + '</div>'
   end
 
   def list(contents, list_type)

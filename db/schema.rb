@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_060257) do
+ActiveRecord::Schema.define(version: 2018_12_31_093218) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -36,15 +36,6 @@ ActiveRecord::Schema.define(version: 2018_12_15_060257) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
-  create_table "article_categories", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_article_categories_on_article_id"
-    t.index ["category_id"], name: "index_article_categories_on_category_id"
   end
 
   create_table "article_comments", force: :cascade do |t|
@@ -78,21 +69,18 @@ ActiveRecord::Schema.define(version: 2018_12_15_060257) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.string "github_repository_url"
+    t.string "repository_url"
     t.string "service_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_id"
     t.integer "likes_count"
     t.string "status", default: "public"
-    t.json "picture"
     t.integer "stocks_count"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "picture"
+    t.integer "point", default: 0
+    t.integer "page_view", default: 0
+    t.integer "unique_users", default: 0
   end
 
   create_table "follow_relationships", force: :cascade do |t|

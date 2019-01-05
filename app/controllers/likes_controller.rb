@@ -5,6 +5,7 @@ class LikesController < ApplicationController
       @like = Like.create(user_id: current_user.id, article_id: params[:article_id])
       @likes = Like.where(article_id: params[:article_id])
       create_notifications
+      add_article_point_by_likes
       @article.reload
     end
 
@@ -29,5 +30,20 @@ class LikesController < ApplicationController
         notified_type: 'like')
      end
 
+     def add_article_point_by_likes
+       if @article.is_open_source?
+         @article.point.increment(2 * 3/2)
+       else
+         @article.point.increment(2)
+       end
+     end
+
+     def remove_article_point_by_likes
+       if @article.is_open_source?
+         @article.point.decrement(2 * 3/2)
+       else
+         @article.point.decrement(2)
+       end
+     end
 
 end

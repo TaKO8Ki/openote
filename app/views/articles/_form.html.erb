@@ -10,11 +10,11 @@
   <% end %>
 
   <div id='article_form_github'>
-      <%= article.text_field :github_repository_url, :placeholder => "github_url", class: "article_github" %>
+      <%= article.text_field :repository_url, :placeholder => "github_url", class: "article_github" %>
   </div>
-  <% if @article.errors[:github_repository_url].any? %>
+  <% if @article.errors[:repository_url].any? %>
   <div id="error">
-    <%= "#{@error_title[1]}#{@article.errors.messages[:github_repository_url][0]}" %>
+    <%= "#{@error_title[1]}#{@article.errors.messages[:repository_url][0]}" %>
   </div>
   <% end %>
 
@@ -37,15 +37,6 @@
         <% end %>
       </ul>
   </div>
-
-
-    <!-- <%= article.label :category %>
-    <div id='article_form_category'>
-        <%= collection_check_boxes(:article, :category_ids, Category.all, :id, :name) do |category| %>
-        <%= category.label { category.check_box + category.text } %>
-        <% end %>
-    </div> -->
-
 
   <div id=whole_editor>
     <table class="editor_helper">

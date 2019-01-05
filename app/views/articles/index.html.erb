@@ -58,16 +58,18 @@
                 </div>
           <% end %>
 
-          <%= link_to article_path(id: @hot_articles.first.id) do %>
+          <% @hot_articles.each do |hot_article| %>
+          <% if hot_article.present? %>
+          <%= link_to article_path(id: hot_article.id) do %>
           <div id="hot_article_1">
           <p class="hot_articles_picture">
-            <% if @hot_articles.first.picture.first.present? %>
-            <%= image_tag @hot_articles.first.picture.first.url %>
+            <% if hot_article.picture.first.present? %>
+            <%= image_tag hot_article.picture.first.url %>
             <% else %>
             <%= image_tag "profile.png" %>
             <% end %>
           </p>
-          <p class="hot_articles_title"><object><%= link_to @hot_articles.first.title, article_path(id: @hot_articles.first.id) %></object></p>
+          <p class="hot_articles_title"><object><%= link_to hot_article.title, article_path(id: hot_article.id) %></object></p>
           <table class="hot_article_info">
             <tr>
               <td>
@@ -76,16 +78,16 @@
                   <td class="article_list_user">
                     <p class='article_list_user_picture'>
                       <object>
-                        <% if @hot_articles.first.user.picture.present? %>
-                        <%= link_to (image_tag(@hot_articles.first.user.picture.url)), user_path(@hot_articles.first.user) %>
+                        <% if hot_article.user.picture.present? %>
+                        <%= link_to (image_tag(hot_article.user.picture.url)), user_path(hot_article.user) %>
                         <% else %>
-                        <%= link_to (image_tag("profile.png")), user_path(@hot_articles.first.user) %>
+                        <%= link_to (image_tag("profile.png")), user_path(hot_article.user) %>
                         <% end %>
                       </object>
                     </p>
                   <td>
                   <td class="article_list_username">
-                    <object><%= link_to "#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %></object>
+                    <object><%= link_to "#{hot_article.user.username}", user_path(hot_article.user) %></object>
                   </td>
                 </tr>
                 </table>
@@ -101,7 +103,7 @@
                       </p>
                     <td>
                     <td class="article_list_comments">
-                        <%= @hot_articles.first.article_comments.count %>
+                        <%= hot_article.article_comments.count %>
                     <td>
                     <td>
                       <p class='article_list_likes'>
@@ -109,7 +111,7 @@
                       </p>
                     <td>
                     <td class="article_list_likes">
-                        <%= @hot_articles.first.likes.count %>
+                        <%= hot_article.likes.count %>
                     <td>
                   <tr>
                 </table>
@@ -119,82 +121,26 @@
           </table>
           </div>
           <% end %>
-          <%= link_to article_path(@hot_articles.second) do %>
-          <div id="hot_article_2">
-          <p class="hot_articles_picture">
-            <% if @hot_articles.second.picture.first.present? %>
-            <%= image_tag @hot_articles.second.picture.first.url %>
-            <% else %>
-            <%= image_tag "profile.png" %>
-            <% end %>
-          </p>
-          <p class="hot_articles_title"><object><%= link_to @hot_articles.second.title, article_path(@hot_articles.second) %></object></p>
-          <table class="hot_article_info">
-          <tr>
-            <td>
-            <table>
-              <tr>
-                <td class="article_list_user">
-                  <p class='article_list_user_picture'>
-                    <object>
-                      <% if @hot_articles.second.user.picture.present? %>
-                      <%= link_to (image_tag(@hot_articles.second.user.picture.url)), user_path(@hot_articles.second.user) %>
-                      <% else %>
-                      <%= link_to (image_tag("profile.png")), user_path(@hot_articles.second.user) %>
-                      <% end %>
-                    </object>
-                  </p>
-                <td>
-                <td class="article_list_username">
-                  <object><%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %></object>
-                </td>
-              </tr>
-              </table>
-              </td>
-              <td>
-              </td>
-              <td>
-              <table class="hot_article_eval">
-                <tr>
-                  <td class=article_list_comments>
-                    <p class='article_list_comments'>
-                      <%= image_tag "comment1.png" %>
-                    </p>
-                  <td>
-                  <td class="article_list_comments">
-                      <%= @hot_articles.second.article_comments.count %>
-                  <td>
-                  <td>
-                    <p class='article_list_likes'>
-                      <%= image_tag "create_like.png"%>
-                    </p>
-                  <td>
-                  <td class="article_list_likes">
-                      <%= @hot_articles.second.likes.count %>
-                  <td>
-                <tr>
-              </table>
-              </td>
-            </td>
-          </tr>
-          </table>
-          </div>
           <% end %>
+          <% end %>
+
           <% if params[:group] == "time_line" %>
           <% else %>
             <table class=each_hot_article>
               <tr>
+                <% @hot_articles.each do |hot_article| %>
+                <% if hot_article.present? %>
                 <td valign="top" class="hot_article_1">
-                  <%= link_to article_path(id: @hot_articles.first.id) do %>
+                  <%= link_to article_path(id: hot_article.id) do %>
                   <div>
                   <p class="hot_articles_picture">
-                    <% if @hot_articles.first.picture.first.present? %>
-                    <%= image_tag @hot_articles.first.picture.first.url %>
+                    <% if hot_article.picture.first.present? %>
+                    <%= image_tag hot_article.picture.first.url %>
                     <% else %>
                     <%= image_tag "profile.png" %>
                     <% end %>
                   </p>
-                  <p class="hot_articles_title"><object><%= link_to @hot_articles.first.title, article_path(id: @hot_articles.first.id) %></object></p>
+                  <p class="hot_articles_title"><object><%= link_to hot_article.title, article_path(id: hot_article.id) %></object></p>
                   <table class="hot_article_info">
                     <tr>
                       <td>
@@ -203,16 +149,16 @@
                           <td class="article_list_user">
                             <p class='article_list_user_picture'>
                               <object>
-                                <% if @hot_articles.first.user.picture.present? %>
-                                <%= link_to (image_tag(@hot_articles.first.user.picture.url)), user_path(@hot_articles.first.user) %>
+                                <% if hot_article.user.picture.present? %>
+                                <%= link_to (image_tag(hot_article.user.picture.url)), user_path(hot_article.user) %>
                                 <% else %>
-                                <%= link_to (image_tag("profile.png")), user_path(@hot_articles.first.user) %>
+                                <%= link_to (image_tag("profile.png")), user_path(hot_article.user) %>
                                 <% end %>
                               </object>
                             </p>
                           <td>
                           <td class="article_list_username">
-                            <object><%= link_to "#{@hot_articles.first.user.username}", user_path(@hot_articles.first.user) %></object>
+                            <object><%= link_to "#{hot_article.user.username}", user_path(hot_article.user) %></object>
                           </td>
                         </tr>
                         </table>
@@ -228,7 +174,7 @@
                               </p>
                             <td>
                             <td class="article_list_comments">
-                                <%= @hot_articles.first.article_comments.count %>
+                                <%= hot_article.article_comments.count %>
                             <td>
                             <td>
                               <p class='article_list_likes'>
@@ -236,7 +182,7 @@
                               </p>
                             <td>
                             <td class="article_list_likes">
-                                <%= @hot_articles.first.likes.count %>
+                                <%= hot_article.likes.count %>
                             <td>
                           <tr>
                         </table>
@@ -247,67 +193,8 @@
                 </div>
                 <% end %>
                 </td>
-                <td class="gap_mobile">
-                </td>
-                <td valign="top" class="hot_article_2">
-                  <%= link_to article_path(@hot_articles.second) do %>
-                  <div>
-                  <p class="hot_articles_picture">
-                    <object>
-                      <% if @hot_articles.second.picture.first.present? %>
-                      <%= image_tag @hot_articles.second.picture.first.url %>
-                      <% else %>
-                      <%= image_tag "profile.png" %>
-                      <% end %>
-                    </object>
-                  </p>
-                  <p class="hot_articles_title"><object><%= link_to @hot_articles.second.title, article_path(@hot_articles.second) %></object></p>
-                  <table class="hot_article_info">
-                    <tr>
-                      <td>
-                      <table>
-                        <tr>
-                          <td class="article_list_user">
-                            <p class='article_list_user_picture'>
-                              <object><%= link_to (image_tag(@hot_articles.second.user.picture.url)), user_path(@hot_articles.second.user) %></object>
-                            </p>
-                          <td>
-                          <td class="article_list_username">
-                            <object><%= link_to "#{@hot_articles.second.user.username}", user_path(@hot_articles.second.user) %></object>
-                          </td>
-                        </tr>
-                        </table>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        <table class="hot_article_eval">
-                          <tr>
-                            <td class=article_list_comments>
-                              <p class='article_list_comments'>
-                                <%= image_tag "comment1.png" %>
-                              </p>
-                            <td>
-                            <td class="article_list_comments">
-                                <%= @hot_articles.second.article_comments.count %>
-                            <td>
-                            <td>
-                              <p class='article_list_likes'>
-                                <%= image_tag "create_like.png"%>
-                              </p>
-                            <td>
-                            <td class="article_list_likes">
-                                <%= @hot_articles.second.likes.count %>
-                            <td>
-                          <tr>
-                        </table>
-                        </td>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
                 <% end %>
-              </td>
+                <% end %>
               </tr>
             </table>
             <% end %>
@@ -329,7 +216,7 @@
                 <% article_tags(article).each do |tag| %>
                   <object><%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %></object>
                 <% end %>
-                <% if article.github_repository_url.present? %>
+                <% if article.repository_url.present? %>
                 <object><%= link_to "#オープンソース", searches_path(status: "オープンソース"), { :class => "special_tag" }%></object>
                 <% end %>
               </p>
@@ -437,6 +324,15 @@
                 <div id='sidebar_articles_index'>
                   <p class="tags_title"><%= link_to "##{tag.first}", searches_path(tag: tag.first), {:class => "article_tag"} %></p>
                   <% tag_articles_ranking(tag.first).each do |article| %>
+                  <li class="hot_tag_articles"><%= link_to article.title, article_path(article) %></li>
+                  <% end %>
+                </div>
+                <% end %>
+
+                <% random_tags.each do |tag| %>
+                <div id='sidebar_articles_index'>
+                  <p class="tags_title"><%= link_to "##{tag}", searches_path(tag: tag), {:class => "article_tag"} %></p>
+                  <% tag_articles_ranking(tag).each do |article| %>
                   <li class="hot_tag_articles"><%= link_to article.title, article_path(article) %></li>
                   <% end %>
                 </div>

@@ -1,6 +1,4 @@
 class Article < ApplicationRecord
-  has_many :article_categories, dependent: :destroy
-  has_many :categories, :through => :article_categories, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :stocks, dependent: :destroy
@@ -13,7 +11,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion: { in: %w(draft public) }
-  validates :github_repository_url, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_url_present?
+  validates :github_repository_url, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_open_source?
 
   scope :search_with_keyword, -> (keyword) {where("title like '%" + keyword + "%'")}
   scope :search_with_user, -> (user) {where(user_id: user)}
@@ -24,6 +22,9 @@ class Article < ApplicationRecord
   scope :recent, -> (count) { order(id: :desc).limit(count) }
   scope :likes_desc, -> {order("likes_count DESC")}
 
+  include Redis::Objects
+  counter :page_view, :start => 0
+  counter :point, :start => 0
 
   def self.category_with(name)
     Category.find_by_name!(name).articles
@@ -45,10 +46,12 @@ class Article < ApplicationRecord
     self.where("title LIKE ?", keyword)
   end
 
-  def is_url_present?
-    self.github_repository_url.present?
+  def is_open_source?
+    self.repository_url.present?
   end
 
-
+  def sort_in_page_view_order
+    articles_page_view = Article.page_view.map{ |article| Article.get_counter(:page_view, article.id) }
+  end
 
 end

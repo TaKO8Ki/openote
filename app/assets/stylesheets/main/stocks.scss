@@ -37,12 +37,12 @@ $hoverColor: #FFD966;
 
 p.create_stocks {
   @include stocks;
-  background: #fdf9f3;
+  background: #FFC107;
   transition: all .5s;
 }
 
 p.create_stocks:hover {
-  background: #e0e0e0;
+  background: $hoverColor;
 }
 
 p.create_stocks img {
@@ -65,7 +65,7 @@ top: -8px;
 font-size: 10px;
 width: 20%;
 margin: 0 auto;
-background-color: #fdf9f3;
+background-color: #FFC107;
 padding: 0px 5px;
 border-radius: 5px;
 box-shadow: 0.5px 0.5px 10px #ccc;

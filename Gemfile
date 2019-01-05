@@ -15,6 +15,10 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'redis'
+
+gem 'redis-objects'
+
 # omniauth認証関連
 gem 'omniauth-github'
 

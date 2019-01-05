@@ -22,6 +22,24 @@
 //= require_tree ./main
 //
 
+$(document).on('turbolinks:load', function(){
+	$(".article_comment_field").change(function(){
+		$(".article_comment_form").submit();
+	});
+});
+
+$(document).on('turbolinks:load', function () {
+	$('.article_comment_submit_button').on('click', function() {
+		 $('.article_comment_submit').click();
+  });
+});
+
+$(document).on('turbolinks:load', function(){
+	$(".dashboard_search_select").change(function(){
+		$(".dashboard_search_form").submit();
+	});
+});
+
 $(document).on('turbolinks:load', function() {
 	//クリックしたときのファンクションをまとめて指定
 	$('.tab li').click(function() {
@@ -200,15 +218,15 @@ $(document).on('turbolinks:load', function() {
             if (language !== undefined) {
               var fileName = language.indexOf('.');
               if (fileName !== -1) {
-                return '<pre class="hljs">' + '<div id="markdown_file_name">' + '<div id="markdown_file_name_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
+                return '<pre class="hljs">' + '<div class="markdown_file_name">' + '<div class="markdown_file_name_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
               }
             }
-              return '<pre class="hljs">' + '<code id="markdown_code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
+              return '<pre class="hljs">' + '<code class="markdown_code">' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
             };
 
           renderer.blockquote = function (quote) {
-            return '<div id="markdown_quote">'+ quote + '</div>';
+            return '<div class="markdown_quote">'+ quote + '</div>';
           };
 
           renderer.list = function(body, ordered, start) {
