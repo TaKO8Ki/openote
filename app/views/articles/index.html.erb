@@ -319,7 +319,7 @@
               <% end %>
               </table>
 
-
+              <% if @hot_tags.count < 3 %>
                 <% @hot_tags.each do |tag| %>
                 <div id='sidebar_articles_index'>
                   <p class="tags_title"><%= link_to "##{tag.first}", searches_path(tag: tag.first), {:class => "article_tag"} %></p>
@@ -328,6 +328,8 @@
                   <% end %>
                 </div>
                 <% end %>
+
+                <% else %>
 
                 <% random_tags.each do |tag| %>
                 <div id='sidebar_articles_index'>
@@ -338,6 +340,8 @@
                 </div>
                 <% end %>
               </div>
+
+              <% end %>
 
 
 

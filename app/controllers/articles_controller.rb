@@ -49,12 +49,12 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        @article = Article.where(id: params[:id], user_id: current_user.id).first
         set_available_tags_with_count
     end
 
     def update
-        @article = Article.find(params[:id])
+        @article = Article.where(id: params[:id], user_id: current_user.id).first
         if @article.update(article_params)
             redirect_to @article.user
         else
@@ -63,7 +63,7 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
+        @article = Article.where(id: params[:id], user_id: current_user.id).first
         @article.destroy
         redirect_to @article.user
     end
@@ -77,7 +77,7 @@ helper_method :comment_user, :this_week, :this_month, :this_year
 private
 
   def article_params
-      params.require(:article).permit(:title, :body, :github_repository_url, :service_url, :tag_list, :status, { :picture => [] }, { :category_ids => [] })
+      params.require(:article).permit(:title, :body, :repository_url, :service_url, :tag_list, :status, { :picture => [] }, { :category_ids => [] })
   end
 
   def save_article_as_draft(article)

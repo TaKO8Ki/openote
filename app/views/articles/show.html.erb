@@ -83,7 +83,10 @@
 
           </div>
           <div id="sidebar_following_scroll">
-            <% if @toc != nil %>
+            <% if @article.repository_url.present? %>
+            <%= link_to "ソースを見る", @article.repository_url, class: "repository_button" %>
+            <% end %>
+            <% if @toc != '<div id=toc></div>' %>
             <div id="sidebar_article_toc">
               <%= raw @toc %>
             </div>

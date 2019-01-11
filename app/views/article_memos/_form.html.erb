@@ -7,10 +7,16 @@
           <p class="link_icon"><%= image_tag "link.png" %></p>
         </td>
         <td valign="top" class="parent_article_user_picture">
-          <p class="parent_article_user"><%= link_to image_tag(@article.user.picture.url), user_path(@article.user), {:class => "article_list_user"}%></p>
+          <p class="parent_article_user">
+            <% if @article.user.picture.present? %>
+            <%= link_to image_tag(@article.user.picture.url), user_path(@article.user), {:class => "article_list_user"}%>
+            <% else %>
+            <%= link_to image_tag("profile.png"), user_path(@article.user), {:class => "article_list_user"}%>
+            <% end %>
+          </p>
         </td>
         <td valign="top" class="parent_article_user_main_element">
-          <p class="parent_article_user"><%= link_to @article.title, article_path(@article) %></p>
+          <p class="parent_article_user"><%= link_to '"' + @article.title + '"', article_path(@article) %>に関するメモ</p>
         </td>
       </tr>
     </table>

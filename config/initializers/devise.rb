@@ -18,7 +18,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'greenbarleytea@gmail.com'
+  config.mailer_sender = Rails.application.credentials.email[:adress]
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
@@ -258,7 +258,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-    config.omniauth :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], scope: 'user,public_repo'
+    config.omniauth :github, Rails.application.credentials.github[:GITHUB_ID], Rails.application.credentials.github[:GITHUB_SECRET], scope: 'user,public_repo'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

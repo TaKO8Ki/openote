@@ -585,6 +585,26 @@ div#sidebar_following_scroll {
   top: 90px;
 }
 
+a.repository_button {
+  display: inline-block;
+  text-decoration: none;
+  background: #fdf9f3;
+  color: #333;
+  padding: 9px 30px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: calc(100% - 60px);
+  margin-bottom: 10px;
+  text-align: center;
+  transition: all .5s;
+}
+
+a.repository_button:hover {
+  background-color: #ccc;
+}
+
 
 p.article_memo {
   border-bottom: solid 1px #ccc;
@@ -813,6 +833,18 @@ div#error {
   font-size: 15px;
   color: #a94442;
   border: solid 1px #ebccd1;
+}
+
+table.article_info {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+table.article_info td {
+  width: 33%;
 }
 
 div#article_form_wrap {
@@ -1499,6 +1531,7 @@ div#article_date {
     transition: .4s;
     font-size: 11px;
     margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   .article_list_tag:hover {
@@ -1516,6 +1549,7 @@ div#article_date {
     transition: .4s;
     font-size: 11px;
     margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   .special_tag:hover {

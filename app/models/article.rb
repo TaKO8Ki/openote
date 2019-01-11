@@ -11,7 +11,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :status, inclusion: { in: %w(draft public) }
-  validates :github_repository_url, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_open_source?
+  validates :repository_url, format: /\A#{URI::regexp(%w(http https))}\z/, if: :is_open_source?
 
   scope :search_with_keyword, -> (keyword) {where("title like '%" + keyword + "%'")}
   scope :search_with_user, -> (user) {where(user_id: user)}
@@ -52,6 +52,7 @@ class Article < ApplicationRecord
 
   def sort_in_page_view_order
     articles_page_view = Article.page_view.map{ |article| Article.get_counter(:page_view, article.id) }
+
   end
 
 end

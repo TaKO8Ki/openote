@@ -1,4 +1,30 @@
 <div id='article_form_wrap'>
+
+  <table class="article_info">
+    <tr>
+      <td>
+        いいねの数
+      </td>
+      <td>
+        ストックの数
+      </td>
+      <td>
+        PV
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= @article.likes_count %>
+      </td>
+      <td>
+        <%= @article.stocks_count %>
+      </td>
+      <td>
+        <%= page_view(@article) %>
+      </td>
+    </tr>
+  </table>
+
   <%= form_for @article do |article| %>
   <div id='article_form_title'>
       <%= article.text_field :title, :placeholder => "タイトル", class: "article_title" %>

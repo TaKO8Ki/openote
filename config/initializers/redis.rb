@@ -1,2 +1,2 @@
 require 'redis'
-REDIS = Redis.new(host: ENV["REDIS_HOST"], port: ENV["REDIS_PORT"])
+REDIS = Redis.new(host: Rails.application.credentials.redis[:REDIS_HOST], port: Rails.application.credentials.redis[:REDIS_PORT])
