@@ -1,6 +1,6 @@
 ## MAC OS
 .DS_Store
-config/master.key
+/config/master.key
 
 ## TEXTMATE
 *.tmproj
