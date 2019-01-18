@@ -20,14 +20,15 @@ Rails.application.routes.draw do
   get 'about', to: 'statics#about'
 
   #設定関係
-  get 'dashboards', to: 'dashboards#dashboards'
+  get 'settings/dashboards', to: 'dashboards#index', as: :dashboards
+  get 'settings/dashboards/preview/:id', to: 'dashboards#show', as: :dashboard_preview
   get 'settings/repositories', to: 'repositories#index'
   get 'settings/integration', to: 'settings#integration'
   get 'settings/delete_account', to: 'settings#delete_account'
+  get 'settings/notifications', to: 'notifications#index', as: :notifications
 
   #通知
-  get 'notifications/:id/link_through', to: 'notifications#link_through',
- as: :link_through
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'users/registrations'  }
   resources :users, :only => [:show] do
@@ -38,6 +39,11 @@ Rails.application.routes.draw do
           get :following, :followers
       end
   end
+
+  devise_scope :user do
+    get 'settings/edit_account' => 'users/registrations#edit', as: :edit_account
+  end
+
   root 'articles#index'
   resources :articles do
       resources :article_comments, only: [:create, :destroy]
@@ -48,7 +54,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :article_categories
   resources :follow_relationships, only: [:create, :destroy]
-  resources :notifications, only: [:index]
   resources :searches, only: [:index]
   resources :follow_tag_relationships, only: [:create, :destroy]
   resources :stocks, only: [:index]

@@ -5,7 +5,11 @@
       <td valign="top" class="article_show_center">
         <div id="article_show_center">
           <p class="article_show_center_header">
-            <%= image_tag User.first.picture.url %>
+            <% if @article_memo.user.picture.present? %>
+            <%= image_tag @article_memo.user.picture.url %>
+            <% else %>
+            <%= image_tag "profile.png" %>
+            <% end %>
           </p>
           <p class='article_show_center_date'>
             <%= @article_memo.updated_at.strftime("%Y/%m/%d") %>
@@ -26,7 +30,11 @@
               <tr>
               <td>
                 <p class='article_user_picture'>
+                  <% if @article_memo.user.picture.present? %>
                   <%= link_to image_tag(@article_memo.user.picture.url), user_path(@article_memo.user) %>
+                  <% else %>
+                  <%= link_to image_tag("profile.png"), user_path(@article_memo.user) %>
+                  <% end %>
                 </p>
               </td>
               </tr>

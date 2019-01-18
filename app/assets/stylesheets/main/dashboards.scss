@@ -12,6 +12,12 @@
   border-radius: 2px;
 }
 
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 @mixin article_status {
 }
 
@@ -28,6 +34,9 @@
   vertical-align: middle;
   margin-bottom: 10px;
 }
+
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
 
 table.dashboard_articles_table {
   width: 100%;
@@ -217,14 +226,19 @@ p.setting_link_clicked a {
 a.dashboard_button {
   display: inline-block;
   text-decoration: none;
-  background: #333;
-  color: #fff;
+  color: #333;
   padding: 3px 8px;
   font-size: 12px;
   border-radius: 2px;
   font-weight: bold;
   cursor: pointer;
   margin-left: 5px;
+  border: solid 1px #333;
+  transition: all .5s;
+}
+
+a.dashboard_button:hover {
+  background: #ccc;
 }
 
 .selectWrap{
@@ -266,4 +280,150 @@ a.dashboard_button {
 
 select::-ms-expand {
     display: none;
+}
+
+/*記事プレビュー画面*/
+
+table.dashboard_show_table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1100px;
+}
+
+td.dashboard_show_left {
+  width: 74%;
+  @include box;
+}
+
+td.dashboard_show_right {
+  width: 400px;
+  display:table-cell;
+}
+
+div.article_info {
+  @include box;
+  text-align: center;
+  padding: 10px;
+}
+
+a.edit_article_button {
+  display: inline-block;
+  text-decoration: none;
+  background: $baseColor;
+  color: #fff;
+  padding: 9px 30px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: calc(100% - 60px);
+  margin-bottom: 10px;
+  text-align: center;
+  transition: all .5s;
+}
+
+a.edit_article_button:hover {
+  background-color: $hoverColor;
+}
+
+a.delete_article_button {
+  background: #FF4508;
+}
+
+a.delete_article_button:hover {
+  background-color: #FF794D;
+}
+
+p.dashboard_article_info_substitute_button {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #FFC107;
+  box-shadow: 0.5px 0.5px 5px 1px #ccc;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: -1;
+}
+
+p.dashboard_article_info_substitute_button img {
+  width: 35px;
+  height: 35px;
+  margin-top: 28px;
+  margin-left: 27px;
+  object-fit: cover;
+}
+
+#dashboard_article_info-drawer {
+  text-align: center;
+}
+
+/*チェックボックス等は非表示に*/
+.dashboard_article_info-unshown {
+  display:none;
+}
+
+/*アイコンのスペース*/
+#dashboard_article_info-open {
+  display: none;
+}
+
+/*ハンバーガーアイコンをCSSだけで表現*/
+#dashboard_article_info-open span, #dashboard_article_info-open span:before, #dashboard_article_info-open span:after {
+  position: absolute;
+  height: 3px;/*線の太さ*/
+  width: 25px;/*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+#dashboard_article_info-open span:before {
+  bottom: -8px;
+}
+#dashboard_article_info-open span:after {
+  bottom: -16px;
+}
+
+/*閉じる用の薄黒カバー*/
+#dashboard_article_info-close {
+  display: none;/*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;/*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  transition: .3s ease-in-out;
+}
+
+#dashboard_article_info-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 75%;
+  max-width: 330px;
+  height: 100%;
+  background: #fff;
+  transition: .3s ease-in-out;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+}
+
+
+#dashboard_article_info-input:checked ~ #dashboard_article_info-close {
+  display: block;
+  opacity: .5;
+}
+
+#dashboard_article_info-input:checked ~ #dashboard_article_info-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }

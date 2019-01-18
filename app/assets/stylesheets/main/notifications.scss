@@ -36,6 +36,12 @@
   height: 70px;
 }
 
+@mixin box{
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
 $baseColor: #FFC107;
 $hoverColor: #FFD966;
 
@@ -116,6 +122,12 @@ td.notification_status_clicked_right a {
   background: $baseColor;
 }
 
+div.all_notifications {
+  @include box;
+  padding-bottom: 10px;
+  padding-top: 20px;
+}
+
 div#notifications_list a{
   font-weight: bold;
   font-size: 18px;
@@ -138,4 +150,20 @@ div#notifications_list div h2 {
 
 div#notifications_list div p.notification_list_date{
     font-size: 12px;
+}
+
+p.unread_notifications {
+  background: #FF4508;
+  border-radius: 50%;
+  width: 20px;
+  height: 17px;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 20px;
+  position: relative;
+  right: 8px;
+  margin-right: -10px;
+  color: #fff;
+  padding-top: 1px;
+  padding-bottom: 2px;
 }

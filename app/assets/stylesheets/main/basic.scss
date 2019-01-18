@@ -1,0 +1,48 @@
+/*margin*/
+.margin-bottom-10px {
+  margin-bottom: 10px;
+}
+
+.margin-top-10px {
+  margin-top: 10px;
+}
+
+.margin-left-20px {
+  margin-left: 20px;
+}
+
+/*padding*/
+.padding-botttom-10px {
+  padding-bottom: 10px;
+}
+
+.padding-0px {
+  padding: 0px;
+}
+
+
+/*文字font-weight*/
+.font-weight-bold {
+  font-weight: bold;
+}
+
+/*border*/
+.border-bottom-1px {
+  border-bottom: solid 1px #ccc;
+}
+
+/*button*/
+.button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  padding: 9px 30px;
+  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: calc(100% - 60px);
+  margin-bottom: 10px;
+  text-align: center;
+  transition: all .5s;
+}

@@ -1,6 +1,19 @@
 @media (max-width: 768px) {
   div#dashboard_article_list{
     box-shadow: none;
+    padding-bottom: 0px;
+  }
+
+  table.dashboard_show_table {
+    width: 100%;
+    border-spacing: 0px;
+    position: relative;
+    z-index: -10;
+  }
+
+  td.dashboard_show_left {
+    box-shadow: 0px 0px 0px 0px;
+    border-radius: 0px;
   }
 
   td.article_status a {
@@ -27,5 +40,54 @@
 
   .selectWrap{
     width: 150px;
+  }
+
+  div.article_info {
+    box-shadow: none;
+  }
+
+  a.edit_article_button {
+    box-shadow: none;
+    width: 65%;
+    font-size: 15px;
+  }
+
+  a.repository_button {
+    box-shadow: none;
+    width: 65%;
+    font-size: 15px;
+    background: transparent;
+  }
+
+  a.delete_article_button {
+    box-shadow: none;
+    width: 65%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+
+  p.dashboard_article_info_substitute_button {
+    width: 75px;
+    height: 75px;
+  }
+
+  p.dashboard_article_info_substitute_button img {
+    width: 30px;
+    height: 30px;
+    margin-top: 23px;
+    margin-left: 22px;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 768px) {
+  #dashboard_article_info-drawer {
+    display: none;
+  }
+
+  p.dashboard_article_info_substitute_button {
+    display: none;
   }
 }

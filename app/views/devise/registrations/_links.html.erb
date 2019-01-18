@@ -4,10 +4,15 @@
 <% else %>
 <p class="setting_link"><%= link_to "ダッシュボード", dashboards_path %></p>
 <% end %>
-<% if request.url == "#{main_url}/users/edit" %>
-<p class="setting_link_clicked"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
+<% if request.url == "#{main_url}/settings/notifications" %>
+<p class="setting_link_clicked"><%= link_to "お知らせ", notifications_path %></p>
 <% else %>
-<p class="setting_link"><%= link_to "アカウントを編集する", edit_registration_path(current_user) %></p>
+<p class="setting_link"><%= link_to "お知らせ", notifications_path %></p>
+<% end %>
+<% if request.url == "#{main_url}/settings/edit_account" %>
+<p class="setting_link_clicked"><%= link_to "アカウントを編集する", edit_account_path %></p>
+<% else %>
+<p class="setting_link"><%= link_to "アカウントを編集する", edit_account_path %></p>
 <% end %>
 <% if request.url.end_with?("repositories") %>
 <p class="setting_link_clicked"><%= link_to "レポジトリの公開", settings_repositories_path %></p>

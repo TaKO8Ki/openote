@@ -201,7 +201,7 @@
           <div id="article_list">
               <%= render "article_group" %>
               <% @articles.each do |article| %>
-              <%= link_to article_path(article) do %>
+              <%= link_to article_path(id: article.id) do %>
               <div id='article_list_bottom'>
                 <table class="article_list_top_table">
                   <tr>

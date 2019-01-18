@@ -21,4 +21,16 @@ module NotificationsHelper
   def notification_not_read(notifications)
     notifications.where(read: false)
   end
+
+  def unread_notifications_count(user)
+    count = Notification.where(user_id: user.id, read: false).count
+    if count > 9
+      result = "9+"
+    else
+      result = count.to_s
+    end
+    return result
+  end
+
+
 end

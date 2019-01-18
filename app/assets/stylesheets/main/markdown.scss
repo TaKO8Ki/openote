@@ -16,23 +16,12 @@
 }
 
 
-h1.markdown_heading {
-  @include heading;
-}
-h2.markdown_heading {
-  @include heading;
-}
-h3.markdown_heading {
-  @include heading;
-}
-h4.markdown_heading {
-  @include heading;
-}
-h5.markdown_heading {
-  @include heading;
-}
-h6.markdown_heading {
-  @include heading;
+/*ページ内リンクでのアンカーでのずれ防止*/
+.markdown_heading {
+    display: block;
+    padding-top: 75px;
+    margin-top: -70px;
+    @include heading;
 }
 
 /*文字列の改行反映*/

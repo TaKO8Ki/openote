@@ -10,4 +10,63 @@
     width: calc(100% - 70px);
     border-radius: 0px;
   }
+
+  div.about_top {
+    padding: 50px 30px;
+  }
+
+  p.about_sub_title {
+    font-size: 15px;
+  }
+
+  div.about_detail {
+    display: none;
+  }
+
+  div.about_detail_mobile {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .about_picture img {
+    width: 60px;
+  }
+
+  p.about_main_description {
+    width: 80%;
+    font-size: 15px;
+    line-height: 30px;
+    margin-top: 45px;
+  }
+
+  div.each_service {
+    margin-bottom: 10px;
+    padding: 50px 20px;
+    height:150px;
+    box-shadow: none;
+  }
+
+  p.about_title img {
+    width: 100%;
+  }
+
+  .about_picture {
+    height: 60px;
+  }
+
+  p.about_service_title {
+    font-size: 18px;
+  }
+
+  p.about_description {
+    font-size: 14px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  div.about_detail_mobile {
+    display: none;
+  }
 }

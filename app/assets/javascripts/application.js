@@ -22,6 +22,13 @@
 //= require_tree ./main
 //
 
+
+$(document).on('turbolinks:load', function () {
+	$('.dashboard_article_info_substitute_button').on('click', function() {
+		 $('#dashboard_article_info-open').click();
+  });
+});
+
 $(document).on('turbolinks:load', function(){
 	$(".article_comment_field").change(function(){
 		$(".article_comment_form").submit();

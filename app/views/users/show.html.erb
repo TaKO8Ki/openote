@@ -51,7 +51,7 @@
             <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
             <% end %>
             <% else %>
-            公開されているメモはありません
+            公開されているメモはありません。
             <% end %>
           </div>
       </div>
@@ -106,17 +106,11 @@
               <label class="user_sub_info_2-unshown" id="user_sub_info_2-close" for="user_sub_info_2-input"></label>
               <div id="user_sub_info_2-content">
                 <div id="user_sidebar_right">
-                  <% if @user_repos.present? %>
-                    <% @user_repos.each do |repo| %>
-                    <% if public_repo?(repo) %>
                     <div id="user_all_memos">
                       <% @user.article_memos.each do |memo| %>
                       <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
                       <% end %>
                     </div>
-                    <% end %>
-                    <% end %>
-                  <% end %>
                 </div>
               </div>
             </div>

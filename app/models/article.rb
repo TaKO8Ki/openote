@@ -16,9 +16,12 @@ class Article < ApplicationRecord
   scope :search_with_keyword, -> (keyword) {where("title like '%" + keyword + "%'")}
   scope :search_with_user, -> (user) {where(user_id: user)}
   scope :search_with_status, -> (status) {where(status: status)}
-  scope :search_with_period_likes_desc, -> (period) { where(created_at: period).order("likes_count DESC") }
+  scope :search_with_period, -> (period) { where(created_at: period).order("likes_count DESC") }
   scope :sort_in_created_at_order, -> (order) {order("created_at #{order}")}
   scope :sort_in_updated_at_order, -> (order) {order("updated_at #{order}")}
+  scope :sort_in_point_desc_order, -> {map{ |article| {"article": article, "point": Article.get_counter(:point, article.id) }}.sort{ |a, b| b[:point] <=> a[:point] }.map{ |hash| hash[:article] } }
+  scope :sort_in_point_asc_order, -> {map{ |article| {"article": article, "point": Article.get_counter(:point, article.id) }}.sort{ |a, b| a[:point] <=> b[:point] }.map{ |hash| hash[:article] } }
+  scope :sort_in_likes_order, -> (order) {order("likes_count #{order}")}
   scope :recent, -> (count) { order(id: :desc).limit(count) }
   scope :likes_desc, -> {order("likes_count DESC")}
 

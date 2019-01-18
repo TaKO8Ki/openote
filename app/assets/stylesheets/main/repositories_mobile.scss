@@ -1,6 +1,8 @@
 @media (max-width: 768px) {
   div#all_repo {
     padding: 0px;
+    box-shadow: none;
+    width: 100%;
   }
 
   div#repo_list {

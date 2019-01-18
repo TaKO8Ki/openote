@@ -1,3 +1,4 @@
+
 // Place all the styles related to the Repositories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -35,13 +36,14 @@ td.github_status_button {
 div#all_repo {
   @include box;
   margin: 0 auto;
-  padding: 20px;
+  padding-bottom: 10px;
+  padding-top: 5px;
 }
 
 div#repo_list {
   background-color: #fff;
   border-bottom: solid 1px #ccc;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 a.public_repository {

@@ -1,23 +1,25 @@
 <% if @users.any? %>
 
 <% @users.each do |user| %>
+<%= link_to user_path(user) do %>
   <table class="following_user">
     <tr>
       <td valign="top" class="following_user_picture">
         <p class="following_user">
           <% if user.picture.present? %>
-          <%= link_to image_tag(user.picture.url), user_path(user) %>
+          <object><%= link_to image_tag(user.picture.url), user_path(user) %></object>
           <% else %>
-          <%= link_to image_tag("profile.png"), user_path(user) %>
+          <object><%= link_to image_tag("profile.png"), user_path(user) %></object>
           <% end %>
         </p>
       </td>
       <td valign="top" class="following_user_main_element">
-        <p class="following_user"><strong><%= link_to user.username, user_path(user) %></strong></p>
-        <p class="following_user"><%= link_to "@#{user.profile_id}", user_path(user) %></p>
+        <p class="following_user"><strong><object><%= link_to user.username, user_path(user) %></object></strong></p>
+        <p class="following_user"><object><%= link_to "@#{user.profile_id}", user_path(user) %></object></p>
       </td>
     </tr>
   </table>
+  <% end %>
 <% end %>
 
 

@@ -84,39 +84,37 @@ private
     article.update(status: "draft")
   end
 
+  def today
+    Time.current.beginning_of_day...Time.current.end_of_day
+  end
+
   def this_week
-    from  = Time.now.at_beginning_of_day
+    from  = Time.current.at_beginning_of_day
     to    = (from + 6.day).at_end_of_day
     this_week = from...to
     return this_week
   end
 
   def this_month
-    from  = Time.now.at_beginning_of_day
+    from  = Time.current.at_beginning_of_day
     to    = (from + 1.month)
     this_month = from...to
     return this_month
   end
 
-  def this_year
-    return Time.now.all_year
-  end
-
   def which_articles_should_be_showed
+    articles = Article.search_with_status("public").includes(:tags)
     if params[:group] == "today"
-      @articles = Article.search_with_period_likes_desc(Time.current.beginning_of_day...Time.current.end_of_day).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = articles.search_with_period(today).sort_in_point_desc_order.reject{ |article| @hot_articles.include?(article)}
     elsif params[:group] == "this_week"
-      @articles = Article.search_with_period_likes_desc(this_week).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = articles.search_with_period(this_week).sort_in_point_desc_order.reject{ |article| @hot_articles.include?(article)}
     elsif params[:group] == "this_month"
-      @articles = Article.search_with_period_likes_desc(this_month).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
-    elsif params[:group] == "this_year"
-      @articles = Article.search_with_period_likes_desc(this_year).includes(:tags).reject{ |article| article == @hot_articles.first || article == @hot_articles.second}
+      @articles = articles.search_with_period(this_month).sort_in_point_desc_order.reject{ |article| @hot_articles.include?(article)}
     elsif params[:group] == "time_line"
-      @articles = Article.where(user_id: current_user.following)
+      @articles = articles.search_with_user(current_user.following).sort_in_point_desc_order
     else
-      @articles = Article.all
+      @articles = articles.sort_in_created_at_order("DESC")
     end
-    return @articles.search_with_status("public").sort_in_created_at_order("DESC")
   end
 
   def hot_articles

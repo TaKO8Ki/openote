@@ -10,6 +10,9 @@
   background-color: #fff;
 }
 
+$baseColor: #FFC107;
+$hoverColor: #FFD966;
+
 @media (min-width: 768px) {
   table.eval_mobile {
     display: none;
@@ -30,6 +33,10 @@
   div#hot_article_2 {
     display: none;
   }
+
+  a.repository_mobile_button {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -41,6 +48,8 @@
     margin-top: -20px;
     font-size: 15px;
     border-spacing: 0;
+    position: relative;
+    z-index: -10;
   }
 
   td.article_show_right {
@@ -65,6 +74,7 @@
     top: 0;
     padding-top: 0px;
     width: 100%;
+    z-index: 0;
   }
 
   p.eval_none {
@@ -242,9 +252,13 @@ input.article_submit_as_draft_button {
   font-size: 13px;
 }
 
-.left_sidebar_button {
+.new_article_memo_button {
   @include button_mobile;
   border-left: solid 1px #D9A407;
+}
+
+.repository_mobile_button {
+   @include button_mobile;
 }
 
 }

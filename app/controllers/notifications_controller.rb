@@ -1,17 +1,19 @@
 class NotificationsController < ApplicationController
+  after_action :make_notifications_read
 
   def index
-    if params[:read] == "true"
-      @notifications = Notification.where(user_id:current_user, read: true).order("created_at DESC")
-    else
-      @notifications = Notification.where(user_id:current_user, read: false).order("created_at DESC")
-    end
+    @notifications = Notification.where(user_id:current_user.id).order("created_at DESC")
   end
 
   def link_through
     notifications = Notification.where(user_id: current_user.id)
     notifications.update_all(read: true)
     redirect_to notifications_path
+   end
+
+   private
+   def make_notifications_read
+     @notifications.where(read: false).update_all(read: true)
    end
 
 

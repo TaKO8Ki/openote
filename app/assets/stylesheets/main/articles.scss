@@ -506,6 +506,7 @@ td.article_show_left {
   width: 150px;
   display:table-cell;
 }
+
 td.article_show_right {
   width: 400px;
   display:table-cell;
@@ -550,13 +551,6 @@ div#article_user_follow_form {
   margin: 0 auto;
 }
 
-/*ページ内リンクでのアンカーでのずれ防止*/
-.markdown_heading {
-    display: block;
-    padding-top: 75px;
-    margin-top: -70px;
-}
-
 div#sidebar_article_memo {
   box-shadow: 0.5px 0.5px 10px 0px #ccc;
   border-radius: 5px;
@@ -593,7 +587,7 @@ a.repository_button {
   padding: 9px 30px;
   box-shadow: 0.5px 0.5px 10px 0px #ccc;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
   width: calc(100% - 60px);
   margin-bottom: 10px;
@@ -602,7 +596,7 @@ a.repository_button {
 }
 
 a.repository_button:hover {
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 
@@ -1016,7 +1010,7 @@ p.reduce_form:hover img {
 }
 
 div#article_preview {
-  height: 560px;
+  height: 566px;
   padding: 20px;
   background-color: #fff;
   overflow: scroll;
@@ -1562,9 +1556,10 @@ div#article_left_buttons {
   position: sticky;
   top: 190px;
   padding-top: 100px;
+
 }
 
- .left_sidebar_button {
+ .new_article_memo_button {
     width: 50px;
     height: 50px;
     line-height: 150px;
@@ -1580,11 +1575,37 @@ div#article_left_buttons {
     cursor: pointer;
 }
 
- .left_sidebar_button:hover {
+ .new_article_memo_button:hover {
    background-color: $hoverColor;
 }
 
-.left_sidebar_button img {
+.new_article_memo_button img {
+  width: 20px;
+  height: auto;
+  margin-bottom: 47px;
+}
+
+.repository_mobile_button {
+   width: 100%;
+   height: 50px;
+   line-height: 150px;
+   margin: 0 auto;
+   font-size: 20px;
+   display: block;
+   text-align: center;
+   background: #FFC107;
+   border-radius: 50%;
+   margin-bottom: 10px;
+   transition: all .5s;
+   cursor: pointer;
+   border-left: solid 1px #D9A407;
+}
+
+.repository_mobile_button:hover {
+  background-color: $hoverColor;
+}
+
+.repository_mobile_button img {
   width: 20px;
   height: auto;
   margin-bottom: 47px;
@@ -1607,7 +1628,7 @@ div#article_left_buttons {
 }
 
 .social_button:hover {
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 .social_button img {
@@ -1633,7 +1654,7 @@ div#article_left_buttons {
 }
 
 .twitter_button:hover {
-  background-color: #ccc;
+  background-color: #eee;
 }
 
 .twitter_button img {

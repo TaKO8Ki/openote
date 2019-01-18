@@ -31,6 +31,8 @@
    color: #161616;
    background-color: #f6f6f6;
    font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+   position: relative;
+   z-index: -1;
  }
  body#all_contents::after {
    clear: both;
@@ -63,9 +65,9 @@
    height: 70px;
    position: fixed;
    background-color: #FFC107;
-   z-index: 100;
    top: 0;
    box-shadow: 0 2px 4px 0 #ccc;
+   z-index: 10;
  }
 
  a.header_picture img{
@@ -470,6 +472,8 @@ footer {
   padding: 40px 0px;
   width: 85%;
   margin-top: 15px;
+  position: relative;
+  z-index: -20;
 }
 
 a.footer {
