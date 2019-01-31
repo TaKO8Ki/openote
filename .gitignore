@@ -1,2 +1,2 @@
-
 config/master.key
+app/views/article_memos/memo.html.erb
