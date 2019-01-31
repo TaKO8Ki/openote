@@ -224,4 +224,7 @@ private
     @article.page_view.increment(1)
   end
 
+  def test
+  end 
+
 end
