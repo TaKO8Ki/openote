@@ -19,6 +19,9 @@
               </div>
             </div>
             <p class="eval_none">
+              <%= link_to image_tag("article_memo.png"), new_article_article_memo_path(article_id: @article.id), class: "new_article_memo_button"%>
+            </p>
+            <p class="eval_none">
               <a href="https://twitter.com/share?url=<%= request.url %>&text=<%=@article.title %>" rel="nofollow" target="_blank" class="twitter_button"><%= image_tag "twitter.png" %></a>
             </p>
             <p class="eval_none">
@@ -95,11 +98,13 @@
             <% end %>
             <% if @article.article_memos.present? %>
             <div id="sidebar_article_memo">
-              <% public_article_memo(@article, 7).each do |memo| %>
+              <strong>公開されているメモ</strong>
+              <% public_article_memos(@article, 7).each do |memo| %>
                 <ul>
-                  <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @user.id) %></li>
+                  <li class="user_article_memo"><%= link_to memo.title, article_article_memo_path(id: memo.id, article_id: @article.id) %></li>
                 </ul>
               <% end %>
+              <p class="text-align-right font-size-15px"><%= link_to "全て見る", article_article_memos_path(article_id: @article.id) %></p>
             </div>
             <% end %>
           </div>
@@ -108,7 +113,7 @@
     </tr>
     <tr>
       <td class="article_comment_side_left"></td>
-      <td>
+      <td id="article_comment_center">
 
         <% if @other_articles.present? %>
         <table class=each_other_article>

@@ -16,6 +16,33 @@
     border-radius: 0px;
   }
 
+  div#dashboard_show_center p.dashboard_show_center_title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  div#dashboard_show_center p.dashboard_show_center_header img {
+    width: calc(100% + 40px);
+    height: 150px;
+    margin-top: -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    object-fit: cover;
+  }
+
+  td.header_mobile {
+    display: none;
+  }
+
+div#dashboard_show_center {
+    padding: 20px;
+    background-color: #fff;
+    width: calc(100% - 40px);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   td.article_status a {
     font-size: 15px;
   }

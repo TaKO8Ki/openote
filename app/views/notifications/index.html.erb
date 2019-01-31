@@ -18,11 +18,11 @@
             <% @notifications.each do |notification| %>
             <div id='notification_list_bottoom'>
                <% if notification.notified_type == "like" %>
-               <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>が<%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にいいねしました。
+               <%= link_to "@#{notified_by(notification).username}", user_path(notified_by(notification))%>が<%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にいいねしました。
 
                <% elsif notification.notified_type == "comment" %>
-               が<%= link_to notified_by(notification).username, user_path(notified_by(notification))%>
-               <%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にコメントしました。
+               <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>が<%= link_to "あなたの投稿「#{Article.find(notification.action_id).title}」", article_path(notification.action_id) %>にコメントしました。
+               
                <% elsif notification.notified_type == "follow" %>
                <%= link_to notified_by(notification).username, user_path(notified_by(notification))%>があなたをフォローしました。
                <% end %>

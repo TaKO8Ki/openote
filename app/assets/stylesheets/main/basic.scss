@@ -26,6 +26,11 @@
   font-weight: bold;
 }
 
+/*font-size*/
+.font-size-15px {
+  font-size: 15px;
+}
+
 /*border*/
 .border-bottom-1px {
   border-bottom: solid 1px #ccc;
@@ -45,4 +50,14 @@
   margin-bottom: 10px;
   text-align: center;
   transition: all .5s;
+}
+
+/*decoration*/
+.text_underline {
+  text-decoration: underline;
+}
+
+/*text-align*/
+.text-align-right {
+  text-align: right;
 }

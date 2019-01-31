@@ -20,6 +20,7 @@
           <div id="sidebar_user_description">
             <%= @user.description %>
           </div>
+          <% if @user.social_link.present? %>
           <table class="user_show_link">
             <tr>
               <td valign="top">
@@ -27,11 +28,12 @@
               </td>
               <td valign="top">
                 <% if @user.social_link.present? %>
-                <%= link_to @user.social_link, "#{@user.social_link}" %>
+                <%= link_to @user.social_link, "#{@user.social_link}", class: "user_social_link" %>
                 <% end %>
               </td>
             </tr>
           </table>
+          <% end %>
           <% if user_signed_in? %>
           <div id="user_follow_form">
             <%= render "follow_form" %>

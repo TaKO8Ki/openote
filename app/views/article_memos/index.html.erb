@@ -1,12 +1,53 @@
-<div id='index_show_main'>
-  <div id="article_wrap">
-    <div id="article_list">
-<% @article_memos.each do |memo| %>
-<div id="article_list_bottom">
-<%= memo.title %>
-</div>
+<table class="article_index_table">
+  <tr>
+    <td valign="top" class="article_index_left">
+      <div class="margin-bottom-10px text-align-right">
+        <%= form_tag(article_article_memos_path, :method => 'get', enforce_utf8: false) do %>
+          <%= text_field_tag :m_q, params[:m_q], class: "memo_search_form", :placeholder => "メモを検索する" %>
+          <%= submit_tag 'search', :name => nil, class: "search_button" %>
+        <% end %>
+      </div>
+      <div>
+        <div id="article_memo_wrap">
+          <div id="article_list">
+            <% @article_memos.each do |memo| %>
+            <%= link_to article_article_memo_path(article_id: memo.article_id, id: memo.id) do %>
+              <div id="article_list_bottom">
+                <%= memo.title %>
+                <table class="article_list_info">
+                  <tr>
+                  <td class="article_list_user">
+                    <p class='article_list_user_picture'>
+                      <object>
+                        <% if memo.user.picture.present? %>
+                        <%= link_to (image_tag(memo.user.picture.url)), user_path(memo.user) %>
+                        <% else %>
+                        <%= link_to (image_tag("profile.png")), user_path(memo.user) %>
+                        <% end %>
+                      </object>
+                    </p>
+                  <td>
+                  <td class="article_list_username">
+                    <object><%= link_to "#{memo.user.username}", user_path(memo.user), class: "test" %></object>
+                    <p class="article_list_date"><%= time_ago_in_words(memo.created_at) %></p>
+                  </td>
+                  </tr>
+                </table>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </td>
+    <td valign="top" class="article_index_right">
+      <div id="sidebar">
+        <% if user_signed_in? %>
+        <%= render 'articles/current_user_sidebar' %>
+        <% end %>
+        <div id='sidebar_articles'>
+        </div>
 
-<% end %>
-</div>
-</div>
-</div>
+    </td>
+  </tr>
+</table>

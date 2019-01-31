@@ -2,10 +2,11 @@ class ArticleMemosController < ApplicationController
 
   def index
     if params[:user_id]
-      @article_memos = ArticleMemo.where(user_id: params[:user_id])
+      @article_memos = ArticleMemo.where(user_id: params[:user_id]).sort_in_created_at_order("DESC")
     elsif params[:article_id]
-      @article_memos = ArticleMemo.where(article_id: params[:article_id])
+      @article_memos = ArticleMemo.where(article_id: params[:article_id]).sort_in_created_at_order("DESC")
     end
+    search
   end
 
   def new
@@ -23,7 +24,7 @@ class ArticleMemosController < ApplicationController
     @article_memo.user_id = current_user.id
     if current_user != @article.user
       add_article_point_by_memos
-    end 
+    end
     if params[:save_as_private]
       save_article_memo_as_private(@article_memo)
     end
@@ -69,6 +70,12 @@ class ArticleMemosController < ApplicationController
       @article.point.increment(6 * 3/2)
     else
       @article.point.increment(6)
+    end
+  end
+
+  def search
+    if params[:m_q].present?
+      @article_memos = @article_memos.where("title like '%" + params[:m_q] + "%'").sort_in_created_at_order("DESC")
     end
   end
 

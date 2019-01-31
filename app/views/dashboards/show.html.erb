@@ -1,22 +1,22 @@
 <table class=dashboard_show_table>
   <tr>
       <td valign="top" class="dashboard_show_left">
-        <div id="article_show_center">
-          <p class="article_show_center_header">
+        <div id="dashboard_show_center">
+          <p class="dashboard_show_center_header">
             <%= image_tag @article.picture.first.url if @article.picture.first.present? %>
           </p>
-          <p class='article_show_center_date'>
+          <p class='dashboard_show_center_date'>
             <%= "#{@article.updated_at.strftime("%Y/%m/%d")}に更新" %>
           </p>
-          <p class="article_show_center_title">
+          <p class="dashboard_show_center_title">
             <%= @article.title %>
           </p>
-            <p class='article_show_center_category'>
+            <p class='dashboard_show_center_category'>
               <% @article.tag_list.each do |tag| %>
               <%= link_to "##{tag}", searches_path(tag: tag), { :class => "article_list_tag" } %>
               <% end %>
             </p>
-            <div id="article_show_center_all_body">
+            <div id="dashboard_show_center_all_body">
               <%= raw add_id_and_class_to_markdown(markdown(@article.body)) %>
             </div>
 
@@ -36,9 +36,9 @@
               <%= raw @toc %>
             </div>
             <% end %>
-            <% if @article.article_memos.present? %>
+            <% if public_article_memos(@article, 1).present? %>
             <div id="sidebar_article_memo">
-              <% public_article_memo(@article, 7).each do |memo| %>
+              <% public_article_memos(@article, 7).each do |memo| %>
                 <ul>
                   <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @article.user.id) %></li>
                 </ul>
@@ -54,7 +54,7 @@
               <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info"><%= @article.stocks_count %></p>
 
 
-              <p class="margin-top-10px margin-bottom-10px article_info">コメントの数</p>
+              <p class="margin-top-10px margin-bottom-10px article_info"><%= link_to "コメントの数", "#{main_url}/articles/#{@article.id}#article_comment_center", class: "text_underline" %></p>
               <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info"><%= @article.article_comments.count %></p>
 
 
@@ -89,7 +89,7 @@
           <div id="sidebar_following_scroll">
             <% if @article.article_memos.present? %>
             <div id="sidebar_article_memo">
-              <% public_article_memo(@article, 7).each do |memo| %>
+              <% public_article_memos(@article, 7).each do |memo| %>
                 <ul>
                   <li class="user_article_memo"><%= link_to memo.title, user_article_memo_path(id: memo.id, user_id: @article.user.id) %></li>
                 </ul>
@@ -98,19 +98,35 @@
             <% end %>
             <div class="margin-bottom-10px article_info">
               <p class="margin-bottom-10px article_info">いいねの数</p>
-              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info"><%= @article.likes_count %></p>
+              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info">
+                <% if @article.likes_count.nil? %>
+                0
+                <% else %>
+                <%= @article.likes_count %>
+                <% end %>
+              </p>
 
 
               <p class="margin-top-10px margin-bottom-10px article_info">ストックの数</p>
-              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info"><%= @article.stocks_count %></p>
+              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info">
+                <% if @article.stocks_count.nil? %>
+                0
+                <% else %>
+                <%= @article.stocks_count %>
+                <% end %>
+              </p>
 
 
               <p class="margin-top-10px margin-bottom-10px article_info">コメントの数</p>
-              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info"><%= @article.article_comments.count %></p>
+              <p class="padding-botttom-10px border-bottom-1px font-weight-bold article_info">
+                <%= @article.article_comments.count %>
+              </p>
 
 
               <p class="margin-top-10px margin-bottom-10px article_info">PV</p>
-              <p class="font-weight-bold article_info"><%= page_view(@article) %></p>
+              <p class="font-weight-bold article_info">
+                <%= page_view(@article) %>
+              </p>
             </div>
 
             <%= link_to "記事を編集する", edit_article_path(@article), class: "edit_article_button" %>

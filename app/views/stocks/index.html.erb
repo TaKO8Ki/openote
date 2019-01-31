@@ -53,6 +53,9 @@
               <td>
               <td class="article_list_username">
                 <object><%= link_to "#{article.user.username}", user_path(article.user) %></object>
+                <p class='article_list_date'>
+                    <%= time_ago_in_words(article.created_at) %>
+                </p>
               </td>
               </tr>
             </table>
@@ -74,11 +77,6 @@
             <td class="article_list_likes">
                 <%= article.likes.count %>
             <td>
-            <td class="article_list_username">
-              <p class='article_list_date'>
-                  <%= time_ago_in_words(article.created_at) %>
-              </p>
-            </td>
             </tr>
           </table>
         </div>

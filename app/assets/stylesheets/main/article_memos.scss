@@ -52,3 +52,19 @@ div#article_memo_form_title {
   text-align: center;
   margin-top: 10px;
 }
+
+input.memo_search_form {
+  width: 400px;
+  height: 35px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  border: solid 1px #ccc;
+}
+
+input.memo_search_form:focus {
+  border: solid 1px #FFC107;
+}

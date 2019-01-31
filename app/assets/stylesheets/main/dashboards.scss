@@ -13,7 +13,8 @@
 }
 
 @mixin box{
-  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1);
+  border: solid 1px #ddd;
   border-radius: 5px;
   background-color: #fff;
 }
@@ -156,7 +157,7 @@ input.dashboard_search_form {
 }
 
 div#dashboard_article_list{
-  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  @include box;
   background-color: #fff;
   padding-bottom: 10px;
   border-radius: 5px;
@@ -292,8 +293,45 @@ table.dashboard_show_table {
 
 td.dashboard_show_left {
   width: 74%;
-  @include box;
 }
+
+div#dashboard_show_center{
+    padding: 20px 35px;
+    @include box;
+}
+
+
+div#dashboard_show_center  p.dashboard_show_center_category{
+    font-size: 13px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#dashboard_show_center  p.dashboard_show_center_date{
+    font-size: 13px;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+div#dashboard_show_center p.dashboard_show_center_title {
+  font-size: 60px;
+  font-style: bold;
+}
+
+div#dashboard_show_center p.dashboard_show_center_header {
+  text-align: center;
+}
+
+div#dashboard_show_center p.dashboard_show_center_header img {
+  width: calc(100% + 70px);
+  height: 320px;
+  margin-top: -20px;
+  margin-left: -35px;
+  margin-right: -35px;
+  object-fit: cover;
+  border-radius: 5px 5px 0px 0px;
+}
+
 
 td.dashboard_show_right {
   width: 400px;

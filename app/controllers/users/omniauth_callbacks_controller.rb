@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def github; basic_action; end

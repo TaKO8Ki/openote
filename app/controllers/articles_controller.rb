@@ -89,14 +89,14 @@ private
   end
 
   def this_week
-    from  = Time.current.at_beginning_of_day
+    from  = Time.current.at_beginning_of_week
     to    = (from + 6.day).at_end_of_day
     this_week = from...to
     return this_week
   end
 
   def this_month
-    from  = Time.current.at_beginning_of_day
+    from  = Time.current.at_beginning_of_month
     to    = (from + 1.month)
     this_month = from...to
     return this_month

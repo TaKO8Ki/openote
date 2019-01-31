@@ -158,7 +158,9 @@
                             </p>
                           <td>
                           <td class="article_list_username">
+
                             <object><%= link_to "#{hot_article.user.username}", user_path(hot_article.user) %></object>
+                            <p class="article_list_date"><%= time_ago_in_words(hot_article.created_at) %></p>
                           </td>
                         </tr>
                         </table>
@@ -237,6 +239,9 @@
                   <td>
                   <td class="article_list_username">
                     <object><%= link_to "#{article.user.username}", user_path(article.user) %></object>
+                    <p class='article_list_date'>
+                        <%= time_ago_in_words(article.created_at) %>
+                    </p>
                   </td>
                   </tr>
                 </table>
@@ -258,11 +263,6 @@
                 <td class="article_list_likes">
                     <%= article.likes.count %>
                 <td>
-                <td class="article_list_username">
-                  <p class='article_list_date'>
-                      <%= time_ago_in_words(article.created_at) %>
-                  </p>
-                </td>
                 </tr>
               </table>
             </div>
@@ -319,7 +319,7 @@
               <% end %>
               </table>
 
-              <% if @hot_tags.count < 3 %>
+              <!-- <% if @hot_tags.count < 3 %>
                 <% @hot_tags.each do |tag| %>
                 <div id='sidebar_articles_index'>
                   <p class="tags_title"><%= link_to "##{tag.first}", searches_path(tag: tag.first), {:class => "article_tag"} %></p>
@@ -341,7 +341,18 @@
                 <% end %>
               </div>
 
+              <% end %> -->
+
+              <% tags_ranking.each do |tag| %>
+              <div id='sidebar_articles_index'>
+                <p class="tags_title"><%= link_to "##{tag}", searches_path(tag: tag), {:class => "article_tag"} %></p>
+                <% tag_articles_ranking(tag).each do |article| %>
+                <li class="hot_tag_articles"><%= link_to article.title, article_path(article) %></li>
+                <% end %>
+              </div>
               <% end %>
+
+
 
 
 

@@ -16,7 +16,8 @@
 }
 
 @mixin box{
-  box-shadow: 0.5px 0.5px 10px 0px #ccc;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1);
+  border: solid 1px #ddd;
   background-color: #fff;
   border-radius: 5px;
 }
@@ -384,6 +385,10 @@ p.user_show_link img {
   width: 13px;
 }
 
+a.user_social_link {
+  font-size: 13px;
+}
+
 p.user_name {
   border-bottom: solid 2px #ccc;
 }
@@ -635,8 +640,8 @@ div#sidebar_user_description {
 }
 
 .picture_user_show img {
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 2px solid #ccc;
   margin-top: 10px;

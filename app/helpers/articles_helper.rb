@@ -28,6 +28,9 @@ module ArticlesHelper
     user_ranking = user_articles_likes_count.sort_by{ |_, v| -v }
   end
 
+  def article_rankings
+  end
+
   def article_tags(article)
     tags = article.tags.pluck(:name)
   end
@@ -44,8 +47,12 @@ module ArticlesHelper
     ActsAsTaggableOn::Tag.all.map(&:name).sample(5)
   end
 
-  def public_article_memo(article, limit)
-    article.article_memos.where(status: "public").limit(limit)
+  def public_article_memos(article, limit)
+    article.article_memos.where(status: "public")
+  end
+
+  def current_user_article_memos(article, limit)
+    article.article_memos.where(status: "public", user_id: current_user.id).limit(limit)
   end
 
   def tags_ranking_for_a_last_week
@@ -81,6 +88,10 @@ module ArticlesHelper
       related_articles += articles
     end
     return related_articles
+  end
+
+  def tags_ranking
+    ActsAsTaggableOn::Tag.most_used(7).map(&:name)
   end
 
 

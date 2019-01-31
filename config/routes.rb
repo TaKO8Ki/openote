@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'article_comments/create'
   get 'article_comments/destroy'
   get 'users', to: 'articles#index'
+  get 'article_memos/search', to: 'article_memos#search'
 
   get 'privacy_policy', to: 'statics#privacy_policy'
   get 'rules', to: 'statics#rules'
@@ -51,8 +52,6 @@ Rails.application.routes.draw do
       resources :stocks, only: [:create, :destroy]
       resources :article_memos
   end
-  resources :categories
-  resources :article_categories
   resources :follow_relationships, only: [:create, :destroy]
   resources :searches, only: [:index]
   resources :follow_tag_relationships, only: [:create, :destroy]

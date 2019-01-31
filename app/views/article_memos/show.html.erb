@@ -4,13 +4,6 @@
       </td>
       <td valign="top" class="article_show_center">
         <div id="article_show_center">
-          <p class="article_show_center_header">
-            <% if @article_memo.user.picture.present? %>
-            <%= image_tag @article_memo.user.picture.url %>
-            <% else %>
-            <%= image_tag "profile.png" %>
-            <% end %>
-          </p>
           <p class='article_show_center_date'>
             <%= @article_memo.updated_at.strftime("%Y/%m/%d") %>
           </p>

@@ -55,11 +55,17 @@ pre.markdown_block_code {
   margin-right: -35px;
   padding: 20px 30px;
   background-color: #333;
+  padding-top: 0px;
   @include font_size;
 }
 
 code.markdown_file_name {
-  margin-bottom: 20px;
+  background: #ccc;
+  color: #fff;
+  display: inline-block;
+  margin-left: -30px;
+  padding: 2px 7px;
+  font-size: 15px;
 }
 
 pre.markdown_block_code_without_file_name {
@@ -78,6 +84,7 @@ pre.hljs {
   margin-left: -20px;
   margin-right: -20px;
   padding: 20px 30px;
+  padding-top: 0px;
   @include font_size;
 }
 
@@ -85,14 +92,19 @@ div.markdown_file_name {
   background-color: #333;
   color: #000;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   @include font_size;
+  position: relative;
+  left: -30px;
 }
 
 div.markdown_file_name_itself {
   color: #fff;
   display: inline-block;
   @include font_size;
+  padding: 2px 5px;
+  background: #ccc;
+  color: #fff;
 }
 
 /*引用関連*/

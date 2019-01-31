@@ -29,7 +29,7 @@
  body#all_contents{
    margin-top: 90px;
    color: #161616;
-   background-color: #f6f6f6;
+   background-color: #fcfcfc;
    font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
    position: relative;
    z-index: -1;
@@ -66,7 +66,7 @@
    position: fixed;
    background-color: #FFC107;
    top: 0;
-   box-shadow: 0 2px 4px 0 #ccc;
+   box-shadow: 0 2px 3px rgba(10,10,10,.1);
    z-index: 10;
  }
 
@@ -133,7 +133,7 @@ input.search_form {
   width: 400px;
   height: 35px;
   outline:none;
-  padding-left: 10px;
+  padding-left: 5px;
   font-size: 12px;
   border: none;
   border-radius: 3px;
@@ -147,10 +147,20 @@ table.search_form_table {
 
 p.search_picture {
   margin-top: 10px;
+  background: #fff;
+  position: relative;
+  top: -5px;
+  height: 35px;
+  right: -2px;
+  padding-left: 7px;
+  padding-right: 7px;
+  background: #FFF9E6;
+  border-radius: 3px 0px 0px 3px;
 }
 
 p.search_picture img {
-  width: 25px;
+  margin-top: 8px;
+  width: 20px;
   margin-right: 2px;
 }
 
@@ -163,10 +173,9 @@ p.signed_up {
 a.new_article_button {
     display: inline-block;
     text-decoration: none;
-    background: #FF4508;
+    background: #FFC107;
     color: #fff;
     padding: 9px 30px;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
     font-size: 18px;
     border-radius: 2px;
     font-weight: bold;
@@ -701,6 +710,14 @@ p.search_picture {
 
 a.header_picture img{
   height: 50px;
+}
+
+.alert {
+  font-size: 13px;
+}
+
+.notice {
+  font-size: 13px;
 }
 
 }

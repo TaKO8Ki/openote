@@ -225,7 +225,7 @@ $(document).on('turbolinks:load', function() {
             if (language !== undefined) {
               var fileName = language.indexOf('.');
               if (fileName !== -1) {
-                return '<pre class="hljs">' + '<div class="markdown_file_name">' + '<div class="markdown_file_name_itself">' + '<strong>' + language + '</strong>' + '</div>' + '</div>'
+                return '<pre class="hljs">' + '<div class="markdown_file_name">' + '<div class="markdown_file_name_itself">' + language  + '</div>' + '</div>'
                 + '<code>' +  hljs.highlightAuto(code).value + '</code>' + '</pre>';
               }
             }
@@ -275,8 +275,10 @@ $(document).on('turbolinks:load', function() {
           };
 
           renderer.text = function(text) {
-            var escape_letter = text.indexOf('`');
-            if (escape_letter !== -1) {
+            var backspace = text.indexOf('`');
+						var delete_line = text.indexOf('~')
+						var asterisk = text.indexOf('*')
+            if (backspace !== -1 || delete_line !== -1 || asterisk !== -1) {
               return text;
             }
             return '<p class="markdown_text">' + text + '</p>';
@@ -290,6 +292,15 @@ $(document).on('turbolinks:load', function() {
 					  var out = '<p class="markdown_image"><img src="' + href + '" alt="' + text + '"></p>';
 					  return out;
 					};
+
+					renderer.em = function(text) {
+					  return '<em>' + text + '</em>';
+					};
+
+					renderer.del = function(text) {
+					  return '<s>' + text + '</s>';
+					};
+
 
 
         marked.setOptions({
